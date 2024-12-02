@@ -15,7 +15,7 @@ namespace _123.Controllers
         }
 
         // API Key của bạn
-        private const string ApiKey = "goldapi-hqv9xsm43maetf-io";  // Sử dụng API key của bạn
+        private const string ApiKey = "goldapi-hqv9xsm43maetf-io";
 
         [HttpGet]
         public async Task<IActionResult> GetGoldPrice()
@@ -24,7 +24,7 @@ namespace _123.Controllers
             {
                 var url = "https://www.goldapi.io/api/XAU/USD"; // Lấy giá vàng (XAU) theo USD
                 var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
-                requestMessage.Headers.Add("x-access-token", ApiKey); // Thêm API key vào header
+                requestMessage.Headers.Add("x-access-token", ApiKey);
 
                 var response = await _httpClient.SendAsync(requestMessage);
 
@@ -46,25 +46,41 @@ namespace _123.Controllers
             }
         }
 
-        // Gửi dữ liệu giá vàng để vẽ biểu đồ
+        // Gửi dữ liệu giá vàng và bạc để vẽ biểu đồ
         [HttpGet]
         public async Task<IActionResult> GetGoldPriceForChart()
         {
             try
             {
-                var url = "https://www.goldapi.io/api/XAU/USD"; // Lấy giá vàng (XAU) theo USD
-                var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
-                requestMessage.Headers.Add("x-access-token", ApiKey); // Thêm API key vào header
+                // Lấy giá vàng
+                var goldUrl = "https://www.goldapi.io/api/XAU/USD";
+                var goldRequest = new HttpRequestMessage(HttpMethod.Get, goldUrl);
+                goldRequest.Headers.Add("x-access-token", ApiKey);
+                var goldResponse = await _httpClient.SendAsync(goldRequest);
 
-                var response = await _httpClient.SendAsync(requestMessage);
+                // Lấy giá bạc
+                var silverUrl = "https://www.goldapi.io/api/XAG/USD";
+                var silverRequest = new HttpRequestMessage(HttpMethod.Get, silverUrl);
+                silverRequest.Headers.Add("x-access-token", ApiKey);
+                var silverResponse = await _httpClient.SendAsync(silverRequest);
 
-                if (response.IsSuccessStatusCode)
+                if (goldResponse.IsSuccessStatusCode && silverResponse.IsSuccessStatusCode)
                 {
-                    var responseData = await response.Content.ReadAsStringAsync();
-                    var goldPriceData = JsonConvert.DeserializeObject<GoldPriceResponse>(responseData);
+                    // Xử lý dữ liệu giá vàng
+                    var goldData = await goldResponse.Content.ReadAsStringAsync();
+                    var goldPriceData = JsonConvert.DeserializeObject<GoldPriceResponse>(goldData);
 
-                    // Trả về dữ liệu giá vàng cho biểu đồ (thời gian thực)
-                    return Json(new { price = goldPriceData.Price, timestamp = DateTime.UtcNow });
+                    // Xử lý dữ liệu giá bạc
+                    var silverData = await silverResponse.Content.ReadAsStringAsync();
+                    var silverPriceData = JsonConvert.DeserializeObject<GoldPriceResponse>(silverData);
+
+                    // Trả về dữ liệu giá vàng và bạc
+                    return Json(new
+                    {
+                        goldPrice = goldPriceData.Price,
+                        silverPrice = silverPriceData.Price,
+                        timestamp = DateTime.UtcNow
+                    });
                 }
                 else
                 {
@@ -73,14 +89,14 @@ namespace _123.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Lỗi khi lấy dữ liệu giá vàng: " + ex.Message);
+                return StatusCode(500, "Lỗi khi lấy dữ liệu giá vàng và bạc: " + ex.Message);
             }
         }
     }
 
     public class GoldPriceResponse
     {
-        public string Symbol { get; set; }  // Ký hiệu của vàng
-        public decimal Price { get; set; }  // Giá vàng hiện tại
+        public string Symbol { get; set; }  // Ký hiệu (XAU hoặc XAG)
+        public decimal Price { get; set; }  // Giá hiện tại
     }
 }
