@@ -7,13 +7,14 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/_123.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/figma.css">
     <!-- Thêm liên kết tới Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,200;0,300;0,400;1,300&display=swap" />
 </head>
 <body>
     <header>
+<<<<<<< HEAD
   		<div class="header">
 			<partial name="_LoginPopup" />
 			<div class="header-child">
@@ -47,6 +48,40 @@
 			</div>
     	</div>
 	</header>
+=======
+  <div class="top-bar">
+    
+      <div class="social text-gray">
+        <!-- Thêm class icon đúng với Font Awesome -->
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fas fa-phone-alt"></i></a>       
+        <span>0976534850</span>
+      </div>
+    <div class="logo">
+      <img src="~/images/HanDK-removebg.png" alt="Logo">
+    </div>
+    <div class="user-cart">
+      <!-- Thêm các icon giỏ hàng và người dùng -->
+      <i class="fas fa-shopping-cart"></i>
+      <i class="fas fa-user"></i>
+    </div>
+  </div>
+  
+  <nav class="main-menu">
+    <ul>
+      <li><a href="#">Trang chủ</a></li>
+      <li><a href="#">Danh mục</a></li>
+      <li><a href="@Url.Action("thongtin", "Home")">Thông tin</a></li>
+      <li><a href="#" class="highlight">Khuyến mãi</a></li>
+      <li><a href="#">HanDK</a></li>
+    </ul>
+    <div class="search-bar">
+      <input type="text" placeholder="Tìm kiếm...">
+      <button><i class="fas fa-search"></i></button>
+    </div>
+  </nav>
+</header>
+>>>>>>> 879ad2868271f002578fbc32d7c1081a53e36206
 
     <div class="container">
         <main role="main" class="pb-3">
