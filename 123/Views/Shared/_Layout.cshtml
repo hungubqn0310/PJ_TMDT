@@ -7,46 +7,93 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/_123.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Thêm liên kết tới Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,200;0,300;0,400;1,300&display=swap" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HanDK</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="DanhMuc">Danh Mục</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+  		<div class="header">
+			<partial name="_LoginPopup" />
+			<div class="header-child">
+				<!-- Các icon bên trái -->
+				<div class="left-icons">
+					<img class="search-location-icon" alt="" src="search-location.svg">
+					<img class="icon-facebook-color" alt="" src="🦆 icon \"facebook color\".svg">
+					<img class="phone-volume-icon" alt="" src="phone-volume.svg">
+					<div class="div">0976534850</div> <!-- Số điện thoại -->
+				</div>
+
+				<!-- Logo thương hiệu -->
+				<img class="handk-icon" alt="" src="HanDK.png" id="hanDKImage">
+
+				<!-- Các icon bên phải -->
+				<div class="right-icons">
+					<img class="shopping-cart-icon" alt="" src="shopping-cart.svg" id="shoppingCartIcon">
+					<img class="user-icon" alt="" src="user.svg" id="userIcon">
+				</div>
+			</div>
+			<div class="header-item">
+				<div class="home">Trang chủ</div>
+				<div class="home">Danh mục</div>
+				<div class="home">Thông tin</div>
+				<div class="home">Khuyến mãi</div>
+				<div class="home">HanDK</div>
+				<div class="search-group">
+				<input type="text" class="search-input" placeholder="Tìm kiếm...">
+				<img class="search-icon" alt="search" src="search.svg">
+				</div>
+			</div>
+    	</div>
+	</header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - HanDK - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+    <footer>
+        <div class="footer">
+			<img class="handk-footer-icon" alt="" src="HanDK_footer.png">
+			<div class="tieu-de">
+				<div class="tieude1">
+					<h1>SẢN PHẨM</h1>
+					<div class="foot">Nhẫn cưới</div>
+					<div class="foot">Nhẫn cầu hôn</div>
+					<div class="foot">Kim cương</div>
+					<div class="foot">Nhẫn nam</div>
+				</div>
+				<div class="tieude2">
+					<h1>LIÊN HỆ</h1>
+					<div class="text-foot">GỌI MUA HÀNG</div>
+					<div class="foot">0976534850</div>
+					<div class="foot">0976534850</div>
+					<div class="foot">0976534850</div>
+					<div class="text-foot">GÓP Ý KHIẾU NẠI</div>
+					<div class="foot">0976534850</div>
+					<div class="foot">Mail</div>
+				</div>
+				<div class="tieude3">
+					<h1>HỖ TRỢ</h1>
+					<div class="foot">Thu đổi</div>
+					<div class="foot">Thanh toán</div>
+					<div class="foot">Bảo mật thông tin</div>
+					<div class="foot">Hướng dẫn đo size</div>
+				</div>
+				<div class="tieude4">
+					<h1>VỀ CHÚNG TÔI</h1>
+					<div class="foot">Câu chuyện HanDK</div>
+					<div class="foot">Cửa hàng</div>
+				</div>
+			</div>	
+    	</div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+	<script src="/js/loginPopup.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

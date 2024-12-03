@@ -22,7 +22,7 @@ namespace _123.Controllers
         {
             return View();
         }
-        public IActionResult DanhMuc()
+        public IActionResult thongtin()
         {
             return View();
         }
