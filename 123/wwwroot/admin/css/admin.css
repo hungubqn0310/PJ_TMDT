@@ -1,0 +1,3 @@
+.sidebar-dark .nav-item .nav-link[data-toggle=collapse]::after {
+  color: #000;
+}
