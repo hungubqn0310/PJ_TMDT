@@ -1,0 +1,30 @@
+@model _123.Models.Users
+
+<h2>Đăng Ký</h2>
+<form asp-action="SignUp" method="post">
+    <div>
+        <label>Tên người dùng:</label>
+        <input asp-for="Username" />
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+    <div>
+        <label>Mật khẩu:</label>
+        <input asp-for="Password" type="password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div>
+        <label>Email:</label>
+        <input asp-for="Email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div>
+        <label>Số điện thoại:</label>
+        <input asp-for="PhoneNumber" />
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+    <div>
+        <label>Địa chỉ:</label>
+        <input asp-for="Address" />
+    </div>
+    <button type="submit">Đăng Ký</button>
+</form>
