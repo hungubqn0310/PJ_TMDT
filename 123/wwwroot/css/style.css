@@ -93,34 +93,59 @@
   display: flex;
   align-items: center;
   margin-left: auto;
+  position: relative; /* Để xử lý vị trí của icon và hiệu ứng */
 }
 
 /* Biểu tượng tìm kiếm */
 .search-icon {
   width: 20px;
   height: 20px;
-  margin-left: -20px;
+  position: absolute; /* Đặt icon theo vị trí tuyệt đối */
+  right: 10px; /* Căn lề phải của icon */
+  top: 50%; /* Đưa icon vào giữa theo chiều dọc */
+  transform: translateY(-50%); /* Đảm bảo icon được căn giữa */
   cursor: pointer;
+  transition: all 0.3s ease; /* Thêm hiệu ứng chuyển động */
 }
 
+/* Cải tiến placeholder cho input tìm kiếm */
 .search-input::placeholder {
   font-style: italic; /* In nghiêng chữ placeholder */
   color: #888; /* Màu chữ placeholder nhạt hơn */
 }
 
+/* Thiết lập kiểu cho input tìm kiếm */
 .search-input {
   flex-grow: 1; /* Ô nhập chiếm toàn bộ không gian còn lại */
   background-color: #ddd; /* Màu nền của ô nhập */
-  border: none; /* Không có viền */
+  border: 1px solid #ddd; /* Viền mặc định */
   color: #000; /* Màu chữ đen */
   font-size: 14px;
   padding: 7.5px;
+  font-weight: lighter;
   padding-left: 15px; /* Tăng khoảng cách từ rìa trái */
-  padding-right: 30px; /* Chừa khoảng trống cho biểu tượng */
+  padding-right: 40px; /* Chừa khoảng trống đủ rộng cho biểu tượng */
   border-radius: 20px; /* Góc bo tròn */
   outline: none; /* Loại bỏ viền khi click vào ô nhập */
   font-style: normal; /* Định dạng văn bản thông thường */
+  transition: all 0.3s ease; /* Thêm hiệu ứng cho tất cả các thay đổi trong 0.3s */
 }
+
+/* Khi input tìm kiếm được focus (nhấp vào) */
+.search-input:focus {
+  border: 1px solid #000; /* Đổi màu border thành đen khi focus */
+  padding-left: 13px; /* Điều chỉnh lại padding nếu cần */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Thêm hiệu ứng bóng khi focus */
+  transform: scale(1.05); /* Tăng nhẹ kích thước của trường nhập liệu */
+}
+
+/* Khi input được focus, thêm hiệu ứng cho icon */
+.search-input:focus + .search-icon {
+  transform: translateY(-50%) scale(1.2); /* Phóng to nhẹ icon */
+  color: #000; /* Thay đổi màu của icon (nếu icon là font hoặc SVG màu) */
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5)); /* Thêm hiệu ứng bóng */
+}
+
 
 /* Tổng thể footer */
 .footer {

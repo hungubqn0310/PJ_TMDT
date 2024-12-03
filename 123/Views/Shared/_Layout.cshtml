@@ -15,6 +15,7 @@
 <body>
     <header>
   		<div class="header">
+			<partial name="_LoginPopup" />
 			<div class="header-child">
 				<!-- Các icon bên trái -->
 				<div class="left-icons">
@@ -92,6 +93,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+	<script src="/js/loginPopup.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
