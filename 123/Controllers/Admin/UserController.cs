@@ -17,12 +17,56 @@ namespace _123.Controllers
             _logger = logger;
         }
 
-
+      
         public IActionResult Index()
         {
-            var users = UserService.GetUsers();
+            var userViewModel = new UserViewModel();
+            userViewModel.Users = UserService.GetUsers();
             // Gửi dữ liệu đến View
-            return View("Views/Admin/users.cshtml",users);
+            return View("Views/Admin/users.cshtml",userViewModel);
+        }
+
+        [HttpGet("add")]      
+        public IActionResult Add() 
+        {
+            User user = new User();
+            return PartialView("/Views/Admin/useradd.cshtml", user);
+        }
+
+        [HttpPost("add")]
+        public IActionResult Add(User user)
+        {
+            UserService.CreateUser(user);
+            return new RedirectResult("/admin/user");
+        }
+
+        [HttpGet("edit")]      
+        public IActionResult Edit(int id) 
+        {
+            User user = UserService.GetUserById(id);
+            return PartialView("/Views/Admin/useredit.cshtml", user);
+        }
+
+        [HttpPost("edit")]
+        public IActionResult Edit(User user)
+        {
+            UserService.UpdateUser(user);
+            return new RedirectResult("/admin/user");
+        }
+
+        [HttpGet("delete")]      
+        public IActionResult Delete(int id) 
+        {
+            User user = UserService.GetUserById(id);
+            return PartialView("/Views/Admin/userdelete.cshtml", user);
+        }
+
+        [HttpPost("delete")]
+        public IActionResult Delete(User user)
+        {
+            Console.WriteLine(user.user_id);
+            UserService.DeleteUser(user.user_id);
+            return new RedirectResult("/admin/user");
         }
 
         
