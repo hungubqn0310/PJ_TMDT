@@ -1,696 +1,158 @@
-.footer-child {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0%;
-  right: 0%;
-  bottom: 0%;
-  left: 0%;
-  background-color: #fff;
-}
-.handk-footer-icon {
-  position: absolute;
-  height: 48.39%;
-  width: 15.63%;
-  top: 11.18%;
-  right: 67.99%;
-  bottom: 40.43%;
-  left: 16.39%;
-  max-width: 100%;
-  overflow: hidden;
-  max-height: 100%;
-  object-fit: cover;
-}
-.sn-phm {
-  position: absolute;
-  top: 12.26%;
-  left: 35.14%;
-  font-size: 22.5px;
-  font-weight: 300;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-.v-chng-ti {
-  position: absolute;
-  top: 12.26%;
-  left: 69.51%;
-  font-size: 22.5px;
-  font-weight: 300;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-.lin-h {
-  position: absolute;
-  top: 12.26%;
-  left: 46.6%;
-  font-size: 22.5px;
-  font-weight: 300;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-.h-tr {
-  position: absolute;
-  top: 12.26%;
-  left: 58.06%;
-  font-size: 22.5px;
-  font-weight: 300;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-.gi-mua-hng {
-  position: absolute;
-  top: 25.22%;
-  left: 46.6%;
-  font-size: 15.75px;
-  font-weight: 200;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-.gp-khiu {
-  position: absolute;
-  top: 63.92%;
-  left: 46.6%;
-  font-size: 15.75px;
-  font-weight: 200;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-.trang-ch {
-  position: relative;
-  font-weight: 300;
-}
-.trang-ch-wrapper {
-  position: absolute;
-  height: 4.3%;
-  width: 5.49%;
-  top: 24.95%;
-  right: 59.39%;
-  bottom: 70.75%;
-  left: 35.12%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.trang-ch-container {
-  position: absolute;
-  height: 4.3%;
-  width: 7.43%;
-  top: 34.62%;
-  right: 57.45%;
-  bottom: 61.08%;
-  left: 35.12%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.trang-ch-frame {
-  position: absolute;
-  height: 4.3%;
-  width: 6.94%;
-  top: 34.62%;
-  right: 46.48%;
-  bottom: 61.08%;
-  left: 46.58%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.frame-div {
-  position: absolute;
-  height: 4.3%;
-  width: 4.03%;
-  top: 24.95%;
-  right: 37.92%;
-  bottom: 70.75%;
-  left: 58.06%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.trang-ch-wrapper1 {
-  position: absolute;
-  height: 4.3%;
-  width: 10.42%;
-  top: 24.95%;
-  right: 20.09%;
-  bottom: 70.75%;
-  left: 69.5%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.trang-ch-wrapper2 {
-  position: absolute;
-  height: 4.3%;
-  width: 5.14%;
-  top: 34.62%;
-  right: 25.36%;
-  bottom: 61.08%;
-  left: 69.5%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.trang-ch-wrapper3 {
-  position: absolute;
-  height: 4.3%;
-  width: 6.11%;
-  top: 34.62%;
-  right: 35.85%;
-  bottom: 61.08%;
-  left: 58.04%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.trang-ch-wrapper4 {
-  position: absolute;
-  height: 4.3%;
-  width: 9.58%;
-  top: 44.3%;
-  right: 32.38%;
-  bottom: 51.4%;
-  left: 58.04%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.trang-ch-wrapper5 {
-  position: absolute;
-  height: 4.3%;
-  width: 10.07%;
-  top: 53.98%;
-  right: 31.88%;
-  bottom: 41.72%;
-  left: 58.06%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.trang-ch-wrapper6 {
-  position: absolute;
-  height: 4.3%;
-  width: 6.94%;
-  top: 44.3%;
-  right: 46.48%;
-  bottom: 51.4%;
-  left: 46.58%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.trang-ch-wrapper7 {
-  position: absolute;
-  height: 4.3%;
-  width: 6.94%;
-  top: 53.98%;
-  right: 46.48%;
-  bottom: 41.72%;
-  left: 46.58%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.trang-ch-wrapper8 {
-  position: absolute;
-  height: 4.3%;
-  width: 6.94%;
-  top: 73.33%;
-  right: 46.48%;
-  bottom: 22.37%;
-  left: 46.58%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.trang-ch-wrapper9 {
-  position: absolute;
-  height: 4.3%;
-  width: 2.22%;
-  top: 83.01%;
-  right: 51.2%;
-  bottom: 12.69%;
-  left: 46.58%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.trang-ch-wrapper10 {
-  position: absolute;
-  height: 4.3%;
-  width: 5.69%;
-  top: 44.3%;
-  right: 59.17%;
-  bottom: 51.4%;
-  left: 35.14%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.trang-ch-wrapper11 {
-  position: absolute;
-  height: 4.3%;
-  width: 5.49%;
-  top: 53.98%;
-  right: 59.39%;
-  bottom: 41.72%;
-  left: 35.12%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.footer {
-  position: absolute;
-  top: 150px;
-  left: 0px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset;
-  width: 100vw;
-  height: 465px;
-}
-.header-child {
-  position: absolute;
-  height: 50%;
-  width: 100%;
-  top: 0%;
-  right: 0%;
-  bottom: 50%;
-  left: 0%;
-  background-color: #ddd;
-}
-.header-item {
-  position: absolute;
-  height: 50%;
-  width: 100%;
-  top: 50%;
-  right: 0%;
-  bottom: 0%;
-  left: 0%;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25) inset;
-  background-color: #fff;
-}
-.handk-icon {
-  position: absolute;
-  height: 50%;
-  width: 9.9%;
-  top: 0%;
-  right: 45.03%;
-  bottom: 50%;
-  left: 45.07%;
-  max-width: 100%;
-  overflow: hidden;
-  max-height: 100%;
-  object-fit: cover;
-  cursor: pointer;
-}
-.trang-ch15 {
-  position: relative;
-}
-.trang-ch-wrapper12 {
-  position: absolute;
-  height: 10%;
-  width: 3.96%;
-  top: 70%;
-  right: 79.24%;
-  bottom: 20%;
-  left: 16.81%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.trang-ch-wrapper13 {
-  position: absolute;
-  height: 10%;
-  width: 3.96%;
-  top: 70%;
-  right: 72.99%;
-  bottom: 20%;
-  left: 23.06%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.trang-ch-wrapper14 {
-  position: absolute;
-  height: 10%;
-  width: 3.75%;
-  top: 70%;
-  right: 66.94%;
-  bottom: 20%;
-  left: 29.31%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.trang-ch-wrapper15 {
-  position: absolute;
-  height: 10%;
-  width: 4.58%;
-  top: 70%;
-  right: 60.07%;
-  bottom: 20%;
-  left: 35.35%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  color: #ff0000;
-}
-.trang-ch-wrapper16 {
-  position: absolute;
-  height: 10%;
-  width: 2.78%;
-  top: 70%;
-  right: 55%;
-  bottom: 20%;
-  left: 42.22%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.search-location-icon {
-  position: absolute;
-  height: 16.67%;
-  width: 1.74%;
-  top: 16.67%;
-  right: 81.46%;
-  bottom: 66.67%;
-  left: 16.81%;
-  max-width: 100%;
-  overflow: hidden;
-  max-height: 100%;
-}
-.phone-volume-icon {
-  position: absolute;
-  height: 16.67%;
-  width: 1.74%;
-  top: 16.67%;
-  right: 73.96%;
-  bottom: 66.67%;
-  left: 24.31%;
-  max-width: 100%;
-  overflow: hidden;
-  max-height: 100%;
-}
-.div {
-  position: absolute;
-  top: 20%;
-  left: 26.74%;
-  font-size: 13px;
-  font-weight: 300;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-.user-icon {
-  position: absolute;
-  height: 16.67%;
-  width: 1.74%;
-  top: 16.67%;
-  right: 16.39%;
-  bottom: 66.67%;
-  left: 81.88%;
-  max-width: 100%;
-  overflow: hidden;
-  max-height: 100%;
-}
-.group-child {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0%;
-  right: 0%;
-  bottom: 0%;
-  left: 0%;
-  border-radius: 30px;
-  background-color: #eee;
-}
-.tm-kim {
-  position: absolute;
-  top: 23.33%;
-  left: 11.88%;
-  font-weight: 300;
-}
-.search-icon {
-  position: absolute;
-  height: 50%;
-  width: 9.38%;
-  top: 23.33%;
-  right: 6.88%;
-  bottom: 26.67%;
-  left: 83.75%;
-  max-width: 100%;
-  overflow: hidden;
-  max-height: 100%;
-}
-.rectangle-parent {
-  position: absolute;
-  height: 20%;
-  width: 11.11%;
-  top: 65.33%;
-  right: 16.39%;
-  bottom: 14.67%;
-  left: 72.5%;
-  text-align: center;
-  color: #727272;
-}
-.shopping-cart-icon {
-  position: absolute;
-  height: 16.67%;
-  width: 1.74%;
-  top: 16.67%;
-  right: 20.56%;
-  bottom: 66.67%;
-  left: 77.71%;
-  max-width: 100%;
-  overflow: hidden;
-  max-height: 100%;
-}
-.icon-facebook-color {
-  position: absolute;
-  height: 16.67%;
-  width: 1.74%;
-  top: 16.67%;
-  right: 77.71%;
-  bottom: 66.67%;
-  left: 20.56%;
-  max-width: 100%;
-  overflow: hidden;
-  max-height: 100%;
-}
+/* Tổng quan header */
 .header {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100vw;
-  height: 150px;
-  font-size: 12px;
-}
-.headerandfooter {
-  width: 100%;
-  position: relative;
-  background-color: #fff;
-  height: 615px;
-  overflow: hidden;
-  text-align: left;
-  font-size: 16.5px;
-  color: #000;
-  font-family: Inter;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
+  padding: 10px 20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Phần đầu tiên của header */
+/* Bố cục tổng thể của header-child */
+.header-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  height: 75px;
+  margin-left: 240px;
+  margin-right: 240px;
+}
 
-.ng-nhp-hoc {
-  position: absolute;
-  top: 185px;
-  left: 66px;
-  font-weight: 300;
-  display: inline-block;
-  width: 277px;
-}
-.s-hu-ngay {
-  position: absolute;
-  top: 280px;
-  left: 66px;
-  font-size: 15px;
-  font-weight: 300;
-  display: inline-block;
-  width: 268px;
-}
-.text-child {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  background-color: #d9d9d9;
-  width: 500px;
-  height: 150px;
-}
-.ti-khon {
-  position: absolute;
-  top: 51px;
-  left: 250px;
-  font-size: 40px;
-  font-weight: 300;
-}
-.text {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 500px;
-  height: 370px;
-  font-size: 25px;
-}
-.dangnhap-child {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  border-radius: 5px;
-  background-color: #ffa6ec;
-  width: 130px;
-  height: 35px;
-}
-.ng-nhp {
-  position: absolute;
-  top: 9px;
-  left: 27px;
-  font-weight: 300;
-}
-.dangnhap1 {
-  position: absolute;
-  top: 535px;
-  left: 66px;
-  width: 130px;
-  height: 35px;
+/* Các icon trong phần đầu header */
+.header-child img {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
   cursor: pointer;
 }
-.nhapemail-child {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  border-radius: 15px;
-  width: 350px;
-  height: 30px;
-}
-.email-hoc-s {
-  position: absolute;
-  top: 6px;
-  left: 27px;
-  font-weight: 300;
-}
-.nhapemail {
-  position: absolute;
-  top: 405px;
-  left: 66px;
-  width: 350px;
-  height: 30px;
-  color: #ada7a7;
-}
-.nhapmatkhau {
-  position: absolute;
-  top: 470px;
-  left: 66px;
-  width: 350px;
-  height: 30px;
-  color: #ada7a7;
-}
-.ng-k {
-  position: absolute;
-  top: 9px;
-  left: 36px;
-  font-weight: 300;
-}
-.dangky-child {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  border-radius: 5px;
-  border: 1px solid #c8c8c8;
-  box-sizing: border-box;
-  width: 130px;
-  height: 35px;
-}
-.dangky {
-  position: absolute;
-  top: 535px;
-  left: 213px;
-  width: 130px;
-  height: 35px;
-}
-.dangnhapbanggoogle-child {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  border-radius: 15px;
-  width: 250px;
-  height: 30px;
-}
-.ng-nhp-bng {
-  position: absolute;
-  top: 6px;
-  left: 40px;
-  font-weight: 300;
-}
-.icon-google-icon {
-  position: absolute;
-  height: 83.33%;
-  width: 10%;
-  top: 6.67%;
-  right: 89.2%;
-  bottom: 10%;
-  left: 0.8%;
-  max-width: 100%;
-  overflow: hidden;
-  max-height: 100%;
-}
-.dangnhapbanggoogle {
-  position: absolute;
-  top: 605px;
-  left: 116px;
-  width: 250px;
-  height: 30px;
-}
-.dangnhapbangfacebook {
-  position: absolute;
-  top: 655px;
-  left: 116px;
-  width: 250px;
-  height: 30px;
-}
-.qun-mt-khu {
-  position: absolute;
-  top: 510px;
-  left: 66px;
-  font-size: 12px;
-  font-weight: 300;
-}
-.chevron-left-icon {
-  position: absolute;
-  top: 62px;
-  left: 66px;
-  width: 25px;
-  height: 25px;
-  overflow: hidden;
-}
-.dangnhap {
-  width: 500px;
-  position: relative;
-  background-color: #fff;
-  height: 800px;
-  overflow: hidden;
-  max-width: 90%;
-  max-height: 90%;
-  text-align: left;
-  font-size: 15px;
-  color: #000;
-  font-family: Inter;
+
+/* Phần thông tin số điện thoại */
+.header-child .div {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
 }
 
+/* Phần logo hoặc thương hiệu */
+.handk-icon {
+  width: 50px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  flex-grow: 1; /* Để logo nằm ở giữa và các phần còn lại ra 2 bên */
+}
+
+
+/* Phần menu bên dưới */
+.header-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  height: 75px;
+  margin-left: 240px;
+  margin-right: 240px;
+}
+
+/* Các mục trong menu */
+.header-item .home {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-right: 15px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.header-item .home:hover {
+  color: #007bff;
+}
+
+/* Phần tìm kiếm */
+.search-group {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+/* Biểu tượng tìm kiếm */
+.search-icon {
+  width: 20px;
+  height: 20px;
+  margin-left: -20px;
+  cursor: pointer;
+}
+
+/* Ô nhập liệu */
+.search-input {
+  flex-grow: 1; /* Ô nhập chiếm toàn bộ không gian còn lại */
+  background-color: #6f4f28; /* Màu nền của ô nhập */
+  border: none; /* Không có viền */
+  color: #fff; /* Màu chữ trắng */
+  font-size: 14px;
+  padding: 7.5px;
+  border-radius: 20px; /* Góc bo tròn */
+  outline: none; /* Loại bỏ viền khi click vào ô nhập */
+}
+/* Tổng thể footer */
+.footer {
+  display: flex;
+  flex-direction: row; /* Đặt các tiêu đề nằm ngang */
+  justify-content: space-between; /* Tạo khoảng cách đều giữa các tiêu đề */
+  align-items: flex-start; /* Căn các tiêu đề lên trên cùng */
+  padding: 20px 50px;
+  background-color: #f5f5f5; /* Màu nền của footer */
+}
+
+/* Logo HanDK */
+.handk-footer-icon {
+  width: 100px; /* Kích thước logo */
+  height: auto;
+  margin-right: 50px;
+}
+
+/* Phần chứa các tiêu đề và nội dung con */
+.tieu-de {
+  display: flex;
+  flex-direction: row; /* Các tiêu đề nằm ngang */
+  gap: 30px; /* Khoảng cách giữa các cột */
+}
+
+/* Cột tiêu đề */
+.tieude1, .tieude2, .tieude3, .tieude4 {
+  display: flex;
+  flex-direction: column; /* Nội dung trong cột dọc */
+}
+
+/* Tiêu đề chính (SẢN PHẨM, LIÊN HỆ, v.v.) */
+.tieude1 h1, 
+.tieude2 h1, 
+.tieude3 h1, 
+.tieude4 h1 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px; /* Khoảng cách giữa tiêu đề và các nội dung con */
+}
+
+/* Nội dung con bên dưới tiêu đề */
+.foot {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 5px; /* Khoảng cách giữa các mục con */
+  cursor: pointer;
+}
+
+.foot:hover {
+  color: #000; /* Đổi màu khi hover vào các nội dung con */
+}
+
+/* Text đặc biệt trong phần LIÊN HỆ */
+.text-foot {
+  font-size: 14px;
+  font-weight: bold;
+  color: #777;
+  margin-top: 10px; /* Tạo khoảng cách trước khi thêm nội dung con */
+}
