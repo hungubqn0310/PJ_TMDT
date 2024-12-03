@@ -64,36 +64,62 @@
 }
 
 /* Phần menu bên dưới */
-.header-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 10px;
-  height: 50px;
-  margin-left: 240px;
-  margin-right: 240px;
+nav {
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100vw; /* Đảm bảo nav chiếm toàn bộ chiều rộng màn hình */
+  margin-left: -20px; /* Đảm bảo nav bắt đầu từ phía bên trái của trang */
 }
 
-/* Các mục trong menu */
-.header-item .home {
+.wrapper {
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-between; /* Giữ các phần tử cách đều nhau theo chiều ngang */
+  padding-top: 10px;
+  height: 75px;
+  margin-left: 260px;
+  margin-right: 280px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  gap: 30px;
+  padding: 0;
+}
+
+.nav-links li {
+  position: relative; /* Cần để định vị dropdown */
+  margin-right: 15px;
+}
+
+.nav-links li a {
   font-size: 16px;
   font-weight: 600;
   color: #333;
-  margin-right: 30px;
-  cursor: pointer;
+  text-decoration: none;
   transition: color 0.3s;
 }
 
-.header-item .home:hover {
+
+.nav-links li a:hover {
   color: #007bff;
 }
+
 
 /* Phần tìm kiếm */
 .search-group {
   display: flex;
   align-items: center;
   margin-left: auto;
+<<<<<<< HEAD
   position: relative; /* Để xử lý vị trí của icon và hiệu ứng */
+=======
+  margin-top: -30px;
+  margin-bottom: 25px;
+
+>>>>>>> 3d90e2eeffd203c1888babd90382c0a4634307d7
 }
 
 /* Biểu tượng tìm kiếm */
@@ -131,6 +157,7 @@
   transition: all 0.3s ease; /* Thêm hiệu ứng cho tất cả các thay đổi trong 0.3s */
 }
 
+<<<<<<< HEAD
 /* Khi input tìm kiếm được focus (nhấp vào) */
 .search-input:focus {
   border: 1px solid #000; /* Đổi màu border thành đen khi focus */
@@ -147,6 +174,56 @@
 }
 
 
+=======
+/* Dropdown menu *//* Dropdown menu */
+.dropdown {
+  visibility: hidden; /* Ẩn mặc định */
+  opacity: 0; /* Làm trong suốt */
+  position: fixed; /* Căn chỉnh với toàn bộ màn hình */
+  top: 0; /* Đặt ở phía trên cùng của màn hình */
+  left: 0; /* Đặt ở phía bên trái của màn hình */
+  width: 100%; /* Chiếm toàn bộ chiều rộng của màn hình */
+  background-color: #fff; /* Màu nền trắng cho dropdown */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tạo bóng đổ cho dropdown */
+  padding: 10px 0; /* Đệm cho dropdown */
+  list-style: none; /* Bỏ đi dấu chấm trong danh sách */
+  z-index: 1000; /* Đảm bảo dropdown nằm trên các phần tử khác */
+  display: flex; /* Các mục trong dropdown sẽ được xếp theo hàng ngang */
+  
+  gap: 10px; /* Khoảng cách giữa các mục là 65px */
+  transition: visibility 0.3s, opacity 0.3s;
+  margin-top: 140px;
+  height: 60px; /* Tạo hiệu ứng mượt mà khi hiển thị/ẩn */
+}
+
+.dropdown li:first-child a {
+  margin-left: 248px; /* Điều chỉnh lề trái cho mục chứa chữ đầu tiên */
+}
+
+
+/* Các liên kết trong dropdown (chữ trong các mục) */
+.dropdown li a {
+  font-size: 16px; /* Kích thước chữ */
+  font-weight: 500; /* Độ đậm của chữ */
+  color: #333; /* Màu chữ */
+  text-decoration: none; /* Bỏ đi gạch chân */
+  transition: background-color 0.3s, color 0.3s; /* Hiệu ứng khi hover */
+  text-align: center; /* Căn giữa chữ trong mỗi mục */
+  padding: 8px 12px; /* Đệm cho chữ */
+}
+
+/* Hiệu ứng hover */
+.dropdown li a:hover {
+  background-color: #f8f9fa;
+  color: #007bff;
+}
+
+/* Hiển thị dropdown khi hover vào mục cha */
+.nav-links li:hover > .dropdown {
+  visibility: visible; /* Hiển thị dropdown */
+  opacity: 1; /* Làm rõ dropdown */
+}
+>>>>>>> 3d90e2eeffd203c1888babd90382c0a4634307d7
 /* Tổng thể footer */
 .footer {
   display: flex;
