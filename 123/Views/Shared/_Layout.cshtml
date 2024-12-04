@@ -4,10 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - HanDK</title>
+	<link rel="stylesheet" href="~/css/figma.css" asp-append-version="true" >
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/_123.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="/css/figma.css">
+    
     <!-- Thêm liên kết tới Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,200;0,300;0,400;1,300&display=swap" />
@@ -34,7 +35,7 @@
   
   <nav class="main-menu">
     <ul>
-      <li><a href="#">Trang chủ</a></li>
+      <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
       <li><a href="#">Danh mục</a></li>
       <li><a href="@Url.Action("thongtin", "Home")">Thông tin</a></li>
       <li><a href="#" class="highlight">Khuyến mãi</a></li>
@@ -53,11 +54,18 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+<footer class="border-top footer text-muted">
         <div class="footer">
-      			<div class="footer-child">
-      			</div>
-      			<img class="handk-footer-icon" alt="" src="HanDK_footer.png">
+      			
+      			<div class="logo-footer">
+      				<img src="~/images/HanDK_footer1.png" alt="Logo">
+    			</div>
       			
       			<div class="sn-phm">SẢN PHẨM</div>
       			<div class="v-chng-ti">VỀ CHÚNG TÔI</div>
@@ -112,9 +120,4 @@
       			</div>
     		</div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
 </html>

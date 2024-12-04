@@ -9,7 +9,17 @@
   .social i {
     margin-left: 20px; /* Di chuyển các icon sang phải */
 }
-
+.logo-footer {
+  display: flex; /* Sử dụng flexbox (nếu cần) */
+  margin-left: 20px;
+  margin-top: 50px; /* Tăng khoảng cách từ trên xuống */
+}
+.logo-footer img {
+  max-width: 30%; /* Kích thước tối đa */
+  max-height: 10%; /* Chiều cao tối đa */
+  width: auto; /* Đảm bảo tỷ lệ khung hình */
+  height: auto; /* Đảm bảo tỷ lệ khung hình */
+}
 /* Tùy chỉnh riêng cho icon Facebook và điện thoại */
 .social .fa-facebook-f {
     margin-left: 20px; /* Khoảng cách từ cạnh trái của icon Facebook */
