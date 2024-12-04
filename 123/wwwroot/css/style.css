@@ -36,7 +36,7 @@
 
 /* Phần logo hoặc thương hiệu (handk-icon) */
 .handk-icon {
-  width: 60px !important;
+  width: 70px !important;
   height: 60px !important;
   margin-left: 300px;
   margin-right: auto; /* Để căn giữa */
@@ -101,7 +101,7 @@
 
 
 .nav-links li a:hover {
-  color: #007bff;
+  color: #fc77f1;
 }
 
 
@@ -114,20 +114,19 @@
   width: 100%;
   background-color: #f8f9fa; /* Màu nền trắng cho dropdown */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tạo bóng đổ cho dropdown */
-  padding: 10px 0; /* Đệm cho dropdown */
+  padding: 10px 0 10px 260px; /* Đệm bên trái cho chữ cách 260px */
   list-style: none; /* Bỏ đi dấu chấm trong danh sách */
   z-index: 1000; /* Đảm bảo dropdown nằm trên các phần tử khác */
   display: flex; /* Các mục trong dropdown sẽ được xếp theo hàng ngang */
-  gap: 10px; /* Khoảng cách giữa các mục là 65px */
+  gap: 10px; /* Khoảng cách giữa các mục */
   transition: visibility 0.3s, opacity 0.3s;
   margin-top: 120px;
   height: 60px;
    /* Tạo hiệu ứng mượt mà khi hiển thị/ẩn */
 }
 
-.dropdown li:first-child a {
-  margin-left: 260px; /* Điều chỉnh lề trái cho mục chứa chữ đầu tiên */
-}
+
+
 
 
 /* Các liên kết trong dropdown (chữ trong các mục) */
@@ -144,7 +143,7 @@
 /* Hiệu ứng hover */
 .dropdown li a:hover {
   background-color: #f8f9fa;
-  color: #007bff;
+  color: #fc77f1;
 }
 
 /* Hiển thị dropdown khi hover vào mục cha */
@@ -152,6 +151,12 @@
   visibility: visible; /* Hiển thị dropdown */
   opacity: 1; /* Làm rõ dropdown */
 }
+
+.nav-links li:hover > a {
+  color: #fc77f1; /* Màu chữ tùy chỉnh khi hover */
+  text-decoration: underline; /* Thêm gạch chân (tuỳ chọn) */
+}
+
 
 .dropdown1 {
   visibility: hidden; /* Ẩn mặc định */
@@ -166,16 +171,15 @@
   list-style: none; /* Bỏ đi dấu chấm trong danh sách */
   z-index: 1000; /* Đảm bảo dropdown nằm trên các phần tử khác */
   display: flex; /* Các mục trong dropdown sẽ được xếp theo hàng ngang */
-  gap: 10px; /* Khoảng cách giữa các mục là 65px */
+  gap: 20px; /* Khoảng cách giữa các mục là 65px */
   transition: visibility 0.3s, opacity 0.3s;
   margin-top: 170px;
   height: 340px;
+  padding: 10px 0 10px 260px;
    /* Tạo hiệu ứng mượt mà khi hiển thị/ẩn */
 }
 
-.dropdown1 li:first-child a {
-  margin-left: 260px; /* Điều chỉnh lề trái cho mục chứa chữ đầu tiên */
-}
+
 
 
 /* Các liên kết trong dropdown (chữ trong các mục) */
@@ -192,7 +196,7 @@
 /* Hiệu ứng hover */
 .dropdown1 li a:hover {
   background-color: #f8f9fa;
-  color: #007bff;
+  color: #fc77f1;
 }
 
 /* Hiển thị dropdown khi hover vào mục cha */
@@ -230,6 +234,13 @@
   color: #007bff; /* Màu chữ khi hover */
 }
 
+.header-drop{
+  width: 200px; /* Kích thước logo */
+  height: 200px;
+  position: absolute; /* Đảm bảo hình ảnh được định vị chính xác */
+  right: 260px;   
+
+}
 
 /* Biểu tượng tìm kiếm */
 .search-icon {
