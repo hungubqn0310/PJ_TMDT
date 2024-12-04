@@ -97,6 +97,7 @@
   position: relative; /* Để xử lý vị trí của icon và hiệu ứng */
 }
 
+
 /* Biểu tượng tìm kiếm */
 .search-icon {
   width: 20px;
@@ -107,12 +108,14 @@
   transform: translateY(-50%); /* Đảm bảo icon được căn giữa */
   cursor: pointer;
   transition: all 0.3s ease; /* Thêm hiệu ứng chuyển động */
+  font-weight: lighter; /* Thêm font-weight nhẹ cho icon (nếu icon là chữ) */
 }
 
 /* Cải tiến placeholder cho input tìm kiếm */
 .search-input::placeholder {
   font-style: italic; /* In nghiêng chữ placeholder */
   color: #888; /* Màu chữ placeholder nhạt hơn */
+  font-weight: lighter; /* Đảm bảo placeholder cũng có font-weight nhẹ */
 }
 
 /* Thiết lập kiểu cho input tìm kiếm */
@@ -123,7 +126,7 @@
   color: #000; /* Màu chữ đen */
   font-size: 14px;
   padding: 7.5px;
-  font-weight: lighter;
+  font-weight: lighter; /* Font-weight nhẹ cho ô nhập */
   padding-left: 15px; /* Tăng khoảng cách từ rìa trái */
   padding-right: 40px; /* Chừa khoảng trống đủ rộng cho biểu tượng */
   border-radius: 20px; /* Góc bo tròn */
@@ -145,7 +148,9 @@
   transform: translateY(-50%) scale(1.2); /* Phóng to nhẹ icon */
   color: #000; /* Thay đổi màu của icon (nếu icon là font hoặc SVG màu) */
   filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5)); /* Thêm hiệu ứng bóng */
+  font-weight: lighter; /* Đảm bảo icon có font-weight nhẹ khi focus */
 }
+
 
 
 /* Tổng thể footer */
