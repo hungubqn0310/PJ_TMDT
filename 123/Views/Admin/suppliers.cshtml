@@ -1,0 +1,56 @@
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model _123.SupplierViewModel
+
+<div class="card mb-4">
+  <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Thông tin nhà cung cấp</h6>
+  </div>
+  <div class="d-flex justify-content-end">
+    <button type="button" class="btn btn-outline-success" style="margin: 10px 40px 0;" data-toggle="modal" data-target="#supplier-add" 
+    data-url="@Url.Action($"Add")">Add </button>
+    @await Html.PartialAsync("/Views/Admin/supplieradd.cshtml", @Model.Supplier)
+  </div>
+  <div class="card-body">
+      <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                  <tr>
+                      <th>Stt</th>
+                      <th>Supplier Name</th>
+                      <th>Contact Name</th>
+                      <th>Phone</th>
+                      <th>Address</th>
+                      <th>Email</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody>
+                @for (int i = 0; i < Model.Suppliers.Count(); i++)
+                {
+                    <tr>
+                        <td>@(i+1)</td> <!-- Index -->
+                        <td>@Model.Suppliers[i].SupplierName</td>
+                        <td>@Model.Suppliers[i].ContactName</td>
+                        <td>@Model.Suppliers[i].PhoneNumber</td>
+                        <td>@Model.Suppliers[i].Address</td>
+                        <td>@Model.Suppliers[i].Email</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#supplier-@Model.Suppliers[i].SupplierId" data-url="@Url.Action($"Edit/{@Model.Suppliers[i].SupplierId}")">
+                                <i class="material-icons" style="font-size: 14px">border_color</i>
+                            </button>
+                            @await Html.PartialAsync("/Views/Admin/supplieredit.cshtml", @Model.Suppliers[i])
+
+                            <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#supplier-delete-@Model.Suppliers[i].SupplierId" data-url="@Url.Action($"Delete/{@Model.Suppliers[i].SupplierId}")">
+                                <i class="material-icons" style="font-size: 14px">delete</i>
+                            </button>
+                            @await Html.PartialAsync("/Views/Admin/supplierdelete.cshtml", @Model.Suppliers[i])
+                        </td>
+                    </tr>
+                }
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>

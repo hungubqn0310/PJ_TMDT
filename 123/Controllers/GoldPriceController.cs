@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -11,7 +12,7 @@ namespace _123.Controllers
 
         public GoldPriceController(HttpClient httpClient)
         {
-            _httpClient = httpClient;
+            _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
         }
 
         // API Key của bạn
@@ -22,10 +23,11 @@ namespace _123.Controllers
         {
             try
             {
-                var url = "https://www.goldapi.io/api/XAU/USD"; // Lấy giá vàng (XAU) theo USD
+                var url = "https://www.goldapi.io/api/XAU/USD"; // API URL
                 var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
                 requestMessage.Headers.Add("x-access-token", ApiKey);
 
+                // Gửi yêu cầu đến API
                 var response = await _httpClient.SendAsync(requestMessage);
 
                 if (response.IsSuccessStatusCode)
@@ -33,16 +35,25 @@ namespace _123.Controllers
                     var responseData = await response.Content.ReadAsStringAsync();
                     var goldPriceData = JsonConvert.DeserializeObject<GoldPriceResponse>(responseData);
 
-                    return Json(goldPriceData);
+                    if (goldPriceData == null || goldPriceData.Price <= 0)
+                    {
+                        return StatusCode(500, "Dữ liệu từ API không hợp lệ.");
+                    }
+
+                    return Json(goldPriceData); // Trả về JSON
                 }
                 else
                 {
-                    return StatusCode(500, "Không thể lấy dữ liệu từ API.");
+                    return StatusCode((int)response.StatusCode, "Không thể lấy dữ liệu từ API.");
                 }
+            }
+            catch (HttpRequestException ex)
+            {
+                return StatusCode(500, "Lỗi kết nối đến API: " + ex.Message);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Lỗi khi lấy dữ liệu giá vàng: " + ex.Message);
+                return StatusCode(500, "Lỗi không xác định: " + ex.Message);
             }
         }
 
@@ -87,6 +98,10 @@ namespace _123.Controllers
                     return StatusCode(500, "Không thể lấy dữ liệu từ API.");
                 }
             }
+            catch (HttpRequestException ex)
+            {
+                return StatusCode(500, "Lỗi kết nối đến API: " + ex.Message);
+            }
             catch (Exception ex)
             {
                 return StatusCode(500, "Lỗi khi lấy dữ liệu giá vàng và bạc: " + ex.Message);
@@ -94,6 +109,7 @@ namespace _123.Controllers
         }
     }
 
+    // Định nghĩa lớp phản hồi từ API
     public class GoldPriceResponse
     {
         public string Symbol { get; set; }  // Ký hiệu (XAU hoặc XAG)
