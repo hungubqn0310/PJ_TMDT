@@ -1,0 +1,55 @@
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model _123.ReviewsViewModel
+
+<div class="card mb-4">
+  <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Thông tin Reviews</h6>
+  </div>
+  <div class="d-flex justify-content-end">
+    <button type="button" class="btn btn-outline-success" style="margin: 10px 40px 0;" data-toggle="modal" data-target="#review-add" 
+    data-url="@Url.Action($"Add")">Add </button>
+    @* @await Html.PartialAsync("/Views/Admin/reviewadd.cshtml", @Model.Review) *@
+  </div>
+
+  <div class="card-body">
+      <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                  <tr>
+                      <th>Stt</th>
+                      <th>Product ID</th>
+                      <th>User ID</th>
+                      <th>Rating</th>
+                      <th>Comment</th>
+                      <th>Review Date</th>
+                  </tr>
+              </thead>
+              <tbody>
+                @for (int i = 0; i < Model.Reviews.Count(); i++)
+                {
+                    <tr>
+                        <td>@(i + 1)</td> <!-- Index -->
+                        <td>@Model.Reviews[i].product_id</td>
+                        <td>@Model.Reviews[i].user_id</td>
+                        <td>@Model.Reviews[i].rating</td>
+                        <td>@Model.Reviews[i].comment</td>
+                        <td>@Model.Reviews[i].review_date.ToString("yyyy-MM-dd HH:mm")</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#review-@Model.Reviews[i].review_id" data-url="@Url.Action($"Edit/{@Model.Reviews[i].review_id}")">
+                                <i class="material-icons" style="font-size: 14px">border_color</i>
+                            </button>
+                            @* @await Html.PartialAsync("/Views/Admin/reviewedit.cshtml", @Model.Reviews[i]) *@
+                            <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#review-delete-@Model.Reviews[i].review_id" data-url="@Url.Action($"Delete/{@Model.Reviews[i].review_id}")">
+                                <i class="material-icons" style="font-size: 14px">delete</i>
+                            </button>
+                            @* @await Html.PartialAsync("/Views/Admin/reviewdelete.cshtml", @Model.Reviews[i]) *@
+                        </td>
+                    </tr>
+                }
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
