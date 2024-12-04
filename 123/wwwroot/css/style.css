@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* Tổng quan header */
 .header {
   display: flex;
@@ -62,30 +61,6 @@
   font-size: 14px;
   font-weight: 500;
   color: #333;
-=======
-.footer-child {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0%;
-  right: 0%;
-  bottom: 0%;
-  left: 0%;
-  background-color: #fff;
-}
-.handk-footer-icon {
-  position: absolute;
-  height: 48.39%;
-  width: 15.63%;
-  top: 11.18%;
-  right: 67.99%;
-  bottom: 40.43%;
-  left: 16.39%;
-  max-width: 100%;
-  overflow: hidden;
-  max-height: 100%;
-  object-fit: cover;
->>>>>>> 879ad2868271f002578fbc32d7c1081a53e36206
 }
 
 /* Phần menu bên dưới */
