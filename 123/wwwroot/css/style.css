@@ -113,13 +113,9 @@ nav {
   display: flex;
   align-items: center;
   margin-left: auto;
-<<<<<<< HEAD
-  position: relative; /* Để xử lý vị trí của icon và hiệu ứng */
-=======
   margin-top: -30px;
   margin-bottom: 25px;
 
->>>>>>> 3d90e2eeffd203c1888babd90382c0a4634307d7
 }
 
 /* Biểu tượng tìm kiếm */
@@ -157,24 +153,6 @@ nav {
   transition: all 0.3s ease; /* Thêm hiệu ứng cho tất cả các thay đổi trong 0.3s */
 }
 
-<<<<<<< HEAD
-/* Khi input tìm kiếm được focus (nhấp vào) */
-.search-input:focus {
-  border: 1px solid #000; /* Đổi màu border thành đen khi focus */
-  padding-left: 13px; /* Điều chỉnh lại padding nếu cần */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Thêm hiệu ứng bóng khi focus */
-  transform: scale(1.05); /* Tăng nhẹ kích thước của trường nhập liệu */
-}
-
-/* Khi input được focus, thêm hiệu ứng cho icon */
-.search-input:focus + .search-icon {
-  transform: translateY(-50%) scale(1.2); /* Phóng to nhẹ icon */
-  color: #000; /* Thay đổi màu của icon (nếu icon là font hoặc SVG màu) */
-  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5)); /* Thêm hiệu ứng bóng */
-}
-
-
-=======
 /* Dropdown menu *//* Dropdown menu */
 .dropdown {
   visibility: hidden; /* Ẩn mặc định */
@@ -223,7 +201,6 @@ nav {
   visibility: visible; /* Hiển thị dropdown */
   opacity: 1; /* Làm rõ dropdown */
 }
->>>>>>> 3d90e2eeffd203c1888babd90382c0a4634307d7
 /* Tổng thể footer */
 .footer {
   display: flex;
