@@ -54,13 +54,8 @@
         </main>
     </div>
 
-    
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
-<footer class="border-top footer text-muted">
+	
+	<footer class="border-top footer text-muted" style="clear:both">
         <div class="footer">
       			
       			<div class="logo-footer">
@@ -120,4 +115,11 @@
       			</div>
     		</div>
     </footer>
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
 </html>
