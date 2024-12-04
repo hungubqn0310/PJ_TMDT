@@ -9,6 +9,7 @@
   top: 0; /* Đặt header ở trên cùng */
   left: 0;
   right: 0;
+  height: 120px;
   z-index: 1000; /* Đảm bảo header sẽ luôn nổi trên các phần tử khác */
 }
 
@@ -35,7 +36,7 @@
 
 /* Phần logo hoặc thương hiệu (handk-icon) */
 .handk-icon {
-  width: 60px !important;
+  width: 70px !important;
   height: 60px !important;
   margin-left: 300px;
   margin-right: auto; /* Để căn giữa */
@@ -64,37 +65,18 @@
 }
 
 /* Phần menu bên dưới */
-nav {
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  width: 100vw; /* Đảm bảo nav chiếm toàn bộ chiều rộng màn hình */
-  margin-left: -20px; /* Đảm bảo nav bắt đầu từ phía bên trái của trang */
-}
-
-.wrapper {
+.header-item {
   display: flex;
-  margin-top: 20px;
-  justify-content: space-between; /* Giữ các phần tử cách đều nhau theo chiều ngang */
+  align-items: center;
+  justify-content: space-between;
   padding-top: 10px;
-  height: 75px;
-  margin-left: 260px;
-  margin-right: 280px;
+  height: 50px;
+  margin-left: 240px;
+  margin-right: 240px;
 }
 
-.nav-links {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  gap: 30px;
-  padding: 0;
-}
-
-.nav-links li {
-  position: relative; /* Cần để định vị dropdown */
-  margin-right: 15px;
-}
-
-.nav-links li a {
+/* Các mục trong menu */
+.header-item .home {
   font-size: 16px;
   font-weight: 600;
   color: #333;
@@ -102,19 +84,50 @@ nav {
   transition: color 0.3s;
 }
 
-
-.nav-links li a:hover {
+.header-item .home:hover {
   color: #007bff;
 }
 
 
+/* Hiển thị dropdown khi hover vào mục cha */
+.dropdown li:hover > .dropdown1 {
+  visibility: visible; /* Hiển thị dropdown */
+  opacity: 1; /* Làm rõ dropdown */
+}
 /* Phần tìm kiếm */
 .search-group {
   display: flex;
   align-items: center;
   margin-left: auto;
-  margin-top: -30px;
-  margin-bottom: 25px;
+  position: relative; /* Để xử lý vị trí của icon và hiệu ứng */
+}
+
+.type {
+  margin-top: 20px;
+  list-style-type: none; /* Loại bỏ dấu chấm đầu dòng */
+  padding: 0; /* Loại bỏ khoảng cách mặc định */
+}
+
+.type li {
+  margin-bottom: 10px; /* Khoảng cách giữa các mục */
+}
+
+.type li a {
+  text-decoration: none; /* Bỏ gạch chân */
+  color: #333; /* Màu chữ */
+  font-size: 16px; /* Kích thước chữ */
+  font-weight: 600; /* Độ đậm của chữ */
+}
+
+.type li a:hover {
+  color: #007bff; /* Màu chữ khi hover */
+}
+
+.header-drop{
+  width: 200px; /* Kích thước logo */
+  height: 200px;
+  position: absolute; /* Đảm bảo hình ảnh được định vị chính xác */
+  right: 260px;   
 
 }
 
