@@ -6,7 +6,7 @@ namespace _123.Helpers
 {
     public static class DatabaseHelper
     {
-        private static string _connectionString = "Server=localhost;Database=HanDK;User=root;Password=123456;";
+        private static string _connectionString = "Server=localhost;Database=hanDK;User=root;Password=new_password;";
 
         /// <summary>
         /// Mở kết nối đến cơ sở dữ liệu.
@@ -75,5 +75,32 @@ namespace _123.Helpers
                 }
             }
         }
-    }
+    
+	public static object ExecuteScalar(string query, MySqlParameter[] parameters = null)
+        {
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        // Thêm các tham số nếu có
+                        if (parameters != null)
+                        {
+                            command.Parameters.AddRange(parameters);
+                        }
+
+                        // Thực thi câu lệnh và trả về giá trị đầu tiên
+                        return command.ExecuteScalar();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Lỗi khi thực hiện ExecuteScalar: {ex.Message}");
+                    throw;
+                }
+            }
+        }
+	}
 }
