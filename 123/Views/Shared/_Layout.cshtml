@@ -1,52 +1,65 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - HanDK</title>
-	<link rel="stylesheet" href="~/css/figma.css" asp-append-version="true" >
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/_123.styles.css" asp-append-version="true" />
-    
+    <link rel="stylesheet" href="/css/style.css">
     <!-- Thêm liên kết tới Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,200;0,300;0,400;1,300&display=swap" />
 </head>
 <body>
     <header>
-  <div class="top-bar">
-    
-      <div class="social text-gray">
-        <!-- Thêm class icon đúng với Font Awesome -->
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fas fa-phone-alt"></i></a>       
-        <span>0976534850</span>
-      </div>
-    <div class="logo">
-      <img src="~/images/HanDK-removebg.png" alt="Logo">
-    </div>
-    <div class="user-cart">
-      <!-- Thêm các icon giỏ hàng và người dùng -->
-      <i class="fas fa-shopping-cart"></i>
-      <i class="fas fa-user"></i>
-    </div>
-  </div>
-  
-  <nav class="main-menu">
-    <ul>
-      <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
-      <li><a href="#">Danh mục</a></li>
-      <li><a href="@Url.Action("thongtin", "Home")">Thông tin</a></li>
-      <li><a href="#" class="highlight">Khuyến mãi</a></li>
-      <li><a href="#">HanDK</a></li>
-    </ul>
-    <div class="search-bar">
-      <input type="text" placeholder="Tìm kiếm...">
-      <button><i class="fas fa-search"></i></button>
-    </div>
-  </nav>
-</header>
+  		<div class="header">
+			<partial name="_LoginPopup" />
+			<div class="header-child">
+				<!-- Các icon bên trái -->
+				<div class="left-icons">
+					<img class="search-location-icon" alt="" src="search-location.svg">
+					<img class="icon-facebook-color" alt="" src="🦆 icon \"facebook color\".svg">
+					<img class="phone-volume-icon" alt="" src="phone-volume.svg">
+					<div class="div">0976534850</div> <!-- Số điện thoại -->
+				</div>
+
+				<!-- Logo thương hiệu -->
+				<img class="handk-icon" alt="" src="~/images/HanDK-removebg.png" id="hanDKImage">
+
+				<!-- Các icon bên phải -->
+				<div class="right-icons">
+					<img class="shopping-cart-icon" alt="" src="shopping-cart.svg" id="shoppingCartIcon">
+					<img class="user-icon" alt="" src="user.svg" id="userIcon">
+				</div>
+			</div>
+			<nav>
+				<div class="wrapper">
+					<ul class="nav-links">
+						<li><a href="#">Trang chủ</a></li>
+						<li>
+							<a href="#">Danh mục</a>
+							<ul class="dropdown">
+								<li><a href="#">Nhẫn cầu hôn</a></li>
+								<li><a href="#">Nhẫn cưới</a></li>
+								<li><a href="#">Trang sức</a></li>
+								<li><a href="#">Kim cương</a></li>
+								<li><a href="#">Men's</a></li>
+							</ul>
+							</li>
+						<li><a href="#">Thông tin</a></li>
+						<li><a href="#">Khuyến mãi</a></li>
+						<li><a href="#">HanDK</a></li>
+					</ul>
+					<div class="search-group">
+							<input type="text" class="search-input" placeholder="Tìm kiếm...">
+							<img class="search-icon" alt="search" src="search.svg">
+						</div>	
+				</div>
+			</nav>	
+    	</div>
+	</header>
 
     <div class="container">
         <main role="main" class="pb-3">
@@ -54,72 +67,46 @@
         </main>
     </div>
 
-	
-	<footer class="border-top footer text-muted" style="clear:both">
+    <footer>
         <div class="footer">
-      			
-      			<div class="logo-footer">
-      				<img src="~/images/HanDK_footer1.png" alt="Logo">
-    			</div>
-      			
-      			<div class="sn-phm">SẢN PHẨM</div>
-      			<div class="v-chng-ti">VỀ CHÚNG TÔI</div>
-      			<div class="lin-h">LIÊN HỆ</div>
-      			<div class="h-tr">HỖ TRỢ</div>
-      			<div class="gi-mua-hng">GỌI MUA HÀNG</div>
-      			<div class="gp-khiu">GÓP Ý KHIẾU NẠI</div>
-      			<div class="trang-ch-wrapper">
-        				<div class="trang-ch">Nhẫn cưới</div>
-      			</div>
-      			<div class="trang-ch-container">
-        				<div class="trang-ch">Nhẫn cầu hôn</div>
-      			</div>
-      			<div class="trang-ch-frame">
-        				<div class="trang-ch">0976534850</div>
-      			</div>
-      			<div class="frame-div">
-        				<div class="trang-ch">Thu đổi</div>
-      			</div>
-      			<div class="trang-ch-wrapper1">
-        				<div class="trang-ch">Câu chuyện HanDK</div>
-      			</div>
-      			<div class="trang-ch-wrapper2">
-        				<div class="trang-ch">Cửa hàng</div>
-      			</div>
-      			<div class="trang-ch-wrapper3">
-        				<div class="trang-ch">Thanh toán</div>
-      			</div>
-      			<div class="trang-ch-wrapper4">
-        				<div class="trang-ch">Bảo mật thông tin</div>
-      			</div>
-      			<div class="trang-ch-wrapper5">
-        				<div class="trang-ch">Hướng dẫn đo size</div>
-      			</div>
-      			<div class="trang-ch-wrapper6">
-        				<div class="trang-ch">0976534850</div>
-      			</div>
-      			<div class="trang-ch-wrapper7">
-        				<div class="trang-ch">0976534850</div>
-      			</div>
-      			<div class="trang-ch-wrapper8">
-        				<div class="trang-ch">0976534850</div>
-      			</div>
-      			<div class="trang-ch-wrapper9">
-        				<div class="trang-ch">Mail</div>
-      			</div>
-      			<div class="trang-ch-wrapper10">
-        				<div class="trang-ch">Kim cương</div>
-      			</div>
-      			<div class="trang-ch-wrapper11">
-        				<div class="trang-ch">Nhẫn nam</div>
-      			</div>
-    		</div>
+			<img class="handk-footer-icon" alt="" src="~/images/HanDK_footer1.png">
+			<div class="tieu-de">
+				<div class="tieude1">
+					<h1>SẢN PHẨM</h1>
+					<div class="foot">Nhẫn cưới</div>
+					<div class="foot">Nhẫn cầu hôn</div>
+					<div class="foot">Kim cương</div>
+					<div class="foot">Nhẫn nam</div>
+				</div>
+				<div class="tieude2">
+					<h1>LIÊN HỆ</h1>
+					<div class="text-foot">GỌI MUA HÀNG</div>
+					<div class="foot">0976534850</div>
+					<div class="foot">0976534850</div>
+					<div class="foot">0976534850</div>
+					<div class="text-foot">GÓP Ý KHIẾU NẠI</div>
+					<div class="foot">0976534850</div>
+					<div class="foot">Mail</div>
+				</div>
+				<div class="tieude3">
+					<h1>HỖ TRỢ</h1>
+					<div class="foot">Thu đổi</div>
+					<div class="foot">Thanh toán</div>
+					<div class="foot">Bảo mật thông tin</div>
+					<div class="foot">Hướng dẫn đo size</div>
+				</div>
+				<div class="tieude4">
+					<h1>VỀ CHÚNG TÔI</h1>
+					<div class="foot">Câu chuyện HanDK</div>
+					<div class="foot">Cửa hàng</div>
+				</div>
+			</div>	
+    	</div>
     </footer>
-    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+	<script src="/js/loginPopup.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
-
 </html>
