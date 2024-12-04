@@ -80,6 +80,7 @@
   font-weight: 600;
   color: #333;
   margin-right: 30px;
+  margin-top: -2.5px;
   cursor: pointer;
   transition: color 0.3s;
 }
