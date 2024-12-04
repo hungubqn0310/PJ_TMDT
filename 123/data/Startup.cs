@@ -12,39 +12,41 @@ public class Startup
     }
 
     public void ConfigureServices(IServiceCollection services)
+{
+    services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseMySql(
+            Configuration.GetConnectionString("DefaultConnection"),
+            ServerVersion.AutoDetect(Configuration.GetConnectionString("DefaultConnection"))
+        ));
+    services.AddControllersWithViews();
+    services.AddSession(); // Thêm dòng này
+}
+
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+    if (env.IsDevelopment())
     {
-        services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseMySql(
-                Configuration.GetConnectionString("DefaultConnection"),
-                ServerVersion.AutoDetect(Configuration.GetConnectionString("DefaultConnection")) // Tự động phát hiện phiên bản MySQL
-            ));
-        services.AddControllersWithViews();
+        app.UseDeveloperExceptionPage();
+    }
+    else
+    {
+        app.UseExceptionHandler("/Home/Error");
+        app.UseHsts();
     }
 
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    app.UseHttpsRedirection();
+    app.UseStaticFiles();
+
+    app.UseRouting();
+
+    app.UseSession(); // Thêm dòng này
+    app.UseAuthorization();
+
+    app.UseEndpoints(endpoints =>
     {
-        if (env.IsDevelopment())
-        {
-            app.UseDeveloperExceptionPage();
-        }
-        else
-        {
-            app.UseExceptionHandler("/Home/Error");
-            app.UseHsts();
-        }
-
-        app.UseHttpsRedirection();
-        app.UseStaticFiles();
-
-        app.UseRouting();
-
-        app.UseAuthorization();
-
-        app.UseEndpoints(endpoints =>
-        {
-            endpoints.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
-        });
-    }
+        endpoints.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=Home}/{action=Index}/{id?}");
+    });
+}
 }

@@ -17,6 +17,11 @@ namespace _123.Models
         [MaxLength(50, ErrorMessage = "Tối đa 50 kí tự.")]
         public string Password { get; set; }
 
+        [NotMapped] // Đánh dấu trường này không được ánh xạ tới cơ sở dữ liệu
+        [Required(ErrorMessage = "Xác nhận mật khẩu là bắt buộc.")]
+        [Compare("Password", ErrorMessage = "Mật khẩu và xác nhận mật khẩu không khớp.")]
+        public string ConfirmPassword { get; set; }
+
         [Required(ErrorMessage = "Email là bắt buộc.")]
         [EmailAddress(ErrorMessage = "Email không hợp lệ.")]
         public string Email { get; set; }
@@ -25,10 +30,13 @@ namespace _123.Models
         [MaxLength(20, ErrorMessage = "Tối đa 20 kí tự.")]
         public string PhoneNumber { get; set; }
 
+        [MaxLength(255, ErrorMessage = "Tối đa 255 kí tự.")]
         public string Address { get; set; }
 
         [Column("is_deleted")]
         public bool IsDeleted { get; set; } = false;
+        //public bool TermsAccepted { get; set; }
+
 
         // Constructor mặc định
         public Users() { }
@@ -43,6 +51,7 @@ namespace _123.Models
             PhoneNumber = phoneNumber;
             Address = address;
             IsDeleted = isDeleted;
+            
         }
 
         public override string ToString()
