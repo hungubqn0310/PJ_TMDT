@@ -1,0 +1,56 @@
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model _123.CategoryViewModel
+
+<div class="card mb-4">
+  <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Thông tin danh mục</h6>
+  </div>
+  <div class="d-flex justify-content-end">  
+    <button type="button" class="btn btn-outline-success" style="margin: 10px 40px 0;" data-toggle="modal" data-target="#category-add" 
+    data-url="@Url.Action($"Add")">Thêm Mới</button>
+    @await Html.PartialAsync("/Views/Admin/categoryadd.cshtml", @Model.Category)
+  </div>
+
+  <div class="card-body">
+      <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                  <tr>
+                      <th>Stt</th>
+                      <th>Tên danh mục</th>
+                      <th>Mô tả</th>
+                  </tr>
+              </thead>
+              <tbody>
+                @for (int i = 0; i < Model.Categories.Count(); i++)
+                {
+                    <tr>
+                        <td>@(i + 1)</td> <!-- Index -->
+                        <td>@Model.Categories[i].CategoryName</td>
+                        <td>@Model.Categories[i].Description</td>
+                        <td>
+                            <!-- Edit Button -->
+                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" 
+                                    data-target="#category-@Model.Categories[i].CategoryId" 
+                                    data-url="@Url.Action($"Edit/{@Model.Categories[i].CategoryId}")">
+                                <i class="material-icons" style="font-size: 14px">border_color</i>
+                            </button>
+                            @await Html.PartialAsync("/Views/Admin/categoryedit.cshtml", @Model.Categories[i])
+
+                            <!-- Delete Button -->
+                            <button type="button" class="btn btn-outline-danger" data-toggle="modal" 
+                                    data-target="#category-delete-@Model.Categories[i].CategoryId" 
+                                    data-url="@Url.Action($"Delete/{@Model.Categories[i].CategoryId}")">
+                                <i class="material-icons" style="font-size: 14px">delete</i>
+                            </button>
+                            @await Html.PartialAsync("/Views/Admin/categorydelete.cshtml", @Model.Categories[i])
+                        </td>
+                    </tr>
+                }
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
