@@ -61,21 +61,16 @@
 // }
 
 using Microsoft.AspNetCore.Mvc;
-using _123.Data;
 using _123.Models;
 using System.Linq;
 using System.Threading.Tasks;
+using _123.Services;
+using Google.Protobuf;
 
 namespace _123.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly ApplicationDbContext _context;
-
-        public AccountController(ApplicationDbContext context)
-        {
-            _context = context;
-        }
 
         // GET: /Account/SignUp
         public IActionResult SignUp()
@@ -91,8 +86,9 @@ namespace _123.Controllers
             if (ModelState.IsValid)
             {
                 // Không mã hóa mật khẩu, lưu trực tiếp
-                _context.Users.Add(userAccount);
-                await _context.SaveChangesAsync();
+                var st = AuthService.Signup(userAccount);
+                Console.WriteLine(st);
+
                 return RedirectToAction("Login");
             }
             return View(userAccount);
@@ -110,8 +106,12 @@ namespace _123.Controllers
         public IActionResult Login(string username, string password)
         {
             // Tìm người dùng dựa trên username
-            var userAccount = _context.Users.SingleOrDefault(u => u.Username == username);
-            if (userAccount != null && userAccount.Password == password) // So sánh trực tiếp mật khẩu
+            // var userAccount = _context.Users.SingleOrDefault(u => u.Username == username);
+             var userAccount = AuthService.Login(username,password);
+            // if (userAccount != null && userAccount.Password == password)
+             // So sánh trực tiếp mật khẩu
+            Console.WriteLine(userAccount);
+            if (userAccount != null ) // So sánh trực tiếp mật khẩu
             {
                 // Đăng nhập thành công
                 return RedirectToAction("Index", "Home");

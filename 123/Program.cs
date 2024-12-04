@@ -1,14 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
-using _123.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Cấu hình DbContext với MySQL
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseMySql(
-        builder.Configuration.GetConnectionString("DefaultConnection"),
-        new MySqlServerVersion(new Version(8, 0, 30)) // Chỉ định phiên bản MySQL cụ thể (có thể thay đổi)
-    ));
+// builder.Services.AddDbContext<ApplicationDbContext>(options =>
+//     options.UseMySql(
+//         builder.Configuration.GetConnectionString("DefaultConnection"),
+//         new MySqlServerVersion(new Version(8, 0, 30)) // Chỉ định phiên bản MySQL cụ thể (có thể thay đổi)
+//     ));
 
 builder.Services.AddControllersWithViews();
 
