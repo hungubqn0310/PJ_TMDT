@@ -4,12 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - HanDK</title>
+	<link rel="stylesheet" href="~/css/figma.css" asp-append-version="true" >
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/_123.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="/css/style.css">
+    
     <!-- Thêm liên kết tới Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,200;0,300;0,400;1,300&display=swap" />
 </head>
 <body>
     <header>
@@ -33,7 +35,7 @@
   
   <nav class="main-menu">
     <ul>
-      <li><a href="#">Trang chủ</a></li>
+      <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
       <li><a href="#">Danh mục</a></li>
       <li><a href="@Url.Action("thongtin", "Home")">Thông tin</a></li>
       <li><a href="#" class="highlight">Khuyến mãi</a></li>
@@ -52,14 +54,70 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - HanDK - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+<footer class="border-top footer text-muted">
+        <div class="footer">
+      			
+      			<div class="logo-footer">
+      				<img src="~/images/HanDK_footer1.png" alt="Logo">
+    			</div>
+      			
+      			<div class="sn-phm">SẢN PHẨM</div>
+      			<div class="v-chng-ti">VỀ CHÚNG TÔI</div>
+      			<div class="lin-h">LIÊN HỆ</div>
+      			<div class="h-tr">HỖ TRỢ</div>
+      			<div class="gi-mua-hng">GỌI MUA HÀNG</div>
+      			<div class="gp-khiu">GÓP Ý KHIẾU NẠI</div>
+      			<div class="trang-ch-wrapper">
+        				<div class="trang-ch">Nhẫn cưới</div>
+      			</div>
+      			<div class="trang-ch-container">
+        				<div class="trang-ch">Nhẫn cầu hôn</div>
+      			</div>
+      			<div class="trang-ch-frame">
+        				<div class="trang-ch">0976534850</div>
+      			</div>
+      			<div class="frame-div">
+        				<div class="trang-ch">Thu đổi</div>
+      			</div>
+      			<div class="trang-ch-wrapper1">
+        				<div class="trang-ch">Câu chuyện HanDK</div>
+      			</div>
+      			<div class="trang-ch-wrapper2">
+        				<div class="trang-ch">Cửa hàng</div>
+      			</div>
+      			<div class="trang-ch-wrapper3">
+        				<div class="trang-ch">Thanh toán</div>
+      			</div>
+      			<div class="trang-ch-wrapper4">
+        				<div class="trang-ch">Bảo mật thông tin</div>
+      			</div>
+      			<div class="trang-ch-wrapper5">
+        				<div class="trang-ch">Hướng dẫn đo size</div>
+      			</div>
+      			<div class="trang-ch-wrapper6">
+        				<div class="trang-ch">0976534850</div>
+      			</div>
+      			<div class="trang-ch-wrapper7">
+        				<div class="trang-ch">0976534850</div>
+      			</div>
+      			<div class="trang-ch-wrapper8">
+        				<div class="trang-ch">0976534850</div>
+      			</div>
+      			<div class="trang-ch-wrapper9">
+        				<div class="trang-ch">Mail</div>
+      			</div>
+      			<div class="trang-ch-wrapper10">
+        				<div class="trang-ch">Kim cương</div>
+      			</div>
+      			<div class="trang-ch-wrapper11">
+        				<div class="trang-ch">Nhẫn nam</div>
+      			</div>
+    		</div>
+    </footer>
 </html>

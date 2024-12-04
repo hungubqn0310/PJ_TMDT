@@ -1,127 +1,24 @@
-/* Top bar */
-.top-bar {
-    background-color: #f1f1f1;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-  }
-  .social i {
-    margin-left: 20px; /* Di chuyển các icon sang phải */
+.footer-child {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0%;
+  right: 0%;
+  bottom: 0%;
+  left: 0%;
+  background-color: #fff;
+}
+.handk-footer-icon {
+  position: absolute;
+  height: 48.39%;
+  width: 15.63%;
+  top: 11.18%;
+  right: 67.99%;
+  bottom: 40.43%;
+  left: 16.39%;
+  max-width: 10px;
+  overflow: hidden;
+  max-height: 100px;
+  object-fit: cover;
 }
 
-/* Tùy chỉnh riêng cho icon Facebook và điện thoại */
-.social .fa-facebook-f {
-    margin-left: 20px; /* Khoảng cách từ cạnh trái của icon Facebook */
-}
-
-.social .fa-phone-alt {
-    margin-left: 20px; /* Khoảng cách từ cạnh trái của icon điện thoại */
-}
-.user-cart i {
-  margin-left: 20px; /* Di chuyển các icon sang phải */
-}
-.user-cart .icon-user{
-  margin-right: 100px; /* Khoảng cách từ cạnh trái của icon Facebook */
-}
-.user-cart .icon-cart{
-  margin-right: 200px; /* Khoảng cách từ cạnh trái của icon Facebook */
-}
-  
-  .contact-info {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .contact-info i {
-    font-size: 18px;
-  }
-  
-  .contact-info span {
-    font-size: 16px;
-  }
-  
-  .logo {
-    text-align: center;
-  }
-  
-  .logo img {
-    max-height: 100%; /* Chiều cao tối đa của logo sẽ bằng chiều cao của phần header */
-    max-width: 100px; /* Đặt giới hạn chiều rộng tối đa cho logo, bạn có thể điều chỉnh con số này */
-    height: auto; /* Giữ tỉ lệ gốc của logo */
-    width: auto;  /* Đảm bảo không bị thay đổi tỉ lệ logo */
-  }
-  
-  .logo h1 {
-    margin: 0;
-    color: #ff1493;
-    font-size: 24px;
-  }
-  
-  .logo p {
-    margin: 0;
-    font-size: 12px;
-  }
-  
-  .user-cart {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .user-cart i {
-    font-size: 24px;
-  }
-  
-  /* Main menu */
-  .main-menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #fff;
-  }
-  
-  .main-menu ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    margin: 0;
-  }
-  
-  .main-menu ul li {
-    display: inline;
-  }
-  
-  .main-menu ul li a {
-    text-decoration: none;
-    color: #000;
-    font-size: 16px;
-  }
-  
-  .main-menu ul li a.highlight {
-    color: red;
-  }
-  
-  .search-bar {
-    display: flex;
-    align-items: center;
-  }
-  
-  .search-bar input {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 15px;
-  }
-  
-  .search-bar button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .icon-search, .icon-facebook, .icon-phone, .icon-cart, .icon-user {
-    /* Add appropriate icon classes (e.g., FontAwesome) */
-    font-family: "FontAwesome";
-  }
-  
