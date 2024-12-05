@@ -12,7 +12,7 @@
                 data-url="@Url.Action("Add")">
             Add
         </button>
-        @await Html.PartialAsync("/Views/Admin/productadd.cshtml", @Model.Product)
+        @* @await Html.PartialAsync("/Views/Admin/productadd.cshtml", @Model.Product) *@
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -46,14 +46,14 @@
                                         data-url="@Url.Action("Edit", new { id = Model.Products[i].ProductId })">
                                     <i class="material-icons" style="font-size: 14px">border_color</i>
                                 </button>
-                                @await Html.PartialAsync("/Views/Admin/productedit.cshtml", Model.Products[i])
+                                @* @await Html.PartialAsync("/Views/Admin/productedit.cshtml", Model.Products[i]) *@
                                 
                                 <button type="button" class="btn btn-outline-danger" data-toggle="modal" 
                                         data-target="#product-delete-@Model.Products[i].ProductId" 
                                         data-url="@Url.Action("Delete", new { id = Model.Products[i].ProductId })">
                                     <i class="material-icons" style="font-size: 14px">delete</i>
                                 </button>
-                                @await Html.PartialAsync("/Views/Admin/productdelete.cshtml", Model.Products[i])
+                                @* @await Html.PartialAsync("/Views/Admin/productdelete.cshtml", Model.Products[i]) *@
                             </td>
                         </tr>
                     }
