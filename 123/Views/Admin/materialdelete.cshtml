@@ -11,7 +11,7 @@
             </div>
             <div class="modal-body">
                 <form asp-action="Delete" method="post" id="material-@Model.MaterialId-delete">
-                    <input type="hidden" name="material_id" asp-for="MaterialId">
+                    <input type="hidden" name="MaterialId" asp-for="MaterialId">
                     <label>Bạn có chắc chắn muốn xóa @Model.MaterialName không?</label>
                 </form>
             </div>

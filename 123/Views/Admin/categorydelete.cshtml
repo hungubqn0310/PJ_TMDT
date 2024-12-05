@@ -11,7 +11,7 @@
             </div>
             <div class="modal-body">
                 <form asp-action="Delete" method="post" id="category-@Model.CategoryId-delete">
-                    <input type="hidden" name="category_id" asp-for="CategoryId">
+                    <input type="hidden" name="CategoryId" asp-for="CategoryId">
                     <label>Bạn có chắc chắn muốn xóa danh mục @Model.CategoryName không?</label>
                 </form>
             </div>

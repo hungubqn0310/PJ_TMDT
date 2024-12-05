@@ -40,12 +40,19 @@
                                 <label>Thể loại</label>
                                 <select class="form-control" name="CategoryId" asp-for="CategoryId">
                                     <option value="">Chọn thể loại</option>
-                                    @* Lặp qua danh sách thể loại (giả sử danh sách này được truyền từ controller) *@
-                                    @foreach (var category in ViewBag.Categories)
+                                    @if (ViewBag.Categories != null)
                                     {
-                                        <option value="@category.CategoryId">@category.CategoryName</option>
+                                        @foreach (var category in ViewBag.Categories)
+                                        {
+                                            <option value="@category.CategoryId">@category.CategoryName</option>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <option disabled>Không có thể loại</option>
                                     }
                                 </select>
+
                             </div>
                         </div>
                     </div>
@@ -63,10 +70,18 @@
                                 <select class="form-control" name="MaterialId" asp-for="MaterialId">
                                     <option value="">Chọn chất liệu</option>
                                     @* Lặp qua danh sách chất liệu *@
-                                    @foreach (var material in ViewBag.Materials)
+                                    @if (ViewBag.Materials != null)
                                     {
-                                        <option value="@material.MaterialId">@material.MaterialName</option>
+                                        @foreach (var material in ViewBag.Materials)
+                                        {
+                                            <option value="@material.MaterialId">@material.MaterialName</option>
+                                        }
                                     }
+                                    else
+                                    {
+                                        <option disabled>Không có chất liệu</option>
+                                    }
+
                                 </select>
                             </div>
                         </div>
