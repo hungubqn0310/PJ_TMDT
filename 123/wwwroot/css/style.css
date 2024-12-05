@@ -64,14 +64,13 @@
   color: #333;
 }
 
-/* Phần menu bên dưới */
-.header-item {
+
+.wrapper {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 10px;
-  height: 50px;
-  margin-left: 240px;
+  justify-content: space-between; /* Giữ các phần tử cách đều nhau theo chiều ngang */
+  height: 75px;
+  padding-top: 7.5px;
+  margin-left: 230px;
   margin-right: 240px;
   justify-content: center; /* Giữ các phần tử cân đối theo chiều ngang */
 
@@ -201,7 +200,6 @@
   color: #fc77f1;
 }
 
-
 /* Hiển thị dropdown khi hover vào mục cha */
 .dropdown li:hover > .dropdown1 {
   visibility: visible; /* Hiển thị dropdown */
@@ -212,6 +210,7 @@
   display: flex;
   align-items: center;
   margin-left: auto;
+  margin-top: -40px;
   position: relative; /* Để xử lý vị trí của icon và hiệu ứng */
 }
 
@@ -279,54 +278,22 @@
   transition: all 0.3s ease; /* Thêm hiệu ứng cho tất cả các thay đổi trong 0.3s */
 }
 
-/* Dropdown menu *//* Dropdown menu */
-.dropdown {
-  visibility: hidden; /* Ẩn mặc định */
-  opacity: 0; /* Làm trong suốt */
-  position: fixed; /* Căn chỉnh với toàn bộ màn hình */
-  top: 0; /* Đặt ở phía trên cùng của màn hình */
-  left: 0; /* Đặt ở phía bên trái của màn hình */
-  width: 100%; /* Chiếm toàn bộ chiều rộng của màn hình */
-  background-color: #fff; /* Màu nền trắng cho dropdown */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tạo bóng đổ cho dropdown */
-  padding: 10px 0; /* Đệm cho dropdown */
-  list-style: none; /* Bỏ đi dấu chấm trong danh sách */
-  z-index: 1000; /* Đảm bảo dropdown nằm trên các phần tử khác */
-  display: flex; /* Các mục trong dropdown sẽ được xếp theo hàng ngang */
-  
-  gap: 10px; /* Khoảng cách giữa các mục là 65px */
-  transition: visibility 0.3s, opacity 0.3s;
-  margin-top: 140px;
-  height: 60px; /* Tạo hiệu ứng mượt mà khi hiển thị/ẩn */
+/* Khi input tìm kiếm được focus (nhấp vào) */
+.search-input:focus {
+  border: 1px solid #000; /* Đổi màu border thành đen khi focus */
+  padding-left: 13px; /* Điều chỉnh lại padding nếu cần */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Thêm hiệu ứng bóng khi focus */
+  transform: scale(1.05); /* Tăng nhẹ kích thước của trường nhập liệu */
 }
 
-.dropdown li:first-child a {
-  margin-left: 248px; /* Điều chỉnh lề trái cho mục chứa chữ đầu tiên */
+/* Khi input được focus, thêm hiệu ứng cho icon */
+.search-input:focus + .search-icon {
+  transform: translateY(-50%) scale(1.2); /* Phóng to nhẹ icon */
+  color: #000; /* Thay đổi màu của icon (nếu icon là font hoặc SVG màu) */
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5)); /* Thêm hiệu ứng bóng */
 }
 
 
-/* Các liên kết trong dropdown (chữ trong các mục) */
-.dropdown li a {
-  font-size: 16px; /* Kích thước chữ */
-  font-weight: 500; /* Độ đậm của chữ */
-  color: #333; /* Màu chữ */
-  text-decoration: none; /* Bỏ đi gạch chân */
-  transition: background-color 0.3s, color 0.3s; /* Hiệu ứng khi hover */
-  text-align: center; /* Căn giữa chữ trong mỗi mục */
-  padding: 8px 12px; /* Đệm cho chữ */
-}
-
-/* Hiệu ứng hover */
-.dropdown li a:hover {
-  background-color: #f8f9fa;
-  color: #007bff;
-}
-
-/* Hiển thị dropdown khi hover vào mục cha */
-.nav-links li:hover > .dropdown {
-  visibility: visible; /* Hiển thị dropdown */
-  opacity: 1; /* Làm rõ dropdown */
-}
 /* Tổng thể footer */
 .footer {
   width: 100%;

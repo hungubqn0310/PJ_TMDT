@@ -630,7 +630,7 @@
 .nhantuvan-child {
     position: absolute;
     height: 100%;
-    width: 1440px;
+    width: 100%;
     top: 0%;
     right: 0%;
     bottom: 0%;
@@ -716,7 +716,7 @@
     right: 48.26%;
     bottom: 67.75%;
     left: 48.26%;
-    max-width: 1440px;
+    max-width: 100%;
     overflow: hidden;
     max-height: 100%;
 }
@@ -749,7 +749,7 @@
 .dichvu-child {
     position: absolute;
     height: 100%;
-    width: 1440px;
+    width: 100%;
     top: 0%;
     right: 0%;
     bottom: 0%;
@@ -772,7 +772,7 @@
 }
 .giao-hng-nhanh {
     position: absolute;
-    width: 1440px;
+    width: 100%;
     top: 55.5%;
     left: 0%;
     font-weight: 300;
@@ -796,7 +796,7 @@
     right: 41.13%;
     bottom: 77.06%;
     left: 41.13%;
-    max-width: 1440px;
+    max-width: 100%;
     overflow: hidden;
     max-height: 100%;
 }
@@ -831,7 +831,7 @@
     right: 39.67%;
     bottom: 77.06%;
     left: 39.67%;
-    max-width: 1440px;
+    max-width: 100%;
     overflow: hidden;
     max-height: 100%;
 }
@@ -876,7 +876,7 @@
     right: 38.5%;
     bottom: 77.06%;
     left: 39.17%;
-    max-width: 1440px;
+    max-width: 100%;
     overflow: hidden;
     max-height: 100%;
 }
@@ -901,7 +901,7 @@
 .home {
     margin-left: 40px;
     margin-top: 120px;
-    width: 1440px;
+    width: 100%;
     position: relative;
     background-color: #fff;
     height: 5084px;
@@ -912,5 +912,9 @@
     font-family: Inter;
 }
 
+body {
+    margin: 0;
+    line-height: normal;
+}
 
 
