@@ -73,10 +73,27 @@
   height: 50px;
   margin-left: 240px;
   margin-right: 240px;
+  justify-content: center; /* Giữ các phần tử cân đối theo chiều ngang */
+
 }
 
-/* Các mục trong menu */
-.header-item .home {
+.nav-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  margin-top: -1.5px;
+  gap: 30px;
+  padding: 10px;
+}
+
+.nav-links li {
+  position: relative; /* Cần để định vị dropdown */
+  margin-right: 15px;
+  align-items: center; /* Canh giữa chữ trong mục */
+
+}
+
+.nav-links li a {
   font-size: 16px;
   font-weight: 600;
   color: #333;
@@ -84,8 +101,104 @@
   transition: color 0.3s;
 }
 
-.header-item .home:hover {
+
+.nav-links li a:hover {
   color: #007bff;
+}
+
+
+.dropdown {
+  visibility: hidden; /* Ẩn mặc định */
+  opacity: 0; /* Làm trong suốt */
+  position: fixed; /* Căn chỉnh với toàn bộ màn hình */
+  top: 0; /* Đặt ở phía trên cùng của màn hình */
+  left: 0; /* Đặt ở phía bên trái của màn hình */
+  width: 100%;
+  background-color: #f8f9fa; /* Màu nền trắng cho dropdown */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tạo bóng đổ cho dropdown */
+  padding: 10px 0 10px 260px; /* Đệm bên trái cho chữ cách 260px */
+  list-style: none; /* Bỏ đi dấu chấm trong danh sách */
+  z-index: 1000; /* Đảm bảo dropdown nằm trên các phần tử khác */
+  display: flex; /* Các mục trong dropdown sẽ được xếp theo hàng ngang */
+  gap: 10px; /* Khoảng cách giữa các mục */
+  transition: visibility 0.3s, opacity 0.3s;
+  margin-top: 120px;
+  height: 60px;
+   /* Tạo hiệu ứng mượt mà khi hiển thị/ẩn */
+}
+
+
+
+
+
+/* Các liên kết trong dropdown (chữ trong các mục) */
+.dropdown li a {
+  font-size: 16px; /* Kích thước chữ */
+  font-weight: 500; /* Độ đậm của chữ */
+  color: #333; /* Màu chữ */
+  padding-right: 15px;
+  justify-content: space-between; /* Giữ các phần tử cân đối theo chiều ngang */
+  text-decoration: none; /* Bỏ đi gạch chân */
+  transition: background-color 0.3s, color 0.3s; /* Hiệu ứng khi hover */
+}
+
+/* Hiệu ứng hover */
+.dropdown li a:hover {
+  background-color: #f8f9fa;
+  color: #fc77f1;
+}
+
+/* Hiển thị dropdown khi hover vào mục cha */
+.nav-links li:hover > .dropdown {
+  visibility: visible; /* Hiển thị dropdown */
+  opacity: 1; /* Làm rõ dropdown */
+}
+
+.nav-links li:hover > a {
+  color: #fc77f1; /* Màu chữ tùy chỉnh khi hover */
+  text-decoration: underline; /* Thêm gạch chân (tuỳ chọn) */
+}
+
+
+.dropdown1 {
+  visibility: hidden; /* Ẩn mặc định */
+  opacity: 0; /* Làm trong suốt */
+  position: fixed; /* Căn chỉnh với toàn bộ màn hình */
+  top: 0; /* Đặt ở phía trên cùng của màn hình */
+  left: 0; /* Đặt ở phía bên trái của màn hình */
+  width: 100%;
+  background-color: #f8f9fa; /* Màu nền trắng cho dropdown */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tạo bóng đổ cho dropdown */
+  padding: 10px 0; /* Đệm cho dropdown */
+  list-style: none; /* Bỏ đi dấu chấm trong danh sách */
+  z-index: 1000; /* Đảm bảo dropdown nằm trên các phần tử khác */
+  display: flex; /* Các mục trong dropdown sẽ được xếp theo hàng ngang */
+  gap: 20px; /* Khoảng cách giữa các mục là 65px */
+  transition: visibility 0.3s, opacity 0.3s;
+  margin-top: 170px;
+  height: 340px;
+  padding: 10px 0 10px 260px;
+   /* Tạo hiệu ứng mượt mà khi hiển thị/ẩn */
+}
+
+
+
+
+/* Các liên kết trong dropdown (chữ trong các mục) */
+.dropdown1 li a {
+  font-size: 16px; /* Kích thước chữ */
+  font-weight: 500; /* Độ đậm của chữ */
+  color: #333; /* Màu chữ */
+  padding-right: 15px;
+  justify-content: space-between; /* Giữ các phần tử cân đối theo chiều ngang */
+  text-decoration: none; /* Bỏ đi gạch chân */
+  transition: background-color 0.3s, color 0.3s; /* Hiệu ứng khi hover */
+}
+
+/* Hiệu ứng hover */
+.dropdown1 li a:hover {
+  background-color: #f8f9fa;
+  color: #fc77f1;
 }
 
 
@@ -216,11 +329,14 @@
 }
 /* Tổng thể footer */
 .footer {
+  width: 100%;
   display: flex;
   flex-direction: row; /* Đặt các tiêu đề nằm ngang */
   justify-content: space-between; /* Tạo khoảng cách đều giữa các tiêu đề */
   align-items: flex-start; /* Căn các tiêu đề lên trên cùng */
   padding: 20px;
+  box-sizing: border-box; /* Đảm bảo padding và border không làm tăng chiều rộng */
+
   margin-top: auto;  /* Đẩy footer xuống cuối */
   justify-content: flex-start; /* Đặt các phần tử từ trái sang phải */
   background-color: #f5f5f5; /* Màu nền của footer */
@@ -282,10 +398,15 @@
 html, body {
   height: 100%;
   margin: 0;
+  width: 100%;
 }
 
 .wrapper {
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+* {
+  box-sizing: border-box;
 }
