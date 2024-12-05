@@ -1,0 +1,916 @@
+.icon {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 262.5px;
+    height: 262.5px;
+    object-fit: cover;
+}
+.icon1 {
+    position: absolute;
+    top: 0px;
+    left: 292.5px;
+    width: 262.5px;
+    height: 262.5px;
+    object-fit: cover;
+}
+.icon2 {
+    position: absolute;
+    top: 0px;
+    left: 585px;
+    width: 262.5px;
+    height: 262.5px;
+    object-fit: cover;
+}
+.nhn-cu-hn {
+    position: absolute;
+    top: 269.5px;
+    left: 0px;
+    font-size: 18px;
+    font-weight: 300;
+}
+.nhn-ci {
+    position: absolute;
+    top: 269.5px;
+    left: 292.5px;
+    font-size: 18px;
+    font-weight: 300;
+}
+.trang-sc-kim {
+    position: absolute;
+    top: 269.5px;
+    left: 585px;
+    font-size: 18px;
+    font-weight: 300;
+}
+.gim-ngay-15 {
+    position: absolute;
+    top: 311px;
+    left: 0px;
+    font-weight: 300;
+}
+.gim-ngay-151 {
+    position: absolute;
+    top: 311px;
+    left: 292.5px;
+    font-weight: 300;
+}
+.gim-ngay-152 {
+    position: absolute;
+    top: 311px;
+    left: 585px;
+    font-weight: 300;
+}
+.khm-ph-ngay {
+    position: absolute;
+    top: 348.5px;
+    left: 0px;
+    font-weight: 300;
+    white-space: pre-wrap;
+}
+.khm-ph-ngay1 {
+    position: absolute;
+    top: 348.5px;
+    left: 292.5px;
+    font-weight: 300;
+    white-space: pre-wrap;
+}
+.khm-ph-ngay2 {
+    position: absolute;
+    top: 348.5px;
+    left: 585px;
+    font-weight: 300;
+    white-space: pre-wrap;
+}
+.trangsucgiamgia {
+    position: absolute;
+    top: 450px;
+    left: 296.25px;
+    width: 847.5px;
+    height: 363.5px;
+    font-size: 12px;
+}
+.nhancauhon-child {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #d9d9d9;
+    width: 1440px;
+    height: 375px;
+}
+.nhn-cu-hn1 {
+    position: absolute;
+    top: 109.75px;
+    left: 236.25px;
+    font-weight: 300;
+}
+.mt-chic-nhn {
+    position: absolute;
+    top: 175px;
+    left: 236px;
+    font-size: 15px;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    width: 273px;
+}
+.screenshot-2024-11-11-233819 {
+    position: absolute;
+    top: 52.5px;
+    left: 648.75px;
+    width: 202.5px;
+    height: 262.5px;
+    object-fit: cover;
+}
+.screenshot-2024-11-11-233844 {
+    position: absolute;
+    top: 0px;
+    left: 896.25px;
+    width: 247.5px;
+    height: 375px;
+    object-fit: cover;
+}
+.xemthem-child {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border: 0.8px solid #d0d0d0;
+    box-sizing: border-box;
+    width: 225px;
+    height: 75px;
+}
+.xem-thm {
+    position: absolute;
+    top: 28px;
+    left: 71px;
+    font-weight: 300;
+}
+.xemthem {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 225px;
+    height: 75px;
+}
+.xemthem-wrapper {
+    position: absolute;
+    top: 240px;
+    left: 236px;
+    width: 225px;
+    height: 75px;
+    text-align: center;
+    font-size: 15.75px;
+}
+.nhancauhon {
+    position: absolute;
+    top: 870px;
+    left: 0px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 1440px;
+    height: 375px;
+}
+.nhn-ci1 {
+    position: absolute;
+    top: 113.5px;
+    left: 896.25px;
+    font-weight: 300;
+}
+.biu-tng-ca {
+    position: absolute;
+    top: 176px;
+    left: 896px;
+    font-size: 15px;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    width: 248px;
+}
+.screenshot-2024-11-11-234937 {
+    position: absolute;
+    top: 53.25px;
+    left: 543.75px;
+    width: 202.5px;
+    height: 262.5px;
+    object-fit: cover;
+}
+.screenshot-2024-11-11-234924 {
+    position: absolute;
+    top: 0px;
+    left: 236.25px;
+    width: 247.5px;
+    height: 375px;
+    object-fit: cover;
+}
+.xemthem-container {
+    position: absolute;
+    top: 244px;
+    left: 896px;
+    width: 225px;
+    height: 75px;
+    text-align: center;
+    font-size: 15.75px;
+}
+.nhancuoi {
+    position: absolute;
+    top: 1809px;
+    left: 0px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 1440px;
+    height: 375px;
+}
+.kc-desktop-icon {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 967.5px;
+    height: 450px;
+    object-fit: cover;
+}
+.kim-cng-gia {
+    position: absolute;
+    top: 158px;
+    left: 82.75px;
+    font-weight: 300;
+}
+.kim-cng-thin {
+    position: absolute;
+    top: 219px;
+    left: 82.75px;
+    font-size: 18.75px;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    width: 283px;
+}
+.xemthem-frame {
+    position: absolute;
+    top: 300px;
+    left: 83px;
+    width: 225px;
+    height: 75px;
+    text-align: center;
+    font-size: 15.75px;
+}
+.kimcuong {
+    position: absolute;
+    top: 1302px;
+    left: 236px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 967.5px;
+    height: 450px;
+    font-size: 30.75px;
+}
+.khm-ph-b {
+    position: absolute;
+    top: 0px;
+    left: calc(50% - 156.25px);
+    font-size: 26.25px;
+    font-weight: 300;
+}
+.screenshot-2024-11-12-000845 {
+    position: absolute;
+    top: 46.5px;
+    left: 0px;
+    width: 472.5px;
+    height: 472.5px;
+    object-fit: cover;
+}
+.screenshot-2024-11-12-000858 {
+    position: absolute;
+    top: 46.5px;
+    left: 495px;
+    width: 472.5px;
+    height: 472.5px;
+    object-fit: cover;
+}
+.spark-of-heaven {
+    position: absolute;
+    top: 529px;
+    left: 132.5px;
+    font-size: 26.25px;
+    font-weight: 300;
+}
+.shape-of-love {
+    position: absolute;
+    top: 529px;
+    left: 640.5px;
+    font-size: 26.25px;
+    font-weight: 300;
+}
+.ly-cm-hng {
+    position: absolute;
+    top: 575.5px;
+    left: 79.75px;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 312px;
+}
+.thit-k-cch {
+    position: absolute;
+    top: 575.5px;
+    left: 597.75px;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 266px;
+}
+.khm-ph-ngay3 {
+    position: absolute;
+    top: 625.5px;
+    left: 173px;
+    font-weight: 300;
+    white-space: pre-wrap;
+}
+.khm-ph-ngay4 {
+    position: absolute;
+    top: 625.5px;
+    left: 668px;
+    font-weight: 300;
+    white-space: pre-wrap;
+}
+.khamphabstmoi {
+    position: absolute;
+    top: 2241px;
+    left: calc(50% - 484px);
+    width: 967.5px;
+    height: 643.5px;
+    text-align: center;
+    font-size: 15px;
+}
+.top20bestselling-child {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #d9d9d9;
+    width: 1440px;
+    height: 450px;
+}
+.screenshot-2024-11-12-002629 {
+    position: absolute;
+    top: 0px;
+    left: 543.75px;
+    width: 247.5px;
+    height: 450px;
+    object-fit: cover;
+}
+.screenshot-2024-11-12-002533 {
+    position: absolute;
+    top: 93.75px;
+    left: 378.75px;
+    width: 225px;
+    height: 262.5px;
+    object-fit: cover;
+}
+.top-20-best {
+    position: absolute;
+    top: 152.5px;
+    left: 896px;
+    font-weight: 300;
+}
+.thm-cht-ngt {
+    position: absolute;
+    top: 211.5px;
+    left: 896px;
+    font-size: 15px;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    width: 251px;
+}
+.frame-div {
+    position: absolute;
+    top: 281px;
+    left: 896px;
+    width: 225px;
+    height: 75px;
+    text-align: center;
+    font-size: 15.75px;
+}
+.top20bestselling {
+    position: absolute;
+    top: 2941px;
+    left: 0px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 1440px;
+    height: 450px;
+    font-size: 27px;
+}
+.screenshot-2024-11-12-004427 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 516.7px;
+    height: 472.5px;
+    object-fit: cover;
+}
+.ca-hng-handk {
+    position: absolute;
+    top: 114.5px;
+    left: 541.28px;
+    font-weight: 300;
+}
+.th-gii-trang {
+    position: absolute;
+    top: 189px;
+    left: 541.75px;
+    font-size: 18.75px;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    width: 357px;
+}
+.xem-thm4 {
+    position: absolute;
+    top: 28px;
+    left: 68px;
+    font-weight: 300;
+}
+.xemthem-wrapper1 {
+    position: absolute;
+    top: 349px;
+    left: 542px;
+    width: 225px;
+    height: 75px;
+    text-align: center;
+    font-size: 15.75px;
+}
+.cuahang {
+    position: absolute;
+    top: 3791px;
+    left: 236px;
+    width: 898.8px;
+    height: 472.5px;
+    font-size: 27px;
+}
+.c-th-bn {
+    position: absolute;
+    top: 0px;
+    left: 59px;
+    font-weight: 300;
+}
+.xem-thm5 {
+    position: absolute;
+    top: 11px;
+    left: 935px;
+    font-size: 15.5px;
+    font-weight: 300;
+    white-space: pre-wrap;
+    text-align: right;
+}
+.icon3 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 142.5px;
+    height: 142.5px;
+    object-fit: cover;
+}
+.icon4 {
+    position: absolute;
+    top: 0px;
+    left: 165px;
+    width: 142.5px;
+    height: 142.5px;
+    object-fit: cover;
+}
+.icon5 {
+    position: absolute;
+    top: 0px;
+    left: 330px;
+    width: 142.5px;
+    height: 142.5px;
+    object-fit: cover;
+}
+.icon6 {
+    position: absolute;
+    top: 0px;
+    left: 495px;
+    width: 142.5px;
+    height: 142.5px;
+    object-fit: cover;
+}
+.icon7 {
+    position: absolute;
+    top: 0px;
+    left: 660px;
+    width: 142.5px;
+    height: 142.5px;
+    object-fit: cover;
+}
+.icon8 {
+    position: absolute;
+    top: 0px;
+    left: 825px;
+    width: 142.5px;
+    height: 142.5px;
+    object-fit: cover;
+}
+.parent {
+    position: absolute;
+    top: 0px;
+    left: 59.25px;
+    width: 967.5px;
+    height: 142.5px;
+    overflow: hidden;
+}
+.angle-right-icon {
+    position: absolute;
+    top: 51.25px;
+    left: 1045px;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+}
+.component-1 {
+    position: absolute;
+    top: 37.5px;
+    left: 0px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    width: 1085px;
+    height: 142.5px;
+}
+.cothebansethich {
+    position: absolute;
+    top: 4315px;
+    left: 177px;
+    width: 1085px;
+    height: 180px;
+    font-size: 26.25px;
+}
+.b753-c4d3-4889-bd5d-43534bfa6d-icon {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1440px;
+    height: 420px;
+    object-fit: cover;
+}
+.circle-notch-icon {
+    position: absolute;
+    top: 0px;
+    left: 70px;
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+}
+.circle-notch-icon1 {
+    position: absolute;
+    top: 0px;
+    left: 105px;
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+}
+.circle-notch-icon2 {
+    position: absolute;
+    top: 0px;
+    left: 140px;
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+}
+.circle-notch-icon3 {
+    position: absolute;
+    top: 0px;
+    left: 35px;
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+}
+.circle-icon {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+}
+.circle-notch-parent {
+    position: absolute;
+    top: 378px;
+    left: 638px;
+    width: 165px;
+    height: 25px;
+}
+.angle-right-icon1 {
+    position: absolute;
+    top: 190px;
+    left: 1400px;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+}
+.angle-left-icon {
+    position: absolute;
+    top: 190px;
+    left: 0px;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+}
+.component-2 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 1440px;
+    height: 420px;
+    overflow: hidden;
+}
+.noibat {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1440px;
+    height: 420px;
+}
+.nhantuvan-child {
+    position: absolute;
+    height: 100%;
+    width: 1440px;
+    top: 0%;
+    right: 0%;
+    bottom: 0%;
+    left: 0%;
+    background-color: #ffdede;
+}
+.nhn-t-vn {
+    position: absolute;
+    top: 7.09%;
+    left: 39.15%;
+    font-size: 30px;
+    font-weight: 300;
+}
+.ng-k-ngay {
+    position: absolute;
+    top: 16.29%;
+    left: 31.81%;
+    font-size: 18.75px;
+    font-weight: 300;
+}
+.nhantuvan-item {
+    position: absolute;
+    height: 14.08%;
+    width: 44.27%;
+    top: 34.51%;
+    right: 27.86%;
+    bottom: 51.41%;
+    left: 27.86%;
+    border: 0.8px solid #000;
+    box-sizing: border-box;
+}
+.nhantuvan-inner {
+    position: absolute;
+    height: 14.08%;
+    width: 21.35%;
+    top: 56.34%;
+    right: 50.78%;
+    bottom: 29.58%;
+    left: 27.86%;
+    border: 0.8px solid #000;
+    box-sizing: border-box;
+}
+.nhantuvan-child1 {
+    position: absolute;
+    height: 14.08%;
+    width: 21.35%;
+    top: 56.34%;
+    right: 27.86%;
+    bottom: 29.58%;
+    left: 50.78%;
+    border: 0.8px solid #000;
+    box-sizing: border-box;
+}
+.h-v-tn {
+    position: absolute;
+    top: 39.58%;
+    left: 29.17%;
+    font-weight: 300;
+    color: #7f7f7f;
+    text-align: left;
+}
+.s-in-thoi {
+    position: absolute;
+    top: 61.36%;
+    left: 29.17%;
+    font-weight: 300;
+    color: #7f7f7f;
+    text-align: left;
+}
+.chn-tnh-thnh {
+    position: absolute;
+    top: 61.36%;
+    left: 52.15%;
+    font-weight: 300;
+    color: #7f7f7f;
+    text-align: left;
+}
+.hands-helping-icon {
+    position: absolute;
+    height: 9.39%;
+    width: 3.47%;
+    top: 22.86%;
+    right: 48.26%;
+    bottom: 67.75%;
+    left: 48.26%;
+    max-width: 1440px;
+    overflow: hidden;
+    max-height: 100%;
+}
+.xem-thm6 {
+    position: absolute;
+    top: 25px;
+    left: 55px;
+    font-weight: 300;
+}
+.xemthem-wrapper2 {
+    position: absolute;
+    height: 14.08%;
+    width: 15.63%;
+    top: 78.73%;
+    right: 42.22%;
+    bottom: 7.18%;
+    left: 42.15%;
+    font-size: 20px;
+}
+.nhantuvan {
+    position: absolute;
+    top: 4552px;
+    left: 0px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset, 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 1440px;
+    height: 532.5px;
+    text-align: center;
+    font-size: 18px;
+}
+.dichvu-child {
+    position: absolute;
+    height: 100%;
+    width: 1440px;
+    top: 0%;
+    right: 0%;
+    bottom: 0%;
+    left: 0%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25) inset;
+    background-color: #fff;
+}
+.dch-v {
+    position: absolute;
+    top: 2.76%;
+    left: 46.32%;
+    font-size: 30px;
+    font-weight: 300;
+}
+.giao-hng-min {
+    position: absolute;
+    top: 30.28%;
+    left: 2.48%;
+    font-weight: 500;
+}
+.giao-hng-nhanh {
+    position: absolute;
+    width: 1440px;
+    top: 55.5%;
+    left: 0%;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.khm-ph-ngay5 {
+    position: absolute;
+    top: 91.28%;
+    left: 26.6%;
+    font-size: 15.75px;
+    font-weight: 300;
+    white-space: pre-wrap;
+}
+.shipping-fast-icon {
+    position: absolute;
+    height: 22.94%;
+    width: 17.73%;
+    top: 0%;
+    right: 41.13%;
+    bottom: 77.06%;
+    left: 41.13%;
+    max-width: 1440px;
+    overflow: hidden;
+    max-height: 100%;
+}
+.giao-hng-min-ph-ton-quc-parent {
+    position: absolute;
+    height: 75.17%;
+    width: 19.58%;
+    top: 19.31%;
+    right: 63.61%;
+    bottom: 5.52%;
+    left: 16.81%;
+}
+.bo-hnh-trn {
+    position: absolute;
+    top: 30.28%;
+    left: 17.05%;
+    font-weight: 500;
+}
+.khm-ph-ngay6 {
+    position: absolute;
+    top: 91.28%;
+    left: 22.73%;
+    font-size: 15.75px;
+    font-weight: 300;
+    white-space: pre-wrap;
+}
+.hands-icon {
+    position: absolute;
+    height: 22.94%;
+    width: 20.66%;
+    top: 0%;
+    right: 39.67%;
+    bottom: 77.06%;
+    left: 39.67%;
+    max-width: 1440px;
+    overflow: hidden;
+    max-height: 100%;
+}
+.bo-hnh-trn-i-parent {
+    position: absolute;
+    height: 75.17%;
+    width: 16.81%;
+    top: 19.31%;
+    right: 19.65%;
+    bottom: 5.52%;
+    left: 63.54%;
+}
+.ch-thu {
+    position: absolute;
+    top: 30.16%;
+    left: 0%;
+    font-weight: 500;
+}
+.thu-i-nhanh {
+    position: absolute;
+    width: 99.11%;
+    top: 55.5%;
+    left: 0.78%;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.khm-ph-ngay7 {
+    position: absolute;
+    top: 91.28%;
+    left: 20.42%;
+    font-size: 15.75px;
+    font-weight: 300;
+    white-space: pre-wrap;
+}
+.hand-holding-usd-icon {
+    position: absolute;
+    height: 22.94%;
+    width: 22.32%;
+    top: 0%;
+    right: 38.5%;
+    bottom: 77.06%;
+    left: 39.17%;
+    max-width: 1440px;
+    overflow: hidden;
+    max-height: 100%;
+}
+.ch-thu-i-n-100-parent {
+    position: absolute;
+    height: 75.17%;
+    width: 15.56%;
+    top: 19.31%;
+    right: 42.22%;
+    bottom: 5.52%;
+    left: 42.22%;
+}
+.dichvu {
+    position: absolute;
+    top: 3446px;
+    left: 0px;
+    width: 1440px;
+    height: 290px;
+    text-align: center;
+    font-size: 18.75px;
+}
+.home {
+    margin-left: 40px;
+    margin-top: 120px;
+    width: 1440px;
+    position: relative;
+    background-color: #fff;
+    height: 5084px;
+    overflow: hidden;
+    text-align: left;
+    font-size: 30px;
+    color: #000;
+    font-family: Inter;
+}
+
+
+

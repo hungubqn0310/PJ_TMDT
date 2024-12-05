@@ -1,5 +1,7 @@
 html {
   font-size: 14px;
+  position: relative;
+  min-height: 100%;
 }
 
 @media (min-width: 768px) {
@@ -8,11 +10,13 @@ html {
   }
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+
+
+.container {
+  width: 100%; /* Chiều ngang đầy đủ của màn hình */
+  max-width: none; /* Bỏ giới hạn chiều ngang tối đa */
+  margin: 0; /* Loại bỏ khoảng cách bên ngoài */
+  padding: 0; /* Loại bỏ khoảng cách bên trong */
+  box-sizing: border-box; /* Đảm bảo padding không ảnh hưởng đến width */
 }
 
-body {
-  margin-bottom: 60px;
-}
