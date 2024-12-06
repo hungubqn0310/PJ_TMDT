@@ -23,20 +23,20 @@
                   </tr>
               </thead>
               <tbody>
-                @for (int i = 0; i < Model.Payment_Methods.Count(); i++)
+                @for (int i = 0; i < Model.PaymentMethods.Count(); i++)
                 {
                     <tr>
                         <td>@(i + 1)</td> <!-- Index -->
-                        <td>@Model.Payment_Methods[i].payment_method_name</td>
+                        <td>@Model.PaymentMethods[i].PaymentMethodName</td>
                         <td>
-                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#payment-method-@Model.Payment_Methods[i].payment_method_id" data-url="@Url.Action($"Edit/{@Model.Payment_Methods[i].payment_method_id}")">
+                                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#payment-method-@Model.PaymentMethods[i].PaymentMethodId" data-url="@Url.Action($"Edit/{@Model.PaymentMethods[i].PaymentMethodId}")">
                                 <i class="material-icons" style="font-size: 14px">border_color</i>
                             </button>
-                            @* @await Html.PartialAsync("/Views/Admin/paymentmethodedit.cshtml", @Model.Payment_Methods[i]) *@
-                            <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#payment-method-delete-@Model.Payment_Methods[i].payment_method_id" data-url="@Url.Action($"Delete/{@Model.Payment_Methods[i].payment_method_id}")">
+                            @* @await Html.PartialAsync("/Views/Admin/paymentmethodedit.cshtml", @Model.PaymentMethods[i]) *@
+                                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#payment-method-delete-@Model.PaymentMethods[i].PaymentMethodId" data-url="@Url.Action($"Delete/{@Model.PaymentMethods[i].PaymentMethodId}")">
                                 <i class="material-icons" style="font-size: 14px">delete</i>
                             </button>
-                            @* @await Html.PartialAsync("/Views/Admin/paymentmethoddelete.cshtml", @Model.Payment_Methods[i]) *@
+                            @* @await Html.PartialAsync("/Views/Admin/paymentmethoddelete.cshtml", @Model.PaymentMethods[i]) *@
                         </td>
                     </tr>
                 }

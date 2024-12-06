@@ -1,9 +1,14 @@
-public class Shopping_Cart
+using System;
+
+namespace _123.Models
 {
-    public int cart_id { get; set; }
-    public int user_id { get; set; }
-    public string product_id { get; set; }
-    public int quantity { get; set; }
-    public DateTime added_at { get; set; }
-    public bool is_deleted { get; set; }
+    public class ShoppingCart
+    {
+        public int CartId { get; set; }
+        public int UserId { get; set; }
+        public string ProductId { get; set; }
+        public int Quantity { get; set; }
+        public DateTime AddedAt { get; set; }
+        public bool IsDeleted { get; set; }
+    }
 }

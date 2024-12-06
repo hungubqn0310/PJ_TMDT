@@ -1,12 +1,15 @@
+using _123.Models;
 
 namespace _123 {
   public class ShoppingCartViewModel
   {
-    public List<Shopping_Cart> Shopping_Carts {get; set;}
+    public List<ShoppingCart> ShoppingCarts {get; set;}
 
-    public Shopping_Cart Shopping_Cart {get; set;}
+    public ShoppingCart ShoppingCart {get; set;}
 
-    public List<User> Users {get; set;}
+    public IEnumerable<User> Users { get; set; }  = new List<User>();
+
+    public IEnumerable<Product> Products { get; set; }  = new List<Product>();
 
 
   }

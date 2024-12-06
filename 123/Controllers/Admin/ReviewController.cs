@@ -68,7 +68,7 @@ namespace _123.Controllers
         [HttpPost("delete")]
         public IActionResult Delete(Review review)
         {
-            ReviewService.DeleteReview(review.review_id); // Call service to delete review
+            ReviewService.DeleteReview(review.ReviewId); // Call service to delete review
             return new RedirectResult("/admin/review");
         }
 

@@ -20,7 +20,7 @@ namespace _123.Controllers
         public IActionResult Index()
         {
             var transactionViewModel = new TransactionHistoryViewModel();
-            transactionViewModel.Transaction_Historys = Transaction_HistoryService.GetAllTransactions(); // Call service to get all transactions
+            transactionViewModel.TransactionHistorys = TransactionHistoryService.GetAllTransactions(); // Call service to get all transactions
             return View("Views/Admin/TransactionHistory.cshtml", transactionViewModel);
         }
 
@@ -28,17 +28,17 @@ namespace _123.Controllers
         [HttpGet("add")]
         public IActionResult Add()
         {
-            var transaction = new Transaction_History();
+            var transaction = new TransactionHistory();
             return PartialView("/Views/Admin/transactionadd.cshtml", transaction); // Show the form to add a new transaction
         }
 
         // POST Add: Create a new transaction
         [HttpPost("add")]
-        public IActionResult Add(Transaction_History transaction)
+        public IActionResult Add(TransactionHistory transaction)
         {
             if (ModelState.IsValid)
             {
-                Transaction_HistoryService.CreateTransaction(transaction); // Call service to create a new transaction
+                TransactionHistoryService.CreateTransaction(transaction); // Call service to create a new transaction
                 return RedirectToAction("Index"); // Redirect to the transaction list
             }
             return View("/Views/Admin/transactionadd.cshtml", transaction); // Return the form with validation errors
@@ -48,7 +48,7 @@ namespace _123.Controllers
         [HttpGet("edit/{id}")]
         public IActionResult Edit(int id)
         {
-            var transaction = Transaction_HistoryService.GetTransactionById(id); // Fetch transaction by ID
+            var transaction = TransactionHistoryService.GetTransactionById(id); // Fetch transaction by ID
             if (transaction == null)
             {
                 return NotFound(); // Return 404 if the transaction does not exist
@@ -58,11 +58,11 @@ namespace _123.Controllers
 
         // POST Edit: Update an existing transaction
         [HttpPost("edit")]
-        public IActionResult Edit(Transaction_History transaction)
+        public IActionResult Edit(TransactionHistory transaction)
         {
             if (ModelState.IsValid)
             {
-                Transaction_HistoryService.UpdateTransaction(transaction); // Call service to update the transaction
+                TransactionHistoryService.UpdateTransaction(transaction); // Call service to update the transaction
                 return RedirectToAction("Index"); // Redirect to the transaction list
             }
             return View("/Views/Admin/transactionedit.cshtml", transaction); // Return the form with validation errors
@@ -72,7 +72,7 @@ namespace _123.Controllers
         [HttpGet("delete/{id}")]
         public IActionResult Delete(int id)
         {
-            var transaction = Transaction_HistoryService.GetTransactionById(id); // Fetch transaction by ID
+            var transaction = TransactionHistoryService.GetTransactionById(id); // Fetch transaction by ID
             if (transaction == null)
             {
                 return NotFound(); // Return 404 if the transaction does not exist
@@ -82,14 +82,14 @@ namespace _123.Controllers
 
         // POST Delete: Delete a transaction (soft delete by setting is_deleted = 1)
         [HttpPost("delete")]
-        public IActionResult Delete(Transaction_History transaction)
+        public IActionResult Delete(TransactionHistory transaction)
         {
             if (transaction == null)
             {
                 return NotFound();
             }
 
-            Transaction_HistoryService.DeleteTransaction(transaction.transaction_id); // Call service to delete the transaction
+            TransactionHistoryService.DeleteTransaction(transaction.TransactionId); // Call service to delete the transaction
             return RedirectToAction("Index"); // Redirect to the transaction list
         }
         
@@ -97,7 +97,7 @@ namespace _123.Controllers
         [HttpGet("details/{id}")]
         public IActionResult Details(int id)
         {
-            var transaction = Transaction_HistoryService.GetTransactionById(id); // Fetch transaction by ID
+            var transaction = TransactionHistoryService.GetTransactionById(id); // Fetch transaction by ID
             if (transaction == null)
             {
                 return NotFound(); // Return 404 if the transaction does not exist

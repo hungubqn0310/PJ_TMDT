@@ -30,16 +30,16 @@
                 {
                     <tr>
                         <td>@(i + 1)</td> <!-- Index -->
-                        <td>@Model.Order_Items[i].order_id</td>
-                        <td>@Model.Order_Items[i].product_name</td>
-                        <td>@Model.Order_Items[i].quantity</td>
-                        <td>@Model.Order_Items[i].price.ToString("C2")</td>
+                        <td>@Model.Order_Items[i].OrderId</td>
+                        <td>@Model.Order_Items[i].ProductName</td>
+                        <td>@Model.Order_Items[i].Quantity</td>
+                        <td>@Model.Order_Items[i].Price.ToString("C2")</td>
                         <td>
-                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#orderitem-@Model.Order_Items[i].order_item_id" data-url="@Url.Action($"Edit/{@Model.Order_Items[i].order_item_id}")">
+                                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#orderitem-@Model.Order_Items[i].OrderItemId" data-url="@Url.Action($"Edit/{@Model.Order_Items[i].OrderItemId}")">
                                 <i class="material-icons" style="font-size: 14px">border_color</i>
                             </button>
                             @* @await Html.PartialAsync("/Views/Admin/orderitemedit.cshtml", @Model.Order_Items[i]) *@
-                            <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#orderitem-delete-@Model.Order_Items[i].order_item_id" data-url="@Url.Action($"Delete/{@Model.Order_Items[i].order_item_id}")">
+                                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#orderitem-delete-@Model.Order_Items[i].OrderItemId" data-url="@Url.Action($"Delete/{@Model.Order_Items[i].OrderItemId}")">
                                 <i class="material-icons" style="font-size: 14px">delete</i>
                             </button>
                             @* @await Html.PartialAsync("/Views/Admin/orderitemdelete.cshtml", @Model.Order_Items[i]) *@

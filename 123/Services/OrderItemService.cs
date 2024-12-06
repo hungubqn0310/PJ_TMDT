@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using _123.Helpers;
+using _123.Models;
 using MySql.Data.MySqlClient;
 
 namespace _123.Services
@@ -9,28 +10,28 @@ namespace _123.Services
     public static class OrderItemService
     {
         // Thêm một món hàng vào đơn hàng
-        public static int CreateOrderItem(Order_Item orderItem)
+        public static int CreateOrderItem(OrderItem orderItem)
         {
             string query = @"INSERT INTO Order_Items (order_id, product_name, quantity, price, is_deleted)
                              VALUES (@order_id, @product_name, @quantity, @price, 0)";
             
             var parameters = new MySqlParameter[]
             {
-                new MySqlParameter("@order_id", MySqlDbType.Int32) { Value = orderItem.order_id },
-                new MySqlParameter("@product_name", MySqlDbType.VarChar) { Value = orderItem.product_name },
-                new MySqlParameter("@quantity", MySqlDbType.Int32) { Value = orderItem.quantity },
-                new MySqlParameter("@price", MySqlDbType.Decimal) { Value = orderItem.price }
+                new MySqlParameter("@order_id", MySqlDbType.Int32) { Value = orderItem.OrderId },
+                new MySqlParameter("@product_name", MySqlDbType.VarChar) { Value = orderItem.ProductName },
+                new MySqlParameter("@quantity", MySqlDbType.Int32) { Value = orderItem.Quantity },
+                new MySqlParameter("@price", MySqlDbType.Decimal) { Value = orderItem.Price }
             };
 
             return DatabaseHelper.ExecuteNonQuery(query, parameters);
         }
 
 // Lấy tất cả các món hàng (không phân theo order_id)
-public static List<Order_Item> GetAllOrderItems()
+public static List<OrderItem> GetAllOrderItems()
 {
     string query = "SELECT order_item_id, order_id, product_name, quantity, price, is_deleted FROM Order_Items WHERE is_deleted = 0";
     
-    var orderItems = new List<Order_Item>();
+    var orderItems = new List<OrderItem>();
 
     try
     {
@@ -38,14 +39,14 @@ public static List<Order_Item> GetAllOrderItems()
 
         foreach (DataRow row in dataTable.Rows)
         {
-            orderItems.Add(new Order_Item
+            orderItems.Add(new OrderItem
             {
-                order_item_id = Convert.ToInt32(row["order_item_id"]),
-                order_id = Convert.ToInt32(row["order_id"]),
-                product_name = row["product_name"].ToString(),
-                quantity = Convert.ToInt32(row["quantity"]),
-                price = Convert.ToDecimal(row["price"]),
-                is_deleted = Convert.ToBoolean(row["is_deleted"])
+                OrderItemId = Convert.ToInt32(row["order_item_id"]),
+                OrderId = Convert.ToInt32(row["order_id"]),
+                ProductName = row["product_name"].ToString(),
+                Quantity = Convert.ToInt32(row["quantity"]),
+                Price = Convert.ToDecimal(row["price"]),
+                IsDeleted = Convert.ToBoolean(row["is_deleted"])
             });
         }
     }
@@ -59,11 +60,11 @@ public static List<Order_Item> GetAllOrderItems()
 }
 
         // Lấy tất cả các món hàng trong một đơn hàng
-        public static List<Order_Item> GetOrderItemsByOrderId(int orderId)
+        public static List<OrderItem> GetOrderItemsByOrderId(int orderId)
         {
             string query = "SELECT order_item_id, order_id, product_name, quantity, price, is_deleted FROM Order_Items WHERE order_id = @orderId AND is_deleted = 0";
             
-            var orderItems = new List<Order_Item>();
+            var orderItems = new List<OrderItem>();
 
             try
             {
@@ -76,14 +77,14 @@ public static List<Order_Item> GetAllOrderItems()
 
                 foreach (DataRow row in dataTable.Rows)
                 {
-                    orderItems.Add(new Order_Item
+                    orderItems.Add(new OrderItem
                     {
-                        order_item_id = Convert.ToInt32(row["order_item_id"]),
-                        order_id = Convert.ToInt32(row["order_id"]),
-                        product_name = row["product_name"].ToString(),
-                        quantity = Convert.ToInt32(row["quantity"]),
-                        price = Convert.ToDecimal(row["price"]),
-                        is_deleted = Convert.ToBoolean(row["is_deleted"])
+                        OrderItemId = Convert.ToInt32(row["order_item_id"]),
+                        OrderId = Convert.ToInt32(row["order_id"]),
+                        ProductName = row["product_name"].ToString(),
+                        Quantity = Convert.ToInt32(row["quantity"]),
+                        Price = Convert.ToDecimal(row["price"]),
+                        IsDeleted = Convert.ToBoolean(row["is_deleted"])
                     });
                 }
             }
@@ -97,7 +98,7 @@ public static List<Order_Item> GetAllOrderItems()
         }
 
         // Lấy một món hàng theo ID
-        public static Order_Item GetOrderItemById(int orderItemId)
+        public static OrderItem GetOrderItemById(int orderItemId)
         {
             string query = "SELECT order_item_id, order_id, product_name, quantity, price, is_deleted FROM Order_Items WHERE order_item_id = @orderItemId AND is_deleted = 0";
             
@@ -111,14 +112,14 @@ public static List<Order_Item> GetAllOrderItems()
             if (result.Rows.Count > 0)
             {
                 var row = result.Rows[0];
-                return new Order_Item
+                return new OrderItem
                 {
-                    order_item_id = Convert.ToInt32(row["order_item_id"]),
-                    order_id = Convert.ToInt32(row["order_id"]),
-                    product_name = row["product_name"].ToString(),
-                    quantity = Convert.ToInt32(row["quantity"]),
-                    price = Convert.ToDecimal(row["price"]),
-                    is_deleted = Convert.ToBoolean(row["is_deleted"])
+                    OrderItemId = Convert.ToInt32(row["order_item_id"]),
+                    OrderId = Convert.ToInt32(row["order_id"]),
+                    ProductName = row["product_name"].ToString(),
+                    Quantity = Convert.ToInt32(row["quantity"]),
+                    Price = Convert.ToDecimal(row["price"]),
+                    IsDeleted = Convert.ToBoolean(row["is_deleted"])
                 };
             }
 
@@ -126,7 +127,7 @@ public static List<Order_Item> GetAllOrderItems()
         }
 
         // Cập nhật thông tin món hàng
-        public static int UpdateOrderItem(Order_Item orderItem)
+        public static int UpdateOrderItem(OrderItem orderItem)
         {
             string query = @"UPDATE Order_Items
                              SET product_name = @product_name,
@@ -136,10 +137,10 @@ public static List<Order_Item> GetAllOrderItems()
             
             var parameters = new MySqlParameter[]
             {
-                new MySqlParameter("@order_item_id", MySqlDbType.Int32) { Value = orderItem.order_item_id },
-                new MySqlParameter("@product_name", MySqlDbType.VarChar) { Value = orderItem.product_name },
-                new MySqlParameter("@quantity", MySqlDbType.Int32) { Value = orderItem.quantity },
-                new MySqlParameter("@price", MySqlDbType.Decimal) { Value = orderItem.price }
+                new MySqlParameter("@order_item_id", MySqlDbType.Int32) { Value = orderItem.OrderItemId },
+                new MySqlParameter("@product_name", MySqlDbType.VarChar) { Value = orderItem.ProductName },
+                new MySqlParameter("@quantity", MySqlDbType.Int32) { Value = orderItem.Quantity },
+                new MySqlParameter("@price", MySqlDbType.Decimal) { Value = orderItem.Price }
             };
 
             return DatabaseHelper.ExecuteNonQuery(query, parameters);

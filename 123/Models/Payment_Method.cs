@@ -1,6 +1,11 @@
-public class Payment_Method
+using System;
+
+namespace _123.Models
 {
-    public int payment_method_id { get; set; }
-    public string payment_method_name { get; set; }
-    public bool is_deleted { get; set; }
+    public class PaymentMethod
+    {
+        public int PaymentMethodId { get; set; }
+        public string PaymentMethodName { get; set; }
+        public bool IsDeleted { get; set; }
+    }
 }

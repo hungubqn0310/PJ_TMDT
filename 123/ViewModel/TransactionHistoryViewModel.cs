@@ -1,10 +1,11 @@
+using _123.Models;
 
 namespace _123 {
   public class TransactionHistoryViewModel
   {
-    public List<Transaction_History> Transaction_Historys {get; set;}
+    public List<TransactionHistory> TransactionHistorys {get; set;}
 
-    public Transaction_History Transaction_History {get; set;}
+    public TransactionHistory TransactionHistory {get; set;}
 
   }
 }

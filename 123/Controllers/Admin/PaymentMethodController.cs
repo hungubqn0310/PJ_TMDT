@@ -20,7 +20,7 @@ namespace _123.Controllers
         public IActionResult Index()
         {
             var paymentMethodViewModel = new PaymentMethodViewModel();
-            paymentMethodViewModel.Payment_Methods = PaymentMethodService.GetPaymentMethods();
+            paymentMethodViewModel.PaymentMethods = PaymentMethodService.GetPaymentMethods();
             return View("Views/Admin/paymentmethod.cshtml", paymentMethodViewModel);
         }
 
@@ -28,13 +28,13 @@ namespace _123.Controllers
         [HttpGet("add")]
         public IActionResult Add()
         {
-            var paymentMethod = new Payment_Method();
+            var paymentMethod = new PaymentMethod();
             return PartialView("/Views/Admin/paymentmethodadd.cshtml", paymentMethod);
         }
 
         // Thêm mới phương thức thanh toán
         [HttpPost("add")]
-        public IActionResult Add(Payment_Method paymentMethod)
+        public IActionResult Add(PaymentMethod paymentMethod)
         {
             PaymentMethodService.CreatePaymentMethod(paymentMethod);
             return new RedirectResult("/admin/payment-method");
@@ -50,7 +50,7 @@ namespace _123.Controllers
 
         // Cập nhật phương thức thanh toán
         [HttpPost("edit")]
-        public IActionResult Edit(Payment_Method paymentMethod)
+        public IActionResult Edit(PaymentMethod paymentMethod)
         {
             PaymentMethodService.UpdatePaymentMethod(paymentMethod);
             return new RedirectResult("/admin/payment-method");
@@ -66,9 +66,9 @@ namespace _123.Controllers
 
         // Xóa phương thức thanh toán
         [HttpPost("delete")]
-        public IActionResult Delete(Payment_Method paymentMethod)
+        public IActionResult Delete(PaymentMethod paymentMethod)
         {
-            PaymentMethodService.DeletePaymentMethod(paymentMethod.payment_method_id);
+            PaymentMethodService.DeletePaymentMethod(paymentMethod.PaymentMethodId);
             return new RedirectResult("/admin/payment-method");
         }
 

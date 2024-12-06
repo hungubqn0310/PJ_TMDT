@@ -10,7 +10,7 @@
   <div class="d-flex justify-content-end">
     <button type="button" class="btn btn-outline-success" style="margin: 10px 40px 0;" data-toggle="modal" data-target="#transaction-add" 
     data-url="@Url.Action($"Add")">Add </button>
-    @* @await Html.PartialAsync("/Views/Admin/transactionhistoryadd.cshtml", @Model.Transaction_History) *@
+    @* @await Html.PartialAsync("/Views/Admin/transactionhistoryadd.cshtml", @Model.TransactionHistory) *@
   </div>
 
   <div class="card-body">
@@ -28,25 +28,25 @@
                   </tr>
               </thead>
               <tbody>
-                @for (int i = 0; i < Model.Transaction_Historys.Count(); i++)
+                @for (int i = 0; i < Model.TransactionHistorys.Count(); i++)
                 {
                     <tr>
                         <td>@(i + 1)</td> <!-- Index -->
-                        <td>@Model.Transaction_Historys[i].user_id</td>
-                        <td>@Model.Transaction_Historys[i].order_id</td>
-                        <td>@Model.Transaction_Historys[i].transaction_date.ToString("yyyy-MM-dd HH:mm")</td>
-                        <td>@Model.Transaction_Historys[i].amount</td>
-                        <td>@Model.Transaction_Historys[i].status</td>
-                        <td>@Model.Transaction_Historys[i].payment_method_id</td>
+                        <td>@Model.TransactionHistorys[i].UserId</td>
+                        <td>@Model.TransactionHistorys[i].OrderId</td>
+                        <td>@Model.TransactionHistorys[i].TransactionDate.ToString("yyyy-MM-dd HH:mm")</td>
+                        <td>@Model.TransactionHistorys[i].Amount</td>
+                        <td>@Model.TransactionHistorys[i].Status</td>
+                        <td>@Model.TransactionHistorys[i].PaymentMethodId</td>
                         <td>
-                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#transaction-@Model.Transaction_Historys[i].transaction_id" data-url="@Url.Action($"Edit/{@Model.Transaction_Historys[i].transaction_id}")">
+                                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#transaction-@Model.TransactionHistorys[i].TransactionId" data-url="@Url.Action($"Edit/{@Model.TransactionHistorys[i].TransactionId}")">
                                 <i class="material-icons" style="font-size: 14px">border_color</i>
                             </button>
-                            @* @await Html.PartialAsync("/Views/Admin/transactionhistoryedit.cshtml", @Model.Transaction_Historys[i]) *@
-                            <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#transaction-delete-@Model.Transaction_Historys[i].transaction_id" data-url="@Url.Action($"Delete/{@Model.Transaction_Historys[i].transaction_id}")">
+                            @* @await Html.PartialAsync("/Views/Admin/transactionhistoryedit.cshtml", @Model.TransactionHistorys[i]) *@
+                                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#transaction-delete-@Model.TransactionHistorys[i].TransactionId" data-url="@Url.Action($"Delete/{@Model.TransactionHistorys[i].TransactionId}")">
                                 <i class="material-icons" style="font-size: 14px">delete</i>
                             </button>
-                            @* @await Html.PartialAsync("/Views/Admin/transactionhistorydelete.cshtml", @Model.Transaction_Historys[i]) *@
+                            @* @await Html.PartialAsync("/Views/Admin/transactionhistorydelete.cshtml", @Model.TransactionHistorys[i]) *@
                         </td>
                     </tr>
                 }

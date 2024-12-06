@@ -1,10 +1,11 @@
+using _123.Models;
 
 namespace _123 {
   public class OrderItemViewModel
   {
-    public List<Order_Item> Order_Items {get; set;}
+    public List<OrderItem> Order_Items {get; set;}
 
-    public Order_Item Order_Item {get; set;}
+    public  OrderItem Order_Item {get; set;}
 
   }
 }

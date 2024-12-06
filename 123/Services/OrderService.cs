@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using _123.Helpers;
 using MySql.Data.MySqlClient;
+using _123.Models;
+
 
 namespace _123.Services
 {
@@ -16,10 +18,10 @@ namespace _123.Services
             
             var parameters = new MySqlParameter[]
             {
-                new MySqlParameter("@user_id", MySqlDbType.Int32) { Value = order.user_id },
-                new MySqlParameter("@order_date", MySqlDbType.DateTime) { Value = order.order_date },
-                new MySqlParameter("@status", MySqlDbType.VarChar) { Value = order.status },
-                new MySqlParameter("@total_amount", MySqlDbType.Decimal) { Value = order.total_amount }
+                new MySqlParameter("@user_id", MySqlDbType.Int32) { Value = order.UserId },
+                new MySqlParameter("@order_date", MySqlDbType.DateTime) { Value = order.OrderDate },
+                new MySqlParameter("@status", MySqlDbType.VarChar) { Value = order.Status },
+                new MySqlParameter("@total_amount", MySqlDbType.Decimal) { Value = order.TotalAmount }
             };
 
             return DatabaseHelper.ExecuteNonQuery(query, parameters);
@@ -40,12 +42,12 @@ namespace _123.Services
                 {
                     orders.Add(new Order
                     {
-                        order_id = Convert.ToInt32(row["order_id"]),
-                        user_id = Convert.ToInt32(row["user_id"]),
-                        order_date = Convert.ToDateTime(row["order_date"]),
-                        status = row["status"].ToString(),
-                        total_amount = Convert.ToDecimal(row["total_amount"]),
-                        is_deleted = Convert.ToBoolean(row["is_deleted"])
+                        OrderId = Convert.ToInt32(row["order_id"]),
+                        UserId = Convert.ToInt32(row["user_id"]),
+OrderDate = Convert.ToDateTime(row["order_date"]),
+                        Status = row["status"].ToString(),
+                        TotalAmount = Convert.ToDecimal(row["total_amount"]),
+                        IsDeleted = Convert.ToBoolean(row["is_deleted"])
                     });
                 }
             }
@@ -75,12 +77,12 @@ namespace _123.Services
                 var row = result.Rows[0];
                 return new Order
                 {
-                    order_id = Convert.ToInt32(row["order_id"]),
-                    user_id = Convert.ToInt32(row["user_id"]),
-                    order_date = Convert.ToDateTime(row["order_date"]),
-                    status = row["status"].ToString(),
-                    total_amount = Convert.ToDecimal(row["total_amount"]),
-                    is_deleted = Convert.ToBoolean(row["is_deleted"])
+                    OrderId = Convert.ToInt32(row["order_id"]),
+                        UserId = Convert.ToInt32(row["user_id"]),
+OrderDate = Convert.ToDateTime(row["order_date"]),
+                        Status = row["status"].ToString(),
+                        TotalAmount = Convert.ToDecimal(row["total_amount"]),
+                        IsDeleted = Convert.ToBoolean(row["is_deleted"])
                 };
             }
 
@@ -97,9 +99,10 @@ namespace _123.Services
             
             var parameters = new MySqlParameter[]
             {
-                new MySqlParameter("@order_id", MySqlDbType.Int32) { Value = order.order_id },
-                new MySqlParameter("@status", MySqlDbType.VarChar) { Value = order.status },
-                new MySqlParameter("@total_amount", MySqlDbType.Decimal) { Value = order.total_amount }
+                new MySqlParameter("@user_id", MySqlDbType.Int32) { Value = order.UserId },
+                new MySqlParameter("@order_date", MySqlDbType.DateTime) { Value = order.OrderDate },
+                new MySqlParameter("@status", MySqlDbType.VarChar) { Value = order.Status },
+                new MySqlParameter("@total_amount", MySqlDbType.Decimal) { Value = order.TotalAmount }
             };
 
             return DatabaseHelper.ExecuteNonQuery(query, parameters);

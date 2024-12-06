@@ -70,7 +70,7 @@ namespace _123.Controllers
         [HttpPost("delete")]
         public IActionResult Delete(Order order)
         {
-            OrderService.DeleteOrder(order.order_id); // Call service to delete order
+            OrderService.DeleteOrder(order.OrderId); // Call service to delete order
             return new RedirectResult("/admin/order");
         }
 

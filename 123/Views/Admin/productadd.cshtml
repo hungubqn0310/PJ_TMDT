@@ -45,9 +45,6 @@
                                 <label>Thể loại</label>
                                 <select class="form-control" name="CategoryId" asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.Categories ?? new List<Category>(), "CategoryId", "CategoryName"))">
                                 </select>
-
-
-
                             </div>
                         </div>
                     </div>

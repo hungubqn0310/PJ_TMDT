@@ -10,16 +10,12 @@
                                     </div>
                                     <div class="modal-body">
                                         <form asp-action="add" method="post" id="user--add">
-                                            <input type="hidden" name='cart_id' asp-for="Shopping_Cart.cart_id">
+                    <input type="hidden" name='cart_id' asp-for="ShoppingCart.CartId">
                                             <div class="row">
                                                 <div class="col">
                                                      <div class="form-group">
                                                         <label >user_id</label>
-                                                        <select class="form-control" name="user_id" asp-for="Shopping_Cart.user_id" required>
-                                                            @foreach (var user in Model.Users)  
-                                                            {
-                                                                <option value="@user.user_id">@user.username</option>  <!-- Display username and store user_id -->
-                                                            }
+                                                        <select class="form-control" name="UserId" asp-for="ShoppingCart.UserId" asp-items="@(new SelectList(ViewBag.Users ?? new List<User>(), "UserId", "UserName"))">
                                                         </select>
                                                     </div>
                                                 </div>

@@ -30,13 +30,13 @@ namespace _123.Controllers
         [HttpGet("add")]
         public IActionResult Add()
         {
-            Order_Item orderItem = new Order_Item();
+            OrderItem orderItem = new OrderItem();
             return PartialView("/Views/Admin/orderitemadd.cshtml", orderItem);
         }
 
         // POST Action: Add a new order item
         [HttpPost("add")]
-        public IActionResult Add(Order_Item orderItem)
+        public IActionResult Add(OrderItem orderItem)
         {
             OrderItemService.CreateOrderItem(orderItem); // Call service to create order item
             return new RedirectResult("/admin/order-item");
@@ -46,14 +46,14 @@ namespace _123.Controllers
         [HttpGet("edit")]
         public IActionResult Edit(int id)
         {
-            Order_Item orderItem = OrderItemService.GetOrderItemById(id); // Fetch order item by ID
+            OrderItem orderItem = OrderItemService.GetOrderItemById(id); // Fetch order item by ID
             return PartialView("/Views/Admin/orderitemedit.cshtml", orderItem);
         }
 
         // POST Action: Update order item details
          // POST Action: Update order item details
         [HttpPost("edit")]
-        public IActionResult Edit(Order_Item orderItem)
+        public IActionResult Edit(OrderItem orderItem)
         {
             OrderItemService.UpdateOrderItem(orderItem); // Call service to update order item
             return new RedirectResult("/admin/order-item");
@@ -63,15 +63,15 @@ namespace _123.Controllers
         [HttpGet("delete")]
         public IActionResult Delete(int id)
         {
-            Order_Item orderItem = OrderItemService.GetOrderItemById(id); // Fetch order item by ID
+            OrderItem orderItem = OrderItemService.GetOrderItemById(id); // Fetch order item by ID
             return PartialView("/Views/Admin/orderitemdelete.cshtml", orderItem);
         }
 
         // POST Action: Delete the order item
         [HttpPost("delete")]
-        public IActionResult Delete(Order_Item orderItem)
+        public IActionResult Delete(OrderItem orderItem)
         {
-            OrderItemService.DeleteOrderItem(orderItem.order_item_id); // Call service to delete order item
+            OrderItemService.DeleteOrderItem(orderItem.OrderItemId); // Call service to delete order item
             return new RedirectResult("/admin/order-item");
         }
 
