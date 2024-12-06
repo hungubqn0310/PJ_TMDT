@@ -330,8 +330,8 @@
 
 /* Logo HanDK */
 .handk-footer-icon {
-  width: 200px; /* Kích thước logo */
-  height: 200px;
+  width: 20%; /* Kích thước logo */
+  height: 10%;
   margin-left: 240px;
   margin-right: 75px;
 }

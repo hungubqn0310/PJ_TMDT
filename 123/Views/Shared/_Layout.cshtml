@@ -4,13 +4,21 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - HanDK</title>
+    <link href="~/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+   <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+		<link href="~/admin/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="~/admin/css/admin.css" rel="stylesheet">
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/_123.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="/css/style.css">
+	
     <!-- Thêm liên kết tới Font Awesome CDN -->
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,200;0,300;0,400;1,300&display=swap" />
 </head>
 <body>
@@ -20,9 +28,9 @@
 			<div class="header-child">
 				<!-- Các icon bên trái -->
 				<div class="left-icons">
-					<span class="material-icons search-location-icon">location_on</span> <!-- Tìm kiếm vị trí -->
-					<span class="material-icons icon-facebook-color">facebook</span> <!-- Facebook -->
-					<span class="material-icons phone-volume-icon">phone</span> <!-- Điện thoại -->
+					<img class="search-location-icon" alt="" src="search-location.svg">
+					<img class="icon-facebook-color" alt="" src="🦆 icon \"facebook color\".svg">
+					<img class="phone-volume-icon" alt="" src="phone-volume.svg">
 					<div class="div">0976534850</div> <!-- Số điện thoại -->
 				</div>
 
@@ -31,14 +39,14 @@
 
 				<!-- Các icon bên phải -->
 				<div class="right-icons">
-					<span class="material-icons shopping-cart-icon">shopping_cart</span> <!-- Giỏ hàng -->
-					<span class="material-icons user-icon">person</span> <!-- Người dùng -->
+					<img class="shopping-cart-icon" alt="" src="shopping-cart.svg" id="shoppingCartIcon">
+					<img class="user-icon" alt="" src="user.svg" id="userIcon">
 				</div>
 			</div>
 			<nav>
 				<div class="wrapper">
 					<ul class="nav-links">
-						<li><a href="#">Trang chủ</a></li>
+						<li><a href="/home/index">Trang chủ</a></li>
 						<li>
 							<a href="#">Danh mục</a>
 							<ul class="dropdown">
@@ -231,30 +239,26 @@
 								<li><a href="#">Thu hồi & đổi trả</a></li>
 								<li><a href="#">Thanh toán</a></li>
 								<li><a href="#">Bảo mật thông tin</a></li>
-								<li><a href="#">Giá vàng</a></li>
+								<li><a href="/Home/thongtin">Giá vàng</a></li>
 							</ul>
 							</li>
 						<li><a href="#" style="color: red; text-decoration: none;" onmouseover="this.style.color='blue'" onmouseout="this.style.color='red'">Khuyến mãi</a></li>
 						<li><a href="#">HanDK</a></li>
 					</ul>
-					<div class="search-group">
+					<div class="search-group" style="background-color: #ddd;border: 1px solid #ddd;border-radius: 20px;">
 							<input type="text" class="search-input" placeholder="Tìm kiếm...">
-							<span class="material-icons search-icon">search</span>
+							<img class="search-icon" alt="search" src="search.svg">
 						</div>	
 				</div>
 			</nav>	
     	</div>
 	</header>
-
-    
         <main class="container">
             @RenderBody()
         </main>
-
-
-    <footer>
+   <footer>
         <div class="footer">
-			<img class="handk-footer-icon" alt="" src="images\HanDK_footer.png">
+			<img class="handk-footer-icon" alt="" src="images\HanDK_footer1.png">
 			<div class="tieu-de">
 				<div class="tieude1">
 					<h1>SẢN PHẨM</h1>
