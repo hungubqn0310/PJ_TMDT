@@ -15,109 +15,283 @@
 </head>
 <body>
     <header>
-  <div class="top-bar">
-    
-      <div class="social text-gray">
-        <!-- Thêm class icon đúng với Font Awesome -->
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fas fa-phone-alt"></i></a>       
-        <span>0976534850</span>
-      </div>
-    <div class="logo">
-      <img src="~/images/HanDK-removebg.png" alt="Logo">
-    </div>
-    <div class="user-cart">
-      <!-- Thêm các icon giỏ hàng và người dùng -->
-      <i class="fas fa-shopping-cart"></i>
-      <i class="fas fa-user"></i>
-    </div>
-  </div>
-  
-  <nav class="main-menu">
-    <ul>
-      <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
-      <li><a href="#">Danh mục</a></li>
-      <li><a href="@Url.Action("thongtin", "Home")">Thông tin</a></li>
-      <li><a href="#" class="highlight">Khuyến mãi</a></li>
-      <li><a href="#">HanDK</a></li>
-    </ul>
-    <div class="search-bar">
-      <input type="text" placeholder="Tìm kiếm...">
-      <button><i class="fas fa-search"></i></button>
-    </div>
-  </nav>
-</header>
+  		<div class="header">
+			<partial name="_LoginPopup" />
+			<div class="header-child">
+				<!-- Các icon bên trái -->
+				<div class="left-icons">
+					<img class="search-location-icon" alt="" src="search-location.svg">
+					<img class="icon-facebook-color" alt="" src="🦆 icon \"facebook color\".svg">
+					<img class="phone-volume-icon" alt="" src="phone-volume.svg">
+					<div class="div">0976534850</div> <!-- Số điện thoại -->
+				</div>
 
-    <div class="container">
-        <main role="main" class="pb-3">
+				<!-- Logo thương hiệu -->
+				<img class="handk-icon" alt="" src="images\HanDK-removebg.png" id="hanDKImage">
+
+				<!-- Các icon bên phải -->
+				<div class="right-icons">
+					<img class="shopping-cart-icon" alt="" src="shopping-cart.svg" id="shoppingCartIcon">
+					<img class="user-icon" alt="" src="user.svg" id="userIcon">
+				</div>
+			</div>
+			<nav>
+				<div class="wrapper">
+					<ul class="nav-links">
+						<li><a href="#">Trang chủ</a></li>
+						<li>
+							<a href="#">Danh mục</a>
+							<ul class="dropdown">
+								<li>
+									<a href="#">Nhẫn cầu hôn</a>
+									<ul class="dropdown1">
+										<li>
+											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Kiểu dáng</a>
+											<ul class="type">
+												<li><a href="#">Solitaire</a></li>
+												<li><a href="#">Cathedral</a></li>
+												<li><a href="#">Halo</a></li>
+												<li><a href="#">Bridge Accent</a></li>
+												<li><a href="#">Twist</a></li>
+												<li><a href="#">Royal</a></li>
+												<li><a href="#">ThreeStone</a></li>
+												<li><a href="#">Trellis</a></li>
+											</ul>
+											</li>
+										<li>
+											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Kiểu viên chủ</a>
+											<ul class="type">
+												<li><a href="#">Round</a></li>
+												<li><a href="#">Heart</a></li>
+												<li><a href="#">Pear</a></li>
+												<li><a href="#">Princess</a></li>
+												<li><a href="#">Emerald</a></li>
+												<li><a href="#">Oval</a></li>
+											</ul>
+											</li>
+										<li>
+											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Bộ sưu tập</a>
+											<ul class="type">
+												<li><a href="#">My Princess</a></li>
+												<li><a href="#">Tender Love</a></li>
+												<li><a href="#">Holding You</a></li>
+												<li><a href="#">Eternal Promise</a></li>
+												<li><a href="#">Bridal Gown</a></li>
+												<li><a href="#">Petite Bridal</a></li>
+												<li><a href="#">Blooming</a></li>
+												<li><a href="#">Spark Of Heaven</a></li>
+											</ul>
+										</li>
+										<img class="header-drop" alt="" src="images\HanDK_footer.png">								
+									</ul>
+								</li>
+								<li>
+									<a href="#">Nhẫn cưới</a>
+									<ul class="dropdown1">
+										<li>
+											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Loại nhẫn</i></a>
+											<ul class="type">
+												<li><a href="#">Nhẫn cưới cặp</a></li>
+												<li><a href="#">Nhẫn cưới nam</a></li>
+												<li><a href="#">Nhẫn cưới nữ</a></li>
+											</ul>
+											</li>
+										<li>
+											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Phong cách</a>
+											<ul class="type">
+												<li><a href="#">Nhẫn cưới Truyền Thống</a></li>
+												<li><a href="#">Nhẫn cưới Hiện Đại</a></li>
+												<li><a href="#">Nhẫn cưới Kim Cương</a></li>
+												<li><a href="#">Nhẫn cưới Vương Miện</a></li>
+												<li><a href="#">Nhẫn cưới Eternity</a></li>
+												<li><a href="#">Nhẫn cưới Vintage</a></li>
+											</ul>
+											</li>
+										<li>
+											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Chất liệu</a>
+											<ul class="type">
+												<li><a href="#">Vàng trắng</a></li>
+												<li><a href="#">Vàng vàng</a></li>
+												<li><a href="#">Vàng hồng</a></li>
+												<li><a href="#">14K</a></li>
+												<li><a href="#">18K</a></li>
+												<li><a href="#">Platinum</a></li>
+											</ul>
+										</li>
+										<li>
+											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Bộ sưu tập</a>
+											<ul class="type">
+												<li><a href="#">Our Story</a></li>
+												<li><a href="#">Sweet & Sour</a></li>
+												<li><a href="#">Flower Of Joy</a></li>
+												<li><a href="#">Shape Of Love</a></li>
+												<li><a href="#">Yêu thương vàng son</a></li>
+											</ul>
+										</li>
+										<img class="header-drop" alt="" src="HanDK_footer.png">									
+									</ul>
+									</li>
+								<li>
+									<a href="#">Trang sức</a>
+									<ul class="dropdown1">
+										<li>
+											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Loại trang sức</i></a>
+											<ul class="type">
+												<li><a href="#">Nhẫn kim cương</a></li>
+												<li><a href="#">Nhẫn thời trang</a></li>
+												<li><a href="#">Nhẫn nam</a></li>
+												<li><a href="#">Bông tai</a></li>
+												<li><a href="#">Dây chuyền</a></li>
+												<li><a href="#">Vòng tay</a></li>
+												<li><a href="#">Vàng thần tài</a></li>
+											</ul>
+											</li>
+										<li>
+											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Chất liệu</a>
+											<ul class="type">
+												<li><a href="#">Vàng 14K</a></li>
+												<li><a href="#">Vàng 18K</a></li>
+												<li><a href="#">Bạch kim</a></li>
+											</ul>
+											</li>
+										<li>
+											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Bộ sưu tập</a>
+											<ul class="type">
+												<li><a href="#">The Hearts</a></li>
+												<li><a href="#">Brilliant Layering</a></li>
+											</ul>
+										</li>
+										<img class="header-drop" alt="" src="HanDK_footer.png">								
+									</ul>
+									</li>
+								<li>
+									<a href="#">Kim cương</a>
+									<ul class="dropdown1">
+										<li>
+											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Giá tiền</i></a>
+											<ul class="type">
+												<li><a href="#">Dưới 30 triệu</a></li>
+												<li><a href="#">Từ 30 triệu đến 100 triệu</a></li>
+												<li><a href="#">Từ 100 triệu đến 200 triệu</a></li>
+												<li><a href="#">Từ 200 triệu đến 1 tỷ</a></li>
+											</ul>
+											</li>
+										<li>
+											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Dáng</a>
+											<ul class="type">
+												<li><a href="#">Round</a></li>
+												<li><a href="#">Princess</a></li>
+												<li><a href="#">Oval</a></li>
+												<li><a href="#">Pear</a></li>
+												<li><a href="#">Emerald</a></li>
+												<li><a href="#">Heart</a></li>
+												<li><a href="#">Radiant</a></li>
+												<li><a href="#">Marquise</a></li>
+											</ul>
+											</li>
+										<li>
+											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Bảng giá kim cương GIA</a>
+											<ul class="type">
+												<li><a href="#">Giá kim cương 3 ly 6</a></li>
+												<li><a href="#">Giá kim cương 4 ly 5</a></li>
+												<li><a href="#">Giá kim cương 5 ly</a></li>
+												<li><a href="#">Giá kim cương 5 ly 4</a></li>
+											</ul>
+										</li>
+										<img class="header-drop" alt="" src="images\kimcuong.png">							
+									</ul>
+									</li>
+								<li>
+									<a href="#">Men's</a>
+									<ul class="dropdown1">
+										<li>
+											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Kiểu dáng</a>
+											<ul class="type">
+												<li><a href="#">Phong thuỷ</a></li>
+												<li><a href="#">Signet</a></li>
+												<li><a href="#">Fancy</a></li>
+												<li><a href="#">Eternity</a></li>
+											</ul>
+										</li>
+										<li>
+											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Bộ sưu tập</a>
+											<ul class="type">
+												<li><a href="#">True North</a></li>
+											</ul>
+										</li>
+										<img class="header-drop" alt="" src="HanDK_footer.png">								
+									</ul>
+								</li>
+							</ul>
+							</li>
+						<li>
+							<a href="#">Thông tin</a>
+							<ul class="dropdown">
+								<li><a href="#">Hướng dẫn đo size</a></li>
+								<li><a href="#">Thu hồi & đổi trả</a></li>
+								<li><a href="#">Thanh toán</a></li>
+								<li><a href="#">Bảo mật thông tin</a></li>
+								<li><a href="#">Giá vàng</a></li>
+							</ul>
+							</li>
+						<li><a href="#" style="color: red; text-decoration: none;" onmouseover="this.style.color='blue'" onmouseout="this.style.color='red'">Khuyến mãi</a></li>
+						<li><a href="#">HanDK</a></li>
+					</ul>
+					<div class="search-group">
+							<input type="text" class="search-input" placeholder="Tìm kiếm...">
+							<img class="search-icon" alt="search" src="search.svg">
+						</div>	
+				</div>
+			</nav>	
+    	</div>
+	</header>
+
+    
+        <main class="container">
             @RenderBody()
         </main>
-    </div>
 
-    
+
+    <footer>
+        <div class="footer">
+			<img class="handk-footer-icon" alt="" src="images\HanDK_footer.png">
+			<div class="tieu-de">
+				<div class="tieude1">
+					<h1>SẢN PHẨM</h1>
+					<div class="foot">Nhẫn cưới</div>
+					<div class="foot">Nhẫn cầu hôn</div>
+					<div class="foot">Kim cương</div>
+					<div class="foot">Nhẫn nam</div>
+				</div>
+				<div class="tieude2">
+					<h1>LIÊN HỆ</h1>
+					<div class="text-foot">GỌI MUA HÀNG</div>
+					<div class="foot">0976534850</div>
+					<div class="foot">0976534850</div>
+					<div class="foot">0976534850</div>
+					<div class="text-foot">GÓP Ý KHIẾU NẠI</div>
+					<div class="foot">0976534850</div>
+					<div class="foot">Mail</div>
+				</div>
+				<div class="tieude3">
+					<h1>HỖ TRỢ</h1>
+					<div class="foot">Thu đổi</div>
+					<div class="foot">Thanh toán</div>
+					<div class="foot">Bảo mật thông tin</div>
+					<div class="foot">Hướng dẫn đo size</div>
+				</div>
+				<div class="tieude4">
+					<h1>VỀ CHÚNG TÔI</h1>
+					<div class="foot">Câu chuyện HanDK</div>
+					<div class="foot">Cửa hàng</div>
+				</div>
+			</div>	
+    	</div>
+    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+	<script src="/js/loginPopup.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
-<footer class="border-top footer text-muted">
-        <div class="footer">
-      			
-      			<div class="logo-footer">
-      				<img src="~/images/HanDK_footer1.png" alt="Logo">
-    			</div>
-      			
-      			<div class="sn-phm">SẢN PHẨM</div>
-      			<div class="v-chng-ti">VỀ CHÚNG TÔI</div>
-      			<div class="lin-h">LIÊN HỆ</div>
-      			<div class="h-tr">HỖ TRỢ</div>
-      			<div class="gi-mua-hng">GỌI MUA HÀNG</div>
-      			<div class="gp-khiu">GÓP Ý KHIẾU NẠI</div>
-      			<div class="trang-ch-wrapper">
-        				<div class="trang-ch">Nhẫn cưới</div>
-      			</div>
-      			<div class="trang-ch-container">
-        				<div class="trang-ch">Nhẫn cầu hôn</div>
-      			</div>
-      			<div class="trang-ch-frame">
-        				<div class="trang-ch">0976534850</div>
-      			</div>
-      			<div class="frame-div">
-        				<div class="trang-ch">Thu đổi</div>
-      			</div>
-      			<div class="trang-ch-wrapper1">
-        				<div class="trang-ch">Câu chuyện HanDK</div>
-      			</div>
-      			<div class="trang-ch-wrapper2">
-        				<div class="trang-ch">Cửa hàng</div>
-      			</div>
-      			<div class="trang-ch-wrapper3">
-        				<div class="trang-ch">Thanh toán</div>
-      			</div>
-      			<div class="trang-ch-wrapper4">
-        				<div class="trang-ch">Bảo mật thông tin</div>
-      			</div>
-      			<div class="trang-ch-wrapper5">
-        				<div class="trang-ch">Hướng dẫn đo size</div>
-      			</div>
-      			<div class="trang-ch-wrapper6">
-        				<div class="trang-ch">0976534850</div>
-      			</div>
-      			<div class="trang-ch-wrapper7">
-        				<div class="trang-ch">0976534850</div>
-      			</div>
-      			<div class="trang-ch-wrapper8">
-        				<div class="trang-ch">0976534850</div>
-      			</div>
-      			<div class="trang-ch-wrapper9">
-        				<div class="trang-ch">Mail</div>
-      			</div>
-      			<div class="trang-ch-wrapper10">
-        				<div class="trang-ch">Kim cương</div>
-      			</div>
-      			<div class="trang-ch-wrapper11">
-        				<div class="trang-ch">Nhẫn nam</div>
-      			</div>
-    		</div>
-    </footer>
 </html>
