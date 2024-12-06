@@ -126,10 +126,6 @@
    /* Tạo hiệu ứng mượt mà khi hiển thị/ẩn */
 }
 
-
-
-
-
 /* Các liên kết trong dropdown (chữ trong các mục) */
 .dropdown li a {
   font-size: 16px; /* Kích thước chữ */
@@ -289,8 +285,6 @@
 /* Khi input được focus, thêm hiệu ứng cho icon */
 .search-input:focus + .search-icon {
   transform: translateY(-50%) scale(1.2); /* Phóng to nhẹ icon */
-  color: #000; /* Thay đổi màu của icon (nếu icon là font hoặc SVG màu) */
-  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5)); /* Thêm hiệu ứng bóng */
 }
 
 
