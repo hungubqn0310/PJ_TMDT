@@ -1,7 +1,7 @@
 using _123.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-
+using _123.Services;
 namespace _123.Controllers
 {
     public class AdminController : Controller
@@ -15,6 +15,8 @@ namespace _123.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.Categories = CategoryService.GetCategories();
+            ViewBag.Materials = MaterialService.GetMaterials();
             return View();
         }
 
