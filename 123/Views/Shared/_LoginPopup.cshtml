@@ -1,0 +1,82 @@
+<link rel="stylesheet" href="~/css/loginPopup.css" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<div id="overlay"></div>
+<div class="popup" id="popupLogin">
+    <div class="popup-header">
+        <div class="title">Tài khoản</div>
+        <div class="subtitle">Đăng nhập hoặc tạo tài khoản mới</div>
+        <p class="description">
+            Sở hữu ngay tài khoản riêng cho mình để dễ dàng xem, thêm các món trang sức yêu thích vào giỏ hàng,
+            thanh toán nhanh chóng cùng nhiều trải nghiệm.
+        </p>
+    </div>
+    <div class="input-group">
+        <label for="email" class="label">Email hoặc số điện thoại</label>
+        <input type="text" id="email" class="input-field" placeholder="Nhập email hoặc số điện thoại" />
+    </div>
+    <div class="input-group">
+        <label for="password" class="label">Mật khẩu</label>
+        <input type="password" id="password" class="input-field" placeholder="Nhập mật khẩu" />
+    </div>
+    <div class="actions">
+        <button id="loginButton" class="btn btn-primary" disabled>Đăng nhập</button>
+        <button class="btn btn-secondary">Đăng ký</button>
+        <a href="#" class="forgot-password">Quên mật khẩu?</a>
+    </div>
+    <div class="social-login">
+        <button class="btn-social">
+            <img class="google-icon" src="/images/google-icon.png" alt="Google"/>
+            Đăng nhập bằng Google
+        </button>
+        <button class="btn-social">
+            <span class="material-icons facebook-icon">facebook</span> <!-- Facebook Icon -->
+            Đăng nhập bằng Facebook
+        </button>
+    </div>
+</div>
+<script>
+    // Lấy các phần tử input và nút đăng nhập
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const loginButton = document.getElementById('loginButton');
+
+    // Hàm kiểm tra các trường và cập nhật trạng thái nút đăng nhập
+    function checkForm() {
+        if (emailInput.value && passwordInput.value) {
+            loginButton.disabled = false; // Bật nút khi cả 2 trường đều có giá trị
+        } else {
+            loginButton.disabled = true; // Tắt nút nếu thiếu thông tin
+        }
+    }
+
+    // Lắng nghe sự kiện input trên cả hai trường
+    emailInput.addEventListener('input', checkForm);
+    passwordInput.addEventListener('input', checkForm);
+
+    // Gọi hàm kiểm tra khi trang được tải
+    checkForm();
+
+    // Thêm sự kiện click vào các nút
+    document.querySelectorAll('.btn, .btn-social').forEach(button => {
+        button.addEventListener('click', function (e) {
+            const ripple = document.createElement('span');
+            const rect = button.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+
+            ripple.style.width = ripple.style.height = `${size}px`;
+            ripple.style.left = `${x}px`;
+            ripple.style.top = `${y}px`;
+
+            ripple.classList.add('ripple');
+            button.appendChild(ripple);
+
+            // Loại bỏ ripple sau khi animation hoàn tất
+            ripple.addEventListener('animationend', () => {
+                ripple.remove();
+            });
+        });
+    });
+</script>
