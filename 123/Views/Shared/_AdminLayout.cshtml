@@ -170,10 +170,33 @@
                     </form>
 
 
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ">
-                        <li><p style="color: #F6078E; font-size: 20px; font-style: italic; margin: 10px; text-align: center">Welcome to HanDK</p></li>
-                    </ul>
+                    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                        <p style="color: #F6078E; font-size: 20px; font-style: italic; margin: 10px; text-align: center">Welcome to HanDK</p>
+                        <div class=""> 
+                            <a class="nav-link dropdown-toggle " href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
+                                <img class="img-profile rounded-circle" src="~/admin/img/undraw_profile.svg" style="width: 30px">
+                            </a>
+                            <div class="  shadow animated--grow-in drop-item"
+                                aria-labelledby="userDropdown" style="position: absolute;
+                                    top: 72px;
+                                    right: 26px;
+                                    background-color: aliceblue; display: none;"> 
+                                <a class="dropdown-item" href="#" style="display: flex; align-items: center; gap: 10px">
+                                    <i class="material-icons" style="font-size: 24px; color: #d1d3e2">home</i>
+                                    Trang Chủ
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    
 
                 </nav>
                 <!-- End of Topbar -->
@@ -208,25 +231,6 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    @* <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div> *@
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -244,6 +248,42 @@
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
+
+    <script>
+  // Lưu tham chiếu đến các phần tử dropdown
+  const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+  // Thêm sự kiện click cho từng nút dropdown-toggle
+  dropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', (event) => {
+      // Ngăn chặn sự kiện click lan ra ngoài
+      event.stopPropagation();
+
+      // Lấy phần tử drop-item liên quan
+      const dropItem = toggle.nextElementSibling;
+
+      // Toggle hiển thị của drop-item
+      if (dropItem) {
+        const isVisible = dropItem.style.display === 'block';
+        hideAllDropdowns(); // Ẩn tất cả dropdown khác trước
+        dropItem.style.display = isVisible ? 'none' : 'block';
+      }
+    });
+  });
+
+  // Ẩn tất cả các menu drop-item
+  function hideAllDropdowns() {
+    document.querySelectorAll('.drop-item').forEach(item => {
+      item.style.display = 'none';
+    });
+  }
+
+  // Ẩn menu khi click ra ngoài
+  document.addEventListener('click', () => {
+    hideAllDropdowns();
+  });
+</script>
+
 
 </body>
 
