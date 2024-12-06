@@ -11,19 +11,19 @@
             </div>
             <div class="modal-body">
                 <form asp-action="Edit" method="post" id="update--@Model.CategoryId">
-                    <input type="hidden" name="category_id" asp-for="CategoryId">
+                    <input type="hidden" name="CategoryId" asp-for="CategoryId">
                     
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label for="category_name">Category Name</label>
-                                <input type="text" class="form-control" placeholder="Enter category name" name="category_name" asp-for="CategoryName">
+                                <input type="text" class="form-control" placeholder="Enter category name" name="CategoryName" asp-for="CategoryName">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="description">Description</label>
-                                <input type="text" class="form-control" placeholder="Enter description" name="description" asp-for="Description">
+                                <input type="text" class="form-control" placeholder="Enter description" name="Description" asp-for="Description">
                             </div>
                         </div>
                     </div>

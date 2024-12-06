@@ -1,5 +1,4 @@
 @model Product
-
 <div class="modal fade bd-example-modal-lg" id="product-add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -11,9 +10,15 @@
             </div>
             <div class="modal-body">
                 <form asp-action="Add" method="post" id="product-add-form">
-                    <input type="hidden" name="ProductId" asp-for="ProductId">
+                    @* <input type="hidden" name="ProductId" asp-for="ProductId"> *@
 
                     <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Mã sản phẩm</label>
+                                <input type="text" class="form-control" placeholder="Nhập mã sản phẩm" name="ProductId" asp-for="ProductId">
+                            </div>
+                        </div>
                         <div class="col">
                             <div class="form-group">
                                 <label>Tên sản phẩm</label>
@@ -38,14 +43,11 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Thể loại</label>
-                                <select class="form-control" name="CategoryId" asp-for="CategoryId">
-                                    <option value="">Chọn thể loại</option>
-                                    @* Lặp qua danh sách thể loại (giả sử danh sách này được truyền từ controller) *@
-                                    @foreach (var category in ViewBag.Categories)
-                                    {
-                                        <option value="@category.CategoryId">@category.CategoryName</option>
-                                    }
+                                <select class="form-control" name="CategoryId" asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.Categories ?? new List<Category>(), "CategoryId", "CategoryName"))">
                                 </select>
+
+
+
                             </div>
                         </div>
                     </div>
@@ -60,13 +62,8 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Chất liệu</label>
-                                <select class="form-control" name="MaterialId" asp-for="MaterialId">
-                                    <option value="">Chọn chất liệu</option>
-                                    @* Lặp qua danh sách chất liệu *@
-                                    @foreach (var material in ViewBag.Materials)
-                                    {
-                                        <option value="@material.MaterialId">@material.MaterialName</option>
-                                    }
+                                <select class="form-control" name="MaterialId" asp-for="MaterialId" asp-items="@(new SelectList(ViewBag.Materials ?? new List<Material>(), "MaterialId", "MaterialName"))">
+                                    
                                 </select>
                             </div>
                         </div>

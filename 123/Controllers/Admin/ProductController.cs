@@ -23,7 +23,9 @@ namespace _123.Controllers
         {
             var productViewModel = new ProductViewModel();
             productViewModel.Products = ProductService.GetProducts();
+            ViewBag.Materials = MaterialService.GetMaterials() ?? new List<Material>();
             // Gửi dữ liệu đến View
+            ViewBag.Categories = CategoryService.GetCategories() ?? new List<Category>();
             return View("Views/Admin/products.cshtml", productViewModel);
         }
 
@@ -33,8 +35,8 @@ namespace _123.Controllers
         Product product = new Product();
 
         // Lấy danh sách thể loại và chất liệu
-        ViewBag.Categories = CategoryService.GetCategories();  // Giả sử phương thức GetCategories() lấy danh sách thể loại
-        ViewBag.Materials = MaterialService.GetMaterials();  // Giả sử phương thức GetMaterials() lấy danh sách chất liệu
+        ViewBag.Categories = CategoryService.GetCategories() ?? new List<Category>();  // Giả sử phương thức GetCategories() lấy danh sách thể loại
+        ViewBag.Materials = MaterialService.GetMaterials() ?? new List<Material>();  // Giả sử phương thức GetMaterials() lấy danh sách chất liệu
 
         return PartialView("/Views/Admin/productadd.cshtml", product);
     }

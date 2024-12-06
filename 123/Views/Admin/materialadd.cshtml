@@ -11,31 +11,20 @@
             </div>
             <div class="modal-body">
                 <form asp-action="add" method="post" id="material-add-form">
-                    <input type="hidden" name="material_id" asp-for="MaterialId">
+                    <input type="hidden" name="MaterialId" asp-for="MaterialId">
                     
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label for="material_name">Material Name</label>
-                                <input type="text" class="form-control" placeholder="Enter material name" name="material_name" asp-for="MaterialName">
+                                <input type="text" class="form-control" placeholder="Enter material name" name="MaterialName" asp-for="MaterialName">
 
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="description">Description</label>
-                                <input type="text" class="form-control" placeholder="Enter description" name="description" asp-for="Description" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="is_deleted">Is Deleted?</label>
-                                <select class="form-control" name="is_deleted" asp-for="IsDeleted">
-                                    <option value="false">No</option>
-                                    <option value="true">Yes</option>
-                                </select>
+                                <input type="text" class="form-control" placeholder="Enter description" name="Description" asp-for="Description" />
                             </div>
                         </div>
                     </div>
@@ -43,7 +32,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" style="border-radius: 20px;">Close</button>
-                <button type="submit" class="btn btn-outline-primary" style="border-radius: 20px;" form="material-add-form">Save changes</button>
+                <button type="submit" class="btn btn-outline-primary" style="border-radius: 20px;" form="material-add-form">Add New</button>
             </div>
         </div>
     </div>

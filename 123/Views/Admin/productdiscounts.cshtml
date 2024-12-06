@@ -1,0 +1,54 @@
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model _123.ProductDiscountViewModel
+
+<div class="card mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Thông tin khuyến mãi sản phẩm</h6>
+    </div>
+    <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-outline-success" style="margin: 10px 40px 0;" data-toggle="modal" data-target="#productdiscount-add" 
+                data-url="@Url.Action($"Add")">Add</button>
+        @await Html.PartialAsync("/Views/Admin/productdiscountadd.cshtml", @Model.ProductDiscount)
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Stt</th>
+                        <th>Product ID</th>
+                        <th>Discount ID</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.ProductDiscounts.Count(); i++)
+                    {
+                        <tr>
+                            <td>@(i+1)</td> <!-- Index -->
+                            <td>@Model.ProductDiscounts[i].ProductId</td>
+                            <td>@Model.ProductDiscounts[i].DiscountId</td>
+                            <td>
+                                <button type="button" class="btn btn-outline-primary" data-toggle="modal" 
+                                        data-target="#productdiscount-@Model.ProductDiscounts[i].ProductId-@Model.ProductDiscounts[i].DiscountId" 
+                                        data-url="@Url.Action($"Edit/{@Model.ProductDiscounts[i].ProductId}/{@Model.ProductDiscounts[i].DiscountId}")">
+                                    <i class="material-icons" style="font-size: 14px">border_color</i>
+                                </button>
+                                @await Html.PartialAsync("/Views/Admin/productdiscountedit.cshtml", @Model.ProductDiscounts[i])
+                                
+                                <button type="button" class="btn btn-outline-danger" data-toggle="modal" 
+                                        data-target="#productdiscount-delete-@Model.ProductDiscounts[i].ProductId-@Model.ProductDiscounts[i].DiscountId" 
+                                        data-url="@Url.Action($"Delete/{@Model.ProductDiscounts[i].ProductId}/{@Model.ProductDiscounts[i].DiscountId}")">
+                                    <i class="material-icons" style="font-size: 14px">delete</i>
+                                </button>
+                                @await Html.PartialAsync("/Views/Admin/productdiscountdelete.cshtml", @Model.ProductDiscounts[i])
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
