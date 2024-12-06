@@ -111,7 +111,7 @@
 
 .nav-links li {
   position: relative; /* Cần để định vị dropdown */
-  margin-right: 15px;
+  margin-right: 11px;
   align-items: center; /* Canh giữa chữ trong mục */
 
 }
@@ -166,7 +166,14 @@
   background-color: #f8f9fa;
   color: #fc77f1;
 }
-
+.arrowHover {
+  display: inline-block;
+  transition: transform 0.3s ease; /* Hiệu ứng quay mượt mà */
+}
+/* Quay mũi tên thành trỏ xuống khi hover */
+li:hover .arrowHover {
+  transform: rotate(180deg); /* Quay mũi tên 180 độ để nó thành mũi tên trỏ xuống */
+}
 /* Hiển thị dropdown khi hover vào mục cha */
 .nav-links li:hover > .dropdown {
   visibility: visible; /* Hiển thị dropdown */
