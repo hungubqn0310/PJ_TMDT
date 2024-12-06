@@ -34,6 +34,30 @@
   gap: 10px; /* Khoảng cách giữa các icon */
 }
 
+.material-icons {
+  cursor: pointer;  /* Thêm hiệu ứng bàn tay khi hover */
+  transition: transform 0.3s ease;  /* Thêm hiệu ứng khi hover */
+}
+
+.search-location-icon:hover, 
+.icon-facebook-color:hover,
+.phone-volume-icon:hover,
+.shopping-cart-icon:hover,
+.user-icon:hover {
+  transform: scale(1.2); /* Phóng to icon khi hover */
+}
+
+/* Đặc biệt tùy chỉnh màu sắc cho từng icon */
+.search-location-icon,
+.icon-facebook-color,
+.phone-volume-icon,
+.shopping-cart-icon,
+.user-icon {
+  color: #007bff;  /* Màu xanh cho icon tìm kiếm vị trí */
+}
+.search-icon{
+  color: #adadad;
+}
 /* Phần logo hoặc thương hiệu (handk-icon) */
 .handk-icon {
   width: 70px !important;
@@ -245,7 +269,7 @@
   height: 20px;
   position: absolute; /* Đặt icon theo vị trí tuyệt đối */
   right: 10px; /* Căn lề phải của icon */
-  top: 50%; /* Đưa icon vào giữa theo chiều dọc */
+  top: 17.5px; /* Đưa icon vào giữa theo chiều dọc */
   transform: translateY(-50%); /* Đảm bảo icon được căn giữa */
   cursor: pointer;
   transition: all 0.3s ease; /* Thêm hiệu ứng chuyển động */
