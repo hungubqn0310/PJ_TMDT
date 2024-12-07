@@ -17,8 +17,7 @@ namespace _123.Controllers
 
         // API Key của bạn
         private const string ApiKey = "goldapi-4af9019m49hnpo9-io";
-        // API Key (nên được lấy từ file cấu hình hoặc biến môi trường)
-        private const string ApiKey = "goldapi-hqv9xsm43maetf-io";
+       
 
         [HttpGet]
         public async Task<IActionResult> GetGoldPrice()
