@@ -20,6 +20,7 @@ namespace _123.Controllers
         {
             var inventoryViewModel = new InventoryViewModel();
             inventoryViewModel.Inventories = InventoryService.GetInventories();
+            ViewBag.Products = ProductService.GetProducts() ?? new List<Product>();;
             // Gửi dữ liệu đến View
             return View("Views/Admin/inventories.cshtml", inventoryViewModel);
         }
@@ -28,7 +29,8 @@ namespace _123.Controllers
         [HttpGet("add")]      
         public IActionResult Add() 
         {
-            Inventory inventory = new Inventory();
+            Inventory inventory = new Inventory(); // Tạo đối tượng Inventory rỗng
+            ViewBag.Products = ProductService.GetProducts() ?? new List<Product>();
             return PartialView("/Views/Admin/inventoryadd.cshtml", inventory);
         }
 

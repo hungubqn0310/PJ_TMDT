@@ -10,15 +10,15 @@
     <div class="d-flex justify-content-end">
         <button type="button" class="btn btn-outline-success" style="margin: 10px 40px 0;" data-toggle="modal" data-target="#inventory-add" 
         data-url="@Url.Action($"Add")">Add</button>
-        @await Html.PartialAsync("/Views/Admin/inventoryadd.cshtml", @Model.Inventories)
+        @await Html.PartialAsync("/Views/Admin/inventoryadd.cshtml", @Model.Inventory)
     </div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Stt</th>
-                        <th>ID Sản phẩm</th>
+                        <th>STT</th>
+                        <th>Tên Sản phẩm</th>
                         <th>Số lượng trong kho</th>
                         <th>Ngày cập nhật</th>
                         <th>Hành động</th>
@@ -29,7 +29,7 @@
                     {
                         <tr>
                             <td>@(i + 1)</td> <!-- Index -->
-                            <td>@Model.Inventories[i].ProductId</td>
+                            <td>@(Model.Inventories[i].Product?.ProductName ?? "N/A")</td>
                             <td>@Model.Inventories[i].QuantityInStock</td>
                             <td>@Model.Inventories[i].LastUpdated.ToString("dd/MM/yyyy")</td>
                             <td>
