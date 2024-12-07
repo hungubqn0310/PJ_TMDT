@@ -64,7 +64,6 @@
   color: #333;
 }
 
-
 .wrapper {
   display: flex;
   justify-content: space-between; /* Giữ các phần tử cách đều nhau theo chiều ngang */
@@ -73,7 +72,6 @@
   margin-left: 230px;
   margin-right: 240px;
   justify-content: center; /* Giữ các phần tử cân đối theo chiều ngang */
-
 }
 
 .nav-links {
@@ -88,7 +86,6 @@
   position: relative; /* Cần để định vị dropdown */
   margin-right: 15px;
   align-items: center; /* Canh giữa chữ trong mục */
-
 }
 
 .nav-links li a {
@@ -99,11 +96,9 @@
   transition: color 0.3s;
 }
 
-
 .nav-links li a:hover {
   color: #007bff;
 }
-
 
 .dropdown {
   visibility: hidden; /* Ẩn mặc định */
@@ -127,7 +122,6 @@
 .dropdown li:first-child a {
   margin-left: 260px; /* Điều chỉnh lề trái cho mục chứa chữ đầu tiên */
 }
-
 
 /* Các liên kết trong dropdown (chữ trong các mục) */
 .dropdown li a {
@@ -212,7 +206,6 @@
   filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5)); /* Thêm hiệu ứng bóng */
 }
 
-
 /* Tổng thể footer */
 .footer {
   display: flex;
@@ -220,7 +213,7 @@
   justify-content: space-between; /* Tạo khoảng cách đều giữa các tiêu đề */
   align-items: flex-start; /* Căn các tiêu đề lên trên cùng */
   padding: 20px;
-  margin-top: auto;  /* Đẩy footer xuống cuối */
+  margin-top: auto; /* Đẩy footer xuống cuối */
   justify-content: flex-start; /* Đặt các phần tử từ trái sang phải */
   background-color: #f5f5f5; /* Màu nền của footer */
   box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng phía trên footer */
@@ -242,15 +235,18 @@
 }
 
 /* Cột tiêu đề */
-.tieude1, .tieude2, .tieude3, .tieude4 {
+.tieude1,
+.tieude2,
+.tieude3,
+.tieude4 {
   display: flex;
   flex-direction: column; /* Nội dung trong cột dọc */
 }
 
 /* Tiêu đề chính (SẢN PHẨM, LIÊN HỆ, v.v.) */
-.tieude1 h1, 
-.tieude2 h1, 
-.tieude3 h1, 
+.tieude1 h1,
+.tieude2 h1,
+.tieude3 h1,
 .tieude4 h1 {
   font-size: 16px;
   font-weight: bold;
@@ -278,7 +274,8 @@
   margin-bottom: 15px; /* Tạo khoảng cách trước khi thêm nội dung con */
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
 }
