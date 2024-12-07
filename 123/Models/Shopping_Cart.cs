@@ -10,5 +10,7 @@ namespace _123.Models
         public int Quantity { get; set; }
         public DateTime AddedAt { get; set; }
         public bool IsDeleted { get; set; }
+        public virtual User User { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

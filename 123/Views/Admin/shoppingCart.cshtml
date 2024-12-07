@@ -9,8 +9,8 @@
   </div>
   <div class="d-flex justify-content-end">  
     <button type="button" class="btn btn-outline-success" style="margin: 10px 40px 0;" data-toggle="modal" data-target="#cart-add" 
-    data-url="@Url.Action($"Add")">Add</button>
-    @* @await Html.PartialAsync("/Views/Admin/shoppingCartAdd.cshtml", Model) *@
+    >Add</button>
+    @await Html.PartialAsync("/Views/Admin/shoppingCartAdd.cshtml", @Model.ShoppingCart)
   </div>
   <div class="card-body">
       <div class="table-responsive">
@@ -30,19 +30,19 @@
                 {
                     <tr>
                         <td>@(i + 1)</td> <!-- Index -->
-                        <td>@Model.ShoppingCarts[i].UserId</td>
-                        <td>@Model.ShoppingCarts[i].ProductId</td>
+                        <td>@Model.ShoppingCarts[i].User?.username</td>
+                        <td>@Model.ShoppingCarts[i].Product?.ProductName</td>
                         <td>@Model.ShoppingCarts[i].Quantity</td>
                         <td>@Model.ShoppingCarts[i].AddedAt.ToString("yyyy-MM-dd HH:mm:ss")</td>
                         <td>
                                 <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#cart-edit-@Model.ShoppingCarts[i].CartId" data-url="@Url.Action($"Edit/{@Model.ShoppingCarts[i].CartId}")">
                                 <i class="material-icons" style="font-size: 14px">border_color</i>
                             </button>
-                            @* @await Html.PartialAsync("/Views/Admin/cartedit.cshtml", @Model.ShoppingCarts[i]) *@
+                            @await Html.PartialAsync("/Views/Admin/shoppingCartEdit.cshtml", @Model.ShoppingCarts[i])
                                 <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#cart-delete-@Model.ShoppingCarts[i].CartId" data-url="@Url.Action($"Delete/{@Model.ShoppingCarts[i].CartId}")">
                                 <i class="material-icons" style="font-size: 14px">delete</i>
                             </button>
-                            @* @await Html.PartialAsync("/Views/Admin/cartdelete.cshtml", @Model.ShoppingCarts[i]) *@
+                            @await Html.PartialAsync("/Views/Admin/shoppingCartDelete.cshtml", @Model.ShoppingCarts[i])
                         </td>
                     </tr>
                 }

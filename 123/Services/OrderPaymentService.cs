@@ -13,7 +13,7 @@ namespace _123.Services
         // Thêm một khoản thanh toán cho đơn hàng
         public static int CreateOrderPayment(OrderPayment OrderPayment)
         {
-            string query = @"INSERT INTO OrderPayments (order_id, PaymentMethod_id, amount_paid, payment_date, is_deleted)
+            string query = @"INSERT INTO Order_Items (order_id, PaymentMethod_id, amount_paid, payment_date, is_deleted)
                              VALUES (@order_id, @PaymentMethod_id, @amount_paid, @payment_date, 0)";
             
             var parameters = new MySqlParameter[]
@@ -29,7 +29,7 @@ namespace _123.Services
 
 public static List<OrderPayment> GetOrderPayments()
     {
-        string query = "SELECT OrderPayment_id, order_id, PaymentMethod_id, amount_paid, payment_date, is_deleted FROM OrderPayments WHERE is_deleted = 0";
+        string query = "SELECT OrderPayment_id, order_id, PaymentMethod_id, amount_paid, payment_date, is_deleted FROM Order_Items WHERE is_deleted = 0";
         var orderPayments = new List<OrderPayment>();
 
         try
@@ -59,7 +59,7 @@ public static List<OrderPayment> GetOrderPayments()
         // Lấy tất cả các khoản thanh toán cho đơn hàng
         public static List<OrderPayment> GetOrderPaymentsByOrderId(int orderId)
         {
-            string query = "SELECT OrderPayment_id, order_id, PaymentMethod_id, amount_paid, payment_date, is_deleted FROM OrderPayments WHERE order_id = @orderId AND is_deleted = 0";
+            string query = "SELECT OrderPayment_id, order_id, PaymentMethod_id, amount_paid, payment_date, is_deleted FROM Order_Items WHERE order_id = @orderId AND is_deleted = 0";
             
             var OrderPayments = new List<OrderPayment>();
 
@@ -97,7 +97,7 @@ public static List<OrderPayment> GetOrderPayments()
         // Lấy khoản thanh toán theo ID
         public static OrderPayment GetOrderPaymentById(int OrderPaymentId)
         {
-            string query = "SELECT OrderPayment_id, order_id, PaymentMethod_id, amount_paid, payment_date, is_deleted FROM OrderPayments WHERE OrderPayment_id = @OrderPaymentId AND is_deleted = 0";
+            string query = "SELECT OrderPayment_id, order_id, PaymentMethod_id, amount_paid, payment_date, is_deleted FROM Order_Items WHERE OrderPayment_id = @OrderPaymentId AND is_deleted = 0";
             
             var parameters = new MySqlParameter[]
             {
@@ -126,7 +126,7 @@ public static List<OrderPayment> GetOrderPayments()
         // Cập nhật khoản thanh toán cho đơn hàng
         public static int UpdateOrderPayment(OrderPayment OrderPayment)
         {
-            string query = @"UPDATE OrderPayments
+            string query = @"UPDATE Order_Items
                              SET PaymentMethod_id = @PaymentMethod_id,
                                  amount_paid = @amount_paid,
                                  payment_date = @payment_date
@@ -146,7 +146,7 @@ public static List<OrderPayment> GetOrderPayments()
         // Xóa tạm thời khoản thanh toán
         public static int DeleteOrderPayment(int OrderPaymentId)
         {
-            string query = @"UPDATE OrderPayments
+            string query = @"UPDATE Order_Items
                              SET is_deleted = 1
                              WHERE OrderPayment_id = @OrderPayment_id AND is_deleted = 0";
             

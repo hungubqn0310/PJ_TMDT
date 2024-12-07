@@ -13,7 +13,7 @@ namespace _123.Services
         // Thêm phương thức thanh toán mới
         public static int CreatePaymentMethod(PaymentMethod paymentMethod)
         {
-            string query = @"INSERT INTO PaymentMethods (PaymentMethod_name, is_deleted)
+            string query = @"INSERT INTO Payment_Methods (PaymentMethod_name, is_deleted)
                             VALUES (@PaymentMethod_name, 0)";
             
             var parameters = new MySqlParameter[]
@@ -27,7 +27,7 @@ namespace _123.Services
         // Lấy danh sách phương thức thanh toán
         public static List<PaymentMethod> GetPaymentMethods()
         {
-            string query = "SELECT PaymentMethod_id, PaymentMethod_name, is_deleted FROM PaymentMethods WHERE is_deleted = 0";
+            string query = "SELECT PaymentMethod_id, PaymentMethod_name, is_deleted FROM Payment_Methods WHERE is_deleted = 0";
             
             var paymentMethods = new List<PaymentMethod>();
 
@@ -57,7 +57,7 @@ namespace _123.Services
         // Lấy phương thức thanh toán theo ID
         public static PaymentMethod GetPaymentMethodById(int paymentMethodId)
         {
-            string query = "SELECT PaymentMethod_id, PaymentMethod_name, is_deleted FROM PaymentMethods WHERE PaymentMethod_id = @paymentMethodId AND is_deleted = 0";
+            string query = "SELECT PaymentMethod_id, PaymentMethod_name, is_deleted FROM Payment_Methods WHERE PaymentMethod_id = @paymentMethodId AND is_deleted = 0";
             
             var parameters = new MySqlParameter[]
             {
@@ -83,7 +83,7 @@ namespace _123.Services
         // Cập nhật thông tin phương thức thanh toán
         public static int UpdatePaymentMethod(PaymentMethod paymentMethod)
         {
-            string query = @"UPDATE PaymentMethods
+            string query = @"UPDATE Payment_Methods
                              SET PaymentMethod_name = @PaymentMethod_name
                              WHERE PaymentMethod_id = @PaymentMethod_id AND is_deleted = 0";
             
@@ -100,7 +100,7 @@ namespace _123.Services
         // Xóa tạm thời phương thức thanh toán
         public static int DeletePaymentMethod(int paymentMethodId)
         {
-            string query = @"UPDATE PaymentMethods
+            string query = @"UPDATE Payment_Methods
                              SET is_deleted = 1
                              WHERE PaymentMethod_id = @PaymentMethod_id AND is_deleted = 0";
             

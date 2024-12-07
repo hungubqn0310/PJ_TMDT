@@ -1,0 +1,76 @@
+@model _123.Models.ShoppingCart
+
+<div class="modal fade bd-example-modal-lg" id="cart-edit-@Model.CartId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Edit Shopping Cart Item</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Edit" method="post" id="cart-edit-form-@Model.CartId">
+                    <input type="hidden" name="CartId" asp-for="CartId">
+
+                    <!-- User Selection Dropdown -->
+                    <div class="form-group">
+                        <label>User</label>
+                        <select class="form-control" name="UserId" asp-for="UserId">
+                            <option value="">Select User</option>
+                            @if (ViewBag.Users != null)
+                            {
+                                @foreach (var user in ViewBag.Users)
+                                {
+                                    <option value="@user.user_id" >
+                                        @user.username
+                                    </option>
+                                }
+                            }
+                            else
+                            {
+                                <option disabled>No users available</option>
+                            }
+                        </select>
+                    </div>
+
+                    <!-- Product Selection Dropdown -->
+                    <div class="form-group">
+                        <label>Product</label>
+                        <select class="form-control" name="ProductId" asp-for="ProductId">
+                            <option value="">Select Product</option>
+                            @if (ViewBag.Products != null)
+                            {
+                                @foreach (var product in ViewBag.Products)
+                                {
+                                    <option value="@product.ProductId" >
+                                        @product.ProductName
+                                    </option>
+                                }
+                            }
+                            else
+                            {
+                                <option disabled>No products available</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Quantity</label>
+                        <input type="number" class="form-control" name="Quantity" asp-for="Quantity" min="1">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Added At</label>
+                        <input type="datetime-local" class="form-control" asp-for="AddedAt" name="AddedAt" readonly>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" style="border-radius: 20px;">Close</button>
+                <button type="submit" class="btn btn-outline-primary" style="border-radius: 20px;" form="cart-edit-form-@Model.CartId">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>

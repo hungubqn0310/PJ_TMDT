@@ -13,7 +13,7 @@ namespace _123.Services
         public static int AddToCart(ShoppingCart cart)
         {
             // Câu lệnh SQL để thêm sản phẩm vào giỏ hàng
-            string query = @"INSERT INTO ShoppingCart (user_id, product_id, quantity, added_at, is_deleted)
+            string query = @"INSERT INTO Shopping_Cart (user_id, product_id, quantity, added_at, is_deleted)
                             VALUES (@user_id, @product_id, @quantity, @added_at, 0)";
             
             // Các tham số truyền vào câu lệnh SQL
@@ -39,10 +39,10 @@ namespace _123.Services
                             sc.is_deleted ,
                             p.product_name,
                             u.username 
-                             FROM ShoppingCart sc
+                             FROM Shopping_Cart sc
                              LEFT JOIN Users u ON u.user_id = sc.user_id
                             LEFT JOIN Products p ON p.product_id = sc.product_id
-                             WHERE is_deleted = 0";
+                             WHERE sc.is_deleted = 0";
             
 
             var cartItems = new List<ShoppingCart>();
@@ -61,7 +61,17 @@ namespace _123.Services
                         ProductId = row["product_id"].ToString(),
                         Quantity = Convert.ToInt32(row["quantity"]),
                         AddedAt = Convert.ToDateTime(row["added_at"]),
-                        IsDeleted = Convert.ToBoolean(row["is_deleted"])
+                        IsDeleted = Convert.ToBoolean(row["is_deleted"]),
+                        User = row["username"] == DBNull.Value ? null : new User
+                {
+                    user_id = Convert.ToInt32(row["user_id"]),
+                    username = row["username"].ToString()
+                },
+                Product = row["product_name"] == DBNull.Value ? null : new Product
+                {
+                    ProductId = (row["product_id"]).ToString(),
+                    ProductName = row["product_name"].ToString()
+                }
                     });
                 }
             }
@@ -77,7 +87,7 @@ namespace _123.Services
         public static ShoppingCart GetCartItemById(int cartId)
         {
             string query = @"SELECT cart_id, user_id, product_id, quantity, added_at, is_deleted 
-                             FROM ShoppingCart 
+                             FROM Shopping_Cart 
                              WHERE cart_id = @cart_id AND is_deleted = 0";
             
             var parameters = new MySqlParameter[]
@@ -105,25 +115,34 @@ namespace _123.Services
         }
 
         public static int UpdateCartItem(ShoppingCart cart)
-        {
-            string query = @"UPDATE ShoppingCart
-                            SET quantity = @quantity
-                            WHERE cart_id = @cart_id AND is_deleted = 0";
-            
-            var parameters = new MySqlParameter[]
-            {
-                new MySqlParameter("@user_id", MySqlDbType.Int32) { Value = cart.UserId },
-                new MySqlParameter("@product_id", MySqlDbType.VarChar) { Value = cart.ProductId },
-                new MySqlParameter("@quantity", MySqlDbType.Int32) { Value = cart.Quantity },
-                new MySqlParameter("@added_at", MySqlDbType.DateTime) { Value = cart.AddedAt }
-            };
+{
+    string query = @"
+        UPDATE Shopping_Cart
+        SET 
+            quantity = @quantity,
+            added_at = @added_at
+        WHERE 
+            cart_id = @cart_id 
+            AND user_id = @user_id 
+            AND product_id = @product_id
+            AND is_deleted = 0";
 
-            return DatabaseHelper.ExecuteNonQuery(query, parameters);
-        }
+    var parameters = new MySqlParameter[]
+    {
+        new MySqlParameter("@cart_id", MySqlDbType.Int32) { Value = cart.CartId },
+        new MySqlParameter("@user_id", MySqlDbType.Int32) { Value = cart.UserId },
+        new MySqlParameter("@product_id", MySqlDbType.VarChar) { Value = cart.ProductId },
+        new MySqlParameter("@quantity", MySqlDbType.Int32) { Value = cart.Quantity },
+        new MySqlParameter("@added_at", MySqlDbType.DateTime) { Value = cart.AddedAt }
+    };
+
+    return DatabaseHelper.ExecuteNonQuery(query, parameters);
+}
+
 
         public static int DeleteCartItem(int cartId)
         {
-            string query = @"UPDATE ShoppingCart
+            string query = @"UPDATE Shopping_Cart
                             SET is_deleted = 1
                             WHERE cart_id = @cart_id AND is_deleted = 0";
             

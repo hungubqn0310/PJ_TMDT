@@ -22,7 +22,9 @@ namespace _123.Controllers
         {
             var shoppingCartViewModel = new ShoppingCartViewModel();
             shoppingCartViewModel.ShoppingCarts = ShoppingCartService.GetCartItems();
-            // Gửi dữ liệu đến View
+            ViewBag.Users = UserService.GetUsers() ?? new List<User>();
+            ViewBag.Products = ProductService.GetProducts() ?? new List<Product>();
+
             return View("Views/Admin/shoppingcart.cshtml", shoppingCartViewModel);
         }
 
@@ -30,12 +32,12 @@ namespace _123.Controllers
         [HttpGet("add")]
         public IActionResult Add()
         {
-            var cartItem = new ShoppingCart();
+            ShoppingCart cartItem = new ShoppingCart();
 
             ViewBag.Users = UserService.GetUsers() ?? new List<User>(); 
             ViewBag.Products = ProductService.GetProducts() ?? new List<Product>(); 
 
-            return PartialView("/Views/Admin/cartadd.cshtml", cartItem);
+            return PartialView("/Views/Admin/shoppingCartAdd.cshtml", cartItem);
         }
 
         // Thêm mới giỏ hàng
@@ -47,11 +49,15 @@ namespace _123.Controllers
         }
 
         // Hiển thị form chỉnh sửa giỏ hàng
-        [HttpGet("edit/{id}")]
+        [HttpGet("edit")]
         public IActionResult Edit(int id)
         {
             var cartItem = ShoppingCartService.GetCartItemById(id);
-            return PartialView("/Views/Admin/cartedit.cshtml", cartItem);
+            
+            ViewBag.Users = UserService.GetUsers() ?? new List<User>(); 
+            ViewBag.Products = ProductService.GetProducts() ?? new List<Product>(); 
+
+            return PartialView("/Views/Admin/shoppingCartEdit.cshtml", cartItem);
         }
 
         // Chỉnh sửa giỏ hàng
@@ -63,11 +69,11 @@ namespace _123.Controllers
         }
 
         // Hiển thị form xóa giỏ hàng
-        [HttpGet("delete/{id}")]
+        [HttpGet("delete")]
         public IActionResult Delete(int id)
         {
             var cartItem = ShoppingCartService.GetCartItemById(id);
-            return PartialView("/Views/Admin/cartdelete.cshtml", cartItem);
+            return PartialView("/Views/Admin/shoppingCartDelete.cshtml", cartItem);
         }
 
         // Xóa giỏ hàng

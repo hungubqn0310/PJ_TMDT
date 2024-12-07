@@ -10,10 +10,10 @@ namespace _123.Services
 {
     public static class TransactionHistoryService
     {
-        // Thêm mới giao dịch vào TransactionHistory
+        // Thêm mới giao dịch vào Transaction_History
         public static int CreateTransaction(TransactionHistory transaction)
         {
-            string query = @"INSERT INTO TransactionHistory (user_id, order_id, transaction_date, amount, PaymentMethod_id, status, is_deleted)
+            string query = @"INSERT INTO Transaction_History (user_id, order_id, transaction_date, amount, PaymentMethod_id, status, is_deleted)
                              VALUES (@user_id, @order_id, @transaction_date, @amount, @PaymentMethod_id, @status, 0)";
             
             var parameters = new MySqlParameter[]
@@ -31,7 +31,7 @@ namespace _123.Services
         }
 public static List<TransactionHistory> GetAllTransactions()
 {
-    string query = "SELECT transaction_id, user_id, order_id, transaction_date, amount, PaymentMethod_id, status, is_deleted FROM TransactionHistory WHERE is_deleted = 0";
+    string query = "SELECT transaction_id, user_id, order_id, transaction_date, amount, PaymentMethod_id, status, is_deleted FROM Transaction_History WHERE is_deleted = 0";
     
     var transactions = new List<TransactionHistory>();
 
