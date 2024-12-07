@@ -2,8 +2,8 @@ $(document).ready(function () {
     var $overlay = $("#overlay");
     var $popup = $("#popupLogin");
 
-    // Mở popup khi nhấn vào user icon
-    $("#userIcon").click(function () {
+    // Mở popup khi nhấn vào user icon (lớp .user-icon thay vì ID)
+    $(".user-icon").click(function () {
         $overlay.fadeIn(); // Hiển thị overlay
         $popup.css("animation", "slideInRight 0.4s ease").fadeIn(); // Hiển thị popup với hiệu ứng
     });

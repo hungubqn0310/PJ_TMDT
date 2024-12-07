@@ -191,6 +191,15 @@
   margin-top: 10px;
 }
 
+.facebook-icon {
+  color: #007bff;
+}
+
+.facebook-icon,
+.google-icon {
+  margin-right: 10px;
+}
+
 .btn-social img {
   width: 20px;
   height: 20px;

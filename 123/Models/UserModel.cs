@@ -6,5 +6,6 @@ public class User
     public string email { get; set; }
     public string phone_number { get; set; }
     public string address { get; set; }
+    public int role_id { get; set; }
     public bool is_deleted { get; set; }
 }

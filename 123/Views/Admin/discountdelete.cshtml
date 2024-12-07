@@ -1,0 +1,24 @@
+@model _123.Models.Discount
+
+<div class="modal fade" id="discount-delete-@Model.DiscountId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Confirm Deletion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="delete" method="post" id="discount-@Model.DiscountId-delete">
+                    <input type="hidden" name="DiscountId" asp-for="DiscountId">
+                    <label>Bạn có chắc là muốn xóa "@Model.DiscountName"?</label>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" style="border-radius: 20px;">Close</button>
+                <button type="submit" class="btn btn-outline-danger" style="border-radius: 20px;" form="discount-@Model.DiscountId-delete">Yes, Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

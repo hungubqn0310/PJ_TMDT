@@ -9,18 +9,25 @@
 
 .slides {
     display: flex;
-    width: calc(100% * 5); /* Tự động điều chỉnh theo số lượng slide */
+    width: 100%;
     height: 100%;
     transition: transform 0.5s ease-in-out;
 }
 
 .slide {
-    flex: 1 0 100%; /* Mỗi slide chiếm 100% chiều rộng cha */
+    flex: 1 0 100%; /* Mỗi slide chiếm 100% chiều rộng của cha */
     height: 100%;
-    background-size: cover;
-    object-fit: cover; /* Đảm bảo ảnh phủ hết không gian mà không bị méo */
-    background-position: center;
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
 }
+
+.slide img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Đảm bảo ảnh nằm trong khung mà không bị cắt */
+}
+
 
 .dots {
     position: absolute;
@@ -379,7 +386,7 @@
 .bestSelling-img-1 {
     position: absolute;
     top: 0px;
-    left: 543.75px;
+    left: 257.5px;
     border-radius: 30px;
     width: 247.5px;
     height: 450px;
@@ -389,7 +396,7 @@
 .bestSelling-img-2 {
     position: absolute;
     top: 93.75px;
-    left: 378.75px;
+    left: 550px;
     border-radius: 30px;
     width: 225px;
     height: 262.5px;

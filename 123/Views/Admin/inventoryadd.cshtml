@@ -1,0 +1,49 @@
+@model Inventory
+
+<div class="modal fade bd-example-modal-lg" id="inventory-add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Add Inventory</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Add" method="post" id="inventory--add">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Product ID</label>
+                                <select class="form-control" name="ProductId" asp-for="ProductId">
+                                    @foreach (var product in ViewBag.Products)
+                                    {
+                                        <option value="@product.ProductId">@product.ProductName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Quantity in Stock</label>
+                                <input type="number" class="form-control" placeholder="Enter quantity in stock" name="QuantityInStock" asp-for="QuantityInStock">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Last Updated</label>
+                                <input type="datetime-local" class="form-control" name="LastUpdated" asp-for="LastUpdated">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" style="border-radius: 20px;">Close</button>
+                <button type="submit" class="btn btn-outline-primary" style="border-radius: 20px;" form="inventory--add">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

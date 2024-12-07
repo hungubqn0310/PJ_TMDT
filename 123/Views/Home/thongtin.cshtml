@@ -1,20 +1,16 @@
 @{
-    Layout = "_Layout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Thông tin giá vàng và bạc";
 }
 
+<!-- Biểu đồ giá vàng và bạc -->
+<div style="margin-top: 150px;">
 <h1>Biểu đồ giá vàng và bạc thời gian thực</h1>
 
 <!-- Hiển thị giá vàng và bạc -->
 <p id="goldPrice">Đang tải giá vàng...</p>
 <p id="silverPrice">Đang tải giá bạc...</p>
-
-<!-- Biểu đồ giá vàng và bạc -->
-<div>
 <canvas id="goldSilverChart" width="400" height="200"></canvas>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <script>
     // Khởi tạo mảng chứa dữ liệu giá vàng và bạc
     let goldPrices = [];
@@ -95,3 +91,7 @@
         });
     }
 </script>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
