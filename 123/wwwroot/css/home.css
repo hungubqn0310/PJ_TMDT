@@ -587,15 +587,376 @@
     font-size: 26.25px;
     position: relative;
 }
+<<<<<<< HEAD
 
 .coTheBanSeThich-header {
+=======
+.b753-c4d3-4889-bd5d-43534bfa6d-icon {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1440px;
+    height: 420px;
+    object-fit: cover;
+}
+.circle-notch-icon {
+    position: absolute;
+    top: 0px;
+    left: 70px;
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+}
+.circle-notch-icon1 {
+    position: absolute;
+    top: 0px;
+    left: 105px;
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+}
+.circle-notch-icon2 {
+    position: absolute;
+    top: 0px;
+    left: 140px;
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+}
+.circle-notch-icon3 {
+    position: absolute;
+    top: 0px;
+    left: 35px;
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+}
+.circle-icon {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+}
+.circle-notch-parent {
+    position: absolute;
+    top: 378px;
+    left: 638px;
+    width: 165px;
+    height: 25px;
+}
+.angle-right-icon1 {
+    position: absolute;
+    top: 190px;
+    left: 1400px;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+}
+.angle-left-icon {
+    position: absolute;
+    top: 190px;
+    left: 0px;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+}
+.component-2 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 1440px;
+    height: 420px;
+    overflow: hidden;
+}
+.noibat {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1440px;
+    height: 420px;
+}
+.nhantuvan-child {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0%;
+    right: 0%;
+    bottom: 0%;
+    left: 0%;
+    background-color: #ffdede;
+}
+.nhn-t-vn {
+    position: absolute;
+    top: 7.09%;
+    left: 39.15%;
+    font-size: 30px;
+    font-weight: 300;
+}
+.ng-k-ngay {
+    position: absolute;
+    top: 16.29%;
+    left: 31.81%;
+    font-size: 18.75px;
+    font-weight: 300;
+}
+.nhantuvan-item {
+    position: absolute;
+    height: 14.08%;
+    width: 44.27%;
+    top: 34.51%;
+    right: 27.86%;
+    bottom: 51.41%;
+    left: 27.86%;
+    border: 0.8px solid #000;
+    box-sizing: border-box;
+}
+.nhantuvan-inner {
+    position: absolute;
+    height: 14.08%;
+    width: 21.35%;
+    top: 56.34%;
+    right: 50.78%;
+    bottom: 29.58%;
+    left: 27.86%;
+    border: 0.8px solid #000;
+    box-sizing: border-box;
+}
+.nhantuvan-child1 {
+    position: absolute;
+    height: 14.08%;
+    width: 21.35%;
+    top: 56.34%;
+    right: 27.86%;
+    bottom: 29.58%;
+    left: 50.78%;
+    border: 0.8px solid #000;
+    box-sizing: border-box;
+}
+.h-v-tn {
+    position: absolute;
+    top: 39.58%;
+    left: 29.17%;
+    font-weight: 300;
+    color: #7f7f7f;
+    text-align: left;
+}
+.s-in-thoi {
+    position: absolute;
+    top: 61.36%;
+    left: 29.17%;
+    font-weight: 300;
+    color: #7f7f7f;
+    text-align: left;
+}
+.chn-tnh-thnh {
+    position: absolute;
+    top: 61.36%;
+    left: 52.15%;
+    font-weight: 300;
+    color: #7f7f7f;
+    text-align: left;
+}
+.hands-helping-icon {
+    position: absolute;
+    height: 9.39%;
+    width: 3.47%;
+    top: 22.86%;
+    right: 48.26%;
+    bottom: 67.75%;
+    left: 48.26%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+.xem-thm6 {
+    position: absolute;
+    top: 25px;
+    left: 55px;
+    font-weight: 300;
+}
+.xemthem-wrapper2 {
+    position: absolute;
+    height: 14.08%;
+    width: 15.63%;
+    top: 78.73%;
+    right: 42.22%;
+    bottom: 7.18%;
+    left: 42.15%;
+    font-size: 20px;
+}
+.nhantuvan {
+    position: absolute;
+    top: 4552px;
+    left: 0px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset, 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 1440px;
+    height: 532.5px;
+    text-align: center;
+    font-size: 18px;
+}
+.dichvu-child {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0%;
+    right: 0%;
+    bottom: 0%;
+    left: 0%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25) inset;
+    background-color: #fff;
+}
+.dch-v {
+    position: absolute;
+    top: 2.76%;
+    left: 46.32%;
+    font-size: 30px;
+    font-weight: 300;
+}
+.giao-hng-min {
+    position: absolute;
+    top: 30.28%;
+    left: 2.48%;
+    font-weight: 500;
+}
+.giao-hng-nhanh {
+    position: absolute;
+    width: 100%;
+    top: 55.5%;
+    left: 0%;
+    font-weight: 300;
+>>>>>>> 4899d6e142d7847ad6fe38cb9c083b0f74622dfe
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px; /* Tăng khoảng cách giữa tiêu đề và slider */
 }
+<<<<<<< HEAD
 
 .coTheBanSeThich-tieuDe {
+=======
+.khm-ph-ngay5 {
+    position: absolute;
+    top: 91.28%;
+    left: 26.6%;
+    font-size: 15.75px;
+    font-weight: 300;
+    white-space: pre-wrap;
+}
+.shipping-fast-icon {
+    position: absolute;
+    height: 22.94%;
+    width: 17.73%;
+    top: 0%;
+    right: 41.13%;
+    bottom: 77.06%;
+    left: 41.13%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+.giao-hng-min-ph-ton-quc-parent {
+    position: absolute;
+    height: 75.17%;
+    width: 19.58%;
+    top: 19.31%;
+    right: 63.61%;
+    bottom: 5.52%;
+    left: 16.81%;
+}
+.bo-hnh-trn {
+    position: absolute;
+    top: 30.28%;
+    left: 17.05%;
+    font-weight: 500;
+}
+.khm-ph-ngay6 {
+    position: absolute;
+    top: 91.28%;
+    left: 22.73%;
+    font-size: 15.75px;
+    font-weight: 300;
+    white-space: pre-wrap;
+}
+.hands-icon {
+    position: absolute;
+    height: 22.94%;
+    width: 20.66%;
+    top: 0%;
+    right: 39.67%;
+    bottom: 77.06%;
+    left: 39.67%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+.bo-hnh-trn-i-parent {
+    position: absolute;
+    height: 75.17%;
+    width: 16.81%;
+    top: 19.31%;
+    right: 19.65%;
+    bottom: 5.52%;
+    left: 63.54%;
+}
+.ch-thu {
+    position: absolute;
+    top: 30.16%;
+    left: 0%;
+    font-weight: 500;
+}
+.thu-i-nhanh {
+    position: absolute;
+    width: 99.11%;
+    top: 55.5%;
+    left: 0.78%;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.khm-ph-ngay7 {
+    position: absolute;
+    top: 91.28%;
+    left: 20.42%;
+    font-size: 15.75px;
+    font-weight: 300;
+    white-space: pre-wrap;
+}
+.hand-holding-usd-icon {
+    position: absolute;
+    height: 22.94%;
+    width: 22.32%;
+    top: 0%;
+    right: 38.5%;
+    bottom: 77.06%;
+    left: 39.17%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+.ch-thu-i-n-100-parent {
+    position: absolute;
+    height: 75.17%;
+    width: 15.56%;
+    top: 19.31%;
+    right: 42.22%;
+    bottom: 5.52%;
+    left: 42.22%;
+}
+.dichvu {
+    position: absolute;
+    top: 3446px;
+    left: 0px;
+    width: 1440px;
+    height: 290px;
+    text-align: center;
+    font-size: 18.75px;
+}
+.home {
+>>>>>>> 4899d6e142d7847ad6fe38cb9c083b0f74622dfe
     margin-left: 40px;
     font-weight: 300;
 }
@@ -862,3 +1223,13 @@
     align-items: center; /* Căn giữa các phần tử con theo trục ngang */
     justify-content: center; /* Căn giữa các phần tử con theo trục dọc */
 }
+<<<<<<< HEAD
+=======
+
+body {
+    margin: 0;
+    line-height: normal;
+}
+
+
+>>>>>>> 4899d6e142d7847ad6fe38cb9c083b0f74622dfe
