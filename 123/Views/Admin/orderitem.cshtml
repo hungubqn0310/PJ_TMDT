@@ -10,7 +10,7 @@
   <div class="d-flex justify-content-end">
     <button type="button" class="btn btn-outline-success" style="margin: 10px 40px 0;" data-toggle="modal" data-target="#orderitem-add" 
     data-url="@Url.Action($"Add")">Add </button>
-    @* @await Html.PartialAsync("/Views/Admin/orderitemadd.cshtml", @Model.Order_Items) *@
+    @await Html.PartialAsync("/Views/Admin/orderitemadd.cshtml", @Model.Order_Item)
   </div>
 
   <div class="card-body">
@@ -38,11 +38,11 @@
                                 <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#orderitem-@Model.Order_Items[i].OrderItemId" data-url="@Url.Action($"Edit/{@Model.Order_Items[i].OrderItemId}")">
                                 <i class="material-icons" style="font-size: 14px">border_color</i>
                             </button>
-                            @* @await Html.PartialAsync("/Views/Admin/orderitemedit.cshtml", @Model.Order_Items[i]) *@
+                            @await Html.PartialAsync("/Views/Admin/orderitemedit.cshtml", @Model.Order_Items[i])
                                 <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#orderitem-delete-@Model.Order_Items[i].OrderItemId" data-url="@Url.Action($"Delete/{@Model.Order_Items[i].OrderItemId}")">
                                 <i class="material-icons" style="font-size: 14px">delete</i>
                             </button>
-                            @* @await Html.PartialAsync("/Views/Admin/orderitemdelete.cshtml", @Model.Order_Items[i]) *@
+                            @await Html.PartialAsync("/Views/Admin/orderitemdelete.cshtml", @Model.Order_Items[i])
                         </td>
                     </tr>
                 }

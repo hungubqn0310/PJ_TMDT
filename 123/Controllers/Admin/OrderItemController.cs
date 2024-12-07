@@ -22,6 +22,10 @@ namespace _123.Controllers
         {
             var orderItemViewModel = new OrderItemViewModel();
             orderItemViewModel.Order_Items = OrderItemService.GetAllOrderItems(); // Fetch order items from service
+           
+            ViewBag.Orders = OrderService.GetOrders() ?? new List<Order>();
+            ViewBag.Products = ProductService.GetProducts() ?? new List<Product>();
+
             // Return the order items view
             return View("Views/Admin/orderitem.cshtml", orderItemViewModel);
         }
@@ -31,6 +35,9 @@ namespace _123.Controllers
         public IActionResult Add()
         {
             OrderItem orderItem = new OrderItem();
+            ViewBag.Orders = OrderService.GetOrders() ?? new List<Order>();
+            ViewBag.Products = ProductService.GetProducts() ?? new List<Product>();
+
             return PartialView("/Views/Admin/orderitemadd.cshtml", orderItem);
         }
 
@@ -46,7 +53,9 @@ namespace _123.Controllers
         [HttpGet("edit")]
         public IActionResult Edit(int id)
         {
-            OrderItem orderItem = OrderItemService.GetOrderItemById(id); // Fetch order item by ID
+            OrderItem orderItem = OrderItemService.GetOrderItemById(id);
+            ViewBag.Orders = OrderService.GetOrders() ?? new List<Order>();
+            ViewBag.Products = ProductService.GetProducts() ?? new List<Product>();
             return PartialView("/Views/Admin/orderitemedit.cshtml", orderItem);
         }
 

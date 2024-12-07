@@ -29,7 +29,10 @@ namespace _123.Services
 // Lấy tất cả các món hàng (không phân theo order_id)
 public static List<OrderItem> GetAllOrderItems()
 {
-    string query = "SELECT order_item_id, order_id, product_name, quantity, price, is_deleted FROM Order_Items WHERE is_deleted = 0";
+    string query = @"SELECT oi.order_item_id, oi.order_id, oi.product_name, oi.quantity, oi.price, oi.is_deleted FROM Order_Items oi
+    LEFT JOIN Orders o ON o.order_id = oi.order_id
+    LEFT JOIN Products p ON p.product_name = oi.product_name
+    WHERE oi.is_deleted = 0";
     
     var orderItems = new List<OrderItem>();
 
@@ -46,7 +49,11 @@ public static List<OrderItem> GetAllOrderItems()
                 ProductName = row["product_name"].ToString(),
                 Quantity = Convert.ToInt32(row["quantity"]),
                 Price = Convert.ToDecimal(row["price"]),
-                IsDeleted = Convert.ToBoolean(row["is_deleted"])
+                IsDeleted = Convert.ToBoolean(row["is_deleted"]),
+                Order = row["order_id"] == DBNull.Value ? null : new Order
+                {
+                    OrderId = Convert.ToInt32(row["order_id"]),
+                },
             });
         }
     }
