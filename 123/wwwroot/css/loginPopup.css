@@ -1,6 +1,6 @@
-/* Định nghĩa cho overlay (lớp nền mờ) */
+/* Overlay */
 #overlay {
-  display: none; /* Ẩn overlay khi chưa hiển thị */
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -189,15 +189,6 @@
   font-weight: lighter; /* Updated to lighter */
   cursor: pointer;
   margin-top: 10px;
-}
-
-.facebook-icon {
-  color: #007bff;
-}
-
-.facebook-icon,
-.google-icon {
-  margin-right: 10px;
 }
 
 .btn-social img {
