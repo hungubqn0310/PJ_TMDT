@@ -6,7 +6,7 @@ namespace _123.Helpers
 {
     public static class DatabaseHelper
     {
-        private static string _connectionString = "Server=localhost;Database=handk;User=root;Password=123456;";
+        private static string _connectionString = "Server=localhost;Database=handk;User=root;Password=new_password;";
 
         /// <summary>
         /// Mở kết nối đến cơ sở dữ liệu.
