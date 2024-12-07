@@ -13,13 +13,13 @@ namespace _123.Services
         // Thêm một khoản thanh toán cho đơn hàng
         public static int CreateOrderPayment(OrderPayment OrderPayment)
         {
-            string query = @"INSERT INTO Order_Items (order_id, PaymentMethod_id, amount_paid, payment_date, is_deleted)
-                             VALUES (@order_id, @PaymentMethod_id, @amount_paid, @payment_date, 0)";
+            string query = @"INSERT INTO Order_Payments (order_id, payment_method_id, amount_paid, payment_date, is_deleted)
+                             VALUES (@order_id, @payment_method_id, @amount_paid, @payment_date, 0)";
             
             var parameters = new MySqlParameter[]
             {
                 new MySqlParameter("@order_id", MySqlDbType.Int32) { Value = OrderPayment.OrderId },
-                new MySqlParameter("@PaymentMethod_id", MySqlDbType.Int32) { Value = OrderPayment.OrderPaymentId },
+                new MySqlParameter("@payment_method_id", MySqlDbType.Int32) { Value = OrderPayment.OrderPaymentId },
                 new MySqlParameter("@amount_paid", MySqlDbType.Decimal) { Value = OrderPayment.AmountPaid },
                 new MySqlParameter("@payment_date", MySqlDbType.DateTime) { Value = OrderPayment.PaymentDate }
             };
@@ -29,7 +29,7 @@ namespace _123.Services
 
 public static List<OrderPayment> GetOrderPayments()
     {
-        string query = "SELECT OrderPayment_id, order_id, PaymentMethod_id, amount_paid, payment_date, is_deleted FROM Order_Items WHERE is_deleted = 0";
+        string query = "SELECT order_payment_id, order_id, payment_method_id, amount_paid, payment_date, is_deleted FROM Order_Payments WHERE is_deleted = 0";
         var orderPayments = new List<OrderPayment>();
 
         try
@@ -39,9 +39,9 @@ public static List<OrderPayment> GetOrderPayments()
             {
                 orderPayments.Add(new OrderPayment
                 {
-                    OrderPaymentId = Convert.ToInt32(row["OrderPayment_id"]),
+                    OrderPaymentId = Convert.ToInt32(row["order_payment_id"]),
                     OrderId = Convert.ToInt32(row["order_id"]),
-                    PaymentMethodId = Convert.ToInt32(row["PaymentMethod_id"]),
+                    PaymentMethodId = Convert.ToInt32(row["payment_method_id"]),
                     AmountPaid = Convert.ToDecimal(row["amount_paid"]),
                     PaymentDate = Convert.ToDateTime(row["payment_date"]),
                     IsDeleted = Convert.ToBoolean(row["is_deleted"])
@@ -59,7 +59,7 @@ public static List<OrderPayment> GetOrderPayments()
         // Lấy tất cả các khoản thanh toán cho đơn hàng
         public static List<OrderPayment> GetOrderPaymentsByOrderId(int orderId)
         {
-            string query = "SELECT OrderPayment_id, order_id, PaymentMethod_id, amount_paid, payment_date, is_deleted FROM Order_Items WHERE order_id = @orderId AND is_deleted = 0";
+            string query = "SELECT order_payment_id, order_id, payment_method_id, amount_paid, payment_date, is_deleted FROM Order_Payments WHERE order_id = @orderId AND is_deleted = 0";
             
             var OrderPayments = new List<OrderPayment>();
 
@@ -76,9 +76,9 @@ public static List<OrderPayment> GetOrderPayments()
                 {
                     OrderPayments.Add(new OrderPayment
                     {
-                        OrderPaymentId = Convert.ToInt32(row["OrderPayment_id"]),
+                        OrderPaymentId = Convert.ToInt32(row["order_payment_id"]),
                     OrderId = Convert.ToInt32(row["order_id"]),
-                    PaymentMethodId = Convert.ToInt32(row["PaymentMethod_id"]),
+                    PaymentMethodId = Convert.ToInt32(row["payment_method_id"]),
                     AmountPaid = Convert.ToDecimal(row["amount_paid"]),
                     PaymentDate = Convert.ToDateTime(row["payment_date"]),
                     IsDeleted = Convert.ToBoolean(row["is_deleted"])
@@ -97,7 +97,7 @@ public static List<OrderPayment> GetOrderPayments()
         // Lấy khoản thanh toán theo ID
         public static OrderPayment GetOrderPaymentById(int OrderPaymentId)
         {
-            string query = "SELECT OrderPayment_id, order_id, PaymentMethod_id, amount_paid, payment_date, is_deleted FROM Order_Items WHERE OrderPayment_id = @OrderPaymentId AND is_deleted = 0";
+            string query = "SELECT order_payment_id, order_id, payment_method_id, amount_paid, payment_date, is_deleted FROM Order_Payments WHERE order_payment_id = @OrderPaymentId AND is_deleted = 0";
             
             var parameters = new MySqlParameter[]
             {
@@ -111,9 +111,9 @@ public static List<OrderPayment> GetOrderPayments()
                 var row = result.Rows[0];
                 return new OrderPayment
                 {
-                    OrderPaymentId = Convert.ToInt32(row["OrderPayment_id"]),
+                    OrderPaymentId = Convert.ToInt32(row["order_payment_id"]),
                     OrderId = Convert.ToInt32(row["order_id"]),
-                    PaymentMethodId = Convert.ToInt32(row["PaymentMethod_id"]),
+                    PaymentMethodId = Convert.ToInt32(row["payment_method_id"]),
                     AmountPaid = Convert.ToDecimal(row["amount_paid"]),
                     PaymentDate = Convert.ToDateTime(row["payment_date"]),
                     IsDeleted = Convert.ToBoolean(row["is_deleted"])
@@ -126,16 +126,16 @@ public static List<OrderPayment> GetOrderPayments()
         // Cập nhật khoản thanh toán cho đơn hàng
         public static int UpdateOrderPayment(OrderPayment OrderPayment)
         {
-            string query = @"UPDATE Order_Items
-                             SET PaymentMethod_id = @PaymentMethod_id,
+            string query = @"UPDATE Order_Payments
+                             SET payment_method_id = @payment_method_id,
                                  amount_paid = @amount_paid,
                                  payment_date = @payment_date
-                             WHERE OrderPayment_id = @OrderPayment_id AND is_deleted = 0";
+                             WHERE order_payment_id = @order_payment_id AND is_deleted = 0";
             
             var parameters = new MySqlParameter[]
             {
                 new MySqlParameter("@order_id", MySqlDbType.Int32) { Value = OrderPayment.OrderId },
-                new MySqlParameter("@PaymentMethod_id", MySqlDbType.Int32) { Value = OrderPayment.OrderPaymentId },
+                new MySqlParameter("@payment_method_id", MySqlDbType.Int32) { Value = OrderPayment.OrderPaymentId },
                 new MySqlParameter("@amount_paid", MySqlDbType.Decimal) { Value = OrderPayment.AmountPaid },
                 new MySqlParameter("@payment_date", MySqlDbType.DateTime) { Value = OrderPayment.PaymentDate }
             };
@@ -146,13 +146,13 @@ public static List<OrderPayment> GetOrderPayments()
         // Xóa tạm thời khoản thanh toán
         public static int DeleteOrderPayment(int OrderPaymentId)
         {
-            string query = @"UPDATE Order_Items
+            string query = @"UPDATE Order_Payments
                              SET is_deleted = 1
-                             WHERE OrderPayment_id = @OrderPayment_id AND is_deleted = 0";
+                             WHERE order_payment_id = @order_payment_id AND is_deleted = 0";
             
             var parameters = new MySqlParameter[]
             {
-                new MySqlParameter("@OrderPayment_id", MySqlDbType.Int32) { Value = OrderPaymentId }
+                new MySqlParameter("@order_payment_id", MySqlDbType.Int32) { Value = OrderPaymentId }
             };
 
             return DatabaseHelper.ExecuteNonQuery(query, parameters);

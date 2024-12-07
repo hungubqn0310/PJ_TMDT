@@ -13,8 +13,8 @@ namespace _123.Services
         // Thêm mới giao dịch vào Transaction_History
         public static int CreateTransaction(TransactionHistory transaction)
         {
-            string query = @"INSERT INTO Transaction_History (user_id, order_id, transaction_date, amount, PaymentMethod_id, status, is_deleted)
-                             VALUES (@user_id, @order_id, @transaction_date, @amount, @PaymentMethod_id, @status, 0)";
+            string query = @"INSERT INTO Transaction_History (user_id, order_id, transaction_date, amount, payment_method_id, status, is_deleted)
+                             VALUES (@user_id, @order_id, @transaction_date, @amount, @payment_method_id, @status, 0)";
             
             var parameters = new MySqlParameter[]
             {
@@ -22,7 +22,7 @@ namespace _123.Services
                 new MySqlParameter("@order_id", MySqlDbType.Int32) { Value = transaction.OrderId },
                 new MySqlParameter("@transaction_date", MySqlDbType.DateTime) { Value = transaction.TransactionDate },
                 new MySqlParameter("@amount", MySqlDbType.Decimal) { Value = transaction.Amount },
-                new MySqlParameter("@PaymentMethod_id", MySqlDbType.Int32) { Value = transaction.PaymentMethodId },
+                new MySqlParameter("@payment_method_id", MySqlDbType.Int32) { Value = transaction.PaymentMethodId },
                 new MySqlParameter("@status", MySqlDbType.VarChar) { Value = transaction.Status }
             };
 
@@ -31,7 +31,7 @@ namespace _123.Services
         }
 public static List<TransactionHistory> GetAllTransactions()
 {
-    string query = "SELECT transaction_id, user_id, order_id, transaction_date, amount, PaymentMethod_id, status, is_deleted FROM Transaction_History WHERE is_deleted = 0";
+    string query = "SELECT transaction_id, user_id, order_id, transaction_date, amount, payment_method_id, status, is_deleted FROM Transaction_History WHERE is_deleted = 0";
     
     var transactions = new List<TransactionHistory>();
 
@@ -49,7 +49,7 @@ public static List<TransactionHistory> GetAllTransactions()
                 OrderId = Convert.ToInt32(row["order_id"]),
                 TransactionDate = Convert.ToDateTime(row["transaction_date"]),
                 Amount = Convert.ToDecimal(row["amount"]),
-                PaymentMethodId = Convert.ToInt32(row["PaymentMethod_id"]),
+                PaymentMethodId = Convert.ToInt32(row["payment_method_id"]),
                 Status = row["status"].ToString(),
                 IsDeleted = Convert.ToBoolean(row["is_deleted"])
             });
@@ -67,7 +67,7 @@ public static List<TransactionHistory> GetAllTransactions()
         // Lấy danh sách giao dịch của người dùng
         public static List<TransactionHistory> GetTransactionsByuser_id(int user_id)
         {
-            string query = "SELECT transaction_id, user_id, order_id, transaction_date, amount, PaymentMethod_id, status, is_deleted FROM TransactionHistory WHERE user_id = @user_id AND is_deleted = 0";
+            string query = "SELECT transaction_id, user_id, order_id, transaction_date, amount, payment_method_id, status, is_deleted FROM TransactionHistory WHERE user_id = @user_id AND is_deleted = 0";
             
             var transactions = new List<TransactionHistory>();
 
@@ -89,7 +89,7 @@ public static List<TransactionHistory> GetAllTransactions()
                         OrderId = Convert.ToInt32(row["order_id"]),
                         TransactionDate = Convert.ToDateTime(row["transaction_date"]),
                         Amount = Convert.ToDecimal(row["amount"]),
-                        PaymentMethodId = Convert.ToInt32(row["PaymentMethod_id"]),
+                        PaymentMethodId = Convert.ToInt32(row["payment_method_id"]),
                         Status = row["status"].ToString(),
                         IsDeleted = Convert.ToBoolean(row["is_deleted"])
                     });
@@ -107,7 +107,7 @@ public static List<TransactionHistory> GetAllTransactions()
         // Lấy giao dịch theo ID
         public static TransactionHistory GetTransactionById(int transaction_id)
         {
-            string query = "SELECT transaction_id, user_id, order_id, transaction_date, amount, PaymentMethod_id, status, is_deleted FROM TransactionHistory WHERE transaction_id = @transaction_id AND is_deleted = 0";
+            string query = "SELECT transaction_id, user_id, order_id, transaction_date, amount, payment_method_id, status, is_deleted FROM TransactionHistory WHERE transaction_id = @transaction_id AND is_deleted = 0";
             
             var parameters = new MySqlParameter[]
             {
@@ -126,7 +126,7 @@ public static List<TransactionHistory> GetAllTransactions()
                 OrderId = Convert.ToInt32(row["order_id"]),
                 TransactionDate = Convert.ToDateTime(row["transaction_date"]),
                 Amount = Convert.ToDecimal(row["amount"]),
-                PaymentMethodId = Convert.ToInt32(row["PaymentMethod_id"]),
+                PaymentMethodId = Convert.ToInt32(row["payment_method_id"]),
                 Status = row["status"].ToString(),
                 IsDeleted = Convert.ToBoolean(row["is_deleted"])
                 };
@@ -149,7 +149,7 @@ public static List<TransactionHistory> GetAllTransactions()
                 new MySqlParameter("@order_id", MySqlDbType.Int32) { Value = transaction.OrderId },
                 new MySqlParameter("@transaction_date", MySqlDbType.DateTime) { Value = transaction.TransactionDate },
                 new MySqlParameter("@amount", MySqlDbType.Decimal) { Value = transaction.Amount },
-                new MySqlParameter("@PaymentMethod_id", MySqlDbType.Int32) { Value = transaction.PaymentMethodId },
+                new MySqlParameter("@payment_method_id", MySqlDbType.Int32) { Value = transaction.PaymentMethodId },
                 new MySqlParameter("@status", MySqlDbType.VarChar) { Value = transaction.Status }
             };
 
