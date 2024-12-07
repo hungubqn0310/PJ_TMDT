@@ -10,7 +10,7 @@
   <div class="d-flex justify-content-end">
     <button type="button" class="btn btn-outline-success" style="margin: 10px 40px 0;" data-toggle="modal" data-target="#payment-method-add" 
     data-url="@Url.Action($"Add")">Add </button>
-    @* @await Html.PartialAsync("/Views/Admin/paymentmethodadd.cshtml", @Model.PaymentMethod) *@
+    @await Html.PartialAsync("/Views/Admin/paymentmethodadd.cshtml", @Model.PaymentMethod)
   </div>
 
   <div class="card-body">
@@ -32,11 +32,11 @@
                                 <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#payment-method-@Model.PaymentMethods[i].PaymentMethodId" data-url="@Url.Action($"Edit/{@Model.PaymentMethods[i].PaymentMethodId}")">
                                 <i class="material-icons" style="font-size: 14px">border_color</i>
                             </button>
-                            @* @await Html.PartialAsync("/Views/Admin/paymentmethodedit.cshtml", @Model.PaymentMethods[i]) *@
+                            @await Html.PartialAsync("/Views/Admin/paymentmethodedit.cshtml", @Model.PaymentMethods[i])
                                 <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#payment-method-delete-@Model.PaymentMethods[i].PaymentMethodId" data-url="@Url.Action($"Delete/{@Model.PaymentMethods[i].PaymentMethodId}")">
                                 <i class="material-icons" style="font-size: 14px">delete</i>
                             </button>
-                            @* @await Html.PartialAsync("/Views/Admin/paymentmethoddelete.cshtml", @Model.PaymentMethods[i]) *@
+                            @await Html.PartialAsync("/Views/Admin/paymentmethoddelete.cshtml", @Model.PaymentMethods[i])
                         </td>
                     </tr>
                 }
