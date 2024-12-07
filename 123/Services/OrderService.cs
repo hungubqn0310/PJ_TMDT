@@ -30,7 +30,9 @@ namespace _123.Services
         // Lấy danh sách các đơn hàng
         public static List<Order> GetOrders()
         {
-            string query = "SELECT order_id, user_id, order_date, status, total_amount, is_deleted FROM Orders WHERE is_deleted = 0";
+            string query = @"SELECT o.order_id, o.user_id, o.order_date, o.status, o.total_amount, o.is_deleted, u.username FROM Orders o
+            LEFT JOIN Users u ON u.user_id = o.user_id
+            WHERE o.is_deleted = 0";
             
             var orders = new List<Order>();
 
@@ -47,7 +49,12 @@ namespace _123.Services
 OrderDate = Convert.ToDateTime(row["order_date"]),
                         Status = row["status"].ToString(),
                         TotalAmount = Convert.ToDecimal(row["total_amount"]),
-                        IsDeleted = Convert.ToBoolean(row["is_deleted"])
+                        IsDeleted = Convert.ToBoolean(row["is_deleted"]),
+                        User = row["username"] == DBNull.Value ? null : new User
+                {
+                    user_id = Convert.ToInt32(row["user_id"]),
+                    username = row["username"].ToString()
+                },
                     });
                 }
             }
@@ -91,22 +98,22 @@ OrderDate = Convert.ToDateTime(row["order_date"]),
 
         // Cập nhật đơn hàng
         public static int UpdateOrder(Order order)
-        {
-            string query = @"UPDATE Orders
-                             SET status = @status,
-                                 total_amount = @total_amount
-                             WHERE order_id = @order_id AND is_deleted = 0";
-            
-            var parameters = new MySqlParameter[]
-            {
-                new MySqlParameter("@user_id", MySqlDbType.Int32) { Value = order.UserId },
-                new MySqlParameter("@order_date", MySqlDbType.DateTime) { Value = order.OrderDate },
-                new MySqlParameter("@status", MySqlDbType.VarChar) { Value = order.Status },
-                new MySqlParameter("@total_amount", MySqlDbType.Decimal) { Value = order.TotalAmount }
-            };
+{
+    string query = @"UPDATE Orders
+                     SET status = @status,
+                         total_amount = @total_amount
+                     WHERE order_id = @order_id AND is_deleted = 0";
+    
+    var parameters = new MySqlParameter[]
+    {
+        new MySqlParameter("@order_id", MySqlDbType.Int32) { Value = order.OrderId },
+        new MySqlParameter("@status", MySqlDbType.VarChar) { Value = order.Status },
+        new MySqlParameter("@total_amount", MySqlDbType.Decimal) { Value = order.TotalAmount }
+    };
 
-            return DatabaseHelper.ExecuteNonQuery(query, parameters);
-        }
+    return DatabaseHelper.ExecuteNonQuery(query, parameters);
+}
+
 
         // Xóa tạm thời đơn hàng
         public static int DeleteOrder(int orderId)

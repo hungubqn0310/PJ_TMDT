@@ -10,5 +10,8 @@ namespace _123.Models
         public string Status { get; set; }
         public decimal TotalAmount { get; set; }
         public bool IsDeleted { get; set; }
+
+        public virtual User User { get; set; }
+
     }
 }

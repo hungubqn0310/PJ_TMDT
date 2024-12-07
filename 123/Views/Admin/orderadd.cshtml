@@ -1,0 +1,55 @@
+@model _123.Models.Order
+<div class="modal fade bd-example-modal-lg" id="order-add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Create Order</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Add" method="post" id="order-add-form">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>User</label>
+                                <select class="form-control" name="UserId" asp-for="UserId" asp-items="@(new SelectList(ViewBag.Users ?? new List<User>(), "user_id", "username"))">
+                                    <option value="" selected disabled>Select a user</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Order Date</label>
+                                <input type="datetime-local" class="form-control" name="OrderDate" asp-for="OrderDate">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Status</label>
+                                <input type="text" class="form-control" placeholder="Enter order status" name="Status" asp-for="Status">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Total Amount</label>
+                                <input type="number" class="form-control" placeholder="Enter total amount" name="TotalAmount" asp-for="TotalAmount" step="0.01">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" style="border-radius: 20px;">Close</button>
+                <button type="submit" class="btn btn-outline-primary" style="border-radius: 20px;" form="order-add-form">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>

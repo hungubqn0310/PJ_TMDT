@@ -1,0 +1,63 @@
+@model _123.Models.Order
+
+<div class="modal fade bd-example-modal-lg" id="order-@Model.OrderId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Edit Order</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Edit" method="post" id="order-edit-form-@Model.OrderId">
+                    <input type="hidden" name="OrderId" asp-for="OrderId">
+
+                    <!-- User Selection Dropdown -->
+                    <div class="form-group">
+                        <label>User</label>
+                        <select class="form-control" name="UserId" asp-for="UserId">
+                            <option value="">Select User</option>
+                            @if (ViewBag.Users != null)
+                            {
+                                @foreach (var user in ViewBag.Users)
+                                {
+                                    <option value="@user.user_id" >
+                                        @user.username
+                                    </option>
+                                }
+                            }
+                            else
+                            {
+                                <option disabled>No users available</option>
+                            }
+                        </select>
+                    </div>
+
+                    <!-- Order Date -->
+                    <div class="form-group">
+                        <label>Order Date</label>
+                        <input type="datetime-local" class="form-control" name="OrderDate" asp-for="OrderDate" value="@Model.OrderDate.ToString("yyyy-MM-ddTHH:mm")">
+                    </div>
+
+                    <!-- Status -->
+                    <div class="form-group">
+                        <label>Status</label>
+                        <input type="text" class="form-control" name="Status" asp-for="Status" value="@Model.Status">
+                    </div>
+
+                    <!-- Total Amount -->
+                    <div class="form-group">
+                        <label>Total Amount</label>
+                        <input type="number" class="form-control" name="TotalAmount" asp-for="TotalAmount" step="0.01" value="@Model.TotalAmount">
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" style="border-radius: 20px;">Close</button>
+                <button type="submit" class="btn btn-outline-primary" style="border-radius: 20px;" form="order-edit-form-@Model.OrderId">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>

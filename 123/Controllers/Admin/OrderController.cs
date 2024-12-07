@@ -21,7 +21,9 @@ namespace _123.Controllers
         public IActionResult Index()
         {
             var orderViewModel = new OrderViewModel();
-            orderViewModel.Orders = OrderService.GetOrders(); // Fetch orders from service
+            orderViewModel.Orders = OrderService.GetOrders();
+            ViewBag.Users = UserService.GetUsers() ?? new List<User>();
+             // Fetch orders from service
             // Return the orders view
             return View("Views/Admin/order.cshtml", orderViewModel);
         }
@@ -31,6 +33,8 @@ namespace _123.Controllers
         public IActionResult Add()
         {
             Order order = new Order();
+            ViewBag.Users = UserService.GetUsers() ?? new List<User>(); 
+
             return PartialView("/Views/Admin/orderadd.cshtml", order);
         }
 
@@ -46,7 +50,9 @@ namespace _123.Controllers
         [HttpGet("edit")]
         public IActionResult Edit(int id)
         {
-            Order order = OrderService.GetOrderById(id); // Fetch order by ID
+            Order order = OrderService.GetOrderById(id); 
+            ViewBag.Users = UserService.GetUsers() ?? new List<User>(); 
+            // Fetch order by ID
             return PartialView("/Views/Admin/orderedit.cshtml", order);
         }
 
