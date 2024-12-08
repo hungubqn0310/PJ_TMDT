@@ -11,7 +11,7 @@
             </div>
             <div class="modal-body">
                 <form asp-action="Delete" method="post" id="supplier-@Model.SupplierId-delete">
-                    <input type="hidden" name="supplier_id" asp-for="SupplierId">
+                    <input type="hidden" name="SupplierId" asp-for="SupplierId">
                     <label>Bạn có chắc chắn muốn xóa nhà cung cấp @Model.SupplierName không?</label>
                 </form>
             </div>
