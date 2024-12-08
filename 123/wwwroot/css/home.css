@@ -587,10 +587,6 @@
     font-size: 26.25px;
     position: relative;
 }
-<<<<<<< HEAD
-
-.coTheBanSeThich-header {
-=======
 .b753-c4d3-4889-bd5d-43534bfa6d-icon {
     position: absolute;
     top: 0px;
@@ -827,16 +823,11 @@
     top: 55.5%;
     left: 0%;
     font-weight: 300;
->>>>>>> 4899d6e142d7847ad6fe38cb9c083b0f74622dfe
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px; /* Tăng khoảng cách giữa tiêu đề và slider */
 }
-<<<<<<< HEAD
-
-.coTheBanSeThich-tieuDe {
-=======
 .khm-ph-ngay5 {
     position: absolute;
     top: 91.28%;
@@ -956,7 +947,6 @@
     font-size: 18.75px;
 }
 .home {
->>>>>>> 4899d6e142d7847ad6fe38cb9c083b0f74622dfe
     margin-left: 40px;
     font-weight: 300;
 }
@@ -1223,8 +1213,6 @@
     align-items: center; /* Căn giữa các phần tử con theo trục ngang */
     justify-content: center; /* Căn giữa các phần tử con theo trục dọc */
 }
-<<<<<<< HEAD
-=======
 
 body {
     margin: 0;
@@ -1232,4 +1220,3 @@ body {
 }
 
 
->>>>>>> 4899d6e142d7847ad6fe38cb9c083b0f74622dfe
