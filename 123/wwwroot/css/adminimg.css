@@ -1,0 +1,8 @@
+/* styles.css */
+.my-image {
+    display: block; /* Hiển thị dưới dạng khối */
+    margin-left: auto; /* Tự động căn trái */
+    margin-right: auto; /* Tự động căn phải */
+    width: 50%; /* Điều chỉnh kích thước theo nhu cầu */
+    height: auto/* Giữ tỷ lệ hình ảnh */---
+}

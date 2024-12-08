@@ -1,42 +1,45 @@
 @{
-    Layout = "_Layout";
-    ViewData["Title"] = "Thông tin giá vàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Thông tin giá vàng và bạc";
 }
 
-<h1>Biểu đồ giá vàng và giá vàng thời gian thực</h1>
+<!-- Biểu đồ giá vàng và bạc -->
+<div style="margin-top: 150px;">
+<h1>Biểu đồ giá vàng và bạc thời gian thực</h1>
 
-<!-- Hiển thị giá vàng -->
+<!-- Hiển thị giá vàng và bạc -->
 <p id="goldPrice">Đang tải giá vàng...</p>
-
-<!-- Biểu đồ giá vàng -->
-<canvas id="goldChart" width="400" height="200"></canvas>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+<p id="silverPrice">Đang tải giá bạc...</p>
+<canvas id="goldSilverChart" width="400" height="200"></canvas>
 <script>
-    // Khởi tạo mảng chứa dữ liệu giá vàng
+    // Khởi tạo mảng chứa dữ liệu giá vàng và bạc
     let goldPrices = [];
+    let silverPrices = [];
     let timestamps = [];
 
-    // Cập nhật giá vàng và biểu đồ mỗi 30 giây (30000ms)
+    // Cập nhật giá vàng và bạc mỗi 30 giây
     setInterval(function() {
-        // Gọi API để lấy giá vàng mới
+        // Gọi API để lấy giá vàng và bạc
         fetch('/GoldPrice/GetGoldPriceForChart')
             .then(response => response.json())
             .then(data => {
-                const currentPrice = data.price;
+                const goldPrice = data.goldPrice;
+                const silverPrice = data.silverPrice;
                 const currentTimestamp = new Date(data.timestamp).toLocaleTimeString();
 
-                // Cập nhật giá vàng hiển thị trên trang
-                document.getElementById('goldPrice').innerText = 'Giá vàng hiện tại: ' + currentPrice + ' USD';
+                // Cập nhật giá hiển thị trên trang
+                document.getElementById('goldPrice').innerText = 'Giá vàng hiện tại: ' + goldPrice + ' USD';
+                document.getElementById('silverPrice').innerText = 'Giá bạc hiện tại: ' + silverPrice + ' USD';
 
-                // Thêm giá vàng và timestamp vào mảng
-                goldPrices.push(currentPrice);
+                // Thêm giá vàng, bạc và timestamp vào mảng
+                goldPrices.push(goldPrice);
+                silverPrices.push(silverPrice);
                 timestamps.push(currentTimestamp);
 
                 // Giới hạn số lượng điểm dữ liệu trong biểu đồ (hiển thị tối đa 10 giá gần nhất)
                 if (goldPrices.length > 10) {
                     goldPrices.shift();
+                    silverPrices.shift();
                     timestamps.shift();
                 }
 
@@ -44,29 +47,38 @@
                 updateChart();
             })
             .catch(error => {
-                console.error('Lỗi khi lấy giá vàng:', error);
+                console.error('Lỗi khi lấy giá:', error);
                 document.getElementById('goldPrice').innerText = 'Không thể lấy giá vàng.';
+                document.getElementById('silverPrice').innerText = 'Không thể lấy giá bạc.';
             });
     }, 30000);  // Cập nhật mỗi 30 giây
 
-    // Khởi tạo biểu đồ giá vàng
-    let goldChart = null;
+    // Khởi tạo biểu đồ giá vàng và bạc
+    let goldSilverChart = null;
 
     function updateChart() {
-        const ctx = document.getElementById('goldChart').getContext('2d');
-        if (goldChart) {
-            goldChart.destroy(); // Xóa biểu đồ cũ trước khi vẽ lại
+        const ctx = document.getElementById('goldSilverChart').getContext('2d');
+        if (goldSilverChart) {
+            goldSilverChart.destroy(); // Xóa biểu đồ cũ trước khi vẽ lại
         }
-        goldChart = new Chart(ctx, {
+        goldSilverChart = new Chart(ctx, {
             type: 'line',  // Loại biểu đồ (line chart)
             data: {
                 labels: timestamps,  // Hiển thị thời gian
-                datasets: [{
-                    label: 'Giá vàng (XAU)',
-                    data: goldPrices,  // Dữ liệu giá vàng
-                    borderColor: 'rgb(255, 99, 132)',
-                    fill: false
-                }]
+                datasets: [
+                    {
+                        label: 'Giá vàng (XAU)',
+                        data: goldPrices,  // Dữ liệu giá vàng
+                        borderColor: 'rgb(255, 99, 132)',
+                        fill: false
+                    },
+                    {
+                        label: 'Giá bạc (XAG)',
+                        data: silverPrices,  // Dữ liệu giá bạc
+                        borderColor: 'rgb(54, 162, 235)',
+                        fill: false
+                    }
+                ]
             },
             options: {
                 responsive: true,
@@ -79,3 +91,7 @@
         });
     }
 </script>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+

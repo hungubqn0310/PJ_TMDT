@@ -22,6 +22,7 @@ namespace _123.Controllers
         {
             return View();
         }
+        [Route("home/thongtin")]
         public IActionResult thongtin()
         {
             return View();

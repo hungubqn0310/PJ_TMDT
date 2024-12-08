@@ -1,0 +1,24 @@
+@model Supplier
+
+<div class="modal fade" id="supplier-delete-@Model.SupplierId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Xác nhận xóa nhà cung cấp</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Delete" method="post" id="supplier-@Model.SupplierId-delete">
+                    <input type="hidden" name="supplier_id" asp-for="SupplierId">
+                    <label>Bạn có chắc chắn muốn xóa nhà cung cấp @Model.SupplierName không?</label>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" style="border-radius: 20px;">Close</button>
+                <button type="submit" class="btn btn-outline-danger" style="border-radius: 20px;" form="supplier-@Model.SupplierId-delete">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+</div>

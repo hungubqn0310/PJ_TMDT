@@ -34,6 +34,30 @@
   gap: 10px; /* Khoảng cách giữa các icon */
 }
 
+.material-icons {
+  cursor: pointer;  /* Thêm hiệu ứng bàn tay khi hover */
+  transition: transform 0.3s ease;  /* Thêm hiệu ứng khi hover */
+}
+
+.search-location-icon:hover, 
+.icon-facebook-color:hover,
+.phone-volume-icon:hover,
+.shopping-cart-icon:hover,
+.user-icon:hover {
+  transform: scale(1.2); /* Phóng to icon khi hover */
+}
+
+/* Đặc biệt tùy chỉnh màu sắc cho từng icon */
+.search-location-icon,
+.icon-facebook-color,
+.phone-volume-icon,
+.shopping-cart-icon,
+.user-icon {
+  color: #007bff;  /* Màu xanh cho icon tìm kiếm vị trí */
+}
+.search-icon{
+  color: #adadad;
+}
 /* Phần logo hoặc thương hiệu (handk-icon) */
 .handk-icon {
   width: 70px !important;
@@ -125,10 +149,6 @@
   height: 60px;
    /* Tạo hiệu ứng mượt mà khi hiển thị/ẩn */
 }
-
-
-
-
 
 /* Các liên kết trong dropdown (chữ trong các mục) */
 .dropdown li a {
@@ -249,7 +269,7 @@
   height: 20px;
   position: absolute; /* Đặt icon theo vị trí tuyệt đối */
   right: 10px; /* Căn lề phải của icon */
-  top: 50%; /* Đưa icon vào giữa theo chiều dọc */
+  top: 17.5px; /* Đưa icon vào giữa theo chiều dọc */
   transform: translateY(-50%); /* Đảm bảo icon được căn giữa */
   cursor: pointer;
   transition: all 0.3s ease; /* Thêm hiệu ứng chuyển động */
@@ -289,8 +309,6 @@
 /* Khi input được focus, thêm hiệu ứng cho icon */
 .search-input:focus + .search-icon {
   transform: translateY(-50%) scale(1.2); /* Phóng to nhẹ icon */
-  color: #000; /* Thay đổi màu của icon (nếu icon là font hoặc SVG màu) */
-  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5)); /* Thêm hiệu ứng bóng */
 }
 
 
@@ -312,8 +330,8 @@
 
 /* Logo HanDK */
 .handk-footer-icon {
-  width: 200px; /* Kích thước logo */
-  height: 200px;
+  width: 20%; /* Kích thước logo */
+  height: 10%;
   margin-left: 240px;
   margin-right: 75px;
 }
