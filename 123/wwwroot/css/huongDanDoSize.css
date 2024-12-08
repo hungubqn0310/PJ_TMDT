@@ -1,0 +1,60 @@
+/* General Container */
+.container1 {
+    height: 2720px;
+    margin: 135px auto 22.5px auto;
+    max-width: 960px;
+    padding: 20px;
+    background: #eeeeee;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Title */
+.title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    color: #000;
+}
+
+/* Text sections */
+.description, .method, .price-table, .image-gallery {
+    margin-bottom: 30px;
+    margin-top: 20px;
+    font-size: 16px;
+    color: #000;
+    line-height: 1.6;
+}
+
+.method h2 {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.method ol {
+    padding-left: 20px;
+}
+
+.price-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.price-table th, .price-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.price-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.image-gallery {
+    border-radius: 30px; /* Bo góc ảnh */
+    max-width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    margin-top: 20px;
+}

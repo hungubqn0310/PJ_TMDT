@@ -15,19 +15,17 @@ namespace _123.Controllers
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
         }
 
-        // API Key (nên được lấy từ file cấu hình hoặc biến môi trường)
-        private const string ApiKey = "goldapi-hqv9xsm43maetf-io";
+        private const string ApiKey = "goldapi-4af9019m49hnpo9-io";
 
         [HttpGet]
         public async Task<IActionResult> GetGoldPrice()
         {
             try
             {
-                var url = "https://www.goldapi.io/api/XAU/USD"; // API URL
+                var url = "https://www.goldapi.io/api/XAU/USD";
                 var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
-                requestMessage.Headers.Add("x-access-token", ApiKey); // Thêm API Key vào Header
+                requestMessage.Headers.Add("x-access-token", ApiKey);
 
-                // Gửi yêu cầu đến API
                 var response = await _httpClient.SendAsync(requestMessage);
 
                 if (response.IsSuccessStatusCode)
@@ -35,12 +33,14 @@ namespace _123.Controllers
                     var responseData = await response.Content.ReadAsStringAsync();
                     var goldPriceData = JsonConvert.DeserializeObject<GoldPriceResponse>(responseData);
 
-                    if (goldPriceData == null || goldPriceData.Price <= 0)
+                    if (goldPriceData != null && goldPriceData.Price > 0)
+                    {
+                        return Json(goldPriceData);
+                    }
+                    else
                     {
                         return StatusCode(500, "Dữ liệu từ API không hợp lệ.");
                     }
-
-                    return Json(goldPriceData); // Trả về JSON
                 }
                 else
                 {
@@ -57,35 +57,46 @@ namespace _123.Controllers
             }
         }
 
-        // Gửi dữ liệu giá vàng để vẽ biểu đồ
         [HttpGet]
         public async Task<IActionResult> GetGoldPriceForChart()
         {
             try
             {
-                var url = "https://www.goldapi.io/api/XAU/USD"; // API URL
-                var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
-                requestMessage.Headers.Add("x-access-token", ApiKey); // Thêm API Key vào Header
+                var goldUrl = "https://www.goldapi.io/api/XAU/USD";
+                var goldRequest = new HttpRequestMessage(HttpMethod.Get, goldUrl);
+                goldRequest.Headers.Add("x-access-token", ApiKey);
+                var goldResponse = await _httpClient.SendAsync(goldRequest);
 
-                // Gửi yêu cầu đến API
-                var response = await _httpClient.SendAsync(requestMessage);
+                var silverUrl = "https://www.goldapi.io/api/XAG/USD";
+                var silverRequest = new HttpRequestMessage(HttpMethod.Get, silverUrl);
+                silverRequest.Headers.Add("x-access-token", ApiKey);
+                var silverResponse = await _httpClient.SendAsync(silverRequest);
 
-                if (response.IsSuccessStatusCode)
+                if (goldResponse.IsSuccessStatusCode && silverResponse.IsSuccessStatusCode)
                 {
-                    var responseData = await response.Content.ReadAsStringAsync();
-                    var goldPriceData = JsonConvert.DeserializeObject<GoldPriceResponse>(responseData);
+                    var goldData = await goldResponse.Content.ReadAsStringAsync();
+                    var goldPriceData = JsonConvert.DeserializeObject<GoldPriceResponse>(goldData);
 
-                    if (goldPriceData == null || goldPriceData.Price <= 0)
+                    var silverData = await silverResponse.Content.ReadAsStringAsync();
+                    var silverPriceData = JsonConvert.DeserializeObject<GoldPriceResponse>(silverData);
+
+                    if (goldPriceData != null && silverPriceData != null)
                     {
-                        return StatusCode(500, "Dữ liệu từ API không hợp lệ.");
+                        return Json(new
+                        {
+                            goldPrice = goldPriceData.Price,
+                            silverPrice = silverPriceData.Price,
+                            timestamp = DateTime.UtcNow
+                        });
                     }
-
-                    // Trả về dữ liệu giá vàng cho biểu đồ
-                    return Json(new { price = goldPriceData.Price, timestamp = DateTime.UtcNow });
+                    else
+                    {
+                        return StatusCode(500, "Dữ liệu giá vàng và bạc không hợp lệ.");
+                    }
                 }
                 else
                 {
-                    return StatusCode((int)response.StatusCode, "Không thể lấy dữ liệu từ API.");
+                    return StatusCode(500, "Không thể lấy dữ liệu từ API.");
                 }
             }
             catch (HttpRequestException ex)
@@ -94,15 +105,14 @@ namespace _123.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Lỗi không xác định: " + ex.Message);
+                return StatusCode(500, "Lỗi khi lấy dữ liệu giá vàng và bạc: " + ex.Message);
             }
         }
     }
 
-    // Định nghĩa lớp phản hồi từ API
     public class GoldPriceResponse
     {
-        public string Symbol { get; set; } = string.Empty; // Ký hiệu của vàng (khởi tạo giá trị mặc định)
-        public decimal Price { get; set; } // Giá vàng hiện tại
+        public string? Symbol { get; set; }  // Nullable
+        public decimal Price { get; set; }
     }
 }
