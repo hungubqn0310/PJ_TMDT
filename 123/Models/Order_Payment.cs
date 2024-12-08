@@ -10,5 +10,9 @@ namespace _123.Models
         public decimal AmountPaid { get; set; }
         public DateTime PaymentDate { get; set; }
         public bool IsDeleted { get; set; }
+        public virtual Order Order { get; set; }
+        public virtual PaymentMethod PaymentMethod { get; set; }
+
+
     }
 }

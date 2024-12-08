@@ -7,5 +7,9 @@ namespace _123 {
 
     public OrderPayment OrderPayment {get; set;}
 
+    public IEnumerable<Order> Orders { get; set; }   = new List<Order>();
+
+    public IEnumerable<PaymentMethod> PaymentMethods { get; set; }   = new List<PaymentMethod>();
+
   }
 }

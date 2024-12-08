@@ -21,6 +21,10 @@ namespace _123.Controllers
         {
             var orderPaymentViewModel = new OrderPaymentViewModel();
             orderPaymentViewModel.OrderPayments = OrderPaymentService.GetOrderPayments(); // Fetch order payments from service
+            
+            ViewBag.Orders = OrderService.GetOrders() ?? new List<Order>();
+            ViewBag.PaymentMethods = PaymentMethodService.GetPaymentMethods() ?? new List<PaymentMethod>();
+
             return View("Views/Admin/orderpayment.cshtml", orderPaymentViewModel); // Return the order payments view
         }
 
@@ -29,6 +33,10 @@ namespace _123.Controllers
         public IActionResult Add()
         {
             OrderPayment orderPayment = new OrderPayment();
+
+             ViewBag.Orders = OrderService.GetOrders() ?? new List<Order>();
+            ViewBag.PaymentMethods = PaymentMethodService.GetPaymentMethods() ?? new List<PaymentMethod>();
+
             return PartialView("/Views/Admin/orderpaymentadd.cshtml", orderPayment); // Return add view for order payment
         }
 
@@ -45,6 +53,10 @@ namespace _123.Controllers
         public IActionResult Edit(int id)
         {
             OrderPayment orderPayment = OrderPaymentService.GetOrderPaymentById(id); // Fetch order payment by ID
+            
+             ViewBag.Orders = OrderService.GetOrders() ?? new List<Order>();
+            ViewBag.PaymentMethods = PaymentMethodService.GetPaymentMethods() ?? new List<PaymentMethod>();
+
             return PartialView("/Views/Admin/orderpaymentedit.cshtml", orderPayment); // Return edit view for order payment
         }
 
