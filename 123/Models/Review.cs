@@ -11,5 +11,10 @@ namespace _123.Models
         public string Comment { get; set; }
         public DateTime ReviewDate { get; set; }
         public bool IsDeleted { get; set; }
+
+        public virtual User User { get; set; }
+        public virtual Product Product { get; set; }
+
+
     }
 }

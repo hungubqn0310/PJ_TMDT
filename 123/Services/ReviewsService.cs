@@ -28,7 +28,11 @@ namespace _123.Services
         }
 public static List<Review> GetAllReviews()
 {
-    string query = "SELECT review_id, product_id, user_id, rating, comment, review_date, is_deleted FROM Reviews WHERE is_deleted = 0";
+    string query = @"SELECT r.review_id, r.product_id, r.user_id, r.rating, r.comment, r.review_date, r.is_deleted , p.product_name, u.username
+    FROM Reviews r
+    LEFT JOIN Products  p ON p.product_id = r.product_id
+    LEFT JOIN Users  u ON u.user_id = r..user_id
+     WHERE r.is_deleted = 0";
     
     var reviews = new List<Review>();
 
@@ -47,7 +51,17 @@ public static List<Review> GetAllReviews()
                 Rating = Convert.ToInt32(row["rating"]),
                 Comment = row["comment"].ToString(),
                 ReviewDate = Convert.ToDateTime(row["review_date"]),
-                IsDeleted = Convert.ToBoolean(row["is_deleted"])
+                IsDeleted = Convert.ToBoolean(row["is_deleted"]),
+                Product = row["product_name"] == DBNull.Value ? null : new Product
+                {
+                    ProductId = (row["product_id"]).ToString(),
+                    ProductName = row["product_name"].ToString()
+                },
+                User = row["username"] == DBNull.Value ? null : new User
+                {
+                    user_id = Convert.ToInt32(row["user_id"]),
+                    username = row["username"].ToString()
+                },
             });
         }
     }

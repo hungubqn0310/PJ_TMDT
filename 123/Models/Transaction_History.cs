@@ -12,5 +12,11 @@ namespace _123.Models
         public int PaymentMethodId { get; set; }
         public string Status { get; set; }
         public bool IsDeleted { get; set; }
+
+        public virtual User User { get; set; }
+        public virtual Order Order { get; set; }
+        public virtual PaymentMethod PaymentMethod { get; set; }
+
+        
     }
 }

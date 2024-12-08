@@ -21,6 +21,11 @@ namespace _123.Controllers
         {
             var transactionViewModel = new TransactionHistoryViewModel();
             transactionViewModel.TransactionHistorys = TransactionHistoryService.GetAllTransactions(); // Call service to get all transactions
+            ViewBag.Users = UserService.GetUsers() ?? new List<User>();
+            ViewBag.Orders = OrderService.GetOrders() ?? new List<Order>();
+            ViewBag.PaymentMethods = PaymentMethodService.GetPaymentMethods() ?? new List<PaymentMethod>();
+
+            
             return View("Views/Admin/TransactionHistory.cshtml", transactionViewModel);
         }
 
@@ -29,6 +34,9 @@ namespace _123.Controllers
         public IActionResult Add()
         {
             var transaction = new TransactionHistory();
+              ViewBag.Users = UserService.GetUsers() ?? new List<User>();
+            ViewBag.Orders = OrderService.GetOrders() ?? new List<Order>();
+            ViewBag.PaymentMethods = PaymentMethodService.GetPaymentMethods() ?? new List<PaymentMethod>();
             return PartialView("/Views/Admin/transactionadd.cshtml", transaction); // Show the form to add a new transaction
         }
 
@@ -53,6 +61,9 @@ namespace _123.Controllers
             {
                 return NotFound(); // Return 404 if the transaction does not exist
             }
+              ViewBag.Users = UserService.GetUsers() ?? new List<User>();
+            ViewBag.Orders = OrderService.GetOrders() ?? new List<Order>();
+            ViewBag.PaymentMethods = PaymentMethodService.GetPaymentMethods() ?? new List<PaymentMethod>();
             return PartialView("/Views/Admin/transactionedit.cshtml", transaction); // Show the form to edit the transaction
         }
 

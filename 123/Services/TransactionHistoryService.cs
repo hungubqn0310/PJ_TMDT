@@ -31,7 +31,13 @@ namespace _123.Services
         }
 public static List<TransactionHistory> GetAllTransactions()
 {
-    string query = "SELECT transaction_id, user_id, order_id, transaction_date, amount, payment_method_id, status, is_deleted FROM Transaction_History WHERE is_deleted = 0";
+    string query = @"SELECT th.transaction_id, th.user_id, th.order_id, th.transaction_date, th.amount, 
+    th.payment_method_id, th.status, th.is_deleted , u.username, pm.payment_method_name
+    FROM Transaction_History th
+    LEFT JOIN Users  u ON u.user_id = th.user_id
+    LEFT JOIN Orders   o ON u.order_id = th.order_id
+    LEFT JOIN Payment_Methods  pm ON pm.payment_method_id = th.payment_method_id
+    WHERE is_deleted = 0";
     
     var transactions = new List<TransactionHistory>();
 
@@ -51,7 +57,22 @@ public static List<TransactionHistory> GetAllTransactions()
                 Amount = Convert.ToDecimal(row["amount"]),
                 PaymentMethodId = Convert.ToInt32(row["payment_method_id"]),
                 Status = row["status"].ToString(),
-                IsDeleted = Convert.ToBoolean(row["is_deleted"])
+                IsDeleted = Convert.ToBoolean(row["is_deleted"]),
+                User = row["username"] == DBNull.Value ? null : new User
+                {
+                    user_id = Convert.ToInt32(row["user_id"]),
+                    username = row["username"].ToString()
+                },
+                Order = row["order_id"] == DBNull.Value ? null : new Order
+                    {
+                                OrderId = Convert.ToInt32(row["order_id"]),
+                            },
+                            PaymentMethod = row["payment_method_name"] == DBNull.Value ? null : new PaymentMethod
+                        {
+                                PaymentMethodId = Convert.ToInt32(row["payment_method_id"]),
+                                PaymentMethodName = row["payment_method_name"].ToString()
+                            },
+                
             });
         }
     }

@@ -21,6 +21,10 @@ namespace _123.Controllers
         {
             var reviewViewModel = new ReviewsViewModel();
             reviewViewModel.Reviews = ReviewService.GetAllReviews(); // Call service to get all reviews
+            ViewBag.Users = UserService.GetUsers() ?? new List<User>();
+            ViewBag.Products = ProductService.GetProducts() ?? new List<Product>();
+
+
             return View("Views/Admin/review.cshtml", reviewViewModel);
         }
 
@@ -29,6 +33,8 @@ namespace _123.Controllers
         public IActionResult Add()
         {
             Review review = new Review();
+            ViewBag.Users = UserService.GetUsers() ?? new List<User>();
+            ViewBag.Products = ProductService.GetProducts() ?? new List<Product>();
             return PartialView("/Views/Admin/reviewadd.cshtml", review);
         }
 
@@ -45,6 +51,8 @@ namespace _123.Controllers
         public IActionResult Edit(int id)
         {
             Review review = ReviewService.GetReviewById(id); // Fetch review by ID
+            ViewBag.Users = UserService.GetUsers() ?? new List<User>();
+            ViewBag.Products = ProductService.GetProducts() ?? new List<Product>();
             return PartialView("/Views/Admin/reviewedit.cshtml", review);
         }
 
