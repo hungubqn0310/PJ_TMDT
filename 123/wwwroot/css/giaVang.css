@@ -2,7 +2,7 @@
 .container1 {
     height: 100%; /* Đảm bảo không có chiều cao cố định */
     margin: 135px auto 25px auto; /* Giới hạn chiều rộng và lề */
-    max-width: 960px;
+    max-width: 1000px;
     padding: 20px;
     background: #eeeeee;
     border-radius: 30px;
