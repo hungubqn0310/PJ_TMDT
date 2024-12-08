@@ -1,0 +1,70 @@
+/* General Container */
+.container1 {
+    height: 100%; /* Đảm bảo không có chiều cao cố định */
+    margin: 135px auto 25px auto; /* Giới hạn chiều rộng và lề */
+    max-width: 1000px;
+    padding: 20px;
+    background: #eeeeee;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+/* Title */
+.title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    color: #000;
+}
+/* Title */
+h1 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    color: #333;
+}
+
+/* Giá vàng và bạc */
+#goldPrice, #silverPrice {
+    font-size: 18px;
+    color: #333;
+    margin: 10px 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Biểu đồ */
+#goldSilverChart {
+    width: 100%;
+    max-width: 960px;
+    margin: 20px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 30px;
+}
+
+/* Phần cập nhật giá vàng và bạc */
+.update-section {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Nút cập nhật thủ công */
+.update-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.update-button:hover {
+    background-color: #0056b3;
+}

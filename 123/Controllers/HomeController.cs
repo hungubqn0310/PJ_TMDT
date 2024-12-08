@@ -1,4 +1,4 @@
-﻿using _123.Models;
+﻿﻿using _123.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -22,11 +22,68 @@ namespace _123.Controllers
         {
             return View();
         }
-        [Route("home/thongtin")]
-        public IActionResult thongtin()
+
+        public IActionResult Category(string category)
         {
-            return View();
+            switch (category.ToLower())
+            {
+                case "nhancauhon":
+                    ViewData["Title"] = "Nhẫn cầu hôn";
+                    break;
+                case "nhancuoi":
+                    ViewData["Title"] = "Nhẫn cưới";
+                    break;
+                case "trangsuc":
+                    ViewData["Title"] = "Trang sức";
+                    break;
+                case "kimcuong":
+                    ViewData["Title"] = "Kim cương";
+                    break;
+                case "mens":
+                    ViewData["Title"] = "Men's";
+                    break;
+                default:
+                    return NotFound(); // Nếu không khớp, trả về lỗi 404
+            }
+
+            return View("Category"); // Sử dụng chung một View
         }
+
+        public IActionResult ThongTin(string topic)
+        {
+            switch (topic?.ToLower())
+            {
+                case "chinhsachthuhoivadoitra":
+                    return View("ChinhSachThuHoiVaDoiTra");
+                case "huongdandosize":
+                    return View("HuongDanDoSize");
+                case "chinhsachthanhtoan":
+                    return View("ChinhSachThanhToan");
+                case "chinhsachbaomatthongtin":
+                    return View("ChinhSachBaoMatThongTin");
+                case "giavang":
+                    return View("GiaVang");
+                default:
+                    return NotFound(); // Nếu không tìm thấy topic, trả về lỗi 404
+            }
+        }
+        
+        public IActionResult KhuyenMai()
+        {
+            return View(); // Trả về view "KhuyenMai"
+        }
+
+
+        public IActionResult CauChuyenHanDK()
+        {
+            return View(); // Trả về view "CauChuyenHanDK"
+        }
+
+        public IActionResult CuaHangHanDK()
+        {
+            return View(); // Trả về view "CuaHangHanDK"
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

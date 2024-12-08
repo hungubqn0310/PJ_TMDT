@@ -116,6 +116,16 @@
     transform: scale(1.05);
 }
 
+#error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none; /* Đảm bảo rằng mặc định thông báo không hiển thị */
+    font-weight: lighter;
+}
+#error-message p {
+    margin: 5px 0;
+}
 /* Actions */
 .actions {
     margin-top: 20px;

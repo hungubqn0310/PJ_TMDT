@@ -14,16 +14,21 @@
     <div class="input-group">
         <label for="email" class="label">Email hoặc số điện thoại</label>
         <input type="text" id="email" class="input-field" placeholder="Nhập email hoặc số điện thoại" />
+        <div id="email-error-message" style="color: red; display: none; font-size: 14px; margin-top: 5px;"></div> <!-- Thông báo lỗi cho email -->
     </div>
+
     <div class="input-group">
         <label for="password" class="label">Mật khẩu</label>
         <input type="password" id="password" class="input-field" placeholder="Nhập mật khẩu" />
+        <div id="password-error-message" style="color: red; display: none; font-size: 14px; margin-top: 5px;"></div> <!-- Thông báo lỗi cho mật khẩu -->
     </div>
+
     <div class="actions">
         <button id="loginButton" class="btn btn-primary" disabled>Đăng nhập</button>
         <button class="btn btn-secondary">Đăng ký</button>
         <a href="#" class="forgot-password">Quên mật khẩu?</a>
     </div>
+
     <div class="social-login">
         <button class="btn-social">
             <img class="google-icon" src="/images/google-icon.png" alt="Google"/>
