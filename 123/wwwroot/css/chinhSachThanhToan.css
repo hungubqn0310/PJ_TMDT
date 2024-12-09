@@ -1,0 +1,54 @@
+
+.payment-policy {
+    scale: 105%;
+    margin-bottom: 52.5px;
+    margin-top: 165px;
+    margin-left: 280px;
+    height: 1150px;
+    max-width: 960px;
+    padding: 20px;
+    background: #eeeeee;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.policy-title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    color: #000;
+}
+
+.introduction {
+    margin-bottom: 30px;
+    text-align: justify;
+}
+
+.section-title {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #000;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.method-list {
+    list-style: none;
+    padding: 0;
+}
+
+.method-list > li {
+    margin-bottom: 20px;
+}
+
+.method-list strong {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.method-list ul {
+    list-style: disc;
+    padding-left: 20px;
+}

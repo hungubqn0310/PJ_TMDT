@@ -27,7 +27,7 @@
 				</div>
 
 				<!-- Logo thương hiệu -->
-				<img class="handk-icon" alt="" src="images\HanDK-removebg.png" id="hanDKImage">
+				<img class="handk-icon" alt="HanDK" src="/images/HanDK-removebg.png" onclick="window.location='@Url.Action("Index", "Home")';" style="cursor: pointer;">
 
 				<!-- Các icon bên phải -->
 				<div class="right-icons">
@@ -38,12 +38,12 @@
 			<nav>
 				<div class="wrapper">
 					<ul class="nav-links">
-						<li><a href="#">Trang chủ</a></li>
+						<li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
 						<li>
-							<a href="#">Danh mục</a>
+    						<a href="javascript:void(0);">Danh mục <span class="arrowHover">&#8593;</span></a>
 							<ul class="dropdown">
 								<li>
-									<a href="#">Nhẫn cầu hôn</a>
+									<a href="/category/nhanCauHon">Nhẫn cầu hôn</a>
 									<ul class="dropdown1">
 										<li>
 											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Kiểu dáng</a>
@@ -86,7 +86,7 @@
 									</ul>
 								</li>
 								<li>
-									<a href="#">Nhẫn cưới</a>
+									<a href="/category/nhanCuoi">Nhẫn cưới</a>
 									<ul class="dropdown1">
 										<li>
 											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Loại nhẫn</i></a>
@@ -132,7 +132,7 @@
 									</ul>
 									</li>
 								<li>
-									<a href="#">Trang sức</a>
+									<a href="/category/trangSuc">Trang sức</a>
 									<ul class="dropdown1">
 										<li>
 											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Loại trang sức</i></a>
@@ -165,7 +165,7 @@
 									</ul>
 									</li>
 								<li>
-									<a href="#">Kim cương</a>
+									<a href="/category/kimCuong">Kim cương</a>
 									<ul class="dropdown1">
 										<li>
 											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Giá tiền</i></a>
@@ -202,7 +202,7 @@
 									</ul>
 									</li>
 								<li>
-									<a href="#">Men's</a>
+									<a href="/category/mens">Men's</a>
 									<ul class="dropdown1">
 										<li>
 											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Kiểu dáng</a>
@@ -225,17 +225,17 @@
 							</ul>
 							</li>
 						<li>
-							<a href="#">Thông tin</a>
+							<a href="javascript:void(0);">Thông tin <span class="arrowHover">&#8593;</span></a>
 							<ul class="dropdown">
-								<li><a href="#">Hướng dẫn đo size</a></li>
-								<li><a href="#">Thu hồi & đổi trả</a></li>
-								<li><a href="#">Thanh toán</a></li>
-								<li><a href="#">Bảo mật thông tin</a></li>
-								<li><a href="#">Giá vàng</a></li>
+								<li><a href="/thongTin/chinhSachThuHoiVaDoiTra">Thu hồi và đổi trả</a></li>
+								<li><a href="/thongTin/huongDanDoSize">Hướng dẫn đo size</a></li>
+								<li><a href="/thongTin/chinhSachThanhToan">Thanh toán</a></li>
+								<li><a href="/thongTin/chinhSachBaoMatThongTin">Bảo mật thông tin</a></li>
+								<li><a href="/thongTin/giaVang">Giá Vàng</a></li>
 							</ul>
 							</li>
-						<li><a href="#" style="color: red; text-decoration: none;" onmouseover="this.style.color='blue'" onmouseout="this.style.color='red'">Khuyến mãi</a></li>
-						<li><a href="#">HanDK</a></li>
+						<li><a href="/khuyenMai" style="color: red; text-decoration: none;" onmouseover="this.style.color='blue'" onmouseout="this.style.color='red'">Khuyến mãi</a></li>
+						<li><a href="/cauChuyenHanDK">HanDK</a></li>
 					</ul>
 					<div class="search-group">
 							<input type="text" class="search-input" placeholder="Tìm kiếm...">
@@ -254,15 +254,17 @@
 
     <footer>
         <div class="footer">
-			<img class="handk-footer-icon" alt="" src="images\HanDK_footer.png">
+			<img class="handk-footer-icon" alt="" src="/images/HanDK_footer.png">
 			<div class="tieu-de">
 				<div class="tieude1">
 					<h1>SẢN PHẨM</h1>
-					<div class="foot">Nhẫn cưới</div>
-					<div class="foot">Nhẫn cầu hôn</div>
-					<div class="foot">Kim cương</div>
-					<div class="foot">Nhẫn nam</div>
+					<a href="/category/nhanCuoi" class="foot">Nhẫn cưới</a>
+					<a href="/category/nhanCauHon" class="foot">Nhẫn cầu hôn</a>
+					<a href="/category/trangSuc" class="foot">Trang sức</a>
+					<a href="/category/kimCuong" class="foot">Kim cương</a>
+					<a href="/category/mens" class="foot">Nhẫn nam</a>
 				</div>
+
 				<div class="tieude2">
 					<h1>LIÊN HỆ</h1>
 					<div class="text-foot">GỌI MUA HÀNG</div>
@@ -275,15 +277,17 @@
 				</div>
 				<div class="tieude3">
 					<h1>HỖ TRỢ</h1>
-					<div class="foot">Thu đổi</div>
-					<div class="foot">Thanh toán</div>
-					<div class="foot">Bảo mật thông tin</div>
-					<div class="foot">Hướng dẫn đo size</div>
+					<a href="/thongTin/chinhSachThuHoiVaDoiTra" class="foot">Thu đổi</a>
+					<a href="/thongTin/chinhSachThanhToan" class="foot">Thanh toán</a>
+					<a href="/thongTin/chinhSachBaoMatThongTin" class="foot">Bảo mật thông tin</a>
+					<a href="/thongTin/huongDanDoSize" class="foot">Hướng dẫn đo size</a>
+					<a href="/thongTin/giaVang" class="foot">Giá Vàng</a>
 				</div>
+
 				<div class="tieude4">
 					<h1>VỀ CHÚNG TÔI</h1>
-					<div class="foot">Câu chuyện HanDK</div>
-					<div class="foot">Cửa hàng</div>
+					<a href="/cauChuyenHanDK" class="foot">Câu chuyện HanDK</a>
+					<a href="/cuaHangHanDK" class="foot">Cửa hàng HanDK</a>
 				</div>
 			</div>	
     	</div>
