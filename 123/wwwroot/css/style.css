@@ -335,6 +335,7 @@ li:hover .arrowHover {
 
 /* Logo HanDK */
 .handk-footer-icon {
+  border-radius: 30px;
   width: 240px; /* Kích thước logo */
   height: 180px;
   margin-left: 240px;
