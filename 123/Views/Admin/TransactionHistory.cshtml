@@ -10,7 +10,7 @@
   <div class="d-flex justify-content-end">
     <button type="button" class="btn btn-outline-success" style="margin: 10px 40px 0;" data-toggle="modal" data-target="#transaction-add" 
     data-url="@Url.Action($"Add")">Add </button>
-    @* @await Html.PartialAsync("/Views/Admin/transactionhistoryadd.cshtml", @Model.TransactionHistory) *@
+    @await Html.PartialAsync("/Views/Admin/transactionadd.cshtml", @Model.TransactionHistory)
   </div>
 
   <div class="card-body">
@@ -42,11 +42,11 @@
                                 <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#transaction-@Model.TransactionHistorys[i].TransactionId" data-url="@Url.Action($"Edit/{@Model.TransactionHistorys[i].TransactionId}")">
                                 <i class="material-icons" style="font-size: 14px">border_color</i>
                             </button>
-                            @* @await Html.PartialAsync("/Views/Admin/transactionhistoryedit.cshtml", @Model.TransactionHistorys[i]) *@
+                            @await Html.PartialAsync("/Views/Admin/transactionedit.cshtml", @Model.TransactionHistorys[i])
                                 <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#transaction-delete-@Model.TransactionHistorys[i].TransactionId" data-url="@Url.Action($"Delete/{@Model.TransactionHistorys[i].TransactionId}")">
                                 <i class="material-icons" style="font-size: 14px">delete</i>
                             </button>
-                            @* @await Html.PartialAsync("/Views/Admin/transactionhistorydelete.cshtml", @Model.TransactionHistorys[i]) *@
+                            @await Html.PartialAsync("/Views/Admin/transactiondelete.cshtml", @Model.TransactionHistorys[i])
                         </td>
                     </tr>
                 }

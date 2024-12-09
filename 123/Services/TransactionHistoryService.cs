@@ -35,9 +35,9 @@ public static List<TransactionHistory> GetAllTransactions()
     th.payment_method_id, th.status, th.is_deleted , u.username, pm.payment_method_name
     FROM Transaction_History th
     LEFT JOIN Users  u ON u.user_id = th.user_id
-    LEFT JOIN Orders   o ON u.order_id = th.order_id
+    LEFT JOIN Orders   o ON o.order_id = th.order_id
     LEFT JOIN Payment_Methods  pm ON pm.payment_method_id = th.payment_method_id
-    WHERE is_deleted = 0";
+    WHERE th.is_deleted = 0";
     
     var transactions = new List<TransactionHistory>();
 
@@ -88,7 +88,7 @@ public static List<TransactionHistory> GetAllTransactions()
         // Lấy danh sách giao dịch của người dùng
         public static List<TransactionHistory> GetTransactionsByuser_id(int user_id)
         {
-            string query = "SELECT transaction_id, user_id, order_id, transaction_date, amount, payment_method_id, status, is_deleted FROM TransactionHistory WHERE user_id = @user_id AND is_deleted = 0";
+            string query = "SELECT transaction_id, user_id, order_id, transaction_date, amount, payment_method_id, status, is_deleted FROM Transaction_History WHERE user_id = @user_id AND is_deleted = 0";
             
             var transactions = new List<TransactionHistory>();
 
@@ -128,7 +128,7 @@ public static List<TransactionHistory> GetAllTransactions()
         // Lấy giao dịch theo ID
         public static TransactionHistory GetTransactionById(int transaction_id)
         {
-            string query = "SELECT transaction_id, user_id, order_id, transaction_date, amount, payment_method_id, status, is_deleted FROM TransactionHistory WHERE transaction_id = @transaction_id AND is_deleted = 0";
+            string query = "SELECT transaction_id, user_id, order_id, transaction_date, amount, payment_method_id, status, is_deleted FROM Transaction_History WHERE transaction_id = @transaction_id AND is_deleted = 0";
             
             var parameters = new MySqlParameter[]
             {
@@ -159,7 +159,7 @@ public static List<TransactionHistory> GetAllTransactions()
         // Cập nhật thông tin giao dịch
         public static int UpdateTransaction(TransactionHistory transaction)
         {
-            string query = @"UPDATE TransactionHistory
+            string query = @"UPDATE Transaction_History
                              SET amount = @amount,
                                  status = @status
                              WHERE transaction_id = @transaction_id AND is_deleted = 0";
@@ -181,7 +181,7 @@ public static List<TransactionHistory> GetAllTransactions()
         // Xóa giao dịch (đánh dấu bị xóa)
         public static int DeleteTransaction(int transaction_id)
         {
-            string query = @"UPDATE TransactionHistory
+            string query = @"UPDATE Transaction_History
                              SET is_deleted = 1
                              WHERE transaction_id = @transaction_id AND is_deleted = 0";
             

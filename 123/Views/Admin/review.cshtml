@@ -10,7 +10,7 @@
   <div class="d-flex justify-content-end">
     <button type="button" class="btn btn-outline-success" style="margin: 10px 40px 0;" data-toggle="modal" data-target="#review-add" 
     data-url="@Url.Action($"Add")">Add </button>
-    @* @await Html.PartialAsync("/Views/Admin/reviewadd.cshtml", @Model.Review) *@
+    @await Html.PartialAsync("/Views/Admin/reviewadd.cshtml", @Model.Review)
   </div>
 
   <div class="card-body">
@@ -40,11 +40,11 @@
                                 <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#review-@Model.Reviews[i].ReviewId" data-url="@Url.Action($"Edit/{@Model.Reviews[i].ReviewId}")">
                                 <i class="material-icons" style="font-size: 14px">border_color</i>
                             </button>
-                            @* @await Html.PartialAsync("/Views/Admin/reviewedit.cshtml", @Model.Reviews[i]) *@
+                            @await Html.PartialAsync("/Views/Admin/reviewedit.cshtml", @Model.Reviews[i])
                                 <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#review-delete-@Model.Reviews[i].ReviewId" data-url="@Url.Action($"Delete/{@Model.Reviews[i].ReviewId}")">
                                 <i class="material-icons" style="font-size: 14px">delete</i>
                             </button>
-                            @* @await Html.PartialAsync("/Views/Admin/reviewdelete.cshtml", @Model.Reviews[i]) *@
+                            @await Html.PartialAsync("/Views/Admin/reviewdelete.cshtml", @Model.Reviews[i])
                         </td>
                     </tr>
                 }

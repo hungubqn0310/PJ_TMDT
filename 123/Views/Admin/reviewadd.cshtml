@@ -1,0 +1,76 @@
+@model Review
+
+<div class="modal fade" id="review-add" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reviewModalLabel">Create Review</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Add" method="post" id="review-add-form">
+                    <div class="row">
+
+                        <!-- Product ID -->
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="ProductId">Product ID</label>
+                                <select class="form-control" id="ProductId" name="ProductId" asp-for="ProductId" asp-items="@(new SelectList(ViewBag.Products, "ProductId", "ProductName"))">
+                                </select>
+                                <span asp-validation-for="ProductId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- User ID -->
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="UserId">User ID</label>
+                                <select class="form-control" id="UserId" name="UserId" asp-for="UserId" asp-items="@(new SelectList(ViewBag.Users, "user_id", "username"))">
+                                </select>
+                                <span asp-validation-for="UserId" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Rating -->
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="Rating">Rating</label>
+                                <input type="number" class="form-control" id="Rating" name="Rating" asp-for="Rating" min="1" max="5">
+                                <span asp-validation-for="Rating" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Comment -->
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="Comment">Comment</label>
+                                <textarea class="form-control" id="Comment" name="Comment" asp-for="Comment" rows="3"></textarea>
+                                <span asp-validation-for="Comment" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Review Date -->
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="ReviewDate">Review Date</label>
+                                <input type="datetime-local" class="form-control" id="ReviewDate" name="ReviewDate" asp-for="ReviewDate">
+                                <span asp-validation-for="ReviewDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" form="review-add-form">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

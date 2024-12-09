@@ -31,7 +31,7 @@ public static List<Review> GetAllReviews()
     string query = @"SELECT r.review_id, r.product_id, r.user_id, r.rating, r.comment, r.review_date, r.is_deleted , p.product_name, u.username
     FROM Reviews r
     LEFT JOIN Products  p ON p.product_id = r.product_id
-    LEFT JOIN Users  u ON u.user_id = r..user_id
+    LEFT JOIN Users  u ON u.user_id = r.user_id
      WHERE r.is_deleted = 0";
     
     var reviews = new List<Review>();
@@ -144,24 +144,23 @@ public static List<Review> GetAllReviews()
         }
 
         // Cập nhật review
-        public static int UpdateReview(Review review)
-        {
-            string query = @"UPDATE Reviews
-                             SET rating = @rating,
-                                 comment = @comment
-                             WHERE review_id = @review_id AND is_deleted = 0";
-            
-            var parameters = new MySqlParameter[]
-            {
-                new MySqlParameter("@product_id", MySqlDbType.VarChar) { Value = review.ProductId },
-                new MySqlParameter("@user_id", MySqlDbType.Int32) { Value = review.UserId },
-                new MySqlParameter("@rating", MySqlDbType.Int32) { Value = review.Rating },
-                new MySqlParameter("@comment", MySqlDbType.Text) { Value = review.Comment },
-                new MySqlParameter("@review_date", MySqlDbType.DateTime) { Value = review.ReviewDate }
-            };
+       public static int UpdateReview(Review review)
+{
+    string query = @"UPDATE Reviews
+                     SET rating = @rating,
+                         comment = @comment
+                     WHERE review_id = @review_id AND is_deleted = 0";
+    
+    var parameters = new MySqlParameter[]
+    {
+        new MySqlParameter("@review_id", MySqlDbType.Int32) { Value = review.ReviewId },
+        new MySqlParameter("@rating", MySqlDbType.Int32) { Value = review.Rating },
+        new MySqlParameter("@comment", MySqlDbType.Text) { Value = review.Comment }
+    };
 
-            return DatabaseHelper.ExecuteNonQuery(query, parameters);
-        }
+    return DatabaseHelper.ExecuteNonQuery(query, parameters);
+}
+
 
         // Xóa review (đánh dấu bị xóa)
         public static int DeleteReview(int reviewId)

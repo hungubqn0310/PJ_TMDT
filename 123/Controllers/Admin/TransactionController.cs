@@ -53,7 +53,7 @@ namespace _123.Controllers
         }
 
         // GET Edit: Show the form to edit an existing transaction
-        [HttpGet("edit/{id}")]
+        [HttpGet("edit")]
         public IActionResult Edit(int id)
         {
             var transaction = TransactionHistoryService.GetTransactionById(id); // Fetch transaction by ID
