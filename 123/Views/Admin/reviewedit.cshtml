@@ -1,0 +1,101 @@
+@model Review
+
+<div class="modal fade bd-example-modal-lg" id="review-@Model.ReviewId" tabindex="-1" role="dialog" aria-labelledby="reviewModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reviewModalTitle">Edit Review</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Edit" method="post" id="review-edit-form-@Model.ReviewId">
+                    <input type="hidden" name="ReviewId" asp-for="ReviewId">
+
+                    <div class="row">
+                        <!-- Product ID -->
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="ProductId">Product</label>
+                                <select class="form-control" id="ProductId" name="ProductId" asp-for="ProductId">
+                                    <option value="">Select a product</option>
+                                    @if (ViewBag.Products != null)
+                                    {
+                                        @foreach (var product in ViewBag.Products)
+                                        {
+                                            <option value="@product.ProductId")>@product.ProductName</option>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <option disabled>No products available</option>
+                                    }
+                                </select>
+                                <span asp-validation-for="ProductId" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- User ID -->
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="UserId">User</label>
+                                <select class="form-control" id="UserId" name="UserId" asp-for="UserId">
+                                    <option value="">Select a user</option>
+                                    @if (ViewBag.Users != null)
+                                    {
+                                        @foreach (var user in ViewBag.Users)
+                                        {
+                                            <option value="@user.user_id" >@user.username</option>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <option disabled>No users available</option>
+                                    }
+                                </select>
+                                <span asp-validation-for="UserId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Rating -->
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="Rating">Rating</label>
+                                <input type="number" class="form-control" id="Rating" name="Rating" asp-for="Rating" min="1" max="5" step="1">
+                                <span asp-validation-for="Rating" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Review Date -->
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="ReviewDate">Review Date</label>
+                                <input type="datetime-local" class="form-control" id="ReviewDate" name="ReviewDate" asp-for="ReviewDate" value="@Model.ReviewDate.ToString("yyyy-MM-ddTHH:mm:ss")">
+                                <span asp-validation-for="ReviewDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Comment -->
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="Comment">Comment</label>
+                                <textarea class="form-control" id="Comment" name="Comment" asp-for="Comment" rows="3">@Model.Comment</textarea>
+                                <span asp-validation-for="Comment" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" style="border-radius: 20px;">Close</button>
+                <button type="submit" class="btn btn-outline-primary" style="border-radius: 20px;" form="review-edit-form-@Model.ReviewId">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>

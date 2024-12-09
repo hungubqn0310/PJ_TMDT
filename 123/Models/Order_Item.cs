@@ -1,9 +1,18 @@
-public class Order_Item
+using System;
+
+namespace _123.Models
 {
-    public int order_item_id { get; set; }
-    public int order_id { get; set; }
-    public string product_name { get; set; }
-    public int quantity { get; set; }
-    public decimal price { get; set; }
-    public bool is_deleted { get; set; }
-}
+public class OrderItem
+{
+    public int OrderItemId { get; set; }
+    public int OrderId { get; set; }
+    public string ProductName { get; set; }
+    public int Quantity { get; set; }
+    public decimal Price { get; set; }
+    public bool IsDeleted { get; set; }
+
+        public virtual Order Order { get; set; }
+
+        public virtual Product Product { get; set; }
+
+}}

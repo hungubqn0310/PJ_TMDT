@@ -1,11 +1,22 @@
-public class Transaction_History
+using System;
+
+namespace _123.Models
 {
-    public int transaction_id { get; set; }
-    public int user_id { get; set; }
-    public int order_id { get; set; }
-    public DateTime transaction_date { get; set; }
-    public decimal amount { get; set; }
-    public int payment_method_id { get; set; }
-    public string status { get; set; }
-    public bool is_deleted { get; set; }
+    public class TransactionHistory
+    {
+        public int TransactionId { get; set; }
+        public int UserId { get; set; }
+        public int OrderId { get; set; }
+        public DateTime TransactionDate { get; set; }
+        public decimal Amount { get; set; }
+        public int PaymentMethodId { get; set; }
+        public string Status { get; set; }
+        public bool IsDeleted { get; set; }
+
+        public virtual User User { get; set; }
+        public virtual Order Order { get; set; }
+        public virtual PaymentMethod PaymentMethod { get; set; }
+
+        
+    }
 }

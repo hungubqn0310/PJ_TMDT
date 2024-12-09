@@ -10,7 +10,7 @@
   <div class="d-flex justify-content-end">
     <button type="button" class="btn btn-outline-success" style="margin: 10px 40px 0;" data-toggle="modal" data-target="#review-add" 
     data-url="@Url.Action($"Add")">Add </button>
-    @* @await Html.PartialAsync("/Views/Admin/reviewadd.cshtml", @Model.Review) *@
+    @await Html.PartialAsync("/Views/Admin/reviewadd.cshtml", @Model.Review)
   </div>
 
   <div class="card-body">
@@ -31,20 +31,20 @@
                 {
                     <tr>
                         <td>@(i + 1)</td> <!-- Index -->
-                        <td>@Model.Reviews[i].product_id</td>
-                        <td>@Model.Reviews[i].user_id</td>
-                        <td>@Model.Reviews[i].rating</td>
-                        <td>@Model.Reviews[i].comment</td>
-                        <td>@Model.Reviews[i].review_date.ToString("yyyy-MM-dd HH:mm")</td>
+                        <td>@Model.Reviews[i].ProductId</td>
+                        <td>@Model.Reviews[i].UserId</td>
+                        <td>@Model.Reviews[i].Rating</td>
+                        <td>@Model.Reviews[i].Comment</td>
+                        <td>@Model.Reviews[i].ReviewDate.ToString("yyyy-MM-dd HH:mm")</td>
                         <td>
-                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#review-@Model.Reviews[i].review_id" data-url="@Url.Action($"Edit/{@Model.Reviews[i].review_id}")">
+                                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#review-@Model.Reviews[i].ReviewId" data-url="@Url.Action($"Edit/{@Model.Reviews[i].ReviewId}")">
                                 <i class="material-icons" style="font-size: 14px">border_color</i>
                             </button>
-                            @* @await Html.PartialAsync("/Views/Admin/reviewedit.cshtml", @Model.Reviews[i]) *@
-                            <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#review-delete-@Model.Reviews[i].review_id" data-url="@Url.Action($"Delete/{@Model.Reviews[i].review_id}")">
+                            @await Html.PartialAsync("/Views/Admin/reviewedit.cshtml", @Model.Reviews[i])
+                                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#review-delete-@Model.Reviews[i].ReviewId" data-url="@Url.Action($"Delete/{@Model.Reviews[i].ReviewId}")">
                                 <i class="material-icons" style="font-size: 14px">delete</i>
                             </button>
-                            @* @await Html.PartialAsync("/Views/Admin/reviewdelete.cshtml", @Model.Reviews[i]) *@
+                            @await Html.PartialAsync("/Views/Admin/reviewdelete.cshtml", @Model.Reviews[i])
                         </td>
                     </tr>
                 }

@@ -1,0 +1,85 @@
+@model TransactionHistory
+
+<div class="modal fade" id="transaction-add" tabindex="-1" role="dialog" aria-labelledby="transactionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="transactionModalLabel">Create Transaction</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Add" method="post" id="transaction-add-form">
+                    <div class="row">
+                        <!-- User ID -->
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="UserId">User</label>
+                                <select class="form-control" id="UserId" name="UserId" asp-for="UserId" asp-items="@(new SelectList(ViewBag.Users, "user_id", "username"))">
+                                </select>
+                                <span asp-validation-for="UserId" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Order ID -->
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="OrderId">Order</label>
+                                <select class="form-control" id="OrderId" name="OrderId" asp-for="OrderId" asp-items="@(new SelectList(ViewBag.Orders, "OrderId", "OrderId"))">
+                                </select>
+                                <span asp-validation-for="OrderId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Transaction Date -->
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="TransactionDate">Transaction Date</label>
+                                <input type="datetime-local" class="form-control" id="TransactionDate" name="TransactionDate" asp-for="TransactionDate">
+                                <span asp-validation-for="TransactionDate" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Amount -->
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="Amount">Amount</label>
+                                <input type="number" class="form-control" id="Amount" name="Amount" asp-for="Amount" step="0.01">
+                                <span asp-validation-for="Amount" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Payment Method -->
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="PaymentMethodId">Payment Method</label>
+                                <select class="form-control" id="PaymentMethodId" name="PaymentMethodId" asp-for="PaymentMethodId" asp-items="@(new SelectList(ViewBag.PaymentMethods, "PaymentMethodId", "PaymentMethodName"))">
+                                </select>
+                                <span asp-validation-for="PaymentMethodId" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Status -->
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="Status">Status</label>
+                                <input type="text" class="form-control" id="Status" name="Status" asp-for="Status" placeholder="Enter status">
+                                <span asp-validation-for="Status" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" form="transaction-add-form">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

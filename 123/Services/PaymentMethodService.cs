@@ -3,31 +3,33 @@ using System.Collections.Generic;
 using System.Data;
 using _123.Helpers;
 using MySql.Data.MySqlClient;
+using _123.Models;
+
 
 namespace _123.Services
 {
     public static class PaymentMethodService
     {
         // Thêm phương thức thanh toán mới
-        public static int CreatePaymentMethod(Payment_Method paymentMethod)
+        public static int CreatePaymentMethod(PaymentMethod paymentMethod)
         {
             string query = @"INSERT INTO Payment_Methods (payment_method_name, is_deleted)
                             VALUES (@payment_method_name, 0)";
             
             var parameters = new MySqlParameter[]
             {
-                new MySqlParameter("@payment_method_name", MySqlDbType.VarChar) { Value = paymentMethod.payment_method_name }
+                new MySqlParameter("@payment_method_name", MySqlDbType.VarChar) { Value = paymentMethod.PaymentMethodName }
             };
 
             return DatabaseHelper.ExecuteNonQuery(query, parameters);
         }
 
         // Lấy danh sách phương thức thanh toán
-        public static List<Payment_Method> GetPaymentMethods()
+        public static List<PaymentMethod> GetPaymentMethods()
         {
             string query = "SELECT payment_method_id, payment_method_name, is_deleted FROM Payment_Methods WHERE is_deleted = 0";
             
-            var paymentMethods = new List<Payment_Method>();
+            var paymentMethods = new List<PaymentMethod>();
 
             try
             {
@@ -35,11 +37,11 @@ namespace _123.Services
 
                 foreach (DataRow row in dataTable.Rows)
                 {
-                    paymentMethods.Add(new Payment_Method
+                    paymentMethods.Add(new PaymentMethod
                     {
-                        payment_method_id = Convert.ToInt32(row["payment_method_id"]),
-                        payment_method_name = row["payment_method_name"].ToString(),
-                        is_deleted = Convert.ToBoolean(row["is_deleted"])
+                        PaymentMethodId = Convert.ToInt32(row["payment_method_id"]),
+                        PaymentMethodName = row["payment_method_name"].ToString(),
+                        IsDeleted = Convert.ToBoolean(row["is_deleted"])
                     });
                 }
             }
@@ -53,7 +55,7 @@ namespace _123.Services
         }
 
         // Lấy phương thức thanh toán theo ID
-        public static Payment_Method GetPaymentMethodById(int paymentMethodId)
+        public static PaymentMethod GetPaymentMethodById(int paymentMethodId)
         {
             string query = "SELECT payment_method_id, payment_method_name, is_deleted FROM Payment_Methods WHERE payment_method_id = @paymentMethodId AND is_deleted = 0";
             
@@ -67,11 +69,11 @@ namespace _123.Services
             if (result.Rows.Count > 0)
             {
                 var row = result.Rows[0];
-                return new Payment_Method
+                return new PaymentMethod
                 {
-                    payment_method_id = Convert.ToInt32(row["payment_method_id"]),
-                    payment_method_name = row["payment_method_name"].ToString(),
-                    is_deleted = Convert.ToBoolean(row["is_deleted"])
+                    PaymentMethodId = Convert.ToInt32(row["payment_method_id"]),
+                        PaymentMethodName = row["payment_method_name"].ToString(),
+                        IsDeleted = Convert.ToBoolean(row["is_deleted"])
                 };
             }
 
@@ -79,7 +81,7 @@ namespace _123.Services
         }
 
         // Cập nhật thông tin phương thức thanh toán
-        public static int UpdatePaymentMethod(Payment_Method paymentMethod)
+        public static int UpdatePaymentMethod(PaymentMethod paymentMethod)
         {
             string query = @"UPDATE Payment_Methods
                              SET payment_method_name = @payment_method_name
@@ -87,8 +89,9 @@ namespace _123.Services
             
             var parameters = new MySqlParameter[]
             {
-                new MySqlParameter("@payment_method_id", MySqlDbType.Int32) { Value = paymentMethod.payment_method_id },
-                new MySqlParameter("@payment_method_name", MySqlDbType.VarChar) { Value = paymentMethod.payment_method_name }
+                new MySqlParameter("@payment_method_id", MySqlDbType.Int32) { Value = paymentMethod.PaymentMethodId },
+                                new MySqlParameter("@payment_method_name", MySqlDbType.VarChar) { Value = paymentMethod.PaymentMethodName }
+
             };
 
             return DatabaseHelper.ExecuteNonQuery(query, parameters);
