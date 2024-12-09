@@ -13,11 +13,6 @@ $(document).ready(function () {
         closePopup();
     });
 
-    // Đóng popup khi nhấn vào nút đóng
-    $("#closePopup").click(function () {
-        closePopup();
-    });
-
     // Kiểm tra thông tin khi nhấn nút đăng nhập
     $("#loginButton").click(function (event) {
         event.preventDefault(); // Ngừng gửi form
@@ -56,6 +51,7 @@ $(document).ready(function () {
         $("#loginButton").prop("disabled", !isValid);
     });
 
+    // Hàm đóng popup
     function closePopup() {
         $popup.css("animation", "slideOutRight 0.4s ease").fadeOut();
         $overlay.fadeOut();
