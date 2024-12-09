@@ -84,14 +84,19 @@ namespace _123.Services
         // Phương thức cập nhật thông tin ProductSupplier
         public static int UpdateProductSupplier(ProductSupplier productSupplier)
         {
-            string query = @"UPDATE Product_Supplier
-                             SET is_deleted = @is_deleted
-                             WHERE ps_id = @ps_id";
+            string query = @"
+                UPDATE Product_Supplier
+                SET product_id = @product_id,
+                    supplier_id = @supplier_id,
+                    is_deleted = @is_deleted
+                WHERE ps_id = @ps_id";
 
             var parameters = new MySqlParameter[]
             {
                 new MySqlParameter("@ps_id", MySqlDbType.Int32) { Value = productSupplier.PsId },
-                new MySqlParameter("@is_deleted", MySqlDbType.Int32) { Value = productSupplier.IsDeleted ? 1 : 0 },
+                new MySqlParameter("@product_id", MySqlDbType.VarChar) { Value = productSupplier.ProductId },
+                new MySqlParameter("@supplier_id", MySqlDbType.Int32) { Value = productSupplier.SupplierId },
+                new MySqlParameter("@is_deleted", MySqlDbType.Int32) { Value = productSupplier.IsDeleted ? 1 : 0 }
             };
 
             return DatabaseHelper.ExecuteNonQuery(query, parameters);

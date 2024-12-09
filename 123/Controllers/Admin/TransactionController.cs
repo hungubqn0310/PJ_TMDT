@@ -47,7 +47,7 @@ namespace _123.Controllers
             if (ModelState.IsValid)
             {
                 TransactionHistoryService.CreateTransaction(transaction); // Call service to create a new transaction
-                return RedirectToAction("Index"); // Redirect to the transaction list
+                return new RedirectResult("/admin/transaction"); // Redirect to the transaction list
             }
             return View("/Views/Admin/transactionadd.cshtml", transaction); // Return the form with validation errors
         }
@@ -74,7 +74,7 @@ namespace _123.Controllers
             if (ModelState.IsValid)
             {
                 TransactionHistoryService.UpdateTransaction(transaction); // Call service to update the transaction
-                return RedirectToAction("Index"); // Redirect to the transaction list
+                return new RedirectResult("/admin/transaction"); // Redirect to the transaction list
             }
             return View("/Views/Admin/transactionedit.cshtml", transaction); // Return the form with validation errors
         }
@@ -101,7 +101,7 @@ namespace _123.Controllers
             }
 
             TransactionHistoryService.DeleteTransaction(transaction.TransactionId); // Call service to delete the transaction
-            return RedirectToAction("Index"); // Redirect to the transaction list
+            return new RedirectResult("/admin/transaction"); // Redirect to the transaction list
         }
         
         // Optional: GET Transaction details by ID (for viewing details)

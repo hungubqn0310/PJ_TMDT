@@ -1,24 +1,23 @@
 @model ProductSupplier
 
-<div class="modal fade" id="product-supplier-delete-@Model.ProductId-@Model.SupplierId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade" id="product-supplier-delete-@Model.PsId" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel-@Model.PsId" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Xác nhận xóa</h5>
+                <h5 class="modal-title" id="deleteModalLabel-@Model.PsId">Xác nhận xóa</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form asp-action="Delete" method="post" id="product-supplier-@Model.ProductId-@Model.SupplierId-delete">
-                    <input type="hidden" name="ProductId" asp-for="ProductId" />
-                    <input type="hidden" name="SupplierId" asp-for="SupplierId" />
+                <form asp-action="DeleteConfirmed" method="post" id="delete-form-@Model.PsId">
+                    <input type="hidden" name="psId" value="@Model.PsId" />
                     <label>Bạn có chắc chắn muốn xóa nhà cung cấp **@Model.SupplierId** cho sản phẩm **@Model.ProductId** không?</label>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" style="border-radius: 20px;">Đóng</button>
-                <button type="submit" class="btn btn-outline-danger" style="border-radius: 20px;" form="product-supplier-@Model.ProductId-@Model.SupplierId-delete">Đồng ý</button>
+                <button type="submit" class="btn btn-outline-danger" style="border-radius: 20px;" form="delete-form-@Model.PsId">Đồng ý</button>
             </div>
         </div>
     </div>

@@ -92,7 +92,6 @@ namespace _123.Controllers
 
             return PartialView("/Views/Admin/productsupplieredit.cshtml", productSupplier);
         }
-
         // Xử lý sửa nhà cung cấp sản phẩm (POST)
         [HttpPost("edit")]
         public IActionResult Edit(ProductSupplier productSupplier)
@@ -100,7 +99,7 @@ namespace _123.Controllers
             try
             {
                 ProductSupplierService.UpdateProductSupplier(productSupplier);
-                return RedirectToAction("/admin/productsupplier");
+                return new RedirectResult("/admin/productsupplier");
             }
             catch (Exception ex)
             {
@@ -129,7 +128,7 @@ namespace _123.Controllers
             try
             {
                 ProductSupplierService.DeleteProductSupplier(psId);
-                return RedirectToAction("/admin/productsupplier");
+                return new RedirectResult("/admin/productsupplier");
             }
             catch (Exception ex)
             {
