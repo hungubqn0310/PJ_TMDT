@@ -6,7 +6,8 @@ namespace _123.Helpers
 {
     public static class DatabaseHelper
     {
-        private static string _connectionString = "Server=localhost;Database=handk;User=root;Password=123456;";
+        // Chuỗi kết nối đến cơ sở dữ liệu
+        private static string _connectionString = "Server=localhost;Database=HanDK;User=root;Password=new_password;";
 
         /// <summary>
         /// Mở kết nối đến cơ sở dữ liệu.
@@ -75,32 +76,27 @@ namespace _123.Helpers
                 }
             }
         }
-    
-	public static object ExecuteScalar(string query, MySqlParameter[] parameters = null)
-        {
-            using (var connection = new MySqlConnection(_connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    using (var command = new MySqlCommand(query, connection))
-                    {
-                        // Thêm các tham số nếu có
-                        if (parameters != null)
-                        {
-                            command.Parameters.AddRange(parameters);
-                        }
 
-                        // Thực thi câu lệnh và trả về giá trị đầu tiên
-                        return command.ExecuteScalar();
-                    }
-                }
-                catch (Exception ex)
+        /// <summary>
+        /// Hàm thực thi câu lệnh SQL trả về giá trị đầu tiên.
+        /// </summary>
+        /// <param name="query">Câu lệnh SQL</param>
+        /// <param name="parameters">Danh sách tham số (tuỳ chọn)</param>
+        /// <returns>Giá trị đầu tiên của kết quả</returns>
+        public static object ExecuteScalar(string query, MySqlParameter[] parameters = null)
+        {
+            using (var connection = GetConnection())
+            {
+                using (var command = new MySqlCommand(query, connection))
                 {
-                    Console.WriteLine($"Lỗi khi thực hiện ExecuteScalar: {ex.Message}");
-                    throw;
+                    if (parameters != null)
+                    {
+                        command.Parameters.AddRange(parameters);
+                    }
+
+                    return command.ExecuteScalar();
                 }
             }
         }
-	}
+    }
 }

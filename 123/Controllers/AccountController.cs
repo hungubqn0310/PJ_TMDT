@@ -65,13 +65,11 @@ using _123.Models;
 using System.Linq;
 using System.Threading.Tasks;
 using _123.Services;
-using Google.Protobuf;
 
 namespace _123.Controllers
 {
     public class AccountController : Controller
     {
-
         // GET: /Account/SignUp
         public IActionResult SignUp()
         {
@@ -85,33 +83,32 @@ namespace _123.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Không mã hóa mật khẩu, lưu trực tiếp
+                // Thực hiện đăng ký
                 var st = AuthService.Signup(userAccount);
-                Console.WriteLine(st);
+                
+                // Thêm thông báo đăng ký thành công
+                TempData["SuccessMessage"] = "Đăng ký thành công! Vui lòng đăng nhập.";
 
-                return RedirectToAction("Login");
+                // Chuyển hướng đến trang Home
+                return RedirectToAction("Index", "Home");
             }
             return View(userAccount);
         }
 
-        // GET: /Account/Login
-        public IActionResult Login()
-        {
-            return View();
-        }
+        // // GET: /Account/Login
+        // public IActionResult Login()
+        // {
+        //     return View();
+        // }
 
         // POST: /Account/Login
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        // [ValidateAntiForgeryToken]
         public IActionResult Login(string username, string password)
         {
-            // Tìm người dùng dựa trên username
-            // var userAccount = _context.Users.SingleOrDefault(u => u.Username == username);
-             var userAccount = AuthService.Login(username,password);
-            // if (userAccount != null && userAccount.Password == password)
-             // So sánh trực tiếp mật khẩu
-            Console.WriteLine(userAccount);
-            if (userAccount != null ) // So sánh trực tiếp mật khẩu
+            var userAccount = AuthService.Login(username, password);
+            
+            if (userAccount != null)
             {
                 // Đăng nhập thành công
                 return RedirectToAction("Index", "Home");

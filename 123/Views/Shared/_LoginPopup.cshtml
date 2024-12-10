@@ -11,17 +11,27 @@
             thanh toán nhanh chóng cùng nhiều trải nghiệm.
         </p>
     </div>
-    <div class="input-group">
-        <label for="email" class="label">Email hoặc số điện thoại</label>
-        <input type="text" id="email" class="input-field" placeholder="Nhập email hoặc số điện thoại" />
-    </div>
-    <div class="input-group">
-        <label for="password" class="label">Mật khẩu</label>
-        <input type="password" id="password" class="input-field" placeholder="Nhập mật khẩu" />
-    </div>
+    <form asp-controller="Account" asp-action="Login" method="POST" >
+        <div class="input-group">
+            <label for="email" class="label">Email hoặc số điện thoại</label>
+            <input type="text" id="email" class="input-field" placeholder="Nhập email hoặc số điện thoại" />
+        </div>
+        <div class="input-group">
+            <label for="password" class="label">Mật khẩu</label>
+            <input type="password" id="password" class="input-field" placeholder="Nhập mật khẩu" />
+        </div>
+        @* <form asp-controller="Account" asp-action="Login" method="POST" class="mx-1 mx-md-4"> *@
+
+        <button id="loginButton" class="btn btn-primary" type="submit" disabled>Đăng nhập</button>
+    </form>
     <div class="actions">
-        <button id="loginButton" class="btn btn-primary" disabled>Đăng nhập</button>
-        <button class="btn btn-secondary">Đăng ký</button>
+
+
+                @* <button class="btn btn-secondary">Đăng ký</button> *@
+        <form asp-controller="Account" asp-action="SignUp" method="get" class="mx-1 mx-md-4">
+            <!-- Các trường khác -->
+            <button type="submit" class="btn btn-primary btn-lg">Đăng Ký</button>
+        </form>
         <a href="#" class="forgot-password">Quên mật khẩu?</a>
     </div>
     <div class="social-login">
