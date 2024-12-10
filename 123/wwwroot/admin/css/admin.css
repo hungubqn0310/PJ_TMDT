@@ -1,3 +1,15 @@
 .sidebar-dark .nav-item .nav-link[data-toggle=collapse]::after {
   color: #000;
 }
+
+.nav-item.active .nav-link {
+  color: #ff66a0 !important; /* Màu của nav-link */
+}
+
+.nav-item.active .nav-link i {
+  color: #ff66a0 !important; /* Màu của icon */
+}
+
+.sidebar-dark .nav-item .nav-link[data-toggle=collapse]::after {
+  color: #ff66a0 !important;
+}
