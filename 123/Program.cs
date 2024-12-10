@@ -23,6 +23,16 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapGet("/api/music", async context =>
+    {
+        var directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "audio");
+        var files = Directory.GetFiles(directoryPath, "*.mp3");
+        var fileNames = files.Select(f => Path.GetFileName(f)).ToArray();
+        await context.Response.WriteAsJsonAsync(fileNames);
+    });
+});
 
 app.MapControllerRoute(
     name: "default",
