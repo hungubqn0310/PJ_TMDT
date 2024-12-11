@@ -326,6 +326,7 @@ li:hover .arrowHover {
 
 
 .music-player {
+  border-radius: 30px;
   --primary-color: white;
   --secondary-color: white;
   --padding: 1em;
@@ -333,17 +334,42 @@ li:hover .arrowHover {
 
   font-size: 14px;
   background-color: #787878;
-  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);  /* 0: không dịch chuyển theo chiều ngang, -5px: dịch chuyển 5px lên trên, 10px: độ mờ, rgba(0, 0, 0, 0.3): màu đen với độ trong suốt */
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3); /* 0: không dịch chuyển theo chiều ngang, -5px: dịch chuyển 5px lên trên, 10px: độ mờ, rgba(0, 0, 0, 0.3): màu đen với độ trong suốt */
 
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;  /* Sử dụng fixed để giữ player ở footer */
-  bottom: 0;  /* Đặt nó ở dưới cùng của cửa sổ */
+  position: fixed; /* Sử dụng fixed để giữ player ở footer */
+  bottom: 0; /* Đặt nó ở dưới cùng của cửa sổ */
   left: 0;
-  width: 100%;  /* Chiếm toàn bộ chiều rộng */
+  width: 100%; /* Chiếm toàn bộ chiều rộng */
   padding: 5px;
   color: var(--primary-color);
+  transform: translateY(0);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.music-player.closed {
+  transform: translateY(100%);
+}
+
+.toggle-player-btn {
+  position: absolute;
+  top: -30px;
+  left: 5%;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3); /* 0: không dịch chuyển theo chiều ngang, -5px: dịch chuyển 5px lên trên, 10px: độ mờ, rgba(0, 0, 0, 0.3): màu đen với độ trong suốt */
+  transform: translateX(-50%);
+  background: #555;
+  color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
 }
 /* Cấu hình thanh chạy bài hát và thanh âm lượng */
 input[type="range"] {
@@ -488,12 +514,12 @@ i{
 #song-list-container {
   position: fixed;
   right: -17.5px;
-  bottom: 55px;
+  bottom: 75px;
   background: radial-gradient(circle, rgba(170, 120, 120, 0.7), rgba(120, 120, 120, 0.2));
 
   background-color: #787878;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 30px 0 0 30px;
   box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);  /* 0: không dịch chuyển theo chiều ngang, -5px: dịch chuyển 5px lên trên, 10px: độ mờ, rgba(0, 0, 0, 0.3): màu đen với độ trong suốt */
   display: none; /* Ban đầu ẩn */
   max-height: 300px;
@@ -502,7 +528,7 @@ i{
   transition: all 0.3s ease-in-out; /* Animation hiển thị */
   overflow-y: auto; /* Cho phép cuộn khi danh sách dài */
   opacity: 0; /* Bắt đầu từ trạng thái trong suốt */
-  transform: translateY(20px); /* Trượt xuống */
+  transform: translateX(100%); /* Trượt xuống */
 
   z-index: 1000; /* Đảm bảo danh sách bài hát nằm trên các phần tử khác */
 
@@ -510,12 +536,13 @@ i{
 #song-list-container.show {
   display: block; /* Hiển thị khi thêm class "show" */
   opacity: 1; /* Hiện danh sách */
-  transform: translateY(0); /* Đưa về vị trí ban đầu */
+  transform: translateX(0); /* Đưa về vị trí ban đầu */
 }
 .fa-random:hover, .fa-step-backward:hover,
 .fa-step-forward:hover, .fa-undo-alt:hover,
 .fa-list-ul:hover, .fa-volume-down:hover {
   color: #000;
+  cursor: pointer;
   transition: color 0.3s; /* Thêm hiệu ứng chuyển màu */
 
 }
@@ -528,11 +555,11 @@ i{
 #song-list li {
   padding: 10px;
   cursor: pointer;
-  border-bottom: 1px solid #ccc;
 }
 
 #song-list li:hover {
   border-radius: 8px;
+  color: #000;
   background: radial-gradient(circle, rgba(170, 120, 120, 0.7), rgba(120, 120, 120, 0.2));
 
   background-color: #b7b7b7;
@@ -555,6 +582,9 @@ i{
 }
 .volume-bar .progress-bar:hover .progress::after{
     --size: .8em;
+}
+input[type="range"] {
+    width: 100%;
 }
 /* Tổng thể footer */
 .footer {
