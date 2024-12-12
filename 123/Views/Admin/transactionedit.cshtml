@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form asp-action="edit" method="post" id="transaction-edit-form-@Model.TransactionId">
+                <form asp-action="edit" method="post" id="transaction-edit-form-@Model.TransactionId" asp-controller="transaction">
                     <input type="hidden" name="TransactionId" asp-for="TransactionId">
 
                     <div class="row">

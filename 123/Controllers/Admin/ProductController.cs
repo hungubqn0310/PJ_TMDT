@@ -41,9 +41,35 @@ namespace _123.Controllers
         return PartialView("/Views/Admin/productadd.cshtml", product);
     }
 
-    [HttpPost("add")]
-    public IActionResult Add(Product product)
+    [HttpPost]
+    [Route("admin/product/add")]
+    public IActionResult Add(Product product, IFormFile ImageUrl)
     {
+
+        if (ImageUrl != null && ImageUrl.Length > 0)
+    {
+        // Đường dẫn thư mục lưu ảnh
+        string folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "upload");
+
+        // Tạo thư mục nếu chưa tồn tại
+        if (!Directory.Exists(folderPath))
+        {
+            Directory.CreateDirectory(folderPath);
+        }
+
+        // Đường dẫn đầy đủ của file
+        string fileName = Guid.NewGuid().ToString() + Path.GetExtension(ImageUrl.FileName); // Tạo tên file duy nhất
+        string filePath = Path.Combine(folderPath, fileName);
+
+        // Lưu file vào thư mục
+        using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+            ImageUrl.CopyTo(stream);
+        }
+
+        // Gán đường dẫn file vào product.ImageUrl
+        product.ImageUrl = "/upload/" + fileName;
+    }
         ProductService.CreateProduct(product);
         return new RedirectResult("/admin/product");
     }
@@ -60,9 +86,34 @@ namespace _123.Controllers
         return PartialView("/Views/Admin/productedit.cshtml", product);
     }
 
-    [HttpPost("edit")]
-    public IActionResult Edit(Product product)
+    [HttpPost]
+    [Route("admin/product/edit")]
+    public IActionResult Edit(Product product, IFormFile ImageUrl)
     {
+        if (ImageUrl != null && ImageUrl.Length > 0)
+    {
+        // Đường dẫn thư mục lưu ảnh
+        string folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "upload");
+
+        // Tạo thư mục nếu chưa tồn tại
+        if (!Directory.Exists(folderPath))
+        {
+            Directory.CreateDirectory(folderPath);
+        }
+
+        // Đường dẫn đầy đủ của file
+        string fileName = Guid.NewGuid().ToString() + Path.GetExtension(ImageUrl.FileName); // Tạo tên file duy nhất
+        string filePath = Path.Combine(folderPath, fileName);
+
+        // Lưu file vào thư mục
+        using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+            ImageUrl.CopyTo(stream);
+        }
+
+        // Gán đường dẫn file vào product.ImageUrl
+        product.ImageUrl = "/upload/" + fileName;
+    }
         ProductService.UpdateProduct(product);
         return new RedirectResult("/admin/product");
     }

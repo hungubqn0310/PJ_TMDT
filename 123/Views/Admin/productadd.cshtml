@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form asp-action="Add" method="post" id="product-add-form">
+                <form asp-action="Add" method="post" id="product-add-form" enctype="multipart/form-data">
                     @* <input type="hidden" name="ProductId" asp-for="ProductId"> *@
                     <div class="row">
                         <div class="col">
@@ -52,7 +52,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Hình ảnh</label>
-                                <input type="text" class="form-control" placeholder="Nhập URL hình ảnh" name="ImageUrl" asp-for="ImageUrl">
+                                <input type="file" accept="image/*" class="form-control" placeholder="Nhập URL hình ảnh" name="ImageUrl" asp-for="ImageUrl">
                             </div>
                         </div>
                         <div class="col">
