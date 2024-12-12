@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form asp-action="Edit" method="post" id="transaction-edit-form-@Model.TransactionId">
+                <form asp-action="edit" method="post" id="transaction-edit-form-@Model.TransactionId">
                     <input type="hidden" name="TransactionId" asp-for="TransactionId">
 
                     <div class="row">
@@ -116,8 +116,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" style="border-radius: 20px;">Close</button>
-                <button type="submit" class="btn btn-outline-primary" style="border-radius: 20px;" form="transaction-edit-form-@Model.TransactionId">Save Changes</button>
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" style="border-radius: 20px;">Đóng</button>
+                <button type="submit" class="btn btn-outline-primary" style="border-radius: 20px;" form="transaction-edit-form-@Model.TransactionId">Lưu</button>
             </div>
         </div>
     </div>

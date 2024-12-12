@@ -13,3 +13,24 @@
 .sidebar-dark .nav-item .nav-link[data-toggle=collapse]::after {
   color: #ff66a0 !important;
 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-image: url('https://i.pinimg.com/736x/46/97/d7/4697d7984f020395c74b47b20c871a56.jpg'); /* Đường dẫn đến ảnh nền */
+  background-size: cover; /* Ảnh phủ đầy bảng */
+  background-repeat: no-repeat; /* Không lặp lại ảnh */
+  background-position: center; /* Căn giữa ảnh */
+}
+
+th, td {
+  background-color: rgba(255, 255, 255, 0.8); /* Nền trắng mờ để đọc dễ hơn */
+}
+
+.card-header{
+  background-color: #6b00ff63;
+}
+
+.text-primary {
+  color: #fff !important;
+}
