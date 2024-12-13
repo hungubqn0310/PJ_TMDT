@@ -8,6 +8,12 @@
       <h6 class="m-0 font-weight-bold text-primary">Thông tin danh mục</h6>
   </div>
   <div class="d-flex justify-content-end">  
+
+    @* @using (Html.BeginForm("ImportExcel", "Category", FormMethod. Post, new {enctype="multipart/form-data"}))
+    {
+        <input type="file" name="postFile" style="border:1px solid #ccc;display:inline-block;padding:6px 12px; cursor:pointer" />
+        <input type="submit" value="Import" class="btn btn-primary" />
+    } *@
     <button type="button" class="btn btn-outline-success" style="margin: 10px 40px 0;" data-toggle="modal" data-target="#category-add" 
     data-url="@Url.Action($"Add")">Thêm Mới</button>
     @await Html.PartialAsync("/Views/Admin/categoryadd.cshtml", @Model.Category)

@@ -17,10 +17,10 @@
 table {
   width: 100%;
   border-collapse: collapse;
-  background-image: url('https://i.pinimg.com/736x/46/97/d7/4697d7984f020395c74b47b20c871a56.jpg'); /* Đường dẫn đến ảnh nền */
-  background-size: cover; /* Ảnh phủ đầy bảng */
-  background-repeat: no-repeat; /* Không lặp lại ảnh */
-  background-position: center; /* Căn giữa ảnh */
+  background-image: url('https://i.pinimg.com/736x/e3/1d/d3/e31dd30355e17684f05c4ba0c8492510.jpg'); /* Đường dẫn đến ảnh nền */
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center; 
 }
 
 th, td {
