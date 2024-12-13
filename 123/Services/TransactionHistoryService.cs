@@ -13,6 +13,7 @@ namespace _123.Services
         // Thêm mới giao dịch vào Transaction_History
         public static int CreateTransaction(TransactionHistory transaction)
         {
+            try { 
             string query = @"INSERT INTO Transaction_History (user_id, order_id, transaction_date, amount, payment_method_id, status, is_deleted)
                              VALUES (@user_id, @order_id, @transaction_date, @amount, @payment_method_id, @status, 0)";
             
@@ -28,6 +29,10 @@ namespace _123.Services
 
             // Chạy câu lệnh INSERT và trả về số dòng bị ảnh hưởng
             return DatabaseHelper.ExecuteNonQuery(query, parameters);
+            } catch (Exception ex) {
+                Console.WriteLine("Error");
+                return 0;
+            }
         }
 public static List<TransactionHistory> GetAllTransactions()
 {
