@@ -1,12 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using Microsoft.AspNetCore.Identity;
+using _123.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Cấu hình DbContext với MySQL
-//
 
+
+// Thêm các dịch vụ khác
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
+builder.Services.AddHttpContextAccessor();
+
 var app = builder.Build();
 
 // Cấu hình cổng HTTP/HTTPS
@@ -22,6 +27,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseAuthentication(); // Bổ sung middleware xác thực
 app.UseAuthorization();
 
 app.MapControllerRoute(

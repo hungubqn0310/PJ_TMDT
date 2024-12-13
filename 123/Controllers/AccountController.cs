@@ -70,6 +70,7 @@ namespace _123.Controllers
 {
     public class AccountController : Controller
     {
+        
         // GET: /Account/SignUp
         public IActionResult SignUp()
         {
