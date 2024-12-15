@@ -111,6 +111,26 @@ namespace _123.Controllers
         }
 
 
+        [HttpGet("carts")]
+        public IActionResult GetCarts([FromQuery] int id)
+        {
+            Console.WriteLine(id);
+            // Tạo một danh sách sản phẩm mẫu
+            var carts = ShoppingCartService.GetCartItemsByUserId(id);
+
+            // Kiểm tra nếu danh sách không rỗng
+            if (carts != null )
+            {
+              var response = new ApiResponse<dynamic>(200, "Success", carts);
+              return Ok(response);
+            }
+            else
+            {
+                // Nếu không có sản phẩm, trả về thông báo lỗi
+                return NotFound(new ApiResponse<dynamic>(404, "Không tìm thấy rỏ hàng."));
+            }
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
