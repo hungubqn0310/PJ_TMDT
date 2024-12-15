@@ -3,7 +3,7 @@
                                 <div class="modal-dialog modal-lg" role="document">
                                     <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle">Create Users</h5>
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Tạo Người Dùng Mới</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                         </button>
@@ -11,16 +11,18 @@
                                     <div class="modal-body">
                                         <form asp-action="add" method="post" id="user--add">
                                             <input type="hidden" name='user_id' asp-for="user_id">
+                                            <input type="hidden" name="role_id" value="1">
+
                                             <div class="row">
                                                 <div class="col">
                                                      <div class="form-group">
-                                                        <label >Username</label>
+                                                        <label ><Strong>Tên người dùng</Strong></label>
                                                         <input type="text" class="form-control" placeholder="Enter username" name='username' asp-for="username">
                                                     </div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="form-group">
-                                                        <label>Email</label>
+                                                        <label><Strong>Email</Strong></label>
                                                         <input type="email" class="form-control" placeholder="Enter email" name="email" asp-for="email">
                                                     </div>
                                                 </div>
@@ -28,7 +30,7 @@
                                             <div class="row">
                                                 <div class="col">
                                                      <div class="form-group">
-                                                        <label >Password</label>
+                                                        <label ><Strong>Mật Khẩu</Strong></label>
                                                         <input type="text" class="form-control" placeholder="Enter password" name='password' asp-for="password">
                                                     </div>
                                                 </div>
@@ -36,13 +38,13 @@
                                             <div class="row">
                                                 <div class="col">
                                                      <div class="form-group">
-                                                        <label >Phone Number</label>
+                                                        <label ><Strong>Số điện thoại</Strong></label>
                                                         <input type="text" class="form-control" placeholder="Enter phone number" name="phone_number" asp-for="phone_number">
                                                     </div>
                                                 </div>
                                                 <div class="col">
                                                      <div class="form-group">
-                                                        <label>Address</label>
+                                                        <label><Strong>Địa chỉ</Strong></label>
                                                         <input type="text" class="form-control" placeholder="Enter address" name="address" asp-for="address"> 
                                                     </div>
                                                 </div>

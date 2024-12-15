@@ -16,11 +16,12 @@
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
               <thead>
                   <tr>
-                      <th>Stt</th>
-                      <th>UserName</th>
+                      <th>STT</th>
+                      <th>Tên người dùng</th>
                       <th>Email</th>
-                      <th>Phone</th>
-                      <th>Address</th>
+                      <th>Điện thoại</th>
+                      <th>Địa chỉ</th>
+                      <th>Phân quyền</nav></th>
                   </tr>
               </thead>
               <tbody>
@@ -32,6 +33,20 @@
                         <td>@Model.Users[i].email</td>
                         <td>@Model.Users[i].phone_number</td>
                         <td>@Model.Users[i].address</td>
+                        <td>
+                            @if (Model.Users[i].role_id == 1)
+                            {
+                                <span>User</span>
+                            }
+                            else if (Model.Users[i].role_id == 2)
+                            {
+                                <span>Admin</span>
+                            }
+                            else
+                            {
+                                <span>Unknown</span> <!-- Dự phòng cho các role khác -->
+                            }
+                        </td>
                         <td>
                             <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#user-@Model.Users[i].user_id" data-url="@Url.Action($"Edit/{@Model.Users[i].user_id}")">
                                 <i class="material-icons" style="font-size: 14px">border_color</i>
