@@ -287,22 +287,22 @@
   document.addEventListener('click', () => {
     hideAllDropdowns();
   });
-</script>
+    </script>
 
-@* <script>
-    document.querySelectorAll('.nav-item').forEach(item => {
-    item.addEventListener('click', () => {
-        // Xóa lớp "active" khỏi tất cả các thẻ
-        document.querySelectorAll('.nav-item').forEach(nav => {
-            nav.classList.remove('active');
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="~/admin/js/snow.js"></script>
+
+    <script>
+        jQuery(function() {
+            jQuery("body").snow({
+            intensity: 2,           // Number of snowflakes
+            sizeRange: [8, 16],      // Snowflake size range (min and max size in pixels)
+            opacityRange: [0.4, 0.6],  // Snowflake opacity range
+            driftRange: [10, 12],    // Horizontal drift (sideways movement range)
+            speedRange: [55, 80]    // Falling speed range in pixels per second
+            });
         });
-
-        // Thêm lớp "active" cho thẻ được nhấn
-        item.classList.add('active');
-    });
-}); *@
-    
-</script>
+    </script>
 
 </body>
 
