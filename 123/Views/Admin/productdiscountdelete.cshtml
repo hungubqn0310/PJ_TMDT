@@ -12,7 +12,7 @@
             <div class="modal-body">
                 <form asp-action="DeleteConfirmed" method="post" id="delete-form-@Model.PdId">
                     <input type="hidden" name="pdId" value="@Model.PdId" />
-                    <label>Bạn có chắc chắn muốn xóa sản phẩm **@Model.ProductId** cho đợt khuyến mãi **@Model.DiscountId** không?</label>
+                    <label>Bạn có chắc chắn muốn xóa sản phẩm <strong>@Model.ProductId</strong>cho đợt khuyến mãi **@Model.DiscountId** không?</label>
                 </form>
             </div>
             <div class="modal-footer">
