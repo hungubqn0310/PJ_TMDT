@@ -1,0 +1,95 @@
+@model ProductDetail
+
+<div class="modal fade bd-example-modal-lg" id="productdetail-add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Thêm chi tiết sản phẩm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Add" method="post" id="productdetail-add-form" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Sản phẩm</label>
+                                <select class="form-control" name="ProductId" asp-for="ProductId" asp-items="@(new SelectList(ViewBag.Products ?? new List<Product>(), "ProductId", "ProductName"))">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Ni tay</label>
+                                <input type="text" class="form-control" placeholder="Nhập ni tay" name="NiTay" asp-for="NiTay">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Kiểu dáng</label>
+                                <input type="text" class="form-control" placeholder="Nhập kiểu dáng" name="KieuDang" asp-for="KieuDang">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Kiểu viền chữ</label>
+                                <input type="text" class="form-control" placeholder="Nhập kiểu viền chữ" name="KieuVienChu" asp-for="KieuVienChu">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Kích thước viền chữ</label>
+                                <input type="text" class="form-control" placeholder="Nhập kích thước viền chữ" name="KichThuocVienChu" asp-for="KichThuocVienChu">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Giới tính</label>
+                                <select class="form-control" name="GioiTinh" asp-for="GioiTinh">
+                                    <option value="Nam">Nam</option>
+                                    <option value="Nữ">Nữ</option>
+                                    <option value="Unisex">Unisex</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Màu kim loại</label>
+                                <input type="text" class="form-control" placeholder="Nhập màu kim loại" name="MauKimLoai" asp-for="MauKimLoai">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Đá Tấm</label>
+                                <input type="text" class="form-control" placeholder="Nhập thông tin đá tấm" name="DaTam" asp-for="DaTam">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Others</label>
+                                <textarea class="form-control" placeholder="Nhập thông tin khác" name="Others" asp-for="Others"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" style="border-radius: 20px;">Đóng</button>
+                <button type="submit" class="btn btn-outline-primary" style="border-radius: 20px;" form="productdetail-add-form">Lưu thay đổi</button>
+            </div>
+        </div>
+    </div>
+</div>

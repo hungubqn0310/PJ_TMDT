@@ -1,0 +1,96 @@
+@model ProductDetail
+
+<div class="modal fade bd-example-modal-lg" id="productdetail-edit-@Model.ProductDetailId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Chỉnh sửa chi tiết sản phẩm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Edit" method="post" id="productdetail-edit-form-@Model.ProductDetailId" enctype="multipart/form-data">
+                    <input type="hidden" name="ProductDetailId" asp-for="ProductDetailId">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Sản phẩm</label>
+                                <select class="form-control" name="ProductId" asp-for="ProductId" asp-items="@(new SelectList(ViewBag.Products ?? new List<Product>(), "ProductId", "ProductName", Model.ProductId))">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Ni tay</label>
+                                <input type="text" class="form-control" name="NiTay" asp-for="NiTay" value="@Model.NiTay">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Kiểu dáng</label>
+                                <input type="text" class="form-control" name="KieuDang" asp-for="KieuDang" value="@Model.KieuDang">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Kiểu viền chữ</label>
+                                <input type="text" class="form-control" name="KieuVienChu" asp-for="KieuVienChu" value="@Model.KieuVienChu">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Kích thước viền chữ</label>
+                                <input type="text" class="form-control" name="KichThuocVienChu" asp-for="KichThuocVienChu" value="@Model.KichThuocVienChu">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Giới tính</label>
+                                <select class="form-control" name="GioiTinh" asp-for="GioiTinh">
+                                    <option value="Nam" @(Model.GioiTinh == "Nam" ? "selected" : "")>Nam</option>
+                                    <option value="Nữ" @(Model.GioiTinh == "Nữ" ? "selected" : "")>Nữ</option>
+                                    <option value="Unisex" @(Model.GioiTinh == "Unisex" ? "selected" : "")>Unisex</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Màu kim loại</label>
+                                <input type="text" class="form-control" name="MauKimLoai" asp-for="MauKimLoai" value="@Model.MauKimLoai">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Đá Tấm</label>
+                                <input type="text" class="form-control" name="DaTam" asp-for="DaTam" value="@Model.DaTam">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Others</label>
+                                <textarea class="form-control" name="Others" asp-for="Others">@Model.Others</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" style="border-radius: 20px;">Đóng</button>
+                <button type="submit" class="btn btn-outline-primary" style="border-radius: 20px;" form="productdetail-edit-form-@Model.ProductDetailId">Lưu thay đổi</button>
+            </div>
+        </div>
+    </div>
+</div>
