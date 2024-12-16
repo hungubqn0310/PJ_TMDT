@@ -138,8 +138,6 @@ namespace _123.Services
 
     return DatabaseHelper.ExecuteNonQuery(query, parameters);
 }
-
-
         public static int DeleteCartItem(int cartId)
         {
             string query = @"UPDATE Shopping_Cart
@@ -153,5 +151,42 @@ namespace _123.Services
 
             return DatabaseHelper.ExecuteNonQuery(query, parameters);
         }
+    
+        public static List<dynamic> GetCartItemsByUserId(int userId)
+        {
+            string query = @"SELECT sc.cart_id, sc.user_id, sc.product_id, sc.quantity, sc.added_at, sc.is_deleted, 
+                                    p.product_name, p.price
+                            FROM Shopping_Cart sc
+                            LEFT JOIN Products p ON sc.product_id = p.product_id
+                            WHERE sc.user_id = @user_id AND sc.is_deleted = 0";
+            
+            var parameters = new MySqlParameter[]
+            {
+                new MySqlParameter("@user_id", MySqlDbType.Int32) { Value = userId }
+            };
+
+            DataTable result = DatabaseHelper.ExecuteQuery(query, parameters);
+
+            List<dynamic> cartItems = new List<dynamic>();
+
+            foreach (DataRow row in result.Rows)
+            {
+                cartItems.Add(new
+                {
+                    CartId = Convert.ToInt32(row["cart_id"]),
+                    UserId = Convert.ToInt32(row["user_id"]),
+                    ProductId = row["product_id"].ToString(),
+                    ProductName = row["product_name"].ToString(),
+                    Price = Convert.ToDecimal(row["price"]),
+                    Quantity = Convert.ToInt32(row["quantity"]),
+                    AddedAt = Convert.ToDateTime(row["added_at"]),
+                    IsDeleted = Convert.ToBoolean(row["is_deleted"])
+                });
+            }
+
+            return cartItems;
+        }
+
+
     }
 }
