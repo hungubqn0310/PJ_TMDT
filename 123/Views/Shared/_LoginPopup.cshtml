@@ -7,45 +7,34 @@
         <div class="title">Tài khoản</div>
         <div class="subtitle">Đăng nhập hoặc tạo tài khoản mới</div>
         <p class="description">
-            Sở hữu ngay tài khoản riêng cho mình để dễ dàng xem, thêm các món trang sức yêu thích vào giỏ hàng,
-            thanh toán nhanh chóng cùng nhiều trải nghiệm.
+            Sở hữu ngay tài khoản riêng để dễ dàng xem, thêm món trang sức vào giỏ hàng.
         </p>
     </div>
-    @* <form asp-controller="Account" asp-action="Login" method="POST" > *@
-        <div class="input-group">
-            <label for="email" class="label">Email hoặc số điện thoại</label>
-            <input type="text" id="email" class="input-field" placeholder="Nhập email hoặc số điện thoại" />
-        </div>
-        <div class="input-group">
-            <label for="password" class="label">Mật khẩu</label>
-            <input type="password" id="password" class="input-field" placeholder="Nhập mật khẩu" />
-        </div>
-        @* <form asp-controller="Account" asp-action="Login" method="POST" class="mx-1 mx-md-4"> *@
-
-        <button id="loginButton" class="btn btn-primary" type="submit" disabled>Đăng nhập</button>
-    @* </form> *@
+    <div class="input-group">
+        <label for="email" class="label">Email hoặc số điện thoại</label>
+        <input type="text" id="email" class="input-field" placeholder="Nhập email hoặc số điện thoại" />
+    </div>
+    <div class="input-group">
+        <label for="password" class="label">Mật khẩu</label>
+        <input type="password" id="password" class="input-field" placeholder="Nhập mật khẩu" />
+    </div>
     <div class="actions">
-
-
-                @* <button class="btn btn-secondary">Đăng ký</button> *@
-        <form asp-controller="Account" asp-action="SignUp" method="get" class="mx-1 mx-md-4">
-            <!-- Các trường khác -->
-            <button type="submit" class="btn btn-primary btn-lg">Đăng Ký</button>
+        <button id="loginButton" class="btn btn-primary" type="button" disabled>Đăng nhập</button>
+        <form asp-controller="Account" asp-action="SignUp" method="get">
+            <button type="submit" class="btn btn-primary">Đăng Ký</button>
         </form>
         <a href="#" class="forgot-password">Quên mật khẩu?</a>
     </div>
-
     <div class="social-login">
         <button class="btn-social">
-            <img class="google-icon" src="/images/google-icon.png" alt="Google"/>
-            Đăng nhập bằng Google
+            <img src="/images/google-icon.png" alt="Google" /> Đăng nhập bằng Google
         </button>
         <button class="btn-social">
-            <span class="material-icons facebook-icon">facebook</span> <!-- Facebook Icon -->
-            Đăng nhập bằng Facebook
+            <span class="material-icons facebook-icon">facebook</span> Đăng nhập bằng Facebook
         </button>
     </div>
 </div>
+
 
 <script>
     // Lấy các phần tử input và nút đăng nhập
