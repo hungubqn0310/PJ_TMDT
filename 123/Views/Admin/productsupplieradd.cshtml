@@ -1,0 +1,46 @@
+@model ProductSupplierViewModel
+
+<div class="modal fade bd-example-modal-lg" id="product-supplier-add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Tạo Product Supplier</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Add" method="post" id="product-supplier-add-form">
+                    <!-- Sản phẩm -->
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Chọn sản phẩm</label>
+                                <select class="form-control" name="ProductId" asp-for="ProductId" asp-items="@(new SelectList(ViewBag.Products ?? new List<Product>(), "ProductId", "ProductName"))">
+                                    <option value="">Chọn sản phẩm</option>
+                                </select>
+                                <span asp-validation-for="ProductId" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Nhà cung cấp -->
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Chọn nhà cung cấp</label>
+                                <select class="form-control" name="SupplierId" asp-for="SupplierId" asp-items="@(new SelectList(ViewBag.Suppliers ?? new List<Supplier>(), "SupplierId", "SupplierName"))">
+                                    <option value="">Chọn nhà cung cấp</option>
+                                </select>
+                                <span asp-validation-for="SupplierId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                        
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" style="border-radius: 20px;">Đóng</button>
+                <button type="submit" class="btn btn-outline-primary" style="border-radius: 20px;" form="product-supplier-add-form">Lưu thay đổi</button>
+            </div>
+        </div>
+    </div>
+</div>

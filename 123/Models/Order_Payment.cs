@@ -1,9 +1,18 @@
-public class Order_Payment
+using System;
+
+namespace _123.Models
 {
-    public int order_payment_id { get; set; }
-    public int order_id { get; set; }
-    public int payment_method_id { get; set; }
-    public decimal amount_paid { get; set; }
-    public DateTime payment_date { get; set; }
-    public bool is_deleted { get; set; }
+    public class OrderPayment
+    {
+        public int OrderPaymentId { get; set; }
+        public int OrderId { get; set; }
+        public int PaymentMethodId { get; set; }
+        public decimal AmountPaid { get; set; }
+        public DateTime PaymentDate { get; set; }
+        public bool IsDeleted { get; set; }
+        public virtual Order Order { get; set; }
+        public virtual PaymentMethod PaymentMethod { get; set; }
+
+
+    }
 }

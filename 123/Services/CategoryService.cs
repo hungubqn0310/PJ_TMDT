@@ -4,6 +4,7 @@ using System.Data;
 using _123.Helpers;
 using MySql.Data.MySqlClient;
 using _123.Models;
+using System.Dynamic;
 
 namespace _123.Services
 {
@@ -23,6 +24,35 @@ namespace _123.Services
 
             return DatabaseHelper.ExecuteNonQuery(query, parameters);
         }
+
+        public static int CreateCategories(IEnumerable<Category> categories)
+        {
+            if (categories == null || !categories.Any())
+                throw new ArgumentException("Category list is null or empty.", nameof(categories));
+
+            string query = @"INSERT INTO Categories (category_name, description, is_deleted)
+                            VALUES (@category_name, @description, 0)";
+
+            int rowsAffected = 0;
+
+            using (var connection = DatabaseHelper.GetConnection())
+            {
+                connection.Open();
+
+                foreach (var category in categories)
+                {
+                    var parameters = new MySqlParameter[]
+                    {
+                        new MySqlParameter("@category_name", MySqlDbType.VarChar) { Value = category.CategoryName },
+                        new MySqlParameter("@description", MySqlDbType.Text) { Value = category.Description }
+                    };
+
+                    rowsAffected += DatabaseHelper.ExecuteNonQuery(query, parameters);
+                }
+            }
+
+    return rowsAffected;
+}
 
         // Lấy danh sách các Category
         public static List<Category> GetCategories()
@@ -113,5 +143,37 @@ namespace _123.Services
 
             return DatabaseHelper.ExecuteNonQuery(query, parameters);
         }
+    
+        public static List<dynamic> ViewGetCategories()
+{
+    string query = "SELECT category_id, category_name, description, is_deleted FROM Categories WHERE is_deleted = 0";
+    var categories = new List<dynamic>();
+
+    try
+    {
+        DataTable dataTable = DatabaseHelper.ExecuteQuery(query);
+
+        foreach (DataRow row in dataTable.Rows)
+        {
+            dynamic category = new ExpandoObject();
+            var categoryDict = (IDictionary<string, object>)category;
+
+            categoryDict["CategoryId"] = Convert.ToInt32(row["category_id"]);
+            categoryDict["CategoryName"] = row["category_name"].ToString();
+            categoryDict["Description"] = row["description"]?.ToString();
+            categoryDict["IsDeleted"] = Convert.ToBoolean(row["is_deleted"]);
+
+            categories.Add(category);
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Lỗi khi lấy danh sách categories: {ex.Message}");
+        throw;
+    }
+
+    return categories;
+}
+
     }
 }

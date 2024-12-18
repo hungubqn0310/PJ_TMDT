@@ -1,35 +1,54 @@
-@model ShoppingCartViewModel
+@model ShoppingCart
 <div class="modal fade bd-example-modal-lg" id="cart-add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-lg" role="document">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle">Create Users</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form asp-action="add" method="post" id="user--add">
-                                            <input type="hidden" name='cart_id' asp-for="Shopping_Cart.cart_id">
-                                            <div class="row">
-                                                <div class="col">
-                                                     <div class="form-group">
-                                                        <label >user_id</label>
-                                                        <select class="form-control" name="user_id" asp-for="Shopping_Cart.user_id" required>
-                                                            @foreach (var user in Model.Users)  
-                                                            {
-                                                                <option value="@user.user_id">@user.username</option>  <!-- Display username and store user_id -->
-                                                            }
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" style="border-radius: 20px;">Close</button>
-                                        <button type="submit" class="btn btn-outline-primary" style="border-radius: 20px;" type="submit" form="user--add">Save changes</button>
-                                    </div>
-                                    </div>
-                                </div>
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Create Shopping Cart</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Add" method="post" id="cart-add-form">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>User</label>
+                                <select class="form-control" name="UserId" asp-for="UserId" asp-items="@(new SelectList(ViewBag.Users ?? new List<User>(), "user_id", "username"))">
+                                    <option value="" selected disabled>Select a user</option>
+                                </select>
                             </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Product</label>
+                                <select class="form-control" name="ProductId" asp-for="ProductId" asp-items="@(new SelectList(ViewBag.Products ?? new List<Product>(), "ProductId", "ProductName"))">
+                                    <option value="" selected disabled>Select a product</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Quantity</label>
+                                <input type="number" class="form-control" placeholder="Enter quantity" name="Quantity" asp-for="Quantity">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Added At</label>
+                                <input type="datetime-local" class="form-control" name="AddedAt" asp-for="AddedAt">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" style="border-radius: 20px;">Đóng</button>
+                <button type="submit" class="btn btn-outline-primary" style="border-radius: 20px;" form="cart-add-form">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
