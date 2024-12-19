@@ -65,7 +65,13 @@
   margin-left: 282.5px;
   margin-right: auto; /* Để căn giữa */
 }
-
+.handk-icon1 {
+  display: flex;
+  margin-left: 140px;
+  width: 60px;
+  height: 45px;
+  margin-right: 150px; /* Để căn giữa */
+}
 /* Chứa các icon phía bên phải (shopping cart và user) */
 .header-child .right-icons {
   display: flex;
@@ -319,6 +325,267 @@ li:hover .arrowHover {
 }
 
 
+.music-player {
+  border-radius: 30px 30px 0 0;
+  --primary-color: white;
+  --secondary-color: white;
+  --padding: 1em;
+  background: radial-gradient(circle, rgba(170, 120, 120, 0.7), rgba(120, 120, 120, 0.2));
+
+  font-size: 14px;
+  background-color: #787878;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3); /* 0: không dịch chuyển theo chiều ngang, -5px: dịch chuyển 5px lên trên, 10px: độ mờ, rgba(0, 0, 0, 0.3): màu đen với độ trong suốt */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed; /* Sử dụng fixed để giữ player ở footer */
+  bottom: 0; /* Đặt nó ở dưới cùng của cửa sổ */
+  left: 0;
+  width: 100%; /* Chiếm toàn bộ chiều rộng */
+  padding: 5px;
+  color: var(--primary-color);
+  transform: translateY(0);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.music-player.closed {
+  transform: translateY(100%);
+}
+
+.toggle-player-btn {
+  position: absolute;
+  top: -30px;
+  left: 5%;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3); /* 0: không dịch chuyển theo chiều ngang, -5px: dịch chuyển 5px lên trên, 10px: độ mờ, rgba(0, 0, 0, 0.3): màu đen với độ trong suốt */
+  transform: translateX(-50%);
+  background: #555;
+  color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+}
+/* Cấu hình thanh chạy bài hát và thanh âm lượng */
+input[type="range"] {
+    -webkit-appearance: none; /* Xóa kiểu mặc định của trình duyệt */
+    width: 100%; /* Đảm bảo thanh chiếm toàn bộ chiều ngang */
+    height: 5px; /* Độ cao của thanh */
+    background: black; /* Màu của thanh chạy */
+    outline: none; /* Xóa viền */
+    border-radius: 5px; /* Làm bo góc thanh */
+}
+
+/* Đầu trượt (thumb) của thanh */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Xóa kiểu mặc định của trình duyệt */
+    width: 7.5px; /* Chiều rộng đầu trượt */
+    height: 15px; /* Chiều cao đầu trượt */
+    background: rgb(255, 255, 255); /* Màu của đầu trượt */
+    border-radius: 50%; /* Làm tròn đầu trượt */
+    cursor: pointer; /* Thay đổi con trỏ khi di chuột qua */
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    background: black;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+input[type="range"]::-ms-thumb {
+    width: 15px;
+    height: 15px;
+    background: black;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+i{
+    color: var(--secondary-color);
+}
+
+.song-bar {
+    position: absolute;
+    left: var(--padding);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    width: auto;
+}
+
+.song-infos {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.song-description p {
+    margin: 0.2em;
+}
+.titleAudio,
+.artist {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.titleAudio:hover,
+.artist:hover {
+  color: #000;
+  transition: color 0.3s; /* Thêm hiệu ứng chuyển màu */
+
+}
+.artist{
+    color: var(--secondary-color);
+}
+
+.progress-controller{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: var(--secondary-color);
+}
+.control-buttons{
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    margin-left: 387.5px;
+}
+
+.fa-pause:before {
+  padding-right: 2.75px;
+  padding-left: 2.75px;
+  content: "\f04c";
+}
+.play-pause{
+    display: inline-block;
+    padding: 1em;
+    background-color: white;
+    color: black;
+    border-radius: 50%;
+}
+.play-pause:hover{
+    transition: background-color 0.3s, color 0.3s; /* Thêm hiệu ứng chuyển màu */
+    color: white;
+    background-color: black;
+}
+.progress-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+.progress-bar{
+    height: 5px;
+    border-radius: 10px;
+    width: 30%;
+    background-color: #ccc4;
+}
+.progress{
+    position: relative;
+    height: 100%;
+    width: 30%;
+    border-radius: 10px;
+    background-color: var(--secondary-color);
+}
+.progress-bar:hover .progress{
+    background-color: var(--green-color);
+}
+.progress-bar:hover .progress::after{
+    content: "";
+    position: absolute;
+    --size: 1em;
+    width: var(--size);
+    height: var(--size);
+    right: 0;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    transform: translate(50%, calc(2px - 50%));
+}
+#song-list-container {
+  position: fixed;
+  right: -17.5px;
+  bottom: 75px;
+  background: radial-gradient(circle, rgba(170, 120, 120, 0.7), rgba(120, 120, 120, 0.2));
+
+  background-color: #787878;
+  padding: 20px;
+  border-radius: 30px 0 0 30px;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);  /* 0: không dịch chuyển theo chiều ngang, -5px: dịch chuyển 5px lên trên, 10px: độ mờ, rgba(0, 0, 0, 0.3): màu đen với độ trong suốt */
+  display: none; /* Ban đầu ẩn */
+  max-height: 300px;
+  overflow-y: auto;
+  width: 300px;
+  transition: all 0.3s ease-in-out; /* Animation hiển thị */
+  overflow-y: auto; /* Cho phép cuộn khi danh sách dài */
+  opacity: 0; /* Bắt đầu từ trạng thái trong suốt */
+  transform: translateX(100%); /* Trượt xuống */
+
+  z-index: 1000; /* Đảm bảo danh sách bài hát nằm trên các phần tử khác */
+
+}
+#song-list-container.show {
+  display: block; /* Hiển thị khi thêm class "show" */
+  opacity: 1; /* Hiện danh sách */
+  transform: translateX(0); /* Đưa về vị trí ban đầu */
+}
+.fa-random:hover, .fa-step-backward:hover,
+.fa-step-forward:hover, .fa-undo-alt:hover,
+.fa-list-ul:hover, .fa-volume-down:hover {
+  color: #000;
+  cursor: pointer;
+  transition: color 0.3s; /* Thêm hiệu ứng chuyển màu */
+
+}
+#song-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#song-list li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+#song-list li:hover {
+  border-radius: 8px;
+  color: #000;
+  background: radial-gradient(circle, rgba(170, 120, 120, 0.7), rgba(120, 120, 120, 0.2));
+
+  background-color: #b7b7b7;
+}
+
+.other-features{
+    position: absolute;
+    right: var(--padding);
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+.volume-bar{
+    display: flex;
+    align-items: center;
+    gap: .7em;
+}
+.volume-bar .progress-bar{
+    width: 6em;
+}
+.volume-bar .progress-bar:hover .progress::after{
+    --size: .8em;
+}
+input[type="range"] {
+    width: 100%;
+}
 /* Tổng thể footer */
 .footer {
   width: 100%;
@@ -332,9 +599,17 @@ li:hover .arrowHover {
   background-color: #f5f5f5; /* Màu nền của footer */
   box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng phía trên footer */
 }
+.active {
+  color: rgb(0, 0, 0); /* Màu sắc khi nút được bật */
+}
+
+.inactive {
+  color: white; /* Màu sắc khi nút tắt */
+}
 
 /* Logo HanDK */
 .handk-footer-icon {
+  border-radius: 30px;
   width: 240px; /* Kích thước logo */
   height: 180px;
   margin-left: 240px;

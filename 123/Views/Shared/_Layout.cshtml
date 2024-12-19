@@ -9,9 +9,17 @@
     <link rel="stylesheet" href="~/_123.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="/css/style.css">
     <!-- Thêm liên kết tới Font Awesome CDN -->
+	<link rel="icon" type="image/png" href="~/images/HanDK-removebg.png" />
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,200;0,300;0,400;1,300&display=swap" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+	<script src="~/js/loginPup.js"></script>
+    <script src="~/js/audioPlayer.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
     <header>
@@ -242,8 +250,65 @@
 							<span class="material-icons search-icon">search</span>
 						</div>	
 				</div>
-			</nav>	
-    	</div>
+			</nav>
+
+			<div class="music-player">
+                <div class="toggle-player-btn">
+        <i id="toggle-icon" class="fas fa-chevron-up"></i>
+    </div>
+
+    <div class="song-bar">
+        <div class="song-infos">
+            
+            <div class="song-description">
+                <p class="titleAudio" id="song-title"> </p>
+            </div>
+        </div>
+    </div>
+    <div class="progress-controller">
+        <div class="control-buttons">
+            <i class="fas fa-random" id="shuffle-btn"></i>
+            <i class="fas fa-step-backward" id="prev-btn"></i>
+            <i class="play-pause fas fa-play" id="play-pause-btn"></i>
+            <i class="fas fa-step-forward" id="next-btn"></i>
+            <i class="fas fa-undo-alt" id="repeat-btn"></i>
+        </div>
+        <img class="handk-icon1" alt="HanDK" src="/images/HanDK-removebg.png" onclick="window.location='@Url.Action("Index", "Home")';" style="cursor: pointer;">
+        <div class="progress-container">
+    <span id="current-time">0:00</span>
+    <div class="progress-bar">
+        <input type="range" id="progress-bar" value="0" step="1" />
+    </div>
+    <span id="duration">0:00</span>
+</div>
+
+    </div>
+    <div class="other-features">
+        <!-- Nút để hiển thị danh sách bài hát -->
+<!-- Biểu tượng để hiển thị danh sách bài hát -->
+    <div id="show-song-list-btn" class="icon-btn">
+        <i class="fas fa-list-ul"></i> 
+    </div>
+
+<!-- Container chứa danh sách bài hát -->
+<div id="song-list-container" style="display: none;">
+    <ul id="song-list"></ul>
+</div>
+        <div class="volume-bar">
+    <i class="fas fa-volume-down" id="volume-icon"></i>
+    <div class="progress-bar">
+        <input type="range" id="volume-control" value="100" min="0" max="100" step="1" />
+    </div>
+</div>
+
+
+    </div>
+
+    <!-- Audio element to play music -->
+    <audio id="audio-player" preload="auto">
+    </audio>
+</div>
+</div>
 	</header>
 
     
@@ -274,6 +339,7 @@
 					<div class="text-foot">GÓP Ý KHIẾU NẠI</div>
 					<div class="foot">0976534850</div>
 					<div class="foot">Mail</div>
+					
 				</div>
 				<div class="tieude3">
 					<h1>HỖ TRỢ</h1>
@@ -292,10 +358,7 @@
 			</div>	
     	</div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-	<script src="/js/loginPopup.js"></script>
+    
     @await RenderSectionAsync("Scripts", required: false)
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
