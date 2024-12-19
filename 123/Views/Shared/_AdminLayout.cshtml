@@ -35,6 +35,10 @@
 
 </head>
 <body id="page-top">
+    <script>
+        const role = localStorage.getItem('role');
+        if(role != 2) window.location.href = '/'
+    </script>
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -196,12 +200,12 @@
                                     top: 72px;
                                     right: 26px;
                                     background-color: aliceblue; display: none;z-index: 1050;"> 
-                                <a class="dropdown-item" style="display: flex; align-items: center; gap: 10px">
+                                <a class="dropdown-item" style="display: flex; align-items: center; gap: 10px" href="/home">
                                     <i class="material-icons" style="font-size: 24px; color: #d1d3e2">home</i>
                                     Trang Chủ
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/home" >
+                                <a class="dropdown-item logout" href="/home" >
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -262,6 +266,8 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
 
+    
+
     <script>
   // Lưu tham chiếu đến các phần tử dropdown
   const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
@@ -295,6 +301,12 @@
   document.addEventListener('click', () => {
     hideAllDropdowns();
   });
+
+    const logout = document.querySelector('.logout');
+    logout.addEventListener('click', () => {
+        window.location.href = '/'
+        localStorage.clear();
+    })
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

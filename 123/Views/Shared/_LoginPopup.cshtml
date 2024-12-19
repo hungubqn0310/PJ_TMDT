@@ -82,8 +82,14 @@
             if (response.ok) {
                 const data = await response.json();
                 alert(`Đăng nhập thành công`);
-                window.location.href = '/'
-                @* localStorage.setItem('token', data.Token); *@
+                if(data?.data?.role_id == 2) {
+                    window.location.href = '/admin'
+                }else {
+                    window.location.href = '/'
+                }
+                localStorage.setItem('username', data.data?.username); 
+                localStorage.setItem('id', data.data?.user_id); 
+                localStorage.setItem('role', data.data?.role_id); 
             } else {
                 const errorData = await response.json();
                 alert(`Đăng nhập thất bại: ${errorData.Message || 'Lỗi không xác định'}`);

@@ -40,7 +40,10 @@
 				<!-- Các icon bên phải -->
 				<div class="right-icons">
 					<span class="material-icons shopping-cart-icon">shopping_cart</span> <!-- Giỏ hàng -->
-					<span class="material-icons user-icon">person</span> <!-- Người dùng -->
+					<div style="display: flex;align-items: center">
+						<span class="material-icons user-icon">person</span>
+						<p style="padding: 0 10px; margin: 0" class="username"></p> <!-- Người dùng -->
+					</div>
 				</div>
 			</div>
 			<nav>
@@ -364,6 +367,11 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="~/admin/js/snow.js"></script>
 
+	<script>
+		const username = document.querySelector('.username');
+		username.innerHTML  += localStorage.getItem('username').toString();
+	</script>
+
     <script>
         jQuery(function() {
             jQuery("body").snow({
@@ -375,5 +383,7 @@
             });
         });
     </script>
+
+	
 </body>
 </html>
