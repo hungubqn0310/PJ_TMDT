@@ -14,51 +14,217 @@
 			<div class="dots"></div>
 			<script src="/js/bannerSlider.js"></script>
 		</div>
-<p>Danh sách sản phẩm cho danh mục: @ViewData["Title"]</p>
-    <!-- Mỗi sản phẩm sẽ được hiển thị trong 1 card -->
-    <div class="product-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
-        @if (Model != null && Model.Any())
-        {
-            foreach (var product in Model)
-            {
-                <div class="product_box_content" data-id="@product.ProductId" style="border: 1px solid #ddd; padding: 20px; border-radius: 10px; background-color: #fff;">
-                    <!-- Link bao quanh ảnh -->
-                    <a href="/product/details/@product.Slug" style="display: block; text-align: center;">
-                        <div class="wrapper_image_feature">
-                            <img src="@product.Image" alt="@product.Name" style="width: 100%; height: auto; border-radius: 10px;" />
-                        </div>
-                    </a>
+</div>
+<div class="main" style="margin: 0px 125px">
+    <!-- Bộ lọc và sắp xếp -->
+    <div class="filters" style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+        <div class="filter-options" style="align-items: center; display: flex; gap: 20px;">
+            <!-- Bộ lọc -->
+            <div id="filter" class="filter-button" style="padding: 8px 16px; background-color: #f0f0f0; cursor: pointer; border-radius: 5px;">
+                Bộ lọc
+            </div>
 
-                    <!-- Tên sản phẩm và giá -->
-                    <a href="/product/details/@product.Slug" class="product_box_content_text" style="text-decoration: none; color: #333; display: block; text-align: center; margin-top: 10px;">
-                        <h3 class="product_name" style="font-size: 16px; font-weight: bold;">@product.Name</h3>
-                        <p class="product_price" style="font-size: 16px; color: #f00; margin: 5px 0;">
-                            <span class="woocommerce-Price-amount amount">
-                                <bdi>@product.Price.ToString("N0")&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></bdi>
-                            </span>
-                            @if (product.OriginalPrice > product.Price)
-                            {
-                                <span class="product_regular_price" style="text-decoration: line-through; color: #999; margin-left: 10px;">
-                                    <span class="woocommerce-Price-amount amount">
-                                        <bdi>@product.OriginalPrice.ToString("N0")&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></bdi>
-                                    </span>
-                                </span>
-                            }
-                        </p>
-                    </a>
-
-                    <!-- Icon yêu thích -->
-                    <div class="icon_favorite" style="position: absolute; top: 10px; right: 10px;">
-                        <img src="/images/wishlist-heart.svg" alt="icon heart" style="width: 24px; height: 24px;" />
-                    </div>
-                </div>
-            }
-        }
-        else
-        {
-            <p>Hiện không có sản phẩm nào trong danh mục này.</p>
-        }
+            <!-- Sắp xếp -->
+            <div id="sort" class="filter-button" style="padding: 8px 16px; background-color: #f0f0f0; cursor: pointer; border-radius: 5px;">
+                Sắp xếp
+            </div>
+			<div>@ViewData["Title"]</div>
+        </div>
     </div>
+
+    <!-- Danh sách sản phẩm -->
+    <div class="product-list" id="product-list" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+        <!-- Các sản phẩm sẽ được hiển thị tại đây -->
+    </div>
+
+    <!-- Phân trang -->
+    <div class="pagination" id="pagination" style="text-align: center; margin-top: 20px;">
+        <!-- Các nút phân trang sẽ được thêm vào đây -->
+    </div>
+
+</div>
+<!-- Script giả lập dữ liệu và phân trang -->
+<script>
+    const productsPerPage = 20; // Số sản phẩm trên mỗi trang
+    let currentPage = 1;
+
+    // Tạo mảng dữ liệu giả động với thông tin sản phẩm
+const fakeProducts = Array.from({ length: 200 }, (_, index) => {
+    const id = index + 1;
+    return {
+        ProductId: id,
+        Name: `Sản phẩm ${id}`,
+        Image: `https://via.placeholder.com/280x200?text=Product+1`,
+        Price: id * 100000,
+        OriginalPrice: id * 150000,
+        Slug: `product-${id}`
+    };
+});
+
+console.log(fakeProducts);
+
+
+    // Hàm định dạng giá với dấu chấm giữa các số
+    function formatPrice(price) {
+        return price.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+    // Hàm render các sản phẩm
+function renderProducts(products) {
+    const productListElement = document.getElementById('product-list');
+    productListElement.innerHTML = ''; // Clear previous products
+
+    products.forEach(product => {
+        const productBox = document.createElement('div');
+        productBox.classList.add('product_box_content');
+        productBox.setAttribute('data-id', product.ProductId);
+        productBox.style = 'border: 1px solid #ddd; padding: 20px; border-radius: 10px; background-color: #fff; position: relative;';
+
+        const productLink = document.createElement('a');
+        productLink.href = `/product/details/${product.Slug}`;
+        productLink.style = 'display: block; text-align: center;';
+
+        const imageWrapper = document.createElement('div');
+        imageWrapper.classList.add('wrapper_image_feature');
+        const productImage = document.createElement('img');
+        productImage.src = product.Image;
+        productImage.alt = product.Name;
+        productImage.style = 'width: 100%; height: 100%; border-radius: 10px;';
+        imageWrapper.appendChild(productImage);
+
+        productLink.appendChild(imageWrapper);
+
+        const productText = document.createElement('div');
+        productText.classList.add('product_box_content_text');
+        productText.style = 'text-decoration: none; color: #333; display: block; text-align: left; margin-top: 20px;';
+
+        const productName = document.createElement('h3');
+        productName.classList.add('product_name');
+        productName.style = 'font-size: 16px; font-weight: 400;';
+        productName.textContent = product.Name;
+        productText.appendChild(productName);
+
+        const productPrice = document.createElement('p');
+        productPrice.classList.add('product_price');
+        productPrice.style = 'font-size: 16px; margin: 5px 0;';
+        productPrice.innerHTML = `<span class="woocommerce-Price-amount amount"><bdi>${formatPrice(product.Price)}&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></bdi></span>`;
+
+        if (product.OriginalPrice > product.Price) {
+            const originalPrice = document.createElement('span');
+            originalPrice.classList.add('product_regular_price');
+            originalPrice.style = 'text-decoration-thickness: 0px; color: #999; margin-left: 10px; font-weight: 300';
+            originalPrice.innerHTML = `<span class="woocommerce-Price-amount amount"><bdi>${formatPrice(product.OriginalPrice)}&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></bdi></span>`;
+            productPrice.appendChild(originalPrice);
+        }
+
+        productText.appendChild(productPrice);
+        productLink.appendChild(productText);
+
+        // Icon yêu thích
+        const iconFavorite = document.createElement('div');
+        iconFavorite.classList.add('icon_favorite');
+        iconFavorite.style = 'position: absolute; top: 10px; right: 10px; cursor: pointer;';
+        const heartIcon = document.createElement('i');
+        heartIcon.classList.add('far', 'fa-heart'); // Trái tim rỗng
+        heartIcon.style = 'font-size: 24px; color: #ff0000;';
+
+        // Thêm sự kiện click cho icon yêu thích
+        heartIcon.onclick = () => {
+            if (heartIcon.classList.contains('far')) {
+                heartIcon.classList.remove('far');
+                heartIcon.classList.add('fas'); // Đổi thành trái tim đầy
+                heartIcon.style.color = '#ff0000'; // Đổi màu thành đỏ khi đầy
+            } else {
+                heartIcon.classList.remove('fas');
+                heartIcon.classList.add('far'); // Quay lại trái tim rỗng
+                heartIcon.style.color = '#ff0000'; // Màu gốc khi rỗng
+            }
+        };
+
+        iconFavorite.appendChild(heartIcon);
+
+        // Icon giỏ hàng
+const iconCart = document.createElement('div');
+iconCart.classList.add('icon_cart');
+iconCart.style = 'position: absolute; top: 10px; left: 10px; cursor: pointer;';
+const cartIcon = document.createElement('i');
+cartIcon.classList.add('fas', 'fa-cart-arrow-down'); // Giỏ hàng đầy ban đầu (fa-cart-arrow-down)
+cartIcon.style = 'font-size: 24px; color: #ff0000;';
+
+// Thêm sự kiện click cho icon giỏ hàng
+cartIcon.onclick = () => {
+    if (cartIcon.classList.contains('fa-cart-arrow-down')) {
+        cartIcon.classList.remove('fa-cart-arrow-down');
+        cartIcon.classList.add('fa-shopping-cart'); // Chuyển sang giỏ hàng đầy (fa-shopping-cart)
+        cartIcon.style.color = '#ff0000'; // Đổi màu thành đỏ khi đầy
+    } else {
+        cartIcon.classList.remove('fa-shopping-cart');
+        cartIcon.classList.add('fa-cart-arrow-down'); // Quay lại giỏ hàng xuống (fa-cart-arrow-down)
+        cartIcon.style.color = '#ff0000'; // Màu gốc khi xuống
+    }
+};
+
+        iconCart.appendChild(cartIcon);
+
+        // Thêm icon vào sản phẩm
+        productBox.appendChild(productLink);
+        productBox.appendChild(iconFavorite);
+        productBox.appendChild(iconCart);
+        productListElement.appendChild(productBox);
+
+        // Thêm sự kiện hover vào sản phẩm
+        productBox.addEventListener('mouseenter', () => {
+            iconFavorite.style.opacity = 1; // Hiển thị icon yêu thích
+            iconCart.style.opacity = 1;    // Hiển thị icon giỏ hàng
+        });
+
+        productBox.addEventListener('mouseleave', () => {
+            iconFavorite.style.opacity = 0; // Ẩn icon yêu thích
+            iconCart.style.opacity = 0;     // Ẩn icon giỏ hàng
+        });
+    });
+}
+
+
+    function renderPagination(totalPages) {
+        const paginationElement = document.getElementById('pagination');
+        paginationElement.innerHTML = ''; // Clear previous pagination
+
+        for (let i = 1; i <= totalPages; i++) {
+            const pageButton = document.createElement('button');
+            pageButton.textContent = i;
+
+            // Nếu là trang hiện tại thì thêm lớp active
+            if (i === currentPage) {
+                pageButton.classList.add('active');
+            }
+
+            // Khi nhấn vào một trang, cập nhật trang hiện tại
+            pageButton.onclick = () => {
+                currentPage = i;
+                updatePage();  // Cập nhật trang
+            };
+
+            paginationElement.appendChild(pageButton);
+        }
+    }
+
+    // Cập nhật trang
+    function updatePage() {
+        const start = (currentPage - 1) * productsPerPage;
+        const end = start + productsPerPage;
+        const productsToDisplay = fakeProducts.slice(start, end);
+        renderProducts(productsToDisplay);
+
+        const totalPages = Math.ceil(fakeProducts.length / productsPerPage);
+        renderPagination(totalPages);
+    }
+
+    // Gọi hàm updatePage khi trang được tải
+    window.onload = updatePage;
+</script>
+
+
 <div class="coTheBanSeThich">
 			<div class="coTheBanSeThich-header">
 				<div class="coTheBanSeThich-tieuDe">Có thể bạn sẽ thích</div>
