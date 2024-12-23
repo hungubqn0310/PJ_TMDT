@@ -54,7 +54,7 @@
     						<a href="javascript:void(0);">Danh mục <span class="arrowHover">&#8593;</span></a>
 							<ul class="dropdown">
 								<li>
-									<a href="/category/nhanCauHon">Nhẫn cầu hôn</a>
+									<a href="/category/nhanCauHon" onclick="handleClick(event)">Nhẫn cầu hôn</a>
 									<ul class="dropdown1">
 										<li>
 											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Kiểu dáng</a>
@@ -97,7 +97,7 @@
 									</ul>
 								</li>
 								<li>
-									<a href="/category/nhanCuoi">Nhẫn cưới</a>
+									<a href="/category/nhanCuoi" onclick="handleClick(event)">Nhẫn cưới</a>
 									<ul class="dropdown1">
 										<li>
 											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Loại nhẫn</i></a>
@@ -143,7 +143,7 @@
 									</ul>
 									</li>
 								<li>
-									<a href="/category/trangSuc">Trang sức</a>
+									<a href="/category/trangSuc" onclick="handleClick(event)">Trang sức</a>
 									<ul class="dropdown1">
 										<li>
 											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Loại trang sức</i></a>
@@ -176,7 +176,7 @@
 									</ul>
 									</li>
 								<li>
-									<a href="/category/kimCuong">Kim cương</a>
+									<a href="/category/kimCuong" onclick="handleClick(event)">Kim cương</a>
 									<ul class="dropdown1">
 										<li>
 											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Giá tiền</i></a>
@@ -213,7 +213,7 @@
 									</ul>
 									</li>
 								<li>
-									<a href="/category/mens">Men's</a>
+									<a href="/category/mens" onclick="handleClick(event)">Men's</a>
 									<ul class="dropdown1">
 										<li>
 											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Kiểu dáng</a>
@@ -382,6 +382,33 @@
             speedRange: [55, 80]    // Falling speed range in pixels per second
             });
         });
+
+		function handleClick(event) {
+			let text = event.target.textContent;
+			text = text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+			text = text.replace(/\s+/g, "");
+			switch (text.toLowerCase())
+            {
+                case "nhancauhon":
+					localStorage.setItem('categoryId', 1); 
+                    break;
+                case "nhancuoi":
+					localStorage.setItem('categoryId', 2); 
+                    break;
+                case "trangsuc":
+					localStorage.setItem('categoryId', 3); 
+                    break;
+                case "kimcuong":
+					localStorage.setItem('categoryId', 4); 
+                    break;
+                case "men's":
+					localStorage.setItem('categoryId', 5); 
+                    break;
+                default:
+					localStorage.setItem('categoryId', 1); 
+
+            }
+		}
     </script>
 
 	

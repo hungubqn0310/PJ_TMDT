@@ -110,7 +110,6 @@ namespace _123.Controllers
             }
         }
 
-
         [HttpGet("carts")]
         public IActionResult GetCarts([FromQuery] int id)
         {

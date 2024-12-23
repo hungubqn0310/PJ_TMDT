@@ -359,12 +359,15 @@ namespace _123.Services
                     pd.kich_thuoc_vien_chu,
                     pd.kieu_vien_chu,
                     pd.kieu_dang,
-                            i.quantity_in_stock
+                            i.quantity_in_stock,
+                            dis.discount_percent
                 FROM Products p
                 LEFT JOIN Categories c ON p.category_id = c.category_id
                 LEFT JOIN Materials m ON p.material_id = m.material_id
                 LEFT JOIN ProductDetail pd ON pd.product_id = p.product_id
-                                        LEFT JOIN Inventory i ON i.product_id = p.product_id
+                LEFT JOIN Inventory i ON i.product_id = p.product_id
+                LEFT JOIN Product_Discount pdis ON pdis.product_id = p.product_id
+                LEFT JOIN Discounts  dis ON dis.discount_id = pdis.discount_id 
                 WHERE p.is_deleted = 0 AND p.category_id = @CategoryId";  // Thêm điều kiện lọc theo category_id
 
     var products = new List<dynamic>();
@@ -402,6 +405,7 @@ namespace _123.Services
             productDict["MauKimLoai"] = row["mau_kim_loai"]?.ToString();
             productDict["DaTam"] = row["da_tam"]?.ToString();
                     productDict["QuantityInStock"] = row["quantity_in_stock"]?.ToString();
+                    productDict["DiscountPercent"] = row["discount_percent"]?.ToString();
             productDict["IsDeleted"] = row["is_deleted"] == DBNull.Value ? false : Convert.ToBoolean(row["is_deleted"]);
             productDict["Material"] = new
             {
