@@ -130,6 +130,59 @@ namespace _123.Controllers
             }
         }
 
+        [HttpPost("cart")]
+        public IActionResult AddorUpdateCart([FromBody] ShoppingCart cart)
+        {
+            // Tạo một danh sách sản phẩm mẫu
+            var carts = ShoppingCartService.AddOrUpdateToCart(cart);
+
+            // Kiểm tra nếu danh sách không rỗng
+            if (carts != null )
+            {
+              var response = new ApiResponse<dynamic>(200, "Success", carts);
+              return Ok(response);
+            }
+            else
+            {
+                // Nếu không có sản phẩm, trả về thông báo lỗi
+                return NotFound(new ApiResponse<dynamic>(404, "Không tìm thấy rỏ hàng."));
+            }
+        }
+
+        [HttpPost("carts")]
+        public IActionResult AddorUpdateCarts([FromBody] ShoppingCart[] carts)
+        {
+            Console.WriteLine(carts);
+            // Tạo một danh sách sản phẩm mẫu
+            var mcarts = ShoppingCartService.AddOrUpdateToManyCart(carts);
+
+            // Kiểm tra nếu danh sách không rỗng
+            if (mcarts != null )
+            {
+              var response = new ApiResponse<dynamic>(200, "Success", mcarts);
+              return Ok(response);
+            }
+            else
+            {
+                // Nếu không có sản phẩm, trả về thông báo lỗi
+                return NotFound(new ApiResponse<dynamic>(404, "Không tìm thấy rỏ hàng."));
+            }
+        }
+
+        [HttpDelete("cart")]
+        public IActionResult RemoveFromCart([FromQuery] int cartId)
+        {
+            var result = ShoppingCartService.DeleteCartItem(cartId);
+            if (result >0)
+            {
+                return Ok(new ApiResponse<dynamic>(200, "Sản phẩm đã được xóa khỏi giỏ hàng"));
+            }
+            else
+            {
+                return NotFound(new ApiResponse<dynamic>(404, "Không tìm thấy sản phẩm trong giỏ hàng"));
+            }
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

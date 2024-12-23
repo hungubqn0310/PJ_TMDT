@@ -187,6 +187,117 @@ namespace _123.Services
             return cartItems;
         }
 
+        public static int AddOrUpdateToCart(ShoppingCart cart)
+{
+    // Câu lệnh SQL để kiểm tra xem sản phẩm đã có trong giỏ hàng của người dùng chưa
+    string checkQuery = @"SELECT COUNT(*) FROM Shopping_Cart WHERE user_id = @user_id AND product_id = @product_id AND is_deleted = 0";
+    
+    // Các tham số truyền vào câu lệnh kiểm tra
+    var checkParameters = new MySqlParameter[]
+    {
+        new MySqlParameter("@user_id", MySqlDbType.Int32) { Value = cart.UserId },
+        new MySqlParameter("@product_id", MySqlDbType.VarChar) { Value = cart.ProductId }
+    };
+
+    // Kiểm tra số lượng sản phẩm có trong giỏ
+    int count = Convert.ToInt32(DatabaseHelper.ExecuteScalar(checkQuery, checkParameters));
+
+    if (count > 0)
+    {
+        // Nếu đã có sản phẩm trong giỏ hàng, thực hiện cập nhật số lượng
+        string updateQuery = @"UPDATE Shopping_Cart SET quantity = quantity + @quantity, added_at = @added_at
+                               WHERE user_id = @user_id AND product_id = @product_id AND is_deleted = 0";
+        
+        var updateParameters = new MySqlParameter[]
+        {
+            new MySqlParameter("@user_id", MySqlDbType.Int32) { Value = cart.UserId },
+            new MySqlParameter("@product_id", MySqlDbType.VarChar) { Value = cart.ProductId },
+            new MySqlParameter("@quantity", MySqlDbType.Int32) { Value = cart.Quantity },
+            new MySqlParameter("@added_at", MySqlDbType.DateTime) { Value = cart.AddedAt }
+        };
+
+        // Thực thi câu lệnh UPDATE và trả về số dòng bị ảnh hưởng
+        return DatabaseHelper.ExecuteNonQuery(updateQuery, updateParameters);
+    }
+    else
+    {
+        // Nếu chưa có sản phẩm trong giỏ hàng, thực hiện thêm mới
+        string insertQuery = @"INSERT INTO Shopping_Cart (user_id, product_id, quantity, added_at, is_deleted)
+                               VALUES (@user_id, @product_id, @quantity, @added_at, 0)";
+        
+        var insertParameters = new MySqlParameter[]
+        {
+            new MySqlParameter("@user_id", MySqlDbType.Int32) { Value = cart.UserId },
+            new MySqlParameter("@product_id", MySqlDbType.VarChar) { Value = cart.ProductId },
+            new MySqlParameter("@quantity", MySqlDbType.Int32) { Value = cart.Quantity },
+            new MySqlParameter("@added_at", MySqlDbType.DateTime) { Value = cart.AddedAt }
+        };
+
+        // Thực thi câu lệnh INSERT và trả về số dòng bị ảnh hưởng
+        return DatabaseHelper.ExecuteNonQuery(insertQuery, insertParameters);
+    }
+}
+
+public static int AddOrUpdateToManyCart(ShoppingCart[] carts)
+{
+    int affectedRows = 0;
+
+    foreach (var cart in carts)
+    {
+        // Câu lệnh SQL để kiểm tra xem sản phẩm đã có trong giỏ hàng của người dùng chưa
+        string checkQuery = @"SELECT COUNT(*) FROM Shopping_Cart WHERE user_id = @user_id AND product_id = @product_id AND is_deleted = 0";
+        
+        // Các tham số truyền vào câu lệnh kiểm tra
+        var checkParameters = new MySqlParameter[]
+        {
+            new MySqlParameter("@user_id", MySqlDbType.Int32) { Value = cart.UserId },
+            new MySqlParameter("@product_id", MySqlDbType.VarChar) { Value = cart.ProductId }
+        };
+
+        // Kiểm tra số lượng sản phẩm có trong giỏ
+        int count = Convert.ToInt32(DatabaseHelper.ExecuteScalar(checkQuery, checkParameters));
+
+        if (count > 0)
+        {
+            // Nếu đã có sản phẩm trong giỏ hàng, thực hiện cập nhật số lượng
+            string updateQuery = @"UPDATE Shopping_Cart SET quantity = quantity + @quantity, added_at = @added_at
+                                   WHERE user_id = @user_id AND product_id = @product_id AND is_deleted = 0";
+            
+            var updateParameters = new MySqlParameter[]
+            {
+                new MySqlParameter("@user_id", MySqlDbType.Int32) { Value = cart.UserId },
+                new MySqlParameter("@product_id", MySqlDbType.VarChar) { Value = cart.ProductId },
+                new MySqlParameter("@quantity", MySqlDbType.Int32) { Value = cart.Quantity },
+                new MySqlParameter("@added_at", MySqlDbType.DateTime) { Value = cart.AddedAt }
+            };
+
+            // Thực thi câu lệnh UPDATE và tăng số dòng bị ảnh hưởng
+            affectedRows += DatabaseHelper.ExecuteNonQuery(updateQuery, updateParameters);
+        }
+        else
+        {
+            // Nếu chưa có sản phẩm trong giỏ hàng, thực hiện thêm mới
+            string insertQuery = @"INSERT INTO Shopping_Cart (user_id, product_id, quantity, added_at, is_deleted)
+                                   VALUES (@user_id, @product_id, @quantity, @added_at, 0)";
+            
+            var insertParameters = new MySqlParameter[]
+            {
+                new MySqlParameter("@user_id", MySqlDbType.Int32) { Value = cart.UserId },
+                new MySqlParameter("@product_id", MySqlDbType.VarChar) { Value = cart.ProductId },
+                new MySqlParameter("@quantity", MySqlDbType.Int32) { Value = cart.Quantity },
+                new MySqlParameter("@added_at", MySqlDbType.DateTime) { Value = cart.AddedAt }
+            };
+
+            // Thực thi câu lệnh INSERT và tăng số dòng bị ảnh hưởng
+            affectedRows += DatabaseHelper.ExecuteNonQuery(insertQuery, insertParameters);
+        }
+    }
+
+    // Trả về tổng số dòng bị ảnh hưởng từ các thao tác INSERT/UPDATE
+    return affectedRows;
+}
+
+
 
     }
 }
