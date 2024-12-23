@@ -1,0 +1,237 @@
+  	
+    @{
+    ViewBag.Title = "Product Detail";
+}
+    <link rel="stylesheet"  href="/css/productDetail.css" />
+
+
+<div class="product-detail-container">
+    <div class="product-images">
+    <div class="thumbnail-images">
+        <div class="thumbnail active">
+            <img src="https://via.placeholder.com/150?text=Image+1" alt="Ring View 1" onclick="changeImage(this)">
+        </div>
+        <div class="thumbnail">
+            <img src="https://via.placeholder.com/150?text=Image+2" alt="Ring View 2" onclick="changeImage(this)">
+        </div>
+        <div class="thumbnail">
+            <img src="https://via.placeholder.com/150?text=Image+3" alt="Ring View 3" onclick="changeImage(this)">
+        </div>
+        <div class="thumbnail">
+            <img src="https://via.placeholder.com/150?text=Image+4" alt="Ring View 4" onclick="changeImage(this)">
+        </div>
+        <div class="thumbnail">
+            <img src="https://via.placeholder.com/150?text=Image+5" alt="Ring View 5" onclick="changeImage(this)">
+        </div>
+        <!-- Thêm nhiều ảnh tùy thích -->
+    </div>
+    <div class="main-image">
+        <img id="mainImage" src="https://via.placeholder.com/600?text=Main+Image" alt="Main Ring View">
+    </div>
+</div>
+
+
+    <div class="product-info">
+        <h2>Nhẫn cầu hôn Coquette Blusher NCH8417</h2>
+        <div class="price">
+            <span class="current-price">7.011.000 đ</span>
+            <span class="original-price">7.790.000 đ</span>
+        </div>
+
+        <div class="product-details">
+            <div class="detail-row">
+                <span class="label">Mã sản phẩm</span>
+                <span class="value">NCH8417</span>
+            </div>
+            <div class="detail-row">
+                <span class="label">Ni tay</span>
+                <span class="value">10</span>
+            </div>
+            <div class="detail-row">
+                <span class="label">Kiểu dáng nhẫn</span>
+                <span class="value">Fancy</span>
+            </div>
+            <div class="detail-row">
+                <span class="label">Kiểu viên chủ</span>
+                <span class="value">Trái tim</span>
+            </div>
+            <div class="detail-row">
+                <span class="label">Kích thước viên chủ (*)</span>
+                <span class="value">5</span>
+            </div>
+            <div class="detail-row">
+                <span class="label">Others</span>
+                <span class="value">New collection</span>
+            </div>
+            <div class="detail-row">
+                <span class="label">Loại nhẫn</span>
+                <span class="value">Nữ</span>
+            </div>
+            <div class="detail-row">
+                <span class="label">Màu Kim Loại</span>
+                <span class="value">Hồng</span>
+            </div>
+            <div class="detail-row">
+                <span class="label">Đá tấm</span>
+                <span class="value">Kim Cương</span>
+            </div>
+            <div class="detail-row">
+                <span class="label">Chất liệu</span>
+                <span class="value">14K</span>
+            </div>
+        </div>
+
+        <div class="contact-button">
+    <button class="btn-cart" id="cartButton">
+        <i class="fas fa-cart-arrow-down" id="cartIcon" style="font-size: 24px;"></i>
+    </button>
+    <button class="btn-favorite" id="favoriteButton">
+        <i class="far fa-heart" id="heartIcon" style="font-size: 24px;"></i>
+    </button>
+    <button class="btn-consult">MUA NGAY</button>
+    
+</div>
+
+
+<div class="hotline">Tư vấn ngay: 0976 534 850</div>
+        
+    </div>
+</div>
+<div class="product-description">
+            <p>Với thiết kế đậm chất Coquette, mẫu NCH8417 là một tác phẩm độc đáo, mang hình ảnh của tiểu thư ngọt ngào nhưng đầy trẻ trung. Được lấy cảm hứng từ mạng che mặt Coquette blusher, mẫu NCH8417 nổi bật với lớp voan trắng tinh khôi và những chiếc nơ xinh xắn được đính kết tỉ mỉ. Sự kết hợp này tạo nên một vẻ đẹp lôi cuốn và thanh thoát.
+
+Thiết kế khắc họa sự tinh tế trong từng chi tiết nhỏ, nhờ vào cấu trúc Enternity được áp dụng một cách khéo léo trên các chiếc nơ bé nhỏ. Những viên kim cương lấp lánh, như được đính kết trên lớp mạng che, tạo nên vẻ đẹp dịu dàng và quyến rũ, giống như một món quà quý giá từ những giấc mơ.</p>
+        </div>
+
+<script>
+    // Hàm thay đổi ảnh chính khi click vào thumbnail
+function changeImage(thumbnail) {
+    const mainImage = document.getElementById('mainImage');
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    
+    // Deselect tất cả các thumbnail
+    thumbnails.forEach(thumb => thumb.classList.remove('active'));
+    
+    // Chọn thumbnail hiện tại và làm nó nổi bật
+    thumbnail.classList.add('active');
+    
+    // Cập nhật ảnh chính theo ảnh thumbnail đã chọn
+    mainImage.src = thumbnail.querySelector('img').src;
+}
+
+// Hàm hiển thị ảnh ngẫu nhiên khi load trang
+function randomizeImages() {
+    const images = [
+        "https://via.placeholder.com/600?text=Image+1",
+        "https://via.placeholder.com/600?text=Image+2",
+        "https://via.placeholder.com/600?text=Image+3",
+        "https://via.placeholder.com/600?text=Image+4",
+        "https://via.placeholder.com/600?text=Image+5"
+    ];
+    
+    const randomIndex = Math.floor(Math.random() * images.length);
+    const mainImage = document.getElementById('mainImage');
+    mainImage.src = images[randomIndex];  // Cập nhật ảnh chính ngẫu nhiên
+}
+
+// Gọi hàm khi trang tải
+window.onload = function() {
+    randomizeImages();
+};
+
+// Thêm sự kiện hover zoom cho ảnh chính
+const mainImage = document.getElementById('mainImage');
+mainImage.addEventListener('mousemove', function(e) {
+    const rect = mainImage.getBoundingClientRect();
+    const offsetX = e.clientX - rect.left;
+    const offsetY = e.clientY - rect.top;
+    
+    // Zoom vào đúng vị trí chuột
+    mainImage.style.transformOrigin = `${(offsetX / rect.width) * 100}% ${(offsetY / rect.height) * 100}%`;
+});
+
+mainImage.addEventListener('mouseleave', function() {
+    // Khi chuột rời đi, ảnh quay lại bình thường
+    mainImage.style.transformOrigin = "center center";
+});
+</script>
+
+<script>
+    // Lấy icon trái tim và thêm sự kiện khi nhấn
+    const heartIcon = document.getElementById('heartIcon');
+
+    // Thêm sự kiện click cho icon yêu thích
+    heartIcon.onclick = () => {
+        if (heartIcon.classList.contains('far')) {
+            heartIcon.classList.remove('far');
+            heartIcon.classList.add('fas'); // Đổi thành trái tim đầy
+            heartIcon.classList.add('selected'); // Thêm màu đỏ
+        } else {
+            heartIcon.classList.remove('fas');
+            heartIcon.classList.add('far'); // Quay lại trái tim rỗng
+            heartIcon.classList.remove('selected'); // Bỏ màu đỏ
+        }
+    };
+
+    // Lấy đối tượng icon cart
+    const cartButton = document.getElementById('cartButton');
+    const cartIcon = document.getElementById('cartIcon');
+
+    // Thêm sự kiện click cho icon giỏ hàng
+    cartButton.addEventListener('click', function() {
+        if (cartIcon.classList.contains('fa-cart-arrow-down')) {
+            cartIcon.classList.remove('fa-cart-arrow-down');
+            cartIcon.classList.add('fa-shopping-cart'); // Chuyển sang giỏ hàng đầy (fa-shopping-cart)
+            cartIcon.classList.add('selected'); // Thêm màu đỏ
+        } else {
+            cartIcon.classList.remove('fa-shopping-cart');
+            cartIcon.classList.add('fa-cart-arrow-down'); // Quay lại giỏ hàng xuống (fa-cart-arrow-down)
+            cartIcon.classList.remove('selected'); // Bỏ màu đỏ
+        }
+    });
+</script>
+
+<script>
+function changeImage(element) {
+    document.getElementById('mainImage').src = element.src;
+    
+    // Remove active class from all thumbnails
+    document.querySelectorAll('.thumbnail').forEach(thumb => {
+        thumb.classList.remove('active');
+    });
+    
+    // Add active class to clicked thumbnail
+    element.parentElement.classList.add('active');
+}
+</script>
+<div class="coTheBanSeThich">
+			<div class="coTheBanSeThich-header">
+				<div class="coTheBanSeThich-tieuDe">Có thể bạn sẽ thích</div>
+				<div class="coTheBanSeThich-xemThem">Xem thêm &gt;</div>
+			</div>
+			<div class="coTheBanSeThich-content">
+				<button class="btn-prev" onclick="slideLeft()">&#8249;</button>
+				<div class="coTheBanSeThich-slider" id="slider">
+					<img class="coTheBanSeThich-item" src="/images/suggest1.png" alt="Ảnh 1">
+					<img class="coTheBanSeThich-item" src="/images/suggest2.png" alt="Ảnh 2">
+					<img class="coTheBanSeThich-item" src="/images/suggest3.png" alt="Ảnh 3">
+					<img class="coTheBanSeThich-item" src="/images/suggest4.png" alt="Ảnh 4">
+					<img class="coTheBanSeThich-item" src="/images/suggest5.png" alt="Ảnh 5">
+					<img class="coTheBanSeThich-item" src="/images/suggest6.png" alt="Ảnh 6">
+					<img class="coTheBanSeThich-item" src="/images/suggest7.png" alt="Ảnh 7">
+					<img class="coTheBanSeThich-item" src="/images/suggest8.png" alt="Ảnh 8">
+					<img class="coTheBanSeThich-item" src="/images/suggest9.png" alt="Ảnh 9">
+					<img class="coTheBanSeThich-item" src="/images/suggest10.png" alt="Ảnh 10">
+					<img class="coTheBanSeThich-item" src="/images/suggest11.png" alt="Ảnh 11">
+					<img class="coTheBanSeThich-item" src="/images/suggest12.png" alt="Ảnh 12">
+					<img class="coTheBanSeThich-item" src="/images/suggest13.png" alt="Ảnh 13">
+					<img class="coTheBanSeThich-item" src="/images/suggest14.png" alt="Ảnh 14">
+					<img class="coTheBanSeThich-item" src="/images/suggest15.png" alt="Ảnh 15">
+					<img class="coTheBanSeThich-item" src="/images/suggest16.png" alt="Ảnh 16">
+					<img class="coTheBanSeThich-item" src="/images/suggest17.png" alt="Ảnh 17">
+					<img class="coTheBanSeThich-item" src="/images/suggest18.png" alt="Ảnh 18">
+				</div>
+				<button class="btn-next" onclick="slideRight()">&#8250;</button>
+			</div>
+			<script src="/js/suggest.js"></script>
+		</div>
