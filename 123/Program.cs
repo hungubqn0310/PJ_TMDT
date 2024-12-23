@@ -17,6 +17,9 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.Sign
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
+builder.Services.Configuration<ZaloPayConfig>(
+    builder.Configuration.GetSection(ZaloPayConfig.ConfigName));
+
 var app = builder.Build();
 
 // Cấu hình cổng HTTP/HTTPS
