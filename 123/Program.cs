@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Identity;
 using _123.Models;
 using _123.Models.Momo;
 using _123.Services.Momo;
+using _123.Services;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Thêm các dịch vụ khác
@@ -20,8 +23,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.Sign
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
-// builder.Services.Configuration<ZaloPayConfig>(
-//     builder.Configuration.GetSection(ZaloPayConfig.ConfigName));
+builder.Services.AddSingleton<ZaloPayService>();
 
 var app = builder.Build();
 

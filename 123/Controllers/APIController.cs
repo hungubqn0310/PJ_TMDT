@@ -9,10 +9,12 @@ namespace _123.Controllers
     public class ApiController : Controller
     {
         private readonly ILogger<ApiController> _logger;
+        private readonly ZaloPayService _zaloPayService;
 
-        public ApiController(ILogger<ApiController> logger)
+        public ApiController(ILogger<ApiController> logger,ZaloPayService zaloPayService)
         {
             _logger = logger;
+             _zaloPayService = zaloPayService;
         }
 
         public class LoginRequest
@@ -184,6 +186,34 @@ namespace _123.Controllers
         }
 
 
+        [HttpPost("zalo")]
+        public async Task<IActionResult> CreateOrder([FromQuery] decimal amount)
+        {
+            if (amount <= 0)
+            {
+                return BadRequest("Amount must be greater than 0.");
+            }
+
+            try
+            {
+                var response = await _zaloPayService.CreateZaloPayOrder(amount);
+            Console.WriteLine(response.ReturnCode);
+
+                if (response.ReturnCode == 1)
+                {
+                    return Ok(new { OrderUrl = response.OrderUrl });
+                }
+                else
+                {
+                    return BadRequest(new { Message = response.ReturnMessage });
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = $"Error creating ZaloPay order: {ex.Message}" });
+            }
+        }
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
