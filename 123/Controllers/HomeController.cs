@@ -84,6 +84,11 @@ namespace _123.Controllers
             return View(); // Trả về view "CuaHangHanDK"
         }
 
+        public IActionResult ProductDetail()
+    {
+        return View();
+    }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

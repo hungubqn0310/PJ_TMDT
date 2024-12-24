@@ -1,0 +1,317 @@
+.coTheBanSeThich {
+    height: auto; 
+    overflow: hidden; 
+    width: 1085px;
+    margin: 30px auto; 
+    font-size: 26.25px;
+    position: relative;
+}
+
+.coTheBanSeThich-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Tăng khoảng cách giữa tiêu đề và slider */
+}
+
+.coTheBanSeThich-tieuDe {
+    margin-left: 40px;
+    font-weight: 300;
+}
+
+.coTheBanSeThich-xemThem {
+    font-size: 15.5px;
+    font-weight: lighter;
+    margin-right: 40px;
+    white-space: nowrap;
+    text-align: right;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.coTheBanSeThich-xemThem:hover {
+    transform: translateX(10px); /* Di chuyển sang phải khi hover */
+    color: #FF6347; /* Thay đổi màu chữ khi hover */
+}
+
+.coTheBanSeThich-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 0 50px; /* Căn khoảng cách giữa mũi tên và vùng ảnh */
+}
+
+.coTheBanSeThich-slider {
+    display: flex;
+    gap: 20px; /* Khoảng cách giữa các ảnh */
+    transition: transform 0.5s ease;
+    margin: 0 auto; /* Căn giữa slider */
+    width: calc(142.5px * 6 + 20px * 5); /* Tổng chiều rộng của 6 ảnh + 5 khoảng cách giữa các ảnh */
+}
+
+.coTheBanSeThich-item {
+    width: 142.5px;
+    height: 142.5px;
+    border-radius: 30px;
+    object-fit: cover;
+    flex-shrink: 0; /* Không co giãn các ảnh */
+    transition: transform 0.3s ease;
+}
+
+.coTheBanSeThich-item:hover {
+    transform: scale(1.2); /* Zoom ảnh khi hover */
+    cursor: pointer;
+}
+
+.btn-prev, .btn-next {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, filter 0.3s ease;
+}
+
+.btn-prev {
+    left: 10px;
+}
+
+.btn-next {
+    right: 10px;
+}
+
+.btn-prev:hover, .btn-next:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+    filter: brightness(1.2);
+}
+
+.product-detail-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 120px auto 0 auto;
+    padding: 20px;
+    gap: 40px;
+}
+
+.product-images {
+    display: flex;
+    gap: 20px;
+    width: 50%;
+    justify-content: center;  /* Căn giữa cả hai phần tử trong div */
+}
+
+.thumbnail-images {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.thumbnail img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    transition: transform 0.3s ease; /* Thêm hiệu ứng thu nhỏ/phóng to khi hover */
+}
+
+.thumbnail.active img {
+    border: 2px solid pink;
+}
+
+.thumbnail img:hover {
+    transform: scale(1.1); /* Phóng to nhẹ khi hover vào thumbnail */
+}
+
+.main-image {
+    width: 500px;
+    height: 500px;
+    overflow: hidden;
+    position: relative;
+}
+
+.main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease; /* Hiệu ứng chuyển động khi zoom */
+}
+
+/* Hiệu ứng zoom khi hover vào ảnh chính */
+.main-image img:hover {
+    transform: scale(1.5);  /* Phóng to ảnh khi hover */
+}
+
+/* Hiệu ứng khi di chuột ra ngoài ảnh chính */
+.main-image img.zoom {
+    transform: scale(1.5);
+}
+
+/* Các thumbnail sẽ hiện lên tối đa 3 ảnh trong mỗi lần hiển thị */
+.thumbnail-images {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 250px;
+}
+
+.thumbnail {
+    border-radius: 8px;
+}
+
+.thumbnail img {
+    transition: transform 0.3s ease;
+}
+
+.thumbnail:hover img {
+    transform: scale(1.05); /* Phóng to nhẹ khi hover lên thumbnail */
+}
+
+.thumbnail.active img {
+    border: 3px solid #ff66b2; /* Làm nổi bật thumbnail được chọn */
+}
+
+
+
+.product-info {
+    width: 50%;
+}
+
+.price {
+    margin: 20px 0;
+}
+
+.current-price {
+    font-size: 40px;
+    color: pink;
+    font-weight: normal;
+}
+
+.original-price {
+    text-decoration: line-through 0;
+    color: #ccc;
+    margin-left: 10px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.contact-button {
+    display: flex;
+    justify-content: center;  /* Căn giữa phần tử trong div */
+    align-items: center;      /* Căn giữa theo chiều dọc */
+    gap: 10px;                /* Khoảng cách giữa các nút */
+    position: relative;
+}
+
+.btn-consult {
+    width: 100%;
+    padding: 10px;
+    background-color: pink;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 20px 0;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;  /* Hiệu ứng khi hover và nhấn */
+}
+
+.btn-consult:hover {
+    background-color: #ff66b2; /* Đổi màu khi hover */
+    transform: scale(1.1);      /* Phóng to nhẹ khi hover */
+}
+
+.btn-consult:active {
+    background-color: #ff3385; /* Đổi màu khi nhấn */
+    transform: scale(0.98);     /* Thu nhỏ khi nhấn */
+}
+
+.btn-cart {
+    width: auto;
+    height: auto;
+    background-color: pink;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    transition: background-color 0.3s, transform 0.3s;  /* Hiệu ứng khi hover và nhấn */
+}
+
+.btn-cart:hover {
+    background-color: #ff66b2; /* Đổi màu khi hover */
+    transform: scale(1.1);      /* Phóng to nhẹ khi hover */
+}
+
+.btn-cart:active {
+    background-color: #ff3385; /* Đổi màu khi nhấn */
+    transform: scale(0.98);     /* Thu nhỏ khi nhấn */
+}
+
+.btn-favorite {
+    width: auto;
+    height: auto;
+    background-color: pink;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    transition: background-color 0.3s, transform 0.3s;  /* Hiệu ứng khi hover và nhấn */
+}
+
+.btn-favorite:hover {
+    background-color: #ff66b2; /* Đổi màu khi hover */
+    transform: scale(1.1);      /* Phóng to nhẹ khi hover */
+}
+
+.btn-favorite:active {
+    background-color: #ff3385; /* Đổi màu khi nhấn */
+    transform: scale(0.98);     /* Thu nhỏ khi nhấn */
+}
+
+.material-icons {
+    font-size: 24px;
+}
+
+
+.hotline {
+    text-align: center;
+    font-size: 18px;
+    color: #ccc;
+}
+.product-description {
+    margin: auto;
+    max-width: 800px;
+    text-align: justify;
+}
+/* Đặt màu mặc định là trắng */
+.fas, .far {
+    transition: color 0.3s ease; /* Hiệu ứng chuyển màu */
+}
+
+/* Màu khi được chọn (đỏ) */
+.selected {
+    color: red;
+}

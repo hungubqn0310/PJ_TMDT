@@ -161,50 +161,71 @@ function renderProducts(products) {
         productLink.appendChild(productText);
 
         // Icon yêu thích
-        const iconFavorite = document.createElement('div');
-        iconFavorite.classList.add('icon_favorite');
-        iconFavorite.style = 'position: absolute; top: 10px; right: 10px; cursor: pointer;';
-        const heartIcon = document.createElement('i');
-        heartIcon.classList.add('far', 'fa-heart'); // Trái tim rỗng
-        heartIcon.style = 'font-size: 24px; color: #ff0000;';
+const iconFavorite = document.createElement('div');
+iconFavorite.classList.add('icon_favorite');
+iconFavorite.style = 'position: absolute; top: 10px; right: 10px; cursor: pointer;';
 
-        // Thêm sự kiện click cho icon yêu thích
-        heartIcon.onclick = () => {
-            if (heartIcon.classList.contains('far')) {
-                heartIcon.classList.remove('far');
-                heartIcon.classList.add('fas'); // Đổi thành trái tim đầy
-                heartIcon.style.color = '#ff0000'; // Đổi màu thành đỏ khi đầy
-            } else {
-                heartIcon.classList.remove('fas');
-                heartIcon.classList.add('far'); // Quay lại trái tim rỗng
-                heartIcon.style.color = '#ff0000'; // Màu gốc khi rỗng
-            }
-        };
+const heartIcon = document.createElement('i');
+heartIcon.classList.add('far', 'fa-heart'); // Trái tim rỗng
+heartIcon.style = `
+    font-size: 24px;
+    color: pink;
+    transition: transform 0.2s ease, color 0.5s ease; /* Thêm hiệu ứng chuyển đổi màu */
+`;
 
-        iconFavorite.appendChild(heartIcon);
+// Thêm sự kiện click cho icon yêu thích
+heartIcon.onclick = () => {
+    heartIcon.style.transform = 'scale(1.2)'; // Phóng to nhẹ khi click
+    setTimeout(() => (heartIcon.style.transform = 'scale(1)'), 200); // Trả về kích thước ban đầu
 
-        // Icon giỏ hàng
-const iconCart = document.createElement('div');
-iconCart.classList.add('icon_cart');
-iconCart.style = 'position: absolute; top: 10px; left: 10px; cursor: pointer;';
-const cartIcon = document.createElement('i');
-cartIcon.classList.add('fas', 'fa-cart-arrow-down'); // Giỏ hàng đầy ban đầu (fa-cart-arrow-down)
-cartIcon.style = 'font-size: 24px; color: #ff0000;';
-
-// Thêm sự kiện click cho icon giỏ hàng
-cartIcon.onclick = () => {
-    if (cartIcon.classList.contains('fa-cart-arrow-down')) {
-        cartIcon.classList.remove('fa-cart-arrow-down');
-        cartIcon.classList.add('fa-shopping-cart'); // Chuyển sang giỏ hàng đầy (fa-shopping-cart)
-        cartIcon.style.color = '#ff0000'; // Đổi màu thành đỏ khi đầy
+    if (heartIcon.classList.contains('far')) {
+        heartIcon.classList.remove('far');
+        heartIcon.classList.add('fas'); // Đổi thành trái tim đầy
+        heartIcon.style.color = 'red'; // Chuyển màu từ hồng sang đỏ
     } else {
-        cartIcon.classList.remove('fa-shopping-cart');
-        cartIcon.classList.add('fa-cart-arrow-down'); // Quay lại giỏ hàng xuống (fa-cart-arrow-down)
-        cartIcon.style.color = '#ff0000'; // Màu gốc khi xuống
+        heartIcon.classList.remove('fas');
+        heartIcon.classList.add('far'); // Quay lại trái tim rỗng
+        heartIcon.style.color = 'pink'; // Chuyển màu từ đỏ sang hồng
     }
 };
 
-        iconCart.appendChild(cartIcon);
+iconFavorite.appendChild(heartIcon);
+
+// Icon giỏ hàng
+const iconCart = document.createElement('div');
+iconCart.classList.add('icon_cart');
+iconCart.style = 'position: absolute; top: 10px; left: 10px; cursor: pointer;';
+
+const cartIcon = document.createElement('i');
+cartIcon.classList.add('fas', 'fa-cart-arrow-down'); // Giỏ hàng đầy ban đầu (fa-cart-arrow-down)
+cartIcon.style = `
+    font-size: 24px;
+    color: pink;
+    transition: transform 0.2s ease, color 0.5s ease; /* Thêm hiệu ứng chuyển đổi màu */
+`;
+
+// Thêm sự kiện click cho icon giỏ hàng
+cartIcon.onclick = () => {
+    cartIcon.style.transform = 'scale(1.2)'; // Phóng to nhẹ khi click
+    setTimeout(() => (cartIcon.style.transform = 'scale(1)'), 200); // Trả về kích thước ban đầu
+
+    if (cartIcon.classList.contains('fa-cart-arrow-down')) {
+        cartIcon.classList.remove('fa-cart-arrow-down');
+        cartIcon.classList.add('fa-shopping-cart'); // Chuyển sang giỏ hàng đầy (fa-shopping-cart)
+        cartIcon.style.color = 'red'; // Chuyển màu từ hồng sang đỏ
+    } else {
+        cartIcon.classList.remove('fa-shopping-cart');
+        cartIcon.classList.add('fa-cart-arrow-down'); // Quay lại giỏ hàng xuống (fa-cart-arrow-down)
+        cartIcon.style.color = 'pink'; // Chuyển màu từ đỏ sang hồng
+    }
+};
+
+iconCart.appendChild(cartIcon);
+
+// Thêm các icon vào DOM (có thể thêm vào một container hoặc phần cụ thể của giao diện)
+document.body.appendChild(iconFavorite);
+document.body.appendChild(iconCart);
+
 
         // Thêm icon vào sản phẩm
         productBox.appendChild(productLink);
