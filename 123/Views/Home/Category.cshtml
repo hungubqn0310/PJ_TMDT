@@ -49,7 +49,6 @@
     let currentPage = 1;
     let fakeProducts;
     let categoryId =  localStorage.getItem('categoryId'); 
-    console.log("categoryId", categoryId);
 
     const fetchProducts = async () => {
         try {
@@ -111,7 +110,7 @@ function renderProducts(products) {
         productBox.style = 'border: 1px solid #ddd; padding: 20px; border-radius: 10px; background-color: #fff; position: relative;';
 
         const productLink = document.createElement('a');
-        productLink.href = `/product/details/${product.ProductId}`;
+        productLink.href = `/Home/ProductDetail`;
         productLink.style = 'display: block; text-align: center;';
 
         const imageWrapper = document.createElement('div');
@@ -242,6 +241,10 @@ document.body.appendChild(iconCart);
         productBox.addEventListener('mouseleave', () => {
             iconFavorite.style.opacity = 0; // Ẩn icon yêu thích
             iconCart.style.opacity = 0;     // Ẩn icon giỏ hàng
+        });
+
+        productBox.addEventListener('click', (e) => {
+            localStorage.setItem('productId', product.ProductId);
         });
     });
 }
