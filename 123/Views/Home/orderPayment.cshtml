@@ -1,0 +1,159 @@
+@{
+    ViewData["Title"] = "Thanh toán và giao hàng";
+}
+    <link rel="stylesheet"  href="/css/orderPayment.css" />
+
+<div class="checkout-container">
+    <h1 class="checkout-title">THANH TOÁN VÀ GIAO HÀNG</h1>
+
+    <form class="checkout-form" id="checkoutForm">
+        <div class="form-section">
+            <div class="form-group">
+                <label for="fullName">Họ và tên <span class="required">*</span></label>
+                <input type="text" id="fullName" class="form-control" placeholder="Nhập họ và tên" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="phone">Số điện thoại <span class="required">*</span></label>
+                    <input type="tel" id="phone" class="form-control" placeholder="Nhập số điện thoại" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Địa chỉ email <span class="required">*</span></label>
+                    <input type="email" id="email" class="form-control" placeholder="Nhập địa chỉ email" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="city">Tỉnh/Thành phố <span class="required">*</span></label>
+                    <select id="city" class="form-control" required>
+                        <option value="">Chọn Tỉnh/Thành phố</option>
+                        <option value="hcm">Hồ Chí Minh</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="district">Quận/Huyện <span class="required">*</span></label>
+                    <select id="district" class="form-control" required>
+                        <option value="">Chọn Quận/Huyện</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ward">Xã/Phường/Thị trấn <span class="required">*</span></label>
+                <select id="ward" class="form-control" required>
+                    <option value="">Chọn Xã/Phường/Thị trấn</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Địa chỉ <span class="required">*</span></label>
+                <input type="text" id="address" class="form-control" placeholder="Nhập địa chỉ cụ thể, số nhà, tên đường" required>
+            </div>
+<div class="form-group">
+    <label for="orderNote">Ghi chú đơn hàng (tùy chọn)</label>
+    <textarea id="orderNote" class="form-control" rows="4" placeholder="Ghi chú về đơn hàng, ví dụ: thời gian hay chỉ dẫn địa điểm giao hàng chi tiết hơn."></textarea>
+</div>
+            
+        </div>
+
+        <div class="order-section">
+            <h2>ĐƠN HÀNG CỦA BẠN</h2>
+            <div class="order-details">
+                <div class="product-item">
+                    <img src="/path-to-image.jpg" alt="Sản phẩm">
+                    <div class="product-info">
+                        <h3>Lắc Tay Em Bé Bạc Callie Silver Có Chuông Kèm Charm Hình</h3>
+                        <span class="quantity">× 1</span>
+                        <span class="price">650,000 ₫</span>
+                    </div>
+                </div>
+
+                <div class="order-summary">
+                    <div class="summary-row">
+                        <span>TẠM TÍNH</span>
+                        <span>650,000 ₫</span>
+                    </div>
+                    <div class="shipping-options">
+                        <h3>GIAO HÀNG</h3>
+                        <div class="shipping-option">
+                            <input type="radio" id="standard" name="shipping" checked>
+                            <label for="standard">Giao tiêu chuẩn (từ 3 - 7 ngày): 20,000 ₫</label>
+                        </div>
+                        <div class="shipping-option">
+                            <input type="radio" id="express" name="shipping">
+                            <label for="express">Giao hoả tốc (trong vòng 4h): 30,000 ₫</label>
+                        </div>
+                    </div>
+                    <div class="total-row">
+                        <span>TỔNG</span>
+                        <span>670,000 ₫</span>
+                    </div>
+                </div>
+
+                <div class="payment-methods">
+                    <div class="payment-option">
+                        <input type="radio" id="cod" name="payment" checked>
+                        <label for="cod">Thanh toán khi nhận hàng (COD)</label>
+                    </div>
+                    <div class="payment-option">
+                        <input type="radio" id="bank" name="payment">
+                        <label for="bank">Chuyển khoản ngân hàng</label>
+                    </div>
+                    <div class="payment-option">
+                        <input type="radio" id="momo" name="payment">
+                        <label for="momo">Thanh toán qua ví Momo</label>
+                    </div>
+                </div>
+
+                
+
+                <button type="submit" class="order-button">Đặt hàng</button>
+                <div class="note">* Thời gian thực tế có thể dao động sớm hoặc muộn hơn tùy tình hình tồn kho sản phẩm, địa chỉ nhận hàng, các dịp nhu cầu mua sắm tăng cao...</div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('checkoutForm');
+    
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Add your form submission logic here
+        alert('Đơn hàng đã được gửi!');
+    });
+
+    // Add smooth transitions for input fields
+    const inputs = document.querySelectorAll('.form-control');
+    inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            this.style.transition = 'all 0.3s ease';
+        });
+    });
+});
+// Lấy tất cả các phần tử cần thiết
+const paymentOptions = document.querySelectorAll('input[name="payment"]');
+const shippingOptions = document.querySelectorAll('input[name="shipping"]');
+
+// Thêm sự kiện thay đổi cho các tùy chọn thanh toán
+paymentOptions.forEach(option => {
+    option.addEventListener('change', () => {
+        if (option.id === 'bank' || option.id === 'momo') {
+            // Vô hiệu hóa các tùy chọn giao hàng
+            shippingOptions.forEach(shipping => {
+                shipping.disabled = true;
+            });
+        } else {
+            // Kích hoạt lại các tùy chọn giao hàng
+            shippingOptions.forEach(shipping => {
+                shipping.disabled = false;
+            });
+        }
+    });
+});
+
+</script>

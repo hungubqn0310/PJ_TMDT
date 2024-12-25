@@ -1,0 +1,113 @@
+@{
+    ViewData["Title"] = "Thanh toán thành công";
+}
+
+<link rel="stylesheet" href="/css/paymentSuccessful.css" />
+
+<div class="success-container">
+    <div class="success-check">
+        <div class="check-circle animate">
+            <div class="check-mark"></div>
+        </div>
+    </div>
+    
+    <div class="success-message fade-in">
+        <h2>Cảm ơn bạn. Đơn hàng của bạn đã được nhận.</h2>
+        <ul>
+            <li><strong>Mã đơn hàng:</strong> 1646</li>
+            <li><strong>Ngày:</strong> 29/06/2022</li>
+            <li><strong>Email:</strong> xuanltt23@gmail.com</li>
+            <li><strong>Tổng cộng:</strong> 825,000 ₫</li>
+            <li><strong>Phương thức thanh toán:</strong> Chuyển khoản ngân hàng</li>
+        </ul>
+    </div>
+
+    <div class="note fade-in">
+        <p><strong>Lưu ý:</strong> Sau khi chuyển khoản hãy nhắn tin qua <a href="#">Facebook</a> hoặc <a href="#">Zalo</a> cho mình nhé!</p>
+    </div>
+
+    <div class="bank-info fade-in">
+        <h3>Thông tin chuyển khoản</h3>
+        <img src="/images/mbbank-logo.png" alt="MBBank Logo" />
+        <p><strong>STK:</strong> 50000000000999</p>
+        <p><strong>Chủ tài khoản:</strong> NGUYEN VIET ANH</p>
+        <p><strong>Chi nhánh:</strong> Ngân hàng MBBank</p>
+        <p><strong>Nội dung chuyển khoản:</strong> DH1646</p>
+    </div>
+
+    <div class="order-details fade-in">
+    <h3>Chi Tiết Đơn Hàng</h3>
+    <ul class="order-list">
+        <li>
+            <span class="product-name">Dây chuyền Callie Silver bạc trơn o móc xi bạch kim × 2</span>
+            <span class="product-total">550,000 ₫</span>
+        </li>
+        <li>
+            <span class="product-name">Dây chuyền Callie Silver mặt hình lục giác đính hạt Hexagon × 1</span>
+            <span class="product-total">275,000 ₫</span>
+        </li>
+        <li class="order-summary">
+            <span class="label">TỔNG THANH TOÁN:</span>
+            <span class="value">825,000 ₫</span>
+        </li>
+        <li class="order-summary">
+            <span class="label">GIAO NHẬN HÀNG:</span>
+            <span class="value">Miễn phí vận chuyển</span>
+        </li>
+        <li class="order-summary">
+            <span class="label">PHƯƠNG THỨC THANH TOÁN:</span>
+            <span class="value">Chuyển khoản ngân hàng</span>
+        </li>
+    </ul>
+</div>
+
+
+    <div class="payment-address fade-in">
+        <h3>Địa Chỉ Thanh Toán</h3>
+        <ul class="order-list">
+        <li>
+            <span class="product-name">Họ và tên</span>
+            <span class="product-total">Nguyễn Việt Anh</span>
+        </li>
+        <li>
+            <span class="product-name">Số điện thoại</span>
+            <span class="product-total">0976534850</span>
+        </li>
+        <li>
+            <span class="product-name">Email</span>
+            <span class="product-total">vietanhcoi2003@gmail.com</span>
+        </li>
+        <li>
+            <span class="product-name">Tỉnh/Thành phố</span>
+            <span class="product-total">Hà Nội</span>
+        </li>
+        <li>
+            <span class="product-name">Quận/Huyện</span>
+            <span class="product-total">Chương Mỹ</span>
+        </li>
+        <li>
+            <span class="product-name">Xã/Phường/Thị trấn</span>
+            <span class="product-total">Đại Yên</span>
+        </li>
+        <li>
+            <span class="product-name">Địa chỉ</span>
+            <span class="product-total">Xã Đại Yên, huyện Chương Mỹ, tp. Hà Nội</span>
+        </li>
+        <li>
+            <span class="product-name">Ghi chú đơn hàng</span>
+            <span class="product-total">Hàng ngon</span>
+        </li>
+    </ul>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Thêm hiệu ứng khi trang tải
+    const fadeElements = document.querySelectorAll('.fade-in');
+    fadeElements.forEach((el, index) => {
+        el.style.animationDelay = `${index * 0.3}s`;
+        el.classList.add('visible');
+    });
+});
+</script>
