@@ -1,0 +1,147 @@
+@{
+    ViewBag.Title = "Giỏ Hàng";
+}
+<link rel="stylesheet" href="/css/cart.css" />
+
+<div class="cart-wrapper">
+
+    <!-- Tiêu đề Giỏ Hàng -->
+    <h1 class="cart-title">Giỏ Hàng Của Bạn</h1>
+
+    <form class="cart-form" action="/cart" method="post">
+        <div class="cart-table-wrapper">
+            <table class="cart-table" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th class="product-select">
+                            <input type="checkbox" id="select-all" onclick="toggleSelectAll(this)">
+                        </th>
+                        <th class="product-name">Sản phẩm</th>
+                        <th class="product-price">Giá</th>
+                        <th class="product-quantity">Số lượng</th>
+                        <th class="product-subtotal">Tạm tính</th>
+                        <th class="product-remove">Xóa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="cart-item">
+                        <td class="product-select">
+                            <input type="checkbox" name="selected_items[]" value="1">
+                        </td>
+                        <td class="product-name">
+                            <img src="/images/product1.jpg" alt="" width="100" height="100">
+                            <a>Nhẫn Bạc Callie Silver</a>
+                        </td>
+                        <td class="product-price">980,000₫</td>
+                        <td class="product-quantity">
+                            <input type="number" name="quantity[1]" value="5" min="1" max="10">
+                        </td>
+                        <td class="product-subtotal">4,900,000₫</td>
+                        <td class="product-remove">
+    <a href="/cart?remove_item=1"><i class="fas fa-trash"></i></a>
+</td>
+
+                    </tr>
+                    <!-- Các sản phẩm khác sẽ được hiển thị ở đây -->
+                </tbody>
+            </table>
+        </div>
+    </form>
+
+    <!-- Tổng cộng và thanh toán -->
+    <div class="cart-summary">
+        <h2>Cộng giỏ hàng</h2>
+        <table class="cart-totals">
+            <tr>
+                <th>Tạm tính</th>
+                <td>4,900,000₫</td>
+            </tr>
+            <tr>
+                <th>Giao hàng</th>
+                <td>
+                    <!-- Phương thức giao hàng -->
+                    
+
+                    <!-- Địa chỉ giao hàng -->
+                    <p class="shipping-destination">
+                        Vận chuyển đến <strong>Huyện Cần Giờ, Hồ Chí Minh</strong>.
+                        <a href="#" class="change-address">Đổi địa chỉ</a>
+                    </p>
+
+                    <!-- Đổi địa chỉ -->
+                    
+
+                    <!-- Form thay đổi địa chỉ -->
+                    <section class="address-form" style="display:none;">
+                        <form action="/cart" method="post" class="shipping-calculator">
+                            <p class="form-row">
+                                <label for="country" class="screen-reader-text">Quốc gia / Khu vực:</label>
+                                <select name="country" id="country" class="country-select">
+                                    <option value="VN" selected>Việt Nam</option>
+                                </select>
+                            </p>
+
+                            <p class="form-row">
+                                <label for="state" class="screen-reader-text">Tỉnh/Thành phố <abbr class="required">*</abbr></label>
+                                <select name="state" id="state" class="state-select">
+                                    <option value="HOCHIMINH">Hồ Chí Minh</option>
+                                    <option value="HANOI">Hà Nội</option>
+                                    <!-- Các thành phố khác -->
+                                </select>
+                            </p>
+
+                            <p class="form-row">
+    <label for="city" class="screen-reader-text">Quận/Huyện <abbr class="required">*</abbr></label>
+    <select name="city" id="city">
+        <option value="can-gio" selected>Cần Giờ</option>
+        <option value="quan-1">Quận 1</option>
+        <option value="quan-2">Quận 2</option>
+        <option value="quan-3">Quận 3</option>
+        <option value="quan-4">Quận 4</option>
+        <option value="quan-5">Quận 5</option>
+        <!-- Thêm các tùy chọn quận khác ở đây -->
+    </select>
+</p>
+
+
+                            <p>
+                                <button type="submit" class="btn-update">Cập nhật</button>
+                            </p>
+                        </form>
+                    </section>
+                </td>
+            </tr>
+
+            <tr class="order-total">
+                <th>Tổng cộng</th>
+                <td>4,900,000₫</td>
+            </tr>
+        </table>
+
+        <div class="proceed-to-checkout">
+            <a href="/checkout" class="checkout-button">Tiến hành thanh toán</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleSelectAll(source) {
+        let checkboxes = document.querySelectorAll('input[name="selected_items[]"]');
+        checkboxes.forEach(function (checkbox) {
+            checkbox.checked = source.checked;
+        });
+    }
+    // Chuyển đổi hiển thị của form thay đổi địa chỉ
+document.querySelector('.change-address').addEventListener('click', function(event) {
+    event.preventDefault();
+    let addressForm = document.querySelector('.address-form');
+    if (addressForm.style.display === 'none' || addressForm.style.display === '') {
+        addressForm.style.display = 'block';
+        addressForm.classList.add('show');
+    } else {
+        addressForm.style.display = 'none';
+        addressForm.classList.remove('show');
+    }
+});
+
+</script>
