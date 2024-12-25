@@ -157,6 +157,56 @@
 .main-image img.zoom {
     transform: scale(1.5);
 }
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.quantity-btn {
+    background-color: #ffb6c1;
+    border: none;
+    color: white;
+    font-size: 14px; /* Có thể điều chỉnh để vừa với chữ */
+    width: 25px; /* Tùy chỉnh kích thước nút */
+    height: 25px; /* Tùy chỉnh chiều cao của nút */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+/* Ẩn các nút lên xuống trong input[type="number"] */
+.quantity-input::-webkit-outer-spin-button,
+.quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.quantity-input[type=number] {
+    -moz-appearance: textfield; /* Đối với Firefox */
+}
+
+.quantity-btn:hover {
+    background-color: #ff69b4;
+    transform: scale(1.1);
+}
+
+.quantity-btn:active {
+    transform: scale(0.9);
+}
+
+.quantity-input {
+    width: 50px;
+    text-align: center;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    height: 30px;
+}
 
 /* Các thumbnail sẽ hiện lên tối đa 3 ảnh trong mỗi lần hiển thị */
 .thumbnail-images {
