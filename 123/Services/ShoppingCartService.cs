@@ -155,9 +155,11 @@ namespace _123.Services
         public static List<dynamic> GetCartItemsByUserId(int userId)
         {
             string query = @"SELECT sc.cart_id, sc.user_id, sc.product_id, sc.quantity, sc.added_at, sc.is_deleted, 
-                                    p.product_name, p.price
+                                    p.product_name, p.price, dis.discount_percent
                             FROM Shopping_Cart sc
                             LEFT JOIN Products p ON sc.product_id = p.product_id
+                            LEFT JOIN Product_Discount pdis ON pdis.product_id = p.product_id
+                            LEFT JOIN Discounts  dis ON dis.discount_id = pdis.discount_id 
                             WHERE sc.user_id = @user_id AND sc.is_deleted = 0";
             
             var parameters = new MySqlParameter[]
@@ -177,6 +179,7 @@ namespace _123.Services
                     UserId = Convert.ToInt32(row["user_id"]),
                     ProductId = row["product_id"].ToString(),
                     ProductName = row["product_name"].ToString(),
+                    DiscountPercent = row["discount_percent"].ToString(),
                     Price = Convert.ToDecimal(row["price"]),
                     Quantity = Convert.ToInt32(row["quantity"]),
                     AddedAt = Convert.ToDateTime(row["added_at"]),

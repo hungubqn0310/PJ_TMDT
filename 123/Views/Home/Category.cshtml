@@ -143,16 +143,16 @@ function renderProducts(products) {
         if(priceDiscount) {
             productPrice.classList.add('product_price');
             productPrice.style = 'font-size: 16px; margin: 5px 0;';
-            productPrice.innerHTML = `<span class="woocommerce-Price-amount amount"><bdi>${formatPrice(priceDiscount)}&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></bdi></span>`;
+            productPrice.innerHTML = `<span class="woocommerce-Price-amount amount"><bdi>${formatPrice(priceDiscount*1000)}&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></bdi></span>`;
 
             originalPrice.classList.add('product_regular_price');
             originalPrice.style = 'text-decoration-thickness: 0px; color: #999; margin-left: 10px; font-weight: 300';
-            originalPrice.innerHTML = `<span class="woocommerce-Price-amount amount"><bdi>${formatPrice(price)}&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></bdi></span>`;
+            originalPrice.innerHTML = `<span class="woocommerce-Price-amount amount"><bdi>${formatPrice(price*1000)}&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></bdi></span>`;
             productPrice.appendChild(originalPrice);
         }else {
             productPrice.classList.add('product_price');
             productPrice.style = 'font-size: 16px; margin: 5px 0;';
-            productPrice.innerHTML = `<span class="woocommerce-Price-amount amount"><bdi>${formatPrice(price)}&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></bdi></span>`;
+            productPrice.innerHTML = `<span class="woocommerce-Price-amount amount"><bdi>${formatPrice(price*1000)}&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></bdi></span>`;
 
         }
 

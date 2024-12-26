@@ -12,6 +12,35 @@
     let productId =  localStorage.getItem('productId'); 
     let fakeProducts;
 
+    const addCart = async (productId) => {
+        let quantity = document.getElementById('quantity-input').value;
+        let userId = localStorage.getItem('id');
+        
+        let a =await fetch(`https://localhost:5003/api/cart`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                UserId: userId,
+                ProductId: productId,
+                Quantity: quantity
+            })
+        });
+
+        let res =await a.json();
+        if(res.status == 200) {
+            alert('Thêm vào giỏ hàng thành công');
+        } else {
+            alert('Thêm vào giỏ hàng thất bại');
+        }
+
+    }
+
+    const handleGoToViewCart = () => {
+        window.location.href = '/Home/cart';
+    }
+
     const fetchProducts = async () => {
         try {
             // Gửi yêu cầu HTTP POST đến API login
@@ -40,7 +69,6 @@
         await fetchProducts()
         const productDetailWrap = document.querySelector('.product-detail-wrapper');
         console.log('fakeProducts',productDetailWrap)
-        @* productDetailWrap.innerHTML = `` *@
         if(fakeProducts) {
             let price
             let priceDiscount
@@ -65,9 +93,9 @@
             <h2>${fakeProducts?.ProductName}</h2>
             <div class="price">
                 ${priceDiscount 
-                    ? `<span class="current-price">${priceDiscount} đ</span>
-                    <span class="original-price">${fakeProducts?.Price} đ</span>`
-                    : `<span class="current-price">${fakeProducts?.Price} đ</span>`}
+                    ? `<span class="current-price">${(priceDiscount*1000).toLocaleString('vi-VN')} đ</span>
+                    <span class="original-price">${(fakeProducts?.Price*1000).toLocaleString('vi-VN')} đ</span>`
+                    : `<span class="current-price">${(fakeProducts?.Price*1000).toLocaleString('vi-VN')} đ</span>`}
             </div>
 
             <div class="product-details">
@@ -122,13 +150,13 @@
     </div>
     
             <div class="contact-button">
-        <button class="btn-cart" id="cartButton">
+        <button class="btn-cart" id="cartButton" onclick="addCart(fakeProducts?.ProductId)">
             <i class="fas fa-cart-arrow-down" id="cartIcon" style="font-size: 24px;"></i>
         </button>
         <button class="btn-favorite" id="favoriteButton">
             <i class="far fa-heart" id="heartIcon" style="font-size: 24px;"></i>
         </button>
-        <button class="btn-consult">MUA NGAY</button>
+        <button class="btn-consult" onclick="handleGoToViewCart()">MUA NGAY</button>
         
     </div>
 
@@ -151,61 +179,61 @@
 
     const increaseQuantity = async() => {
     // Cấm nhập liệu từ bàn phím
-document.getElementById('quantity-input').addEventListener('keydown', function(event) {
-    event.preventDefault();
-});
+        document.getElementById('quantity-input').addEventListener('keydown', function(event) {
+            event.preventDefault();
+        });
 
-// Xử lý sự kiện khi nhấn nút trừ và cộng
-let quantityInput = document.getElementById('quantity-input');
-let interval;
+        // Xử lý sự kiện khi nhấn nút trừ và cộng
+        let quantityInput = document.getElementById('quantity-input');
+        let interval;
 
-document.querySelector('.decrease').addEventListener('click', function() {
+        document.querySelector('.decrease').addEventListener('click', function() {
 
-    let currentValue = parseInt(quantityInput.value);
-    if (currentValue > 1) {
-        quantityInput.value = currentValue - 1;
-    }
-});
+            let currentValue = parseInt(quantityInput.value);
+            if (currentValue > 1) {
+                quantityInput.value = currentValue - 1;
+            }
+        });
 
-document.querySelector('.increase').addEventListener('click', function() {
-    let currentValue = parseInt(quantityInput.value);
-    quantityInput.value = currentValue + 1;
-});
+        document.querySelector('.increase').addEventListener('click', function() {
+            let currentValue = parseInt(quantityInput.value);
+            quantityInput.value = currentValue + 1;
+        });
 
-// Xử lý khi giữ chuột để tăng giảm nhanh
-document.querySelector('.decrease').addEventListener('mousedown', function() {
-    interval = setInterval(function() {
-        let currentValue = parseInt(quantityInput.value);
-        if (currentValue > 1) {
-            quantityInput.value = currentValue - 1;
-        }
-    }, 100); // Giảm nhanh mỗi 100ms khi giữ chuột
-});
+        // Xử lý khi giữ chuột để tăng giảm nhanh
+        document.querySelector('.decrease').addEventListener('mousedown', function() {
+            interval = setInterval(function() {
+                let currentValue = parseInt(quantityInput.value);
+                if (currentValue > 1) {
+                    quantityInput.value = currentValue - 1;
+                }
+            }, 100); // Giảm nhanh mỗi 100ms khi giữ chuột
+        });
 
-document.querySelector('.increase').addEventListener('mousedown', function() {
-    interval = setInterval(function() {
-        let currentValue = parseInt(quantityInput.value);
-        quantityInput.value = currentValue + 1;
-    }, 100); // Tăng nhanh mỗi 100ms khi giữ chuột
-});
+        document.querySelector('.increase').addEventListener('mousedown', function() {
+            interval = setInterval(function() {
+                let currentValue = parseInt(quantityInput.value);
+                quantityInput.value = currentValue + 1;
+            }, 100); // Tăng nhanh mỗi 100ms khi giữ chuột
+        });
 
-// Dừng tăng giảm khi thả chuột
-document.querySelector('.decrease').addEventListener('mouseup', function() {
-    clearInterval(interval);
-});
+        // Dừng tăng giảm khi thả chuột
+        document.querySelector('.decrease').addEventListener('mouseup', function() {
+            clearInterval(interval);
+        });
 
-document.querySelector('.increase').addEventListener('mouseup', function() {
-    clearInterval(interval);
-});
+        document.querySelector('.increase').addEventListener('mouseup', function() {
+            clearInterval(interval);
+        });
 
-// Dừng tăng giảm khi chuột rời khỏi nút
-document.querySelector('.decrease').addEventListener('mouseleave', function() {
-    clearInterval(interval);
-});
+        // Dừng tăng giảm khi chuột rời khỏi nút
+        document.querySelector('.decrease').addEventListener('mouseleave', function() {
+            clearInterval(interval);
+        });
 
-document.querySelector('.increase').addEventListener('mouseleave', function() {
-    clearInterval(interval);
-});
+        document.querySelector('.increase').addEventListener('mouseleave', function() {
+            clearInterval(interval);
+        });
 
     }
 
@@ -345,4 +373,5 @@ function changeImage(element) {
 			</div>
 			<script src="/js/suggest.js"></script>
 		</div>
+
 
