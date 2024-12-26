@@ -26,7 +26,6 @@
             if (response.ok) {
                  let res = await response.json();
                 fakeProducts = res?.data;
-                console.log('abc',fakeProducts)
             } else {
                 console.log("Không tìm thấy sản phầm")
             }
@@ -36,7 +35,6 @@
         }
   
     }
-
 
     const filldata = async () => {
         await fetchProducts()
@@ -114,7 +112,15 @@
                     <span class="value">${fakeProducts?.Material?.materialName}</span>
                 </div>
             </div>
-
+ <div class="detail-row">
+        <span class="label">Số lượng</span>
+        <div class="quantity-control">
+            <button class="quantity-btn decrease">-</button>
+<input type="number" class="quantity-input" value="1" min="1" step="1" id="quantity-input" readonly>
+            <button class="quantity-btn increase">+</button>
+        </div>
+    </div>
+    
             <div class="contact-button">
         <button class="btn-cart" id="cartButton">
             <i class="fas fa-cart-arrow-down" id="cartIcon" style="font-size: 24px;"></i>
@@ -138,10 +144,71 @@
             `
         }
 
-  
+        increaseQuantity()
     }
 
-filldata()
+    filldata()
+
+    const increaseQuantity = async() => {
+    // Cấm nhập liệu từ bàn phím
+document.getElementById('quantity-input').addEventListener('keydown', function(event) {
+    event.preventDefault();
+});
+
+// Xử lý sự kiện khi nhấn nút trừ và cộng
+let quantityInput = document.getElementById('quantity-input');
+let interval;
+
+document.querySelector('.decrease').addEventListener('click', function() {
+
+    let currentValue = parseInt(quantityInput.value);
+    if (currentValue > 1) {
+        quantityInput.value = currentValue - 1;
+    }
+});
+
+document.querySelector('.increase').addEventListener('click', function() {
+    let currentValue = parseInt(quantityInput.value);
+    quantityInput.value = currentValue + 1;
+});
+
+// Xử lý khi giữ chuột để tăng giảm nhanh
+document.querySelector('.decrease').addEventListener('mousedown', function() {
+    interval = setInterval(function() {
+        let currentValue = parseInt(quantityInput.value);
+        if (currentValue > 1) {
+            quantityInput.value = currentValue - 1;
+        }
+    }, 100); // Giảm nhanh mỗi 100ms khi giữ chuột
+});
+
+document.querySelector('.increase').addEventListener('mousedown', function() {
+    interval = setInterval(function() {
+        let currentValue = parseInt(quantityInput.value);
+        quantityInput.value = currentValue + 1;
+    }, 100); // Tăng nhanh mỗi 100ms khi giữ chuột
+});
+
+// Dừng tăng giảm khi thả chuột
+document.querySelector('.decrease').addEventListener('mouseup', function() {
+    clearInterval(interval);
+});
+
+document.querySelector('.increase').addEventListener('mouseup', function() {
+    clearInterval(interval);
+});
+
+// Dừng tăng giảm khi chuột rời khỏi nút
+document.querySelector('.decrease').addEventListener('mouseleave', function() {
+    clearInterval(interval);
+});
+
+document.querySelector('.increase').addEventListener('mouseleave', function() {
+    clearInterval(interval);
+});
+
+    }
+
 
 </script>
 
@@ -278,3 +345,4 @@ function changeImage(element) {
 			</div>
 			<script src="/js/suggest.js"></script>
 		</div>
+

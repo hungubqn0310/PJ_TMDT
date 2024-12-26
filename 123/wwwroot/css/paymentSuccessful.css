@@ -1,0 +1,204 @@
+/* CSS cho trang thanh toán thành công */
+
+
+.success-container {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 140px;
+    margin-bottom: 20px;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Hiệu ứng FadeIn */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.success-check {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.check-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #4caf50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: pulse 1.5s infinite;
+}
+
+.check-circle .check-mark {
+    width: 30px;
+    height: 15px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+    animation: drawCheck 1s ease-in-out forwards;
+}
+
+/* Hiệu ứng vẽ dấu tích */
+@keyframes drawCheck {
+    from {
+        width: 0;
+        height: 0;
+    }
+    to {
+        width: 15px;
+        height: 30px;
+    }
+}
+
+/* Hiệu ứng nhịp tim */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.success-message {
+    text-align: center;
+    margin-bottom: 20px;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+.success-message h2 {
+    color: #4caf50;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.success-message ul {
+    list-style: none;
+    padding: 0;
+}
+.order-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.order-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px dashed #ccc;
+}
+
+.order-list li:last-child {
+    border-bottom: none;
+}
+
+.product-name {
+    font-weight: 400;
+    color: #555;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+
+.product-total {
+    font-weight: 600;
+    color: #333;
+}
+
+.order-summary {
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.order-summary .label {
+    font-weight: bold;
+    color: #444;
+}
+
+.order-summary .value {
+    font-weight: bold;
+    color: #222;
+}
+
+.success-message li {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.note {
+    background-color: #fffbdd;
+    padding: 15px;
+    border-left: 4px solid #ffeb3b;
+    margin-bottom: 20px;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.note a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.note a:hover {
+    text-decoration: underline;
+}
+
+.bank-info, .order-details, .payment-address {
+    margin-bottom: 20px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.bank-info h3, .order-details h3, .payment-address h3 {
+    font-size: 20px;
+    color: #333;
+    border-bottom: 2px solid #4caf50;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.bank-info p, .payment-address p {
+    font-size: 16px;
+    margin: 5px 0;
+    color: #555;
+}
+
+.order-details table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.order-details th, .order-details td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.order-details th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.order-details td {
+    color: #555;
+}
