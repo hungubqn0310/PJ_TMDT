@@ -14,7 +14,8 @@ namespace _123.Services
         public static int CreateOrder(Order order)
         {
             string query = @"INSERT INTO Orders (user_id, order_date, status, total_amount, is_deleted)
-                             VALUES (@user_id, @order_date, @status, @total_amount, 0)";
+                             VALUES (@user_id, @order_date, @status, @total_amount, 0); 
+                             SELECT LAST_INSERT_ID();";
             
             var parameters = new MySqlParameter[]
             {
@@ -24,7 +25,9 @@ namespace _123.Services
                 new MySqlParameter("@total_amount", MySqlDbType.Decimal) { Value = order.TotalAmount }
             };
 
-            return DatabaseHelper.ExecuteNonQuery(query, parameters);
+            object result = DatabaseHelper.ExecuteScalar(query, parameters);
+
+            return Convert.ToInt32(result);
         }
 
         // Lấy danh sách các đơn hàng

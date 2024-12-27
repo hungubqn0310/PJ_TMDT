@@ -23,6 +23,13 @@ namespace _123.Controllers
             public string Password { get; set; }
         }
 
+        public class OrderDto
+        {
+            public Order order { get; set; }
+            public List<OrderItem> orderItems { get; set; }
+            public int userId  { get; set; }
+        }
+
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest loginRequest) {
             var res = AuthService.Login(loginRequest.Username, loginRequest.Password);
@@ -115,7 +122,6 @@ namespace _123.Controllers
         [HttpGet("carts")]
         public IActionResult GetCarts([FromQuery] int id)
         {
-            Console.WriteLine(id);
             // Tạo một danh sách sản phẩm mẫu
             var carts = ShoppingCartService.GetCartItemsByUserId(id);
 
@@ -182,6 +188,23 @@ namespace _123.Controllers
             else
             {
                 return NotFound(new ApiResponse<dynamic>(404, "Không tìm thấy sản phẩm trong giỏ hàng"));
+            }
+        }
+
+        [HttpPost("orders")]
+        public IActionResult CreateOrder([FromBody] OrderDto orders)
+        {
+            var result = OrderService.CreateOrder(orders.order);
+            if (result >0)
+            {
+                var orderItems = OrderItemService.CreateOrderItems(
+                    orders.orderItems.Select(item => new OrderItem { OrderId = result, ProductName= item.ProductName, Quantity = item.Quantity, Price = item.Price}).ToList());
+                var shop = ShoppingCartService.UpdateCartToDeleteByUserId(orders.userId);
+                return Ok(new ApiResponse<dynamic>(200, "Tao don hang thanh cong"));
+            }
+            else
+            {
+                return NotFound(new ApiResponse<dynamic>(404, "Tao don hang that bai"));
             }
         }
 

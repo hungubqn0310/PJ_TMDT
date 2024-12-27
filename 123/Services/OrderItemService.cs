@@ -167,5 +167,32 @@ public static List<OrderItem> GetAllOrderItems()
 
             return DatabaseHelper.ExecuteNonQuery(query, parameters);
         }
+
+        public static int CreateOrderItems(List<OrderItem> orderItems)
+{
+    int totalInserted = 0;
+    string query = @"INSERT INTO Order_Items (order_id, product_name, quantity, price, is_deleted)
+                     VALUES (@order_id, @product_name, @quantity, @price, 0)";
+
+    // Loop through each order item and insert
+    foreach (var orderItem in orderItems)
+    {
+        // Define parameters for each orderItem
+         var parameters = new MySqlParameter[]
+            {
+                new MySqlParameter("@order_id", MySqlDbType.Int32) { Value = orderItem.OrderId },
+                new MySqlParameter("@product_name", MySqlDbType.VarChar) { Value = orderItem.ProductName },
+                new MySqlParameter("@quantity", MySqlDbType.Int32) { Value = orderItem.Quantity },
+                new MySqlParameter("@price", MySqlDbType.Decimal) { Value = orderItem.Price }
+            };
+
+        // Execute the query using DatabaseHelper.ExecuteNonQuery
+        totalInserted += DatabaseHelper.ExecuteNonQuery(query, parameters);
+    }
+
+    return totalInserted; // Return the total number of inserted rows
+}
+
+
     }
 }

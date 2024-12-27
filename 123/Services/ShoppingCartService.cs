@@ -151,11 +151,25 @@ namespace _123.Services
 
             return DatabaseHelper.ExecuteNonQuery(query, parameters);
         }
+
+        public static int UpdateCartToDeleteByUserId(int userId)
+{
+    string query = @"UPDATE Shopping_Cart
+                     SET is_deleted = 1
+                     WHERE user_id = @user_id AND is_deleted = 0";
+    
+    var parameters = new MySqlParameter[]
+    {
+        new MySqlParameter("@user_id", MySqlDbType.Int32) { Value = userId }
+    };
+
+    return DatabaseHelper.ExecuteNonQuery(query, parameters);
+}
     
         public static List<dynamic> GetCartItemsByUserId(int userId)
         {
             string query = @"SELECT sc.cart_id, sc.user_id, sc.product_id, sc.quantity, sc.added_at, sc.is_deleted, 
-                                    p.product_name, p.price, dis.discount_percent
+                                    p.product_name, p.price, dis.discount_percent, p.image_url
                             FROM Shopping_Cart sc
                             LEFT JOIN Products p ON sc.product_id = p.product_id
                             LEFT JOIN Product_Discount pdis ON pdis.product_id = p.product_id
@@ -180,6 +194,7 @@ namespace _123.Services
                     ProductId = row["product_id"].ToString(),
                     ProductName = row["product_name"].ToString(),
                     DiscountPercent = row["discount_percent"].ToString(),
+                    ImageUrl = row["image_url"].ToString(),
                     Price = Convert.ToDecimal(row["price"]),
                     Quantity = Convert.ToInt32(row["quantity"]),
                     AddedAt = Convert.ToDateTime(row["added_at"]),
