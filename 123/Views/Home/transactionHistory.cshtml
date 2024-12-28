@@ -1,0 +1,81 @@
+@{
+    ViewData["Title"] = "Lịch sử mua hàng";
+}
+    <link rel="stylesheet"  href="/css/transactionHistory.css" />
+
+<div class="order-history-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <button class="tab-button active" data-tab="payment-status">🛒 Trạng thái thanh toán</button>
+        <button class="tab-button" data-tab="shipping-status">📦 Trạng thái giao hàng</button>
+        <button class="tab-button" data-tab="completed">✅ Hoàn thành</button>
+        <button class="tab-button" data-tab="canceled">❌ Đã huỷ</button>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+        <!-- Fake Data: Payment Status -->
+        <div id="payment-status" class="tab-content active">
+            <h4>🛒 Trạng thái thanh toán</h4>
+            <div class="order-card">
+                <h3>Đơn hàng #12345</h3>
+                <p>Sản phẩm: Vòng tay kim cương</p>
+                <p>Giá: 20.000.000₫</p>
+                <p>Ngày đặt: 28/12/2024</p>
+            </div>
+            <div class="order-card">
+                <h3>Đơn hàng #12346</h3>
+                <p>Sản phẩm: Nhẫn vàng 24K</p>
+                <p>Giá: 15.000.000₫</p>
+                <p>Ngày đặt: 27/12/2024</p>
+            </div>
+        </div>
+
+        <!-- Fake Data: Shipping Status -->
+        <div id="shipping-status" class="tab-content">
+            <h4>📦 Trạng thái giao hàng</h4>
+            <div class="order-card">
+                <h3>Đơn hàng #12347</h3>
+                <p>Sản phẩm: Dây chuyền bạch kim</p>
+                <p>Giá: 25.000.000₫</p>
+                <p>Ngày giao: Đang xử lý</p>
+            </div>
+        </div>
+
+        <!-- Fake Data: Completed -->
+        <div id="completed" class="tab-content">
+            <h4>✅ Hoàn thành</h4>
+            <div class="order-card">
+                <h3>Đơn hàng #12344</h3>
+                <p>Sản phẩm: Lắc tay bạc</p>
+                <p>Giá: 5.000.000₫</p>
+                <p>Ngày hoàn thành: 25/12/2024</p>
+            </div>
+        </div>
+
+        <!-- Fake Data: Canceled -->
+        <div id="canceled" class="tab-content">
+            <h4>❌ Đã huỷ</h4>
+            <div class="order-card">
+                <h3>Đơn hàng #12343</h3>
+                <p>Sản phẩm: Bông tai đá quý</p>
+                <p>Giá: 7.000.000₫</p>
+                <p>Ngày huỷ: 24/12/2024</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.querySelectorAll('.tab-button').forEach(button => {
+        button.addEventListener('click', () => {
+            // Loại bỏ active khỏi tất cả các nút và nội dung
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+            // Thêm active vào nút và nội dung được chọn
+            const tabId = button.getAttribute('data-tab');
+            button.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+</script>
