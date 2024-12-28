@@ -1,3 +1,36 @@
 .sidebar-dark .nav-item .nav-link[data-toggle=collapse]::after {
   color: #000;
 }
+
+.nav-item.active .nav-link {
+  color: #ff66a0 !important; /* Màu của nav-link */
+}
+
+.nav-item.active .nav-link i {
+  color: #ff66a0 !important; /* Màu của icon */
+}
+
+.sidebar-dark .nav-item .nav-link[data-toggle=collapse]::after {
+  color: #ff66a0 !important;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-image: url(''); /* Đường dẫn đến ảnh nền */
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center; 
+}
+
+th, td {
+  background-color: rgba(255, 255, 255, 0.8); /* Nền trắng mờ để đọc dễ hơn */
+}
+
+.card-header{
+  background-color: #6b00ff63;
+}
+
+.text-primary {
+  color: #fff !important;
+}

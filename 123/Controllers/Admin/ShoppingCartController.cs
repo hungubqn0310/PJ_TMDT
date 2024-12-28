@@ -21,8 +21,10 @@ namespace _123.Controllers
         public IActionResult Index()
         {
             var shoppingCartViewModel = new ShoppingCartViewModel();
-            shoppingCartViewModel.Shopping_Carts = ShoppingCartService.GetCartItems();
-            // Gửi dữ liệu đến View
+            shoppingCartViewModel.ShoppingCarts = ShoppingCartService.GetCartItems();
+            ViewBag.Users = UserService.GetUsers() ?? new List<User>();
+            ViewBag.Products = ProductService.GetProducts() ?? new List<Product>();
+
             return View("Views/Admin/shoppingcart.cshtml", shoppingCartViewModel);
         }
 
@@ -30,52 +32,55 @@ namespace _123.Controllers
         [HttpGet("add")]
         public IActionResult Add()
         {
-            var cartItem = new Shopping_Cart();
-            var users = UserService.GetUsers();
-            var model = new ShoppingCartViewModel();
-            model.Shopping_Cart = cartItem;
-            model.Users = users;
-            return PartialView("/Views/Admin/cartadd.cshtml", model);
+            ShoppingCart cartItem = new ShoppingCart();
+
+            ViewBag.Users = UserService.GetUsers() ?? new List<User>(); 
+            ViewBag.Products = ProductService.GetProducts() ?? new List<Product>(); 
+
+            return PartialView("/Views/Admin/shoppingCartAdd.cshtml", cartItem);
         }
 
         // Thêm mới giỏ hàng
         [HttpPost("add")]
-        public IActionResult Add(Shopping_Cart cartItem)
+        public IActionResult Add(ShoppingCart cartItem)
         {
             ShoppingCartService.AddToCart(cartItem);
             return new RedirectResult("/admin/shoppingCart");
         }
 
         // Hiển thị form chỉnh sửa giỏ hàng
-        [HttpGet("edit/{id}")]
+        [HttpGet("edit")]
         public IActionResult Edit(int id)
         {
             var cartItem = ShoppingCartService.GetCartItemById(id);
-            return PartialView("/Views/Admin/cartedit.cshtml", cartItem);
+            
+            ViewBag.Users = UserService.GetUsers() ?? new List<User>(); 
+            ViewBag.Products = ProductService.GetProducts() ?? new List<Product>(); 
+
+            return PartialView("/Views/Admin/shoppingCartEdit.cshtml", cartItem);
         }
 
         // Chỉnh sửa giỏ hàng
         [HttpPost("edit")]
-        public IActionResult Edit(Shopping_Cart cartItem)
+        public IActionResult Edit(ShoppingCart cartItem)
         {
             ShoppingCartService.UpdateCartItem(cartItem);
             return new RedirectResult("/admin/shoppingCart");
         }
 
         // Hiển thị form xóa giỏ hàng
-        [HttpGet("delete/{id}")]
+        [HttpGet("delete")]
         public IActionResult Delete(int id)
         {
             var cartItem = ShoppingCartService.GetCartItemById(id);
-            return PartialView("/Views/Admin/cartdelete.cshtml", cartItem);
+            return PartialView("/Views/Admin/shoppingCartDelete.cshtml", cartItem);
         }
 
         // Xóa giỏ hàng
         [HttpPost("delete")]
-        public IActionResult Delete(Shopping_Cart cartItem)
+        public IActionResult Delete(ShoppingCart cartItem)
         {
-            Console.WriteLine(cartItem.cart_id);
-            ShoppingCartService.DeleteCartItem(cartItem.cart_id);
+            ShoppingCartService.DeleteCartItem(cartItem.CartId);
             return new RedirectResult("/admin/shoppingCart");
         }
 

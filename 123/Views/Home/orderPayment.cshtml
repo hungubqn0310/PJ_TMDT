@@ -1,0 +1,227 @@
+@{
+    ViewData["Title"] = "Thanh toán và giao hàng";
+}
+<link rel="stylesheet" href="/css/orderPayment.css" />
+
+<div class="checkout-container">
+    <h1 class="checkout-title">THANH TOÁN VÀ GIAO HÀNG</h1>
+
+    <form class="checkout-form" id="checkoutForm">
+        <div class="form-section">
+            <div class="form-group">
+                <label for="fullName">Họ và tên <span class="required">*</span></label>
+                <input type="text" id="fullName" class="form-control" placeholder="Nhập họ và tên" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="phone">Số điện thoại <span class="required">*</span></label>
+                    <input type="tel" id="phone" class="form-control" placeholder="Nhập số điện thoại" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Địa chỉ email <span class="required">*</span></label>
+                    <input type="email" id="email" class="form-control" placeholder="Nhập địa chỉ email" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="city">Tỉnh/Thành phố <span class="required">*</span></label>
+                    <select id="city" class="form-control" required>
+                        <option value="">Chọn Tỉnh/Thành phố</option>
+                        <option value="hcm">Hồ Chí Minh</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="district">Quận/Huyện <span class="required">*</span></label>
+                    <select id="district" class="form-control" required>
+                        <option value="">Chọn Quận/Huyện</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ward">Xã/Phường/Thị trấn <span class="required">*</span></label>
+                <select id="ward" class="form-control" required>
+                    <option value="">Chọn Xã/Phường/Thị trấn</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Địa chỉ <span class="required">*</span></label>
+                <input type="text" id="address" class="form-control" placeholder="Nhập địa chỉ cụ thể, số nhà, tên đường" required>
+            </div>
+
+            <div class="form-group">
+                <label for="orderNote">Ghi chú đơn hàng (tùy chọn)</label>
+                <textarea id="orderNote" class="form-control" rows="4" placeholder="Ghi chú về đơn hàng, ví dụ: thời gian hay chỉ dẫn địa điểm giao hàng chi tiết hơn."></textarea>
+            </div>
+        </div>
+
+        <div class="order-section">
+            <h2>ĐƠN HÀNG CỦA BẠN</h2>
+            <div class="order-details">
+                <div class="order-details-wrap"></div>
+
+                <div class="order-summary">
+                    <div class="total-row"></div>
+                </div>
+
+                <div class="payment-methods">
+                    <div class="payment-option">
+                        <input type="radio" id="cod" name="payment" checked>
+                        <label for="cod">Thanh toán khi nhận hàng (COD)</label>
+                    </div>
+                    <div class="payment-option">
+                        <input type="radio" id="bank" name="payment">
+                        <label for="bank">Chuyển khoản ngân hàng</label>
+                    </div>
+                    <div class="payment-option">
+                        <input type="radio" id="momo" name="payment">
+                        <label for="momo">Thanh toán qua ví Momo</label>
+                    </div>
+                </div>
+
+                <button type="button" class="order-button" onclick="handleOrder()">Đặt hàng</button>
+                <div class="note">* Thời gian thực tế có thể dao động sớm hoặc muộn hơn tùy tình hình tồn kho sản phẩm, địa chỉ nhận hàng, các dịp nhu cầu mua sắm tăng cao...</div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    let dataOrderItem;
+    const callApiGetCart = async () => {
+        let totalPrice = 0;
+        let id = localStorage.getItem('id');
+        let data = [];
+
+        try {
+            const response = await fetch(`https://localhost:5003/api/carts?id=${id}`);
+            if (response.status === 200) {
+                data = await response.json();
+                dataOrderItem = data; // Giữ lại dữ liệu giỏ hàng
+            } else {
+                console.error('Lỗi khi tải dữ liệu:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Có lỗi xảy ra:', error);
+        }
+
+        let orderDetails = document.querySelector('.order-details-wrap');
+        let totalRow = document.querySelector('.total-row');
+
+        data?.data?.forEach(item => {
+            let price = item.discountPercent ? item.price - item.price * item.discountPercent / 100 : item.price;
+            totalPrice += (price * item.quantity);
+            orderDetails.innerHTML += `
+                <div class="product-item">
+                    <img src="${item.imageUrl}" alt="Sản phẩm">
+                    <div class="product-info">
+                        <h3>${item.productName}</h3>
+                        <span class="quantity">Số lượng: ${item.quantity} - Đơn giá: ${(price * 1000).toLocaleString('vi-VN')} ₫</span>
+                    </div>
+                    <span class="price">${(price * item.quantity * 1000).toLocaleString('vi-VN')} ₫</span>
+                </div>`;
+        });
+
+        localStorage.setItem("totalPrice", totalPrice);
+
+        totalRow.innerHTML = `
+            <span>TỔNG</span>
+            <span>${(totalPrice * 1000).toLocaleString('vi-VN')} ₫</span>`;
+    };
+    callApiGetCart();
+
+    const handleOrder = async () => {
+        const selectedPaymentOption = document.querySelector('input[name="payment"]:checked').id;
+        let dataOrderItems;
+        let id = localStorage.getItem('id');
+
+        try {
+            const response = await fetch(`https://localhost:5003/api/carts?id=${id}`);
+            if (response.status === 200) {
+                dataOrderItems = await response.json();
+            } else {
+                console.error('Lỗi khi tải dữ liệu:', response.statusText);
+                return;
+            }
+        } catch (error) {
+            console.error('Có lỗi xảy ra:', error);
+            return;
+        }
+
+        const response2 = await fetch(`https://localhost:5003/api/orders`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                order: {
+                    user_id: id, // Đảm bảo sử dụng user_id thay vì UserId
+                    order_date: new Date().toISOString(), // Định dạng đúng cho ngày tháng
+                    total_amount: parseFloat(localStorage.getItem('totalPrice')), // Chuyển đổi sang số thực
+                    status: 'pending'
+                },
+                orderItems: dataItem,
+                userId: id
+            })
+        });
+
+        if (response2.ok) { // Kiểm tra nếu phản hồi thành công
+            const orderData = await response2.json(); // Lấy dữ liệu phản hồi
+            console.log(orderData); // In ra toàn bộ phản hồi để kiểm tra
+
+            const orderId = orderData.order_id; // Sử dụng order_id từ phản hồi
+            if (orderId) {
+                localStorage.setItem('order_id', orderId); // Lưu order_id vào localStorage
+                console.log('Order ID saved:', orderId); // In ra ID đã lưu
+            } else {
+                console.error('Order ID not found in response');
+            }
+
+            // Chuyển hướng đến trang phù hợp dựa trên tùy chọn thanh toán
+            if (selectedPaymentOption === 'cod') {
+                window.location.href = 'https://localhost:5003/Home/paymentSuccessful';
+            } else if (selectedPaymentOption === 'bank') {
+                window.location.href = '/bank-transfer';
+            } else if (selectedPaymentOption === 'momo') {
+                window.location.href = '/Home/momopayment';
+            }
+        } else {
+            const errorText = await response2.text();
+            console.error('Error creating order:', errorText); // In ra chi tiết lỗi
+            alert('Đặt hàng không thành công. Vui lòng thử lại.');
+        }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('checkoutForm');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Đơn hàng đã được gửi!');
+        });
+
+        const inputs = document.querySelectorAll('.form-control');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.style.transition = 'all 0.3s ease';
+            });
+        });
+    });
+
+    const paymentOptions = document.querySelectorAll('input[name="payment"]');
+    paymentOptions.forEach(option => {
+        option.addEventListener('change', () => {
+            const shippingOptions = document.querySelectorAll('input[name="shipping"]');
+            if (option.id === 'bank' || option.id === 'momo') {
+                shippingOptions.forEach(shipping => {
+                    shipping.disabled = true;
+                });
+            } else {
+                shippingOptions.forEach(shipping => {
+                    shipping.disabled = false;
+                });
+            }
+        });
+    });
+</script>

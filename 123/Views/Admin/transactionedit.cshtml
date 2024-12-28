@@ -1,0 +1,124 @@
+@model TransactionHistory
+
+<div class="modal fade bd-example-modal-lg" id="transaction-@Model.TransactionId" tabindex="-1" role="dialog" aria-labelledby="transactionModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="transactionModalTitle">Edit Transaction</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="edit" method="post" id="transaction-edit-form-@Model.TransactionId" asp-controller="transaction">
+                    <input type="hidden" name="TransactionId" asp-for="TransactionId">
+
+                    <div class="row">
+                        <!-- User -->
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="UserId">User</label>
+                                <select class="form-control" id="UserId" name="UserId" asp-for="UserId">
+                                    <option value="">Select a user</option>
+                                    @if (ViewBag.Users != null)
+                                    {
+                                        @foreach (var user in ViewBag.Users)
+                                        {
+                                            <option value="@user.user_id" >@user.username</option>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <option disabled>No users available</option>
+                                    }
+                                </select>
+                                <span asp-validation-for="UserId" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Order -->
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="OrderId">Order</label>
+                                <select class="form-control" id="OrderId" name="OrderId" asp-for="OrderId">
+                                    <option value="">Select an order</option>
+                                    @if (ViewBag.Orders != null)
+                                    {
+                                        @foreach (var order in ViewBag.Orders)
+                                        {
+                                            <option value="@order.OrderId">Order #@order.OrderId</option>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <option disabled>No orders available</option>
+                                    }
+                                </select>
+                                <span asp-validation-for="OrderId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Transaction Date -->
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="TransactionDate">Transaction Date</label>
+                                <input type="datetime-local" class="form-control" id="TransactionDate" name="TransactionDate" asp-for="TransactionDate" value="@Model.TransactionDate.ToString("yyyy-MM-ddTHH:mm:ss")">
+                                <span asp-validation-for="TransactionDate" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Amount -->
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="Amount">Amount</label>
+                                <input type="number" class="form-control" id="Amount" name="Amount" asp-for="Amount" step="10">
+                                <span asp-validation-for="Amount" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Payment Method -->
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="PaymentMethodId">Payment Method</label>
+                                <select class="form-control" id="PaymentMethodId" name="PaymentMethodId" asp-for="PaymentMethodId">
+                                    <option value="">Select a payment method</option>
+                                    @if (ViewBag.PaymentMethods != null)
+                                    {
+                                        @foreach (var method in ViewBag.PaymentMethods)
+                                        {
+                                            <option value="@method.PaymentMethodId" >@method.PaymentMethodName</option>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <option disabled>No payment methods available</option>
+                                    }
+                                </select>
+                                <span asp-validation-for="PaymentMethodId" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Status -->
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="Status">Status</label>
+                                <input type="text" class="form-control" id="Status" name="Status" asp-for="Status">
+                                <span asp-validation-for="Status" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" style="border-radius: 20px;">Đóng</button>
+                <button type="submit" class="btn btn-outline-primary" style="border-radius: 20px;" form="transaction-edit-form-@Model.TransactionId">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+@model ProductDiscount
+
+<div class="modal fade bd-example-modal-lg" id="product-discount-edit-@Model.PdId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Sửa Product Discount</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Edit" method="post" id="product-discount-edit-form-@Model.PdId">
+                    <input type="hidden" name="PdId" asp-for="PdId">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Sản phẩm</label>
+                                <select class="form-control" name="ProductId" asp-for="ProductId" asp-items="@(new SelectList(ViewBag.Products ?? new List<Product>(), "ProductId", "ProductName"))">
+                                    <option value="">Chọn sản phẩm</option>
+                                </select>
+                                <span asp-validation-for="ProductId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Giảm giá</label>
+                                <select class="form-control" name="DiscountId" asp-for="DiscountId" asp-items="@(new SelectList(ViewBag.Discounts ?? new List<Discount>(), "DiscountId", "DiscountName"))">
+                                    <option value="">Chọn giảm giá</option>
+                                </select>
+                                <span asp-validation-for="DiscountId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" style="border-radius: 20px;">Đóng</button>
+                <button type="submit" class="btn btn-outline-primary" style="border-radius: 20px;" form="product-discount-edit-form-@Model.PdId">Lưu thay đổi</button>
+            </div>
+        </div>
+    </div>
+</div>

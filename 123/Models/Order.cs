@@ -1,9 +1,17 @@
-public class Order
+using System;
+
+namespace _123.Models
 {
-    public int order_id { get; set; }
-    public int user_id { get; set; }
-    public DateTime order_date { get; set; }
-    public string status { get; set; }
-    public decimal total_amount { get; set; }
-    public bool is_deleted { get; set; }
+    public class Order
+    {
+        public int OrderId { get; set; }
+        public int UserId { get; set; }
+        public DateTime OrderDate { get; set; }
+        public string Status { get; set; }
+        public decimal TotalAmount { get; set; }
+        public bool IsDeleted { get; set; }
+
+        public virtual User User { get; set; }
+
+    }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using _123.Helpers;
 using MySql.Data.MySqlClient;
+using _123.Models;
 
 namespace _123.Services
 {
@@ -16,18 +17,22 @@ namespace _123.Services
             
             var parameters = new MySqlParameter[]
             {
-                new MySqlParameter("@product_id", MySqlDbType.VarChar) { Value = review.product_id },
-                new MySqlParameter("@user_id", MySqlDbType.Int32) { Value = review.user_id },
-                new MySqlParameter("@rating", MySqlDbType.Int32) { Value = review.rating },
-                new MySqlParameter("@comment", MySqlDbType.Text) { Value = review.comment },
-                new MySqlParameter("@review_date", MySqlDbType.DateTime) { Value = review.review_date }
+                new MySqlParameter("@product_id", MySqlDbType.VarChar) { Value = review.ProductId },
+                new MySqlParameter("@user_id", MySqlDbType.Int32) { Value = review.UserId },
+                new MySqlParameter("@rating", MySqlDbType.Int32) { Value = review.Rating },
+                new MySqlParameter("@comment", MySqlDbType.Text) { Value = review.Comment },
+                new MySqlParameter("@review_date", MySqlDbType.DateTime) { Value = review.ReviewDate }
             };
 
             return DatabaseHelper.ExecuteNonQuery(query, parameters);
         }
 public static List<Review> GetAllReviews()
 {
-    string query = "SELECT review_id, product_id, user_id, rating, comment, review_date, is_deleted FROM Reviews WHERE is_deleted = 0";
+    string query = @"SELECT r.review_id, r.product_id, r.user_id, r.rating, r.comment, r.review_date, r.is_deleted , p.product_name, u.username
+    FROM Reviews r
+    LEFT JOIN Products  p ON p.product_id = r.product_id
+    LEFT JOIN Users  u ON u.user_id = r.user_id
+     WHERE r.is_deleted = 0";
     
     var reviews = new List<Review>();
 
@@ -40,13 +45,23 @@ public static List<Review> GetAllReviews()
         {
             reviews.Add(new Review
             {
-                review_id = Convert.ToInt32(row["review_id"]),
-                product_id = row["product_id"].ToString(),
-                user_id = Convert.ToInt32(row["user_id"]),
-                rating = Convert.ToInt32(row["rating"]),
-                comment = row["comment"].ToString(),
-                review_date = Convert.ToDateTime(row["review_date"]),
-                is_deleted = Convert.ToBoolean(row["is_deleted"])
+                ReviewId = Convert.ToInt32(row["review_id"]),
+                ProductId = row["product_id"].ToString(),
+                UserId = Convert.ToInt32(row["user_id"]),
+                Rating = Convert.ToInt32(row["rating"]),
+                Comment = row["comment"].ToString(),
+                ReviewDate = Convert.ToDateTime(row["review_date"]),
+                IsDeleted = Convert.ToBoolean(row["is_deleted"]),
+                Product = row["product_name"] == DBNull.Value ? null : new Product
+                {
+                    ProductId = (row["product_id"]).ToString(),
+                    ProductName = row["product_name"].ToString()
+                },
+                User = row["username"] == DBNull.Value ? null : new User
+                {
+                    user_id = Convert.ToInt32(row["user_id"]),
+                    username = row["username"].ToString()
+                },
             });
         }
     }
@@ -79,13 +94,13 @@ public static List<Review> GetAllReviews()
                 {
                     reviews.Add(new Review
                     {
-                        review_id = Convert.ToInt32(row["review_id"]),
-                        product_id = row["product_id"].ToString(),
-                        user_id = Convert.ToInt32(row["user_id"]),
-                        rating = Convert.ToInt32(row["rating"]),
-                        comment = row["comment"].ToString(),
-                        review_date = Convert.ToDateTime(row["review_date"]),
-                        is_deleted = Convert.ToBoolean(row["is_deleted"])
+                       ReviewId = Convert.ToInt32(row["review_id"]),
+                ProductId = row["product_id"].ToString(),
+                UserId = Convert.ToInt32(row["user_id"]),
+                Rating = Convert.ToInt32(row["rating"]),
+                Comment = row["comment"].ToString(),
+                ReviewDate = Convert.ToDateTime(row["review_date"]),
+                IsDeleted = Convert.ToBoolean(row["is_deleted"])
                     });
                 }
             }
@@ -115,13 +130,13 @@ public static List<Review> GetAllReviews()
                 var row = result.Rows[0];
                 return new Review
                 {
-                    review_id = Convert.ToInt32(row["review_id"]),
-                    product_id = row["product_id"].ToString(),
-                    user_id = Convert.ToInt32(row["user_id"]),
-                    rating = Convert.ToInt32(row["rating"]),
-                    comment = row["comment"].ToString(),
-                    review_date = Convert.ToDateTime(row["review_date"]),
-                    is_deleted = Convert.ToBoolean(row["is_deleted"])
+                   ReviewId = Convert.ToInt32(row["review_id"]),
+                ProductId = row["product_id"].ToString(),
+                UserId = Convert.ToInt32(row["user_id"]),
+                Rating = Convert.ToInt32(row["rating"]),
+                Comment = row["comment"].ToString(),
+                ReviewDate = Convert.ToDateTime(row["review_date"]),
+                IsDeleted = Convert.ToBoolean(row["is_deleted"])
                 };
             }
 
@@ -129,22 +144,23 @@ public static List<Review> GetAllReviews()
         }
 
         // Cập nhật review
-        public static int UpdateReview(Review review)
-        {
-            string query = @"UPDATE Reviews
-                             SET rating = @rating,
-                                 comment = @comment
-                             WHERE review_id = @review_id AND is_deleted = 0";
-            
-            var parameters = new MySqlParameter[]
-            {
-                new MySqlParameter("@review_id", MySqlDbType.Int32) { Value = review.review_id },
-                new MySqlParameter("@rating", MySqlDbType.Int32) { Value = review.rating },
-                new MySqlParameter("@comment", MySqlDbType.Text) { Value = review.comment }
-            };
+       public static int UpdateReview(Review review)
+{
+    string query = @"UPDATE Reviews
+                     SET rating = @rating,
+                         comment = @comment
+                     WHERE review_id = @review_id AND is_deleted = 0";
+    
+    var parameters = new MySqlParameter[]
+    {
+        new MySqlParameter("@review_id", MySqlDbType.Int32) { Value = review.ReviewId },
+        new MySqlParameter("@rating", MySqlDbType.Int32) { Value = review.Rating },
+        new MySqlParameter("@comment", MySqlDbType.Text) { Value = review.Comment }
+    };
 
-            return DatabaseHelper.ExecuteNonQuery(query, parameters);
-        }
+    return DatabaseHelper.ExecuteNonQuery(query, parameters);
+}
+
 
         // Xóa review (đánh dấu bị xóa)
         public static int DeleteReview(int reviewId)

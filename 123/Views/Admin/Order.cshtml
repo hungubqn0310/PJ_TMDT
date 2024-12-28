@@ -9,8 +9,8 @@
   </div>
   <div class="d-flex justify-content-end">
     <button type="button" class="btn btn-outline-success" style="margin: 10px 40px 0;" data-toggle="modal" data-target="#order-add" 
-    data-url="@Url.Action($"Add")">Add </button>
-    @* @await Html.PartialAsync("/Views/Admin/orderadd.cshtml", @Model.Order) *@
+    data-url="@Url.Action($"Add")">Thêm mới</button>
+    @await Html.PartialAsync("/Views/Admin/orderadd.cshtml", @Model.Order)
   </div>
 
   <div class="card-body">
@@ -30,19 +30,19 @@
                 {
                     <tr>
                         <td>@(i + 1)</td> <!-- Index -->
-                        <td>@Model.Orders[i].user_id</td> <!-- Assuming there's a user object in the order -->
-                        <td>@Model.Orders[i].order_date.ToString("dd/MM/yyyy")</td>
-                        <td>@Model.Orders[i].status</td>
-                        <td>@Model.Orders[i].total_amount.ToString("C2")</td>
+                        <td>@Model.Orders[i].User?.username</td><!-- Assuming there's a user object in the order -->
+                        <td>@Model.Orders[i].OrderDate.ToString("dd/MM/yyyy")</td>
+                        <td>@Model.Orders[i].Status</td>
+                            <td>@Model.Orders[i].TotalAmount.ToString("C2")</td>
                         <td>
-                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#order-@Model.Orders[i].order_id" data-url="@Url.Action($"Edit/{@Model.Orders[i].order_id}")">
+                                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#order-@Model.Orders[i].OrderId" data-url="@Url.Action($"Edit/{@Model.Orders[i].OrderId}")">
                                 <i class="material-icons" style="font-size: 14px">border_color</i>
                             </button>
-                            @* @await Html.PartialAsync("/Views/Admin/orderedit.cshtml", @Model.Orders[i]) *@
-                            <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#order-delete-@Model.Orders[i].order_id" data-url="@Url.Action($"Delete/{@Model.Orders[i].order_id}")">
+                            @await Html.PartialAsync("/Views/Admin/orderedit.cshtml", @Model.Orders[i])
+                                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#order-delete-@Model.Orders[i].OrderId" data-url="@Url.Action($"Delete/{@Model.Orders[i].OrderId}")">
                                 <i class="material-icons" style="font-size: 14px">delete</i>
                             </button>
-                            @* @await Html.PartialAsync("/Views/Admin/orderdelete.cshtml", @Model.Orders[i]) *@
+                            @await Html.PartialAsync("/Views/Admin/orderdelete.cshtml", @Model.Orders[i])
                         </td>
                     </tr>
                 }

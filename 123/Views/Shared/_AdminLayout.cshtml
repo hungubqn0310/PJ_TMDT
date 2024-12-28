@@ -19,7 +19,6 @@
 
     <!-- Custom styles for this template -->
     <link href="~/admin/css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="~/admin/css/admin.css" rel="stylesheet">
     
     <!-- Custom styles for this page -->
     <link href="~/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -32,14 +31,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <link href="~/admin/css/admin.css" rel="stylesheet">
+
 </head>
 <body id="page-top">
+    <script>
+        const role = localStorage.getItem('role');
+        if(role != 2) window.location.href = '/'
+    </script>
 
     <!-- Page Wrapper -->
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-image: url('');background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center; ">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
@@ -53,100 +60,108 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="/admin/index" style="color: #000;display: flex; align-items: center; gap: 10px">
-                    <i class="material-icons" style="font-size: 24px; color: #000">dashboard</i>
+                <a class="nav-link" href="/admin/index" style="color: #ff66a0;display: flex; align-items: center; gap: 10px">
+                    <i class="material-icons" style="font-size: 24px; color: #ff66a0">dashboard</i>
                     <span>Dashboard</span>
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/admin/user" style="color: #000;display: flex; align-items: center; gap: 10px">
-                    <i class="material-icons" style="font-size: 24px; color: #000">group</i>
+            <li class="nav-item ">
+                <a class="nav-link " href="/admin/user" style="color: #ff66a0;display: flex; align-items: center; gap: 10px">
+                    <i class="material-icons icon " style="font-size: 24px; color: #ff66a0">group</i>
                     <span>Users</span>
                 </a>
             </li>
-
+            <li class="nav-item ">
+                <a class="nav-link " href="/admin/role" style="color: #ff66a0;display: flex; align-items: center; gap: 10px">
+                    <i class="material-icons icon " style="font-size: 24px; color: #ff66a0">group</i>
+                    <span>Roles</span>
+                </a>
+            </li>
             <li class="nav-item" >
                 <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo" style="color: #000;display: flex; align-items: center; gap: 10px">
-                    <i class="material-icons" style="font-size: 20px; color: #000">diamond</i>
+                    aria-expanded="true" aria-controls="collapseTwo" style="color: #ff66a0;display: flex; align-items: center; gap: 10px">
+                    <i class="material-icons" style="font-size: 20px; color: #ff66a0">diamond</i>
                     <span>Products</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/admin/product" style="color: #000;display: flex; align-items: center; gap: 10px">
-                            <i class="material-icons" style="font-size: 20px; color: #000">diamond</i>
-                            <span>Prodcuts</span></a>
-                        <a class="collapse-item" href="/admin/category" style="color: #000;display: flex; align-items: center; gap: 10px">
-                            <i class="material-icons" style="font-size: 20px; color: #000">category</i>
+                        <a class="collapse-item" href="/admin/product" style="color: #ff66a0;display: flex; align-items: center; gap: 10px">
+                            <i class="material-icons" style="font-size: 20px; color: #ff66a0">diamond</i>
+                            <span>Products</span></a>
+                            <a class="collapse-item" href="/admin/productdetail" style="color: #ff66a0;display: flex; align-items: center; gap: 10px">
+                            <i class="material-icons" style="font-size: 20px; color: #ff66a0">store</i>
+                            <span>ProductDetail</span></a>
+                        <a class="collapse-item" href="/admin/category" style="color: #ff66a0;display: flex; align-items: center; gap: 10px">
+                            <i class="material-icons" style="font-size: 20px; color: #ff66a0">category</i>
                             <span>Categories</span></a>
-                        <a class="collapse-item" href="/admin/material" style="color: #000;display: flex; align-items: center; gap: 10px">
-                            <i class="material-icons" style="font-size: 20px; color: #000">travel_explore</i>
+                        <a class="collapse-item" href="/admin/material" style="color: #ff66a0;display: flex; align-items: center; gap: 10px">
+                            <i class="material-icons" style="font-size: 20px; color: #ff66a0">travel_explore</i>
                             <span>Materials</span></a>
-                        <a class="collapse-item" href="/admin/supplier" style="color: #000;display: flex; align-items: center; gap: 10px">
-                            <i class="material-icons" style="font-size: 20px; color: #000">other_houses</i>
+                        <a class="collapse-item" href="/admin/supplier" style="color: #ff66a0;display: flex; align-items: center; gap: 10px">
+                            <i class="material-icons" style="font-size: 20px; color: #ff66a0">other_houses</i>
                             <span>Suppliers</span></a>
-                        <a class="collapse-item" href="/admin/productsupplier" style="color: #000;display: flex; align-items: center; gap: 10px">
-                            <i class="material-icons" style="font-size: 20px; color: #000">other_houses</i>
+                        <a class="collapse-item" href="/admin/productsupplier" style="color: #ff66a0;display: flex; align-items: center; gap: 10px">
+                            <i class="material-icons" style="font-size: 20px; color: #ff66a0">other_houses</i>
                             <span>Product Suppliers</span></a>
-                        <a class="collapse-item" href="/admin/inventory" style="color: #000;display: flex; align-items: center; gap: 10px">
-                            <i class="material-icons" style="font-size: 20px; color: #000">gite</i>
+                        <a class="collapse-item" href="/admin/inventory" style="color: #ff66a0;display: flex; align-items: center; gap: 10px">
+                            <i class="material-icons" style="font-size: 20px; color: #ff66a0">gite</i>
                             <span>Inventory</span></a>
-                        <a class="collapse-item" href="/admin/discount" style="color: #000;display: flex; align-items: center; gap: 10px">
-                            <i class="material-icons" style="font-size: 20px; color: #000">percent</i>
+                        <a class="collapse-item" href="/admin/discount" style="color: #ff66a0;display: flex; align-items: center; gap: 10px">
+                            <i class="material-icons" style="font-size: 20px; color: #ff66a0">percent</i>
                             <span>Discounts</span></a>
-                        <a class="collapse-item" href="/admin/productdiscount" style="color: #000;display: flex; align-items: center; gap: 10px">
-                            <i class="material-icons" style="font-size: 20px; color: #000">percent</i>
+                        <a class="collapse-item" href="/admin/productdiscount" style="color: #ff66a0;display: flex; align-items: center; gap: 10px">
+                            <i class="material-icons" style="font-size: 20px; color: #ff66a0">percent</i>
                             <span>Product Discounts</span></a>
                     </div>
                 </div>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/admin/shoppingCart" style="color: #000;display: flex; align-items: center; gap: 10px">
-                    <i class="material-icons" style="font-size: 24px; color: #000">shopping_cart</i>
+                <a class="nav-link" href="/admin/shoppingCart" style="color: #ff66a0;display: flex; align-items: center; gap: 10px">
+                    <i class="material-icons" style="font-size: 24px; color: #ff66a0">shopping_cart</i>
                     <span>Shopping Cart</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/admin/payment-method" style="color: #000;display: flex; align-items: center; gap: 10px">
-                    <i class="material-icons" style="font-size: 24px; color: #000">payments</i>
+                <a class="nav-link" href="/admin/payment-method" style="color: #ff66a0;display: flex; align-items: center; gap: 10px">
+                    <i class="material-icons" style="font-size: 24px; color: #ff66a0">payments</i>
                     <span>Payment Methods</span>
                 </a>
             </li>
 
             <li class="nav-item" >
                 <a class="nav-link collapsed" href="/admin/order" data-toggle="collapse" data-target="#collapseTwo2"
-                    aria-expanded="true" aria-controls="collapseTwo" style="color: #000;display: flex; align-items: center; gap: 10px">
-                    <i class="material-icons" style="font-size: 20px; color: #000">list_alt</i>
+                    aria-expanded="true" aria-controls="collapseTwo" style="color: #ff66a0;display: flex; align-items: center; gap: 10px">
+                    <i class="material-icons" style="font-size: 20px; color: #ff66a0">list_alt</i>
                     <span>Orders</span>
                 </a>
                 <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/admin/order" style="color: #000;display: flex; align-items: center; gap: 10px">
-                            <i class="material-icons" style="font-size: 20px; color: #000">list_alt</i>
+                        <a class="collapse-item" href="/admin/order" style="color: #ff66a0;display: flex; align-items: center; gap: 10px">
+                            <i class="material-icons" style="font-size: 20px; color: #ff66a0">list_alt</i>
                             <span>Orders</span></a>
-                        <a class="collapse-item" href="/admin/order-item" style="color: #000;display: flex; align-items: center; gap: 10px">
-                            <i class="material-icons" style="font-size: 20px; color: #000">receipt_long</i>
+                        <a class="collapse-item" href="/admin/order-item" style="color: #ff66a0;display: flex; align-items: center; gap: 10px">
+                            <i class="material-icons" style="font-size: 20px; color: #ff66a0">receipt_long</i>
                             <span>Order Item</span></a>
-                        <a class="collapse-item" href="/admin/order-payment" style="color: #000;display: flex; align-items: center; gap: 10px">
-                            <i class="material-icons" style="font-size: 20px; color: #000">paid</i>
+                        <a class="collapse-item" href="/admin/order-payment" style="color: #ff66a0;display: flex; align-items: center; gap: 10px">
+                            <i class="material-icons" style="font-size: 20px; color: #ff66a0">paid</i>
                             <span>Order Payment</span></a>
                     </div>
                 </div>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/admin/review" style="color: #000;display: flex; align-items: center; gap: 10px">
-                    <i class="material-icons" style="font-size: 24px; color: #000">clear_all</i>
+                <a class="nav-link" href="/admin/review" style="color: #ff66a0;display: flex; align-items: center; gap: 10px">
+                    <i class="material-icons" style="font-size: 24px; color: #ff66a0">clear_all</i>
                     <span>Reviews</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/admin/transaction" style="color: #000;display: flex; align-items: center; gap: 10px">
-                    <i class="material-icons" style="font-size: 24px; color: #000">history</i>
+                <a class="nav-link" href="/admin/transaction" style="color: #ff66a0;display: flex; align-items: center; gap: 10px">
+                    <i class="material-icons" style="font-size: 24px; color: #ff66a0">history</i>
                     <span>Transection History</span>
                 </a>
             </li>
@@ -170,10 +185,12 @@
                     </form>
 
 
-                    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; background-image: url('');background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center; ">
                         <p style="color: #F6078E; font-size: 20px; font-style: italic; margin: 10px; text-align: center">Welcome to HanDK</p>
                         <div class=""> 
-                            <a class="nav-link dropdown-toggle " href="#" id="userDropdown" role="button"
+                            <a class="nav-link dropdown-toggle "  id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
                                 <img class="img-profile rounded-circle" src="~/admin/img/undraw_profile.svg" style="width: 30px">
@@ -182,13 +199,13 @@
                                 aria-labelledby="userDropdown" style="position: absolute;
                                     top: 72px;
                                     right: 26px;
-                                    background-color: aliceblue; display: none;"> 
-                                <a class="dropdown-item" href="#" style="display: flex; align-items: center; gap: 10px">
+                                    background-color: aliceblue; display: none;z-index: 1050;"> 
+                                <a class="dropdown-item" style="display: flex; align-items: center; gap: 10px" href="/home">
                                     <i class="material-icons" style="font-size: 24px; color: #d1d3e2">home</i>
                                     Trang Chủ
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item logout" href="/home" >
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -249,6 +266,8 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
 
+    
+
     <script>
   // Lưu tham chiếu đến các phần tử dropdown
   const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
@@ -282,8 +301,28 @@
   document.addEventListener('click', () => {
     hideAllDropdowns();
   });
-</script>
 
+    const logout = document.querySelector('.logout');
+    logout.addEventListener('click', () => {
+        window.location.href = '/'
+        localStorage.clear();
+    })
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="~/admin/js/snow.js"></script>
+
+    <script>
+        jQuery(function() {
+            jQuery("body").snow({
+            intensity: 2,           // Number of snowflakes
+            sizeRange: [8, 16],      // Snowflake size range (min and max size in pixels)
+            opacityRange: [0.4, 0.6],  // Snowflake opacity range
+            driftRange: [10, 12],    // Horizontal drift (sideways movement range)
+            speedRange: [55, 80]    // Falling speed range in pixels per second
+            });
+        });
+    </script>
 
 </body>
 

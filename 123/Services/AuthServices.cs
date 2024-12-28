@@ -12,7 +12,7 @@ namespace _123.Services
         public static User Login(string username, string password)
 {
     // Câu lệnh SQL để kiểm tra thông tin đăng nhập
-    string query = @"SELECT user_id, username, password, email, phone_number, address, is_deleted
+    string query = @"SELECT user_id, username, password, email, phone_number, address, role_id,is_deleted
                      FROM Users
                      WHERE username = @username AND password = @password AND is_deleted = 0";
     
@@ -37,6 +37,7 @@ namespace _123.Services
                 username = row["username"].ToString(),
                 password = row["password"].ToString(), // Trả về mật khẩu (nếu cần)
                 email = row["email"].ToString(),
+                role_id = Convert.ToInt32(row["role_id"]),
                 phone_number = row["phone_number"]?.ToString(),
                 address = row["address"]?.ToString(),
                 is_deleted = Convert.ToBoolean(row["is_deleted"])

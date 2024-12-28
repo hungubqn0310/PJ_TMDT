@@ -84,6 +84,33 @@ namespace _123.Controllers
             return View(); // Trả về view "CuaHangHanDK"
         }
 
+        public IActionResult ProductDetail()
+    {
+        return View();
+    }
+
+        public IActionResult orderPayment()
+    {
+        return View();
+    }
+
+        public IActionResult paymentSuccessful()
+    {
+        return View("paymentSuccessful");
+    }
+    public IActionResult Momopayment()
+    {
+        return View("Momopayment");
+    }
+    public IActionResult PaymentCallBack()
+    {
+        return View("PaymentCallBack");
+    }
+    public IActionResult cart()
+    {
+        return View();
+    }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

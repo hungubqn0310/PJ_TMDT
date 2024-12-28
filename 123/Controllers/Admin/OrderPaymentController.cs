@@ -20,7 +20,11 @@ namespace _123.Controllers
         public IActionResult Index()
         {
             var orderPaymentViewModel = new OrderPaymentViewModel();
-            orderPaymentViewModel.Order_Payments = Order_PaymentService.GetOrderPayments(); // Fetch order payments from service
+            orderPaymentViewModel.OrderPayments = OrderPaymentService.GetOrderPayments(); // Fetch order payments from service
+            
+            ViewBag.Orders = OrderService.GetOrders() ?? new List<Order>();
+            ViewBag.PaymentMethods = PaymentMethodService.GetPaymentMethods() ?? new List<PaymentMethod>();
+
             return View("Views/Admin/orderpayment.cshtml", orderPaymentViewModel); // Return the order payments view
         }
 
@@ -28,15 +32,19 @@ namespace _123.Controllers
         [HttpGet("add")]
         public IActionResult Add()
         {
-            Order_Payment orderPayment = new Order_Payment();
+            OrderPayment orderPayment = new OrderPayment();
+
+             ViewBag.Orders = OrderService.GetOrders() ?? new List<Order>();
+            ViewBag.PaymentMethods = PaymentMethodService.GetPaymentMethods() ?? new List<PaymentMethod>();
+
             return PartialView("/Views/Admin/orderpaymentadd.cshtml", orderPayment); // Return add view for order payment
         }
 
         // POST Action: Add a new order payment
         [HttpPost("add")]
-        public IActionResult Add(Order_Payment orderPayment)
+        public IActionResult Add(OrderPayment orderPayment)
         {
-            Order_PaymentService.CreateOrder_Payment(orderPayment); // Call service to create order payment
+            OrderPaymentService.CreateOrderPayment(orderPayment); // Call service to create order payment
             return new RedirectResult("/admin/order-payment");
         }
 
@@ -44,15 +52,19 @@ namespace _123.Controllers
         [HttpGet("edit")]
         public IActionResult Edit(int id)
         {
-            Order_Payment orderPayment = Order_PaymentService.GetOrder_PaymentById(id); // Fetch order payment by ID
+            OrderPayment orderPayment = OrderPaymentService.GetOrderPaymentById(id); // Fetch order payment by ID
+            
+             ViewBag.Orders = OrderService.GetOrders() ?? new List<Order>();
+            ViewBag.PaymentMethods = PaymentMethodService.GetPaymentMethods() ?? new List<PaymentMethod>();
+
             return PartialView("/Views/Admin/orderpaymentedit.cshtml", orderPayment); // Return edit view for order payment
         }
 
         // POST Action: Update order payment details
         [HttpPost("edit")]
-        public IActionResult Edit(Order_Payment orderPayment)
+        public IActionResult Edit(OrderPayment orderPayment)
         {
-            Order_PaymentService.UpdateOrder_Payment(orderPayment); // Call service to update order payment
+            OrderPaymentService.UpdateOrderPayment(orderPayment); // Call service to update order payment
             return new RedirectResult("/admin/order-payment");
         }
 
@@ -60,15 +72,15 @@ namespace _123.Controllers
         [HttpGet("delete")]
         public IActionResult Delete(int id)
         {
-            Order_Payment orderPayment = Order_PaymentService.GetOrder_PaymentById(id); // Fetch order payment by ID
+            OrderPayment orderPayment = OrderPaymentService.GetOrderPaymentById(id); // Fetch order payment by ID
             return PartialView("/Views/Admin/orderpaymentdelete.cshtml", orderPayment); // Return delete confirmation view
         }
 
         // POST Action: Delete the order payment
         [HttpPost("delete")]
-        public IActionResult Delete(Order_Payment orderPayment)
+        public IActionResult Delete(OrderPayment orderPayment)
         {
-            Order_PaymentService.DeleteOrder_Payment(orderPayment.order_payment_id); // Call service to delete order payment
+            OrderPaymentService.DeleteOrderPayment(orderPayment.OrderPaymentId); // Call service to delete order payment
             return new RedirectResult("/admin/order-payment");
         }
 

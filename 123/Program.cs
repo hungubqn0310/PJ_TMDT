@@ -1,16 +1,30 @@
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using Microsoft.AspNetCore.Identity;
+using _123.Models;
+using _123.Models.Momo;
+using _123.Services.Momo;
+using _123.Services;
+
+
 var builder = WebApplication.CreateBuilder(args);
-
-// Cấu hình DbContext với MySQL
-// builder.Services.AddDbContext<ApplicationDbContext>(options =>
-//     options.UseMySql(
-//         builder.Configuration.GetConnectionString("DefaultConnection"),
-//         new MySqlServerVersion(new Version(8, 0, 30)) // Chỉ định phiên bản MySQL cụ thể (có thể thay đổi)
-//     ));
-
+//ConnectMoMo
+builder.Services.Configure<MomoOptionModel>(builder.Configuration.GetSection("MomoAPI"));
+builder.Services.AddScoped<IMomoService, MomoService>();
+// Thêm các dịch vụ khác
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
+builder.Services.AddHttpContextAccessor();
+
+// Cấu hình dịch vụ cho Identity và MySQL
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version(8, 0, 21))));
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.AddSingleton<ZaloPayService>();
+
 var app = builder.Build();
 
 // Cấu hình cổng HTTP/HTTPS
@@ -26,7 +40,18 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseAuthentication(); // Bổ sung middleware xác thực
 app.UseAuthorization();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapGet("/api/music", async context =>
+    {
+        var directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "audio");
+        var files = Directory.GetFiles(directoryPath, "*.mp3");
+        var fileNames = files.Select(f => Path.GetFileName(f)).ToArray();
+        await context.Response.WriteAsJsonAsync(fileNames);
+    });
+});
 
 app.MapControllerRoute(
     name: "default",
