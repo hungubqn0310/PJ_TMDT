@@ -15,7 +15,7 @@ namespace _123.Controllers
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
         }
 
-        private const string ApiKey = "goldapi-4af9019m49hnpo9-io";
+        private const string ApiKey = "goldapi-d7z4sm4gnggbj-io";
 
         [HttpGet]
         public async Task<IActionResult> GetGoldPrice()
