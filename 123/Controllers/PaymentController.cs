@@ -5,26 +5,35 @@ using System.Text;
 using System.Collections.Specialized;
 using System.Web;
 using _123.Services.Momo;
-using _123.Models;
+using _123.Models.Momo;
+using _123.Models.OrderMomo;
 
 namespace _123.Controllers
 {
+    
     public class PaymentController : Controller
     {
         private IMomoService _momoService;
-        // private readonly IVnPayService _vnPayService;
-        public PaymentController(IMomoService momoService)
+
+public PaymentController(IMomoService momoService)
+    {
+        _momoService = momoService;
+    }
+        public IActionResult Index()
         {
-            _momoService = momoService;
-            
+            return View();
         }
         [HttpPost]
-        
         public async Task<IActionResult> CreatePaymentUrl(OrderInfoModel model)
         {
-            var response = await _momoService.CreatePaymentMomo(model);
+            var response = await _momoService.CreatePaymentAsync(model);
             return Redirect(response.PayUrl);
         }
 
-    }
-}
+        [HttpGet]
+        public IActionResult PaymentCallBack()
+        {
+            var response = _momoService.PaymentExecuteAsync(HttpContext.Request.Query);
+            return View(response);
+        }
+}}

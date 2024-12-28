@@ -8,14 +8,14 @@ using _123.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
-
+//ConnectMoMo
+builder.Services.Configure<MomoOptionModel>(builder.Configuration.GetSection("MomoAPI"));
+builder.Services.AddScoped<IMomoService, MomoService>();
 // Thêm các dịch vụ khác
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
 builder.Services.AddHttpContextAccessor();
-//ConnectMoMo
-builder.Services.Configure<MomoOptionModel>(builder.Configuration.GetSection("MomoAPI"));
-builder.Services.AddScoped<IMomoService, MomoService>();
+
 // Cấu hình dịch vụ cho Identity và MySQL
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version(8, 0, 21))));

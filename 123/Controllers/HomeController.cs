@@ -96,9 +96,16 @@ namespace _123.Controllers
 
         public IActionResult paymentSuccessful()
     {
-        return View();
+        return View("paymentSuccessful");
     }
-
+    public IActionResult Momopayment()
+    {
+        return View("Momopayment");
+    }
+    public IActionResult PaymentCallBack()
+    {
+        return View("PaymentCallBack");
+    }
     public IActionResult cart()
     {
         return View();
