@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Identity;
 using _123.Models;
 using _123.Models.Momo;
 using _123.Services.Momo;
+using _123.Models.VNPay;
+using _123.Services.VNPay;
 using _123.Services;
 
 
@@ -11,10 +13,13 @@ var builder = WebApplication.CreateBuilder(args);
 //ConnectMoMo
 builder.Services.Configure<MomoOptionModel>(builder.Configuration.GetSection("MomoAPI"));
 builder.Services.AddScoped<IMomoService, MomoService>();
+builder.Services.AddScoped<IVnPayService, VnPayService>();
+
 // Thêm các dịch vụ khác
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
 builder.Services.AddHttpContextAccessor();
+//ConnectVNPay
 
 // Cấu hình dịch vụ cho Identity và MySQL
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

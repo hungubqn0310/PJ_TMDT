@@ -106,6 +106,10 @@ namespace _123.Controllers
     {
         return View("PaymentCallBack");
     }
+    public IActionResult Vnpaypayment()
+    {
+        return View("Vnpaypayment");
+    }
     public IActionResult cart()
     {
         return View();
