@@ -4,26 +4,28 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Edit Product</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title" id="exampleModalLongTitle">Chỉnh Sửa Sản Phẩm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form asp-action="Edit" method="post" id="product-edit-form-@Model.ProductId"  enctype="multipart/form-data">
+                <form asp-action="Edit" method="post" id="product-edit-form-@Model.ProductId" enctype="multipart/form-data">
                     <input type="hidden" name="ProductId" asp-for="ProductId">
 
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label>Tên sản phẩm</label>
-                                <input type="text" class="form-control" placeholder="Nhập tên sản phẩm" name="ProductName" asp-for="ProductName">
+                                <input type="text" class="form-control" placeholder="Nhập tên sản phẩm" name="ProductName" asp-for="ProductName" required>
+                                <span asp-validation-for="ProductName" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label>Giá</label>
-                                <input type="number" class="form-control" placeholder="Nhập giá sản phẩm" name="Price" asp-for="Price" step="0.01">
+                                <input type="number" class="form-control" placeholder="Nhập giá sản phẩm" name="Price" asp-for="Price" step="0.01" min="0" required>
+                                <span asp-validation-for="Price" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -32,13 +34,14 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Mô tả</label>
-                                <textarea class="form-control" placeholder="Nhập mô tả sản phẩm" name="Description" asp-for="Description"></textarea>
+                                <textarea class="form-control" placeholder="Nhập mô tả sản phẩm" name="Description" asp-for="Description" required></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label>Thể loại</label>
-                                <select class="form-control" name="CategoryId" asp-for="CategoryId">
+                                <select class="form-control" name="CategoryId" asp-for="CategoryId" required>
                                     <option value="">Chọn thể loại</option>
                                     @if (ViewBag.Categories != null)
                                     {
@@ -52,6 +55,7 @@
                                         <option disabled>Không có thể loại</option>
                                     }
                                 </select>
+                                <span asp-validation-for="CategoryId" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -61,14 +65,14 @@
                             <div class="form-group">
                                 <label>Hình ảnh</label>
                                 <input type="file" accept="image/*" class="form-control" placeholder="Nhập URL hình ảnh" name="ImageUrl" asp-for="ImageUrl">
+                                <span asp-validation-for="ImageUrl" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label>Chất liệu</label>
-                                <select class="form-control" name="MaterialId" asp-for="MaterialId">
+                                <select class="form-control" name="MaterialId" asp-for="MaterialId" required>
                                     <option value="">Chọn chất liệu</option>
-                                    @* Lặp qua danh sách chất liệu *@
                                     @if (ViewBag.Materials != null)
                                     {
                                         @foreach (var material in ViewBag.Materials)
@@ -81,6 +85,7 @@
                                         <option disabled>Không có chất liệu</option>
                                     }
                                 </select>
+                                <span asp-validation-for="MaterialId" class="text-danger"></span>
                             </div>
                         </div>
                     </div>

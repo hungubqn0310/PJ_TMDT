@@ -10,7 +10,6 @@
         <button class="tab-button" data-tab="completed">✅ Hoàn thành</button>
         <button class="tab-button" data-tab="canceled">❌ Đã huỷ</button>
     </div>
-
     <!-- Content -->
     <div class="content">
         <div id="payment-status" class="tab-content active">
@@ -31,7 +30,6 @@
 <script>
     // Lấy userId từ localStorage
     const userId = localStorage.getItem('id');
-
     // Kiểm tra nếu userId tồn tại
     if (!userId) {
         console.error('userId không được tìm thấy trong localStorage.');

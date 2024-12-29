@@ -14,8 +14,9 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label>Product ID</label>
-                                <select class="form-control" name="ProductId" asp-for="ProductId">
+                                <label>Mã sản phẩm</label>
+                                <select class="form-control" name="ProductId" asp-for="ProductId" required>
+                                    <option value="">Chọn sản phẩm</option>
                                     @foreach (var product in ViewBag.Products)
                                     {
                                         <option value="@product.ProductId">@product.ProductName</option>
@@ -25,16 +26,16 @@
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label>Quantity in Stock</label>
-                                <input type="number" class="form-control" placeholder="Enter quantity in stock" name="QuantityInStock" asp-for="QuantityInStock">
+                                <label>Số lượng trong kho</label>
+                                <input type="number" class="form-control" placeholder="Enter quantity in stock" name="QuantityInStock" asp-for="QuantityInStock" min="0" required title="Số lượng không được âm">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label>Last Updated</label>
-                                <input type="datetime-local" class="form-control" name="LastUpdated" asp-for="LastUpdated">
+                                <label>Cập nhật cuối</table></table></label>
+                                <input type="datetime-local" class="form-control" name="LastUpdated" asp-for="LastUpdated" required>
                             </div>
                         </div>
                     </div>

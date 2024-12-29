@@ -1,10 +1,11 @@
 @model OrderItem
+
 <div class="modal fade bd-example-modal-lg" id="orderitem-add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Create Order Item</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title" id="exampleModalLongTitle">Tạo Mục Đơn Hàng</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -13,17 +14,17 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label>Order</label>
-                                <select class="form-control" name="OrderId" asp-for="OrderId" asp-items="@(new SelectList(ViewBag.Orders ?? new List<Order>(), "OrderId", "OrderId"))">
-                                    <option value="" selected disabled>Select an Order</option>
+                                <label>Đơn Hàng</label>
+                                <select class="form-control" name="OrderId" asp-for="OrderId" asp-items="@(new SelectList(ViewBag.Orders ?? new List<Order>(), "OrderId", "OrderId"))" required>
+                                    <option value="" selected disabled>Chọn Đơn Hàng</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label>Product Name</label>
-                                <select class="form-control" name="ProductName" asp-for="ProductName" asp-items="@(new SelectList(ViewBag.Products ?? new List<Product>(), "ProductName", "ProductName"))">
-                                    <option value="" selected disabled>Select an Product</option>
+                                <label>Tên Sản Phẩm</label>
+                                <select class="form-control" name="ProductName" asp-for="ProductName" asp-items="@(new SelectList(ViewBag.Products ?? new List<Product>(), "ProductName", "ProductName"))" required>
+                                    <option value="" selected disabled>Chọn Sản Phẩm</option>
                                 </select>
                             </div>
                         </div>
@@ -32,14 +33,14 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label>Quantity</label>
-                                <input type="number" class="form-control" placeholder="Enter quantity" name="Quantity" asp-for="Quantity">
+                                <label>Số Lượng</label>
+                                <input type="number" class="form-control" placeholder="Nhập số lượng" name="Quantity" asp-for="Quantity" min="1" required title="Số lượng phải lớn hơn 0">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label>Price</label>
-                                <input type="number" class="form-control" placeholder="Enter price" name="Price" asp-for="Price">
+                                <label>Giá</label>
+                                <input type="number" class="form-control" placeholder="Nhập giá" name="Price" asp-for="Price" step="0.01" min="0" required title="Giá phải lớn hơn hoặc bằng 0">
                             </div>
                         </div>
                     </div>

@@ -4,7 +4,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="discountModalTitle">Add Discount</h5>
+                <h5 class="modal-title" id="discountModalTitle">Thêm mã</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -16,14 +16,14 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label>Discount Name</label>
-                                <input type="text" class="form-control" placeholder="Enter discount name" name="DiscountName" asp-for="DiscountName">
+                                <label>Tên dịp giảm giá</label>
+                                <input type="text" class="form-control" placeholder="Enter discount name" name="DiscountName" asp-for="DiscountName" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label>Discount Percent (%)</label>
-                                <input type="number" class="form-control" placeholder="Enter discount percent" name="DiscountPercent" asp-for="DiscountPercent" min="0" max="100">
+                                <label>Phần trăm(%)</label>
+                                <input type="number" class="form-control" placeholder="Enter discount percent" name="DiscountPercent" asp-for="DiscountPercent" min="0" max="100" required title="Giảm giá phải từ 0 đến 100%">
                             </div>
                         </div>
                     </div>
@@ -31,14 +31,14 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label>Start Date</label>
-                                <input type="date" class="form-control" name="StartDate" asp-for="StartDate">
+                                <label>Ngày bắt đầu</table></label>
+                                <input type="date" class="form-control" name="StartDate" asp-for="StartDate" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label>End Date</label>
-                                <input type="date" class="form-control" name="EndDate" asp-for="EndDate">
+                                <label>Ngày kết thúc</label>
+                                <input type="date" class="form-control" name="EndDate" asp-for="EndDate" required>
                             </div>
                         </div>
                     </div>

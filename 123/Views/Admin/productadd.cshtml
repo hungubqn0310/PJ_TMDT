@@ -10,7 +10,6 @@
             </div>
             <div class="modal-body">
                 <form asp-action="Add" method="post" id="product-add-form" enctype="multipart/form-data">
-                    @* <input type="hidden" name="ProductId" asp-for="ProductId"> *@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
@@ -27,7 +26,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Giá</label>
-                                <input type="number" class="form-control" placeholder="Nhập giá sản phẩm" name="Price" asp-for="Price" step="0.01">
+                                <input type="number" class="form-control" placeholder="Nhập giá sản phẩm" name="Price" asp-for="Price" step="0.01" min="0" required title="Giá không được âm">
                             </div>
                         </div>
                     </div>
@@ -59,7 +58,6 @@
                             <div class="form-group">
                                 <label>Chất liệu</label>
                                 <select class="form-control" name="MaterialId" asp-for="MaterialId" asp-items="@(new SelectList(ViewBag.Materials ?? new List<Material>(), "MaterialId", "MaterialName"))">
-                                    
                                 </select>
                             </div>
                         </div>

@@ -29,7 +29,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.Sign
     .AddDefaultTokenProviders();
 
 builder.Services.AddSingleton<ZaloPayService>();
-
+builder.Services.AddTransient<EmailSender>();
 var app = builder.Build();
 
 // Cấu hình cổng HTTP/HTTPS
