@@ -102,6 +102,10 @@ namespace _123.Controllers
     {
         return View("Momopayment");
     }
+    public IActionResult qrcodepayment()
+    {
+        return View("qrcodepayment");
+    }
     public IActionResult PaymentCallBack()
     {
         return View("PaymentCallBack");
