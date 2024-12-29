@@ -70,15 +70,28 @@
                 <div class="payment-methods">
                     <div class="payment-option">
                         <input type="radio" id="cod" name="payment" checked>
+                        <img src="/images/cod.png" alt="COD Logo" style="height: 20px; margin-right: 8px;">
                         <label for="cod">Thanh toán khi nhận hàng (COD)</label>
                     </div>
                     <div class="payment-option">
                         <input type="radio" id="bank" name="payment">
+                        <img src="/images/qrcode.png" alt="QR Logo" style="height: 20px; margin-right: 8px;">
                         <label for="bank">Chuyển khoản ngân hàng</label>
                     </div>
                     <div class="payment-option">
                         <input type="radio" id="momo" name="payment">
+                        <img src="/images/momo-logo.png" alt="Momo Logo" style="height: 20px; margin-right: 8px;">
                         <label for="momo">Thanh toán qua ví Momo</label>
+                    </div>
+                    <div class="payment-option">
+                        <input type="radio" id="vnpay" name="payment">
+                        <img src="/images/vnpay-logo.png" alt="VNPay Logo" style="height: 20px; margin-right: 8px;">
+                        <label for="vnpay">Thanh toán qua VNPay</label>
+                    </div>
+                    <div class="payment-option">
+                        <input type="radio" id="zalopay" name="payment">
+                        <img src="/images/zalopay-logo.png" alt="ZaloPay Logo" style="height: 20px; margin-right: 8px;">
+                        <label for="zalopay">Thanh toán qua ZaloPay</label>
                     </div>
                 </div>
 
@@ -151,6 +164,14 @@
             return;
         }
 
+        const dataItem = dataOrderItems.data.map(item => ({
+            ProductName: item.productName,
+            Quantity: item.quantity,
+            Price: item.discountPercent ? item.price - (item.price * item.discountPercent) / 100 : item.price
+        }));
+
+        if (dataItem.length === 0) return;
+
         const response2 = await fetch(`https://localhost:5003/api/orders`, {
             method: 'POST',
             headers: {
@@ -158,41 +179,38 @@
             },
             body: JSON.stringify({
                 order: {
-                    user_id: id, // Đảm bảo sử dụng user_id thay vì UserId
-                    order_date: new Date().toISOString(), // Định dạng đúng cho ngày tháng
-                    total_amount: parseFloat(localStorage.getItem('totalPrice')), // Chuyển đổi sang số thực
-                    status: 'pending'
+                    UserId: id,
+                    OrderDate: new Date(),
+                    TotalAmount: localStorage.getItem('totalPrice'),
+                    Status: 'pending'
                 },
                 orderItems: dataItem,
                 userId: id
             })
         });
 
-        if (response2.ok) { // Kiểm tra nếu phản hồi thành công
+        if (response2.status === 200) {
             const orderData = await response2.json(); // Lấy dữ liệu phản hồi
-            console.log(orderData); // In ra toàn bộ phản hồi để kiểm tra
-
-            const orderId = orderData.order_id; // Sử dụng order_id từ phản hồi
-            if (orderId) {
-                localStorage.setItem('order_id', orderId); // Lưu order_id vào localStorage
-                console.log('Order ID saved:', orderId); // In ra ID đã lưu
-            } else {
-                console.error('Order ID not found in response');
-            }
-
+            const orderId = orderData.id; // Thay 'id' bằng thuộc tính thực tế chứa order_id
+            localStorage.setItem('order_id', orderId); 
             // Chuyển hướng đến trang phù hợp dựa trên tùy chọn thanh toán
             if (selectedPaymentOption === 'cod') {
-                window.location.href = 'https://localhost:5003/Home/paymentSuccessful';
+                window.location.href = '/Home/paymentSusccessful';
             } else if (selectedPaymentOption === 'bank') {
                 window.location.href = '/bank-transfer';
             } else if (selectedPaymentOption === 'momo') {
                 window.location.href = '/Home/momopayment';
             }
+             else if (selectedPaymentOption === 'vnpay') {
+                window.location.href = '/Home/momopayment';
+            }
+             else if (selectedPaymentOption === 'zalopay') {
+                window.location.href = '/Home/momopayment';
+            }
         } else {
-            const errorText = await response2.text();
-            console.error('Error creating order:', errorText); // In ra chi tiết lỗi
             alert('Đặt hàng không thành công. Vui lòng thử lại.');
         }
+    };
 
     document.addEventListener('DOMContentLoaded', function() {
         const form = document.getElementById('checkoutForm');

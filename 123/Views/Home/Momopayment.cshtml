@@ -14,13 +14,11 @@
     <div class="success-message fade-in">
         <h2>Cảm ơn bạn. Đơn hàng của bạn đã được nhận.</h2>
     </div>
-
-    <div class="order-details fade-in">
-        <h3>Chi Tiết Đơn Hàng</h3>
-    </div>
-
     <div class="text-center">
-    <h1 class="display-4">Thanh toán Momo với .NET Core, C# | ProG Coder</h1>
+    <h1 class="display-4">
+    <img src="/images/momo-logo.png" alt="Momo Logo" style="height: 40px; margin-right: 10px; vertical-align: middle;">
+    Thanh toán Momo
+    </h1>
 
     <div class="container">
         <form action="/Payment/CreatePaymentUrl" id="frmCreateOrder" method="POST">
@@ -39,7 +37,8 @@
                id="Amount"
                name="Amount"
                type="text"
-               value="">
+               value=""
+               readonly>
     </div>
     <br/>
     <div class="form-group">
@@ -51,7 +50,11 @@
                   rows="2"></textarea>
     </div>
     <br/>
-    <button type="submit" class="btn btn-primary">Thanh toán (Checkout)</button>
+    <button type="submit" class="btn btn-primary">
+    <img src="/images/momo-logo.png" alt="Momo Logo" style="height: 20px; margin-right: 8px;">
+    Thanh toán Momo
+</button>
+
 </form>
     </div>
 </div>
@@ -77,7 +80,7 @@
         // Gán giá trị vào input Amount
         const amountInput = document.getElementById('Amount');
         if (amountInput && totalPrice) {
-            amountInput.value = totalPrice; // Gán số tiền vào input Amount
+            amountInput.value = totalPrice*100; // Gán số tiền vào input Amount
         }
 
         // Gán giá trị vào textarea OrderInfo nếu cần
