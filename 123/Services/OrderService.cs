@@ -98,6 +98,50 @@ namespace _123.Services
 
             return null;
         }
+        public static List<Order> GetOrdersByUserId(int userId)
+    {
+        string query = @"SELECT o.order_id, o.user_id, o.order_date, o.status, o.total_amount, o.is_deleted, u.username 
+                        FROM Orders o
+                        LEFT JOIN Users u ON u.user_id = o.user_id
+                        WHERE o.user_id = @userId AND o.is_deleted = 0";
+
+        var parameters = new MySqlParameter[]
+        {
+            new MySqlParameter("@userId", MySqlDbType.Int32) { Value = userId }
+        };
+
+        var orders = new List<Order>();
+
+        try
+        {
+            DataTable dataTable = DatabaseHelper.ExecuteQuery(query, parameters);
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                orders.Add(new Order
+                {
+                    OrderId = Convert.ToInt32(row["order_id"]),
+                    UserId = Convert.ToInt32(row["user_id"]),
+                    OrderDate = Convert.ToDateTime(row["order_date"]),
+                    Status = row["status"].ToString(),
+                    TotalAmount = Convert.ToDecimal(row["total_amount"]),
+                    IsDeleted = Convert.ToBoolean(row["is_deleted"]),
+                    User = row["username"] == DBNull.Value ? null : new User
+                    {
+                        user_id = Convert.ToInt32(row["user_id"]),
+                        username = row["username"].ToString()
+                    },
+                });
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Lỗi khi lấy danh sách đơn hàng theo userId: {ex.Message}");
+            throw;
+        }
+
+        return orders;
+    }
 
         // Cập nhật đơn hàng
         public static int UpdateOrder(Order order)

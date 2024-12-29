@@ -207,7 +207,24 @@ namespace _123.Controllers
                 return NotFound(new ApiResponse<dynamic>(404, "Tao don hang that bai"));
             }
         }
+        [HttpGet("orders")]
+        public IActionResult GetOrdersByUserId([FromQuery] int userId)
+        {
+            // Lấy danh sách đơn hàng theo userId
+            var orders = OrderService.GetOrdersByUserId(userId);
 
+            // Kiểm tra nếu danh sách không rỗng
+            if (orders != null && orders.Count > 0)
+            {
+                var response = new ApiResponse<dynamic>(200, "Success", orders);
+                return Ok(response);
+            }
+            else
+            {
+                // Nếu không có đơn hàng, trả về thông báo lỗi
+                return NotFound(new ApiResponse<dynamic>(404, "Không tìm thấy đơn hàng."));
+            }
+        }
 
         [HttpPost("zalo")]
         public async Task<IActionResult> CreateOrder([FromQuery] decimal amount)
