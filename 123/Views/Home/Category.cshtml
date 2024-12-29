@@ -66,6 +66,7 @@
             if (response.ok) {
                  let res = await response.json();
                 fakeProducts = res?.data;
+                renderProducts(fakeProducts);
             } else {
                 console.log("Không tìm thấy sản phầm")
             }
@@ -118,7 +119,8 @@ function renderProducts(products) {
         const productImage = document.createElement('img');
         productImage.src = product.ImageUrl;
         productImage.alt = product.ProductName;
-        productImage.style = 'width: 100%; height: 100%; border-radius: 10px;';
+        productImage.style = 'width: 100%;height: 300px;border-radius: 10px;object-fit: cover;';
+
         imageWrapper.appendChild(productImage);
 
         productLink.appendChild(imageWrapper);
@@ -285,7 +287,7 @@ document.body.appendChild(iconCart);
     }
 
     // Gọi hàm updatePage khi trang được tải
-    window.onload = updatePage;
+    @* window.onload = updatePage; *@
 </script>
 
 
