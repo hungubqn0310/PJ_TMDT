@@ -226,31 +226,33 @@ namespace _123.Controllers
             }
         }
 
-        [HttpPost("zalo")]
-        public async Task<IActionResult> CreateOrder([FromQuery] decimal amount)
+        public class PaymentRequest
         {
-            if (amount <= 0)
-            {
-                return BadRequest("Amount must be greater than 0.");
-            }
-
+            public decimal Amount { get; set; }
+            public string Description { get; set; }
+        }
+        [HttpPost("zalo1")]
+        public async Task<IActionResult> CreatePaymentZalo([FromBody] PaymentRequest request)
+        {
             try
             {
-                var response = await _zaloPayService.CreateZaloPayOrder(amount);
-            Console.WriteLine(response.ReturnCode);
+                // Validate request
+                // if (request == null || string.IsNullOrWhiteSpace(request.OrderId) || 
+                //     request.Amount <= 0 || string.IsNullOrWhiteSpace(request.UserPhone))
+                // {
+                //     return BadRequest(new { message = "Dữ liệu không hợp lệ" });
+                // }
 
-                if (response.ReturnCode == 1)
-                {
-                    return Ok(new { OrderUrl = response.OrderUrl });
-                }
-                else
-                {
-                    return BadRequest(new { Message = response.ReturnMessage });
-                }
+                // Gọi dịch vụ thanh toán
+                var result = await ZaloPayService.CreatePaymentRequestAsync(request.Amount, request.Description);
+
+                // Trả về kết quả dưới dạng HTTP Response
+                return Ok(new { message = "Thanh toán thành công", data = result });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Message = $"Error creating ZaloPay order: {ex.Message}" });
+                // Nếu có lỗi, trả về mã lỗi HTTP với thông điệp lỗi
+                return BadRequest(new { message = "Lỗi: " + ex.Message });
             }
         }
         

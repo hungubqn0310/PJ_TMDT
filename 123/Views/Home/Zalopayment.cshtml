@@ -1,0 +1,137 @@
+@{
+    ViewData["Title"] = "Thanh toán thành công";
+}
+
+<link rel="stylesheet" href="/css/paymentSuccessful.css" />
+
+<div class="success-container">
+    <div class="success-check">
+        <div class="check-circle animate">
+            <div class="check-mark"></div>
+        </div>
+    </div>
+    
+    <div class="success-message fade-in">
+        <h2>Cảm ơn bạn. Đơn hàng của bạn đã được nhận.</h2>
+    </div>
+    <div class="text-center">
+    <h1 class="display-4">
+    <img src="/images/zalopay-logo.png" alt="Zalo Logo" style="height: 40px; margin-right: 10px; vertical-align: middle;">
+    Thanh toán Zalo
+    </h1>
+
+    <div class="container">
+        <form  id="frmCreateOrder" method="POST">
+    <div class="form-group">
+        <label for="FullName">Tên khách hàng</label>
+        <input class="form-control"
+               id="FullName"
+               name="FullName"
+               type="text"
+               value="">
+    </div>
+    <br/>
+    <div class="form-group">
+        <label for="Amount">Số tiền</label>
+        <input class="form-control"
+               id="Amount"
+               name="Amount"
+               type="text"
+               value=""
+               readonly>
+    </div>
+    <br/>
+    <div class="form-group">
+        <label for="OrderInfo">Nội dung thanh toán</label>
+        <textarea class="form-control" 
+                  cols="20" 
+                  id="OrderInfo" 
+                  name="OrderInfo" 
+                  rows="2"></textarea>
+    </div>
+    <br/>
+    <button type="submit" class="btn btn-primary" style="background-color:#3e64d4">
+    <img src="/images/zalopay-logo.png" alt="Momo Logo" style="height: 20px; margin-right: 8px;">
+    Thanh toán ZALO
+</button>
+
+</form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Lấy các giá trị từ localStorage
+        const totalPrice = localStorage.getItem('totalPrice'); // Lấy giá trị của totalPrice
+        const username = localStorage.getItem('username'); // Lấy giá trị của username
+
+        // Gán giá trị vào input FullName
+        const fullNameInput = document.getElementById('FullName');
+        if (fullNameInput && username) {
+            fullNameInput.value = username; // Gán tên người dùng vào input FullName
+        }
+
+        // Gán giá trị vào input Amount
+        const amountInput = document.getElementById('Amount');
+        if (amountInput && totalPrice) {
+            amountInput.value = totalPrice*100; // Gán số tiền vào input Amount
+        }
+
+        // Gán giá trị vào textarea OrderInfo nếu cần
+        const orderInfoTextarea = document.getElementById('OrderInfo');
+        if (orderInfoTextarea) {
+            orderInfoTextarea.value = 'Thanh toán tại HanDK'; // Gán giá trị mặc định
+        }
+    });
+
+    const form = document.getElementById('frmCreateOrder');
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Ngăn chặn hành vi submit mặc định
+
+        const amountInput = document.getElementById('Amount');
+        const orderInfoTextarea = document.getElementById('OrderInfo');
+
+            // Lấy dữ liệu từ các input
+            const amount = amountInput.value;
+            const description = orderInfoTextarea.value;
+            const orderId = new Date().getTime(); // Tạo OrderId ngẫu nhiên (hoặc lấy từ localStorage/DB)
+            console.log(`https://localhost:5003/api/zalo1?Amount=${amount}&Description=${description}`)
+            try {
+                // Gọi API
+                const response = await fetch(`https://localhost:5003/api/zalo1`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json', // Đặt header cho JSON
+                    },
+                    body: JSON.stringify({
+                        Amount: amount,
+                        Description: description,
+                    }),
+                 });
+
+                if (!response.ok) {
+                    throw new Error('Không thể gọi API, vui lòng thử lại!');
+                }
+
+                // Lấy URL từ API
+                const result = await response.json();
+                const redirectUrl = result.data?.order_url; // Đảm bảo rằng API trả về `PayUrl` trong `data`
+
+                if (redirectUrl) {
+                    // Chuyển hướng người dùng đến URL thanh toán
+                    window.location.href = redirectUrl;
+                } else {
+                    alert('Không tìm thấy URL thanh toán. Vui lòng thử lại!');
+                }
+            } catch (error) {
+                console.error('Lỗi khi gọi API:', error);
+                alert('Có lỗi xảy ra khi xử lý thanh toán. Vui lòng thử lại!');
+            }
+        });
+</script>

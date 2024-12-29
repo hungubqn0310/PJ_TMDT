@@ -114,6 +114,11 @@ namespace _123.Controllers
     {
         return View("Vnpaypayment");
     }
+
+    public IActionResult Zalopayment()
+    {
+        return View("Zalopayment");
+    }
     public IActionResult cart()
     {
         return View();

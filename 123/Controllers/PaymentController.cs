@@ -4,6 +4,7 @@ using _123.Services.Momo;
 using _123.Models.Momo;
 using _123.Models.OrderMomo;
 using _123.Services.VNPay;
+using _123.Services;
 using _123.Models.VNPay;
 
 namespace _123.Controllers
@@ -12,11 +13,13 @@ namespace _123.Controllers
     {
         private readonly IMomoService _momoService;
         private readonly IVnPayService _vnPayService;
+        private readonly ZaloPayService _zaloPayService;
 
-        public PaymentController(IMomoService momoService, IVnPayService vnPayService)
+        public PaymentController(IMomoService momoService, IVnPayService vnPayService, ZaloPayService zaloPayService)
         {
             _momoService = momoService;
             _vnPayService = vnPayService;
+            _zaloPayService = zaloPayService;
         }
         [HttpPost]
         public async Task<IActionResult> CreateMomoPaymentUrl(OrderInfoModel model)
@@ -45,5 +48,18 @@ namespace _123.Controllers
             var response = _vnPayService.PaymentExecute(Request.Query);
             return Json(response);
         }
+
+        public class ZaloPaymentRequest
+        {
+            public decimal Amount { get; set; }
+            public string Description { get; set; }
+        }
+        // [HttpPost]
+        // public async Task<IActionResult> CreateZaloPaymentUrl(ZaloPaymentRequest model)
+        // {
+        //     var response = await ZaloPayService.CreatePaymentRequestAsync(model.Amount, model.Description);
+        //     return Redirect(response.order_url);
+        // }
+
     }
 }
