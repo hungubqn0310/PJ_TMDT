@@ -15,22 +15,96 @@
 			<script src="/js/bannerSlider.js"></script>
 		</div>
 </div>
+
+
 <div class="main" style="margin: 0px 125px">
     <!-- Bộ lọc và sắp xếp -->
-    <div class="filters" style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+    <div class="filters" style="display: flex; justify-content: space-between; margin-bottom: 20px; position: relative;">
         <div class="filter-options" style="align-items: center; display: flex; gap: 20px;">
             <!-- Bộ lọc -->
-            <div id="filter" class="filter-button" style="padding: 8px 16px; background-color: #f0f0f0; cursor: pointer; border-radius: 5px;">
+            <div id="filter" class="filter-button" style="padding: 8px 16px; background-color: #f0f0f0; cursor: pointer; border-radius: 5px; display: flex; align-items: center; gap: 8px;">
+                <i class="fas fa-filter"></i> <!-- Icon bộ lọc -->
                 Bộ lọc
             </div>
 
             <!-- Sắp xếp -->
-            <div id="sort" class="filter-button" style="padding: 8px 16px; background-color: #f0f0f0; cursor: pointer; border-radius: 5px;">
+            <div id="sort" class="filter-button" style="padding: 8px 16px; background-color: #f0f0f0; cursor: pointer; border-radius: 5px; display: flex; align-items: center; gap: 8px;">
+                <i class="fas fa-sort"></i> <!-- Icon sắp xếp -->
                 Sắp xếp
             </div>
-			<div>@ViewData["Title"]</div>
+
+            <div>@ViewData["Title"]</div>
+        </div>
+
+        <!-- Dropdown lọc -->
+        <div id="filter-dropdown" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background-color: white; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); padding: 15px; border-radius: 5px; z-index: 100;">
+            <div style="display: flex; gap: 30px;">
+                <!-- Lọc theo giá -->
+                <div style="display: flex; flex-direction: column;">
+                    <label class="filterr">THEO GIÁ</label>
+                    <div class="filter-options1">
+                        <label><input type="radio" name="price" id="price-all" /> Dưới 10 triệu</label>
+                        <label><input type="radio" name="price" id="price-all" /> Từ 10 triệu đến 20 triệu</label>
+                        <label><input type="radio" name="price" id="price-low" /> Từ 20 triệu - đến 30 triệu</label>
+                        <label><input type="radio" name="price" id="price-medium" /> Trên 30 triệu</label>
+                    </div>
+                </div>
+
+                <!-- Lọc theo kiểu dáng -->
+                <div style="display: flex; flex-direction: column;">
+                    <label class="filterr">MÀU KIM LOẠI</label>
+                    <div class="filter-options1">
+                        <label><input type="radio" name="style" id="style-modern" /> Vàng</label>
+                        <label><input type="radio" name="style" id="style-classic" /> Vàng Hồng</label>
+                        <label><input type="radio" name="style" id="style-classic" /> Vàng Trắng</label>
+                    </div>
+                </div>
+
+                <!-- Lọc theo kiểu dáng -->
+                <div>
+                    <label class="filterr">KIỂU DÁNG</label>
+                    <div class="filter-options1">
+                        <label><input type="radio" name="metal-color" id="metal-color-gold" /> Truyền thống</label>
+                        <label><input type="radio" name="metal-color" id="metal-color-silver" /> Hiện đại</label>
+                        <label><input type="radio" name="metal-color" id="metal-color-rose-gold" /> Kim cương</label>
+                        <label><input type="radio" name="metal-color" id="metal-color-rose-gold" /> Vương miện</label>
+                        <label><input type="radio" name="metal-color" id="metal-color-rose-gold" /> Eternity</label>
+                        <label><input type="radio" name="metal-color" id="metal-color-rose-gold" /> Vintage</label>
+                    </div>
+                </div>
+
+                <!-- Lọc theo chất liệu -->
+                <div style="display: flex; flex-direction: column;">
+                    <label class="filterr">CHẤT LIỆU</label>
+                    <div class="filter-options1">
+                        <label><input type="radio" name="material" id="material-leather" /> 14k</label>
+                        <label><input type="radio" name="material" id="material-metal" /> 18k</label>
+                        <label><input type="radio" name="material" id="material-fabric" /> Bạch kim</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dropdown sắp xếp -->
+        <div id="sort-dropdown" style="display: none; position: absolute; top: 100%; right: 0; width: 100%; background-color: white; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); padding: 15px; border-radius: 5px; z-index: 100;">
+            <div style="display: flex; flex-direction: column;">
+                <label class="filterr">Sắp xếp theo</label>
+                <div class="filter-options1">
+                    <label><input type="radio" name="sort" id="sort-price" /> Giá tăng dần</label>
+                    <label><input type="radio" name="sort" id="sort-price-desc" /> Giá giảm dần</label>
+                    <label><input type="radio" name="sort" id="sort-newest" /> Mới nhất</label>
+                    <label><input type="radio" name="sort" id="sort-popular" /> Phổ biến</label>
+                </div>
+            </div>
         </div>
     </div>
+</div>
+
+
+
+
+<!-- Thanh lọc -->
+
 
     <!-- Danh sách sản phẩm -->
     <div class="product-list" id="product-list" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
@@ -343,3 +417,43 @@ document.body.appendChild(iconCart);
 		<script src="/js/nhanTuVan.js"></script>
 		</div>
         </div>
+
+        <script>
+            // Toggle filter dropdown
+document.getElementById("filter").addEventListener("click", function () {
+    const filterDropdown = document.getElementById("filter-dropdown");
+    if (filterDropdown.style.display === "none" || filterDropdown.style.display === "") {
+        filterDropdown.style.display = "block";
+    } else {
+        filterDropdown.style.display = "none";
+    }
+});
+
+// Toggle sort dropdown
+document.getElementById("sort").addEventListener("click", function () {
+    const sortDropdown = document.getElementById("sort-dropdown");
+    if (sortDropdown.style.display === "none" || sortDropdown.style.display === "") {
+        sortDropdown.style.display = "block";
+    } else {
+        sortDropdown.style.display = "none";
+    }
+});
+
+// Close dropdown if clicked outside
+document.addEventListener("click", function (event) {
+    const filterButton = document.getElementById("filter");
+    const sortButton = document.getElementById("sort");
+    const filterDropdown = document.getElementById("filter-dropdown");
+    const sortDropdown = document.getElementById("sort-dropdown");
+
+    if (!filterButton.contains(event.target) && !filterDropdown.contains(event.target)) {
+        filterDropdown.style.display = "none";
+    }
+
+    if (!sortButton.contains(event.target) && !sortDropdown.contains(event.target)) {
+        sortDropdown.style.display = "none";
+    }
+});
+
+
+        </script>

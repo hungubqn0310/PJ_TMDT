@@ -676,3 +676,53 @@ html, body {
 * {
   box-sizing: border-box;
 }
+
+/* CSS cho dropdown */
+.dropdownn {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownn-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none; /* Ẩn dropdown mặc định */
+  min-width: 160px;
+  background-color: #fff;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Đảm bảo dropdown hiện lên trên các phần tử khác */
+  border-radius: 5px;
+}
+
+.dropdownn-item {
+  color: #000;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+
+.dropdownn-item:hover {
+  background-color: #ddd; /* Hiệu ứng hover */
+}
+
+/* Hiển thị dropdown khi hover vào tên người dùng */
+.dropdownn:hover .dropdownn-menu {
+  display: block;
+}
+
+.dropdownn-menu a {
+  display: block; /* Đảm bảo các phần tử trong dropdown là khối */
+}
+
+/* Đảm bảo rằng menu không bị che khuất */
+.dropdownn-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 9999; /* Đảm bảo dropdown sẽ luôn hiển thị trên các phần tử khác */
+}
+
+

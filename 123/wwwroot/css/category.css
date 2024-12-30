@@ -449,3 +449,17 @@
     background-color: #FF6347;
     transform: scale(1.05);
 }
+
+
+.filter-options1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.filterr {
+    margin-right: 190px;
+    font-weight: bold; /* Tạo khoảng cách 100px giữa các mục */
+}
