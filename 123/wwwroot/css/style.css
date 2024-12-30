@@ -722,7 +722,8 @@ html, body {
   top: 100%;
   left: 0;
   right: 0;
+  border-radius: 20px;
   z-index: 9999; /* Đảm bảo dropdown sẽ luôn hiển thị trên các phần tử khác */
 }
 
-
+/* Thêm phần CSS sửa lỗi viền đen xung quanh icon */

@@ -5,7 +5,7 @@ window.onload = function() {
     if (userId) {
         // Nếu có id người dùng, hiển thị dropdown và thông tin người dùng
         document.getElementById('user-dropdown').style.display = 'block';  // Hiển thị dropdown
-        document.getElementById('username').textContent = 'Tên người dùng';  // Hiển thị tên người dùng (có thể lấy từ localStorage hoặc API)
+        
     } else {
         // Nếu không có id người dùng, ẩn dropdown
         document.getElementById('user-dropdown').style.display = 'none';
