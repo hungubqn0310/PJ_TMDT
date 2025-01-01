@@ -109,6 +109,11 @@ public IActionResult transactionHistory()
         return View();
     }
 
+    public IActionResult YeuThich()
+    {
+        return View();
+    }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

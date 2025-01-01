@@ -1,34 +1,166 @@
 @{
-    ViewData["Title"] = "Khuyến Mãi";
+    ViewData["Title"] = "HanDK - Khuyến Mãi";
 }
-<h2>@ViewData["Title"]</h2>
-<p>Trang khuyến mãi của chúng tôi...</p>
-<ul>
-    <li>Dùng thước đo đường kính ngón tay.</li>
-    <li>So sánh với bảng size tiêu chuẩn.</li>
-    <li>Nếu không chắc chắn, hãy đến cửa hàng để được tư vấn.</li>
-    <li>Dùng thước đo đường kính ngón tay.</li>
-    <li>So sánh với bảng size tiêu chuẩn.</li>
-    <li>Nếu không chắc chắn, hãy đến cửa hàng để được tư vấn.</li>
-    <li>Dùng thước đo đường kính ngón tay.</li>
-    <li>So sánh với bảng size tiêu chuẩn.</li>
-    <li>Nếu không chắc chắn, hãy đến cửa hàng để được tư vấn.</li>
-    <li>Dùng thước đo đường kính ngón tay.</li>
-    <li>So sánh với bảng size tiêu chuẩn.</li>
-    <li>Nếu không chắc chắn, hãy đến cửa hàng để được tư vấn.</li>
-    <li>Dùng thước đo đường kính ngón tay.</li>
-    <li>So sánh với bảng size tiêu chuẩn.</li>
-    <li>Nếu không chắc chắn, hãy đến cửa hàng để được tư vấn.</li>
-    <li>Dùng thước đo đường kính ngón tay.</li>
-    <li>So sánh với bảng size tiêu chuẩn.</li>
-    <li>Nếu không chắc chắn, hãy đến cửa hàng để được tư vấn.</li>
-    <li>Dùng thước đo đường kính ngón tay.</li>
-    <li>So sánh với bảng size tiêu chuẩn.</li>
-    <li>Nếu không chắc chắn, hãy đến cửa hàng để được tư vấn.</li>
-    <li>Dùng thước đo đường kính ngón tay.</li>
-    <li>So sánh với bảng size tiêu chuẩn.</li>
-    <li>Nếu không chắc chắn, hãy đến cửa hàng để được tư vấn.</li>
-    <li>Dùng thước đo đường kính ngón tay.</li>
-    <li>So sánh với bảng size tiêu chuẩn.</li>
-    <li>Nếu không chắc chắn, hãy đến cửa hàng để được tư vấn.</li>
-</ul>
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HanDK - Khuyến Mãi Trang Sức</title>
+    <link rel="stylesheet" href="~/css/khuyenMai.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="promotion-container">
+        <!-- Banner Khuyến Mãi -->
+        <div class="promotion-banner">
+            <h1>Ưu Đãi Đặc Biệt</h1>
+            <p>Khám phá những ưu đãi độc quyền từ HanDK</p>
+        </div>
+
+        <!-- Các Danh Mục Khuyến Mãi -->
+        <div class="promotion-categories">
+            <h2>Ưu Đãi Đang Diễn Ra</h2>
+            
+            <!-- Nhẫn Cầu Hôn -->
+            <section class="product-section">
+                <h3>Nhẫn Cầu Hôn</h3>
+                <div class="product-grid">
+                    @for (int i = 1; i <= 8; i++)
+                    {
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="/images/engagement-ring.jpg" alt="Nhẫn Cầu Hôn">
+                                <div class="product-overlay">
+                                    <i class="far fa-heart favorite-icon"></i>
+                                    <i class="fas fa-cart-arrow-down cart-icon"></i>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h4>Nhẫn Cầu Hôn Kim Cương @i</h4>
+                                <div class="price-container">
+                                    <span class="current-price">@string.Format("{0:N0}", 29000000 - i * 1000000)₫</span>
+                                    <span class="original-price">@string.Format("{0:N0}", 35000000 - i * 800000)₫</span>
+                                </div>
+                                <div class="discount-badge">-@(20 + i)%</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <!-- Nhẫn Cưới -->
+            <section class="product-section">
+                <h3>Nhẫn Cưới</h3>
+                <div class="product-grid">
+                    @for (int i = 1; i <= 8; i++)
+                    {
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="/images/wedding-ring.jpg" alt="Nhẫn Cưới">
+                                <div class="product-overlay">
+                                    <i class="far fa-heart favorite-icon"></i>
+                                    <i class="fas fa-cart-arrow-down cart-icon"></i>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h4>Nhẫn Cưới Đôi @i</h4>
+                                <div class="price-container">
+                                    <span class="current-price">@string.Format("{0:N0}", 15000000 - i * 500000)₫</span>
+                                    <span class="original-price">@string.Format("{0:N0}", 20000000 - i * 400000)₫</span>
+                                </div>
+                                <div class="discount-badge">-@(15 + i)%</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <!-- Trang Sức -->
+            <section class="product-section">
+                <h3>Trang Sức</h3>
+                <div class="product-grid">
+                    @for (int i = 1; i <= 8; i++)
+                    {
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="/images/jewelry.jpg" alt="Trang Sức">
+                                <div class="product-overlay">
+                                    <i class="far fa-heart favorite-icon"></i>
+                                    <i class="fas fa-cart-arrow-down cart-icon"></i>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h4>Bộ Trang Sức @i</h4>
+                                <div class="price-container">
+                                    <span class="current-price">@string.Format("{0:N0}", 45000000 - i * 2000000)₫</span>
+                                    <span class="original-price">@string.Format("{0:N0}", 55000000 - i * 1500000)₫</span>
+                                </div>
+                                <div class="discount-badge">-@(25 + i)%</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <!-- Nhẫn Nam -->
+            <section class="product-section">
+                <h3>Nhẫn Nam</h3>
+                <div class="product-grid">
+                    @for (int i = 1; i <= 8; i++)
+                    {
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="/images/mens-ring.jpg" alt="Nhẫn Nam">
+                                <div class="product-overlay">
+                                    <i class="far fa-heart favorite-icon"></i>
+                                    <i class="fas fa-cart-arrow-down cart-icon"></i>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h4>Nhẫn Nam Phong Cách @i</h4>
+                                <div class="price-container">
+                                    <span class="current-price">@string.Format("{0:N0}", 12000000 - i * 500000)₫</span>
+                                    <span class="original-price">@string.Format("{0:N0}", 15000000 - i * 400000)₫</span>
+                                </div>
+                                <div class="discount-badge">-@(18 + i)%</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </section>
+        </div>
+
+        <!-- Ưu Đãi Đặc Biệt -->
+        <section class="special-offers">
+            <h2>Ưu Đãi Đặc Biệt</h2>
+            <div class="special-offers-grid">
+                <div class="special-offer-card">
+                    <div class="offer-content">
+                        <h3>Giảm 30% Cho Đơn Hàng Đầu Tiên</h3>
+                        <p>Áp dụng cho tất cả sản phẩm</p>
+                        <button class="offer-button">Xem Chi Tiết</button>
+                    </div>
+                </div>
+                <div class="special-offer-card">
+                    <div class="offer-content">
+                        <h3>Tặng Voucher 5 Triệu</h3>
+                        <p>Cho đơn hàng từ 50 triệu</p>
+                        <button class="offer-button">Nhận Ngay</button>
+                    </div>
+                </div>
+                <div class="special-offer-card">
+                    <div class="offer-content">
+                        <h3>Ưu Đãi Sinh Nhật</h3>
+                        <p>Giảm thêm 10% trong tháng sinh nhật</p>
+                        <button class="offer-button">Tìm Hiểu Thêm</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="~/js/khuyenMai.js"></script>
+</body>
+</html>
