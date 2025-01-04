@@ -8,19 +8,19 @@
         <h6 class="m-0 font-weight-bold text-primary">Quản lý Chức Năng</h6>
     </div>
     <div class="d-flex justify-content-end">
-        <button type="button" class="btn btn-outline-success" style="margin: 10px 40px 0;" data-toggle="modal" data-target="#role-add">
+        <button type="button" class="btn btn-outline-info" style="margin: 10px 40px 0;" data-toggle="modal" data-target="#role-add">
             Thêm mới
         </button>
         @await Html.PartialAsync("/Views/Admin/roleadd.cshtml", @Model.Role)
     </div>
     <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <div class="table-responsive ">
+            <table class="table table-bordered styled-table" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>STT</th>
                         <th>Chức Năng</th>
-                        <th>Actions</th>
+                        <th>Hành động</th>
                     </tr>
                 </thead>
                 <tbody>
