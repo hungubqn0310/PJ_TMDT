@@ -43,14 +43,14 @@
                                 <img src="@Model.Products[i].ImageUrl" alt="Image" style="width: 50px; height: auto;" />
                             </td>
                             <td>
-                                <button type="button" class="btn btn-outline-primary" 
+                                <button type="button" class="btn btn-outline-primary update-button" 
                                         data-toggle="modal" 
                                         data-target="#product-edit-@Model.Products[i].ProductId">
                                     <i class="material-icons" style="font-size: 14px">border_color</i>
                                 </button>
                                 @await Html.PartialAsync("/Views/Admin/productedit.cshtml", Model.Products[i])
                                 
-                                <button type="button" class="btn btn-outline-danger" 
+                                <button type="button" class="btn btn-outline-danger delete-button" 
                                         data-toggle="modal" 
                                         data-target="#product-delete-@Model.Products[i].ProductId">
                                     <i class="material-icons" style="font-size: 14px">delete</i>
@@ -63,4 +63,18 @@
             </table>
         </div>
     </div>
+    <script> 
+       
+        let updateButtons = document.querySelectorAll('.update-button')
+        let deleteButtons = document.querySelectorAll('.delete-button')
+
+        if (role!=2) {
+            updateButtons.forEach(button => {
+                button.style.display = "none";
+            });
+            deleteButtons.forEach(button => {
+                button.style.display = "none";
+            });
+        }
+    </script>  
 </div>

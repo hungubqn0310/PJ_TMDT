@@ -37,12 +37,12 @@
                         <td>@Model.Suppliers[i].Address</td>
                         <td>@Model.Suppliers[i].Email</td>
                         <td>
-                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#supplier-@Model.Suppliers[i].SupplierId" data-url="@Url.Action($"Edit/{@Model.Suppliers[i].SupplierId}")">
+                            <button type="button" class="btn btn-outline-primary update-button" data-toggle="modal" data-target="#supplier-@Model.Suppliers[i].SupplierId" data-url="@Url.Action($"Edit/{@Model.Suppliers[i].SupplierId}")">
                                 <i class="material-icons" style="font-size: 14px">border_color</i>
                             </button>
                             @await Html.PartialAsync("/Views/Admin/supplieredit.cshtml", @Model.Suppliers[i])
 
-                            <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#supplier-delete-@Model.Suppliers[i].SupplierId" data-url="@Url.Action($"Delete/{@Model.Suppliers[i].SupplierId}")">
+                            <button type="button" class="btn btn-outline-danger delete-button" data-toggle="modal" data-target="#supplier-delete-@Model.Suppliers[i].SupplierId" data-url="@Url.Action($"Delete/{@Model.Suppliers[i].SupplierId}")">
                                 <i class="material-icons" style="font-size: 14px">delete</i>
                             </button>
                             @await Html.PartialAsync("/Views/Admin/supplierdelete.cshtml", @Model.Suppliers[i])
@@ -53,4 +53,18 @@
           </table>
       </div>
   </div>
+   <script> 
+       
+        let updateButtons = document.querySelectorAll('.update-button')
+        let deleteButtons = document.querySelectorAll('.delete-button')
+
+        if (role!=2) {
+            updateButtons.forEach(button => {
+                button.style.display = "none";
+            }); 
+            deleteButtons.forEach(button => {
+                button.style.display = "none";
+            });
+        }
+    </script>   
 </div>

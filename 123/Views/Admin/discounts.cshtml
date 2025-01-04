@@ -36,13 +36,13 @@
                             <td>@Model.Discounts[i].EndDate.ToString("dd/MM/yyyy")</td>
                             <td>
                                 <!-- Edit Discount -->
-                                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#discount-@Model.Discounts[i].DiscountId" data-url="@Url.Action("EditDiscount", new { id = @Model.Discounts[i].DiscountId })">
+                                <button type="button" class="btn btn-outline-primary update-button" data-toggle="modal" data-target="#discount-@Model.Discounts[i].DiscountId" data-url="@Url.Action("EditDiscount", new { id = @Model.Discounts[i].DiscountId })">
                                     <i class="material-icons" style="font-size: 14px">border_color</i>
                                 </button>
                                 @await Html.PartialAsync("/Views/Admin/discountedit.cshtml", @Model.Discounts[i])
                                 
                                 <!-- Delete Discount -->
-                                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#discount-delete-@Model.Discounts[i].DiscountId" data-url="@Url.Action("DeleteDiscount", new { id = @Model.Discounts[i].DiscountId })">
+                                <button type="button" class="btn btn-outline-danger delete-button" data-toggle="modal" data-target="#discount-delete-@Model.Discounts[i].DiscountId" data-url="@Url.Action("DeleteDiscount", new { id = @Model.Discounts[i].DiscountId })">
                                     <i class="material-icons" style="font-size: 14px">delete</i>
                                 </button>
                                 @await Html.PartialAsync("/Views/Admin/discountdelete.cshtml", @Model.Discounts[i])
@@ -53,4 +53,18 @@
             </table>
         </div>
     </div>
+     <script> 
+       
+        let updateButtons = document.querySelectorAll('.update-button')
+        let deleteButtons = document.querySelectorAll('.delete-button')
+
+        if (role!=2) {
+            updateButtons.forEach(button => {
+                button.style.display = "none";
+            });
+            deleteButtons.forEach(button => {
+                button.style.display = "none";
+            });
+        }
+    </script>   
 </div>

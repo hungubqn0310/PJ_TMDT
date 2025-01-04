@@ -38,7 +38,7 @@
                         <td>@Model.Categories[i].Description</td>
                         <td>
                             <!-- Edit Button -->
-                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" 
+                            <button type="button" class="btn btn-outline-primary update-button" data-toggle="modal" 
                                     data-target="#category-@Model.Categories[i].CategoryId" 
                                     data-url="@Url.Action($"Edit/{@Model.Categories[i].CategoryId}")">
                                 <i class="material-icons" style="font-size: 14px">border_color</i>
@@ -46,7 +46,7 @@
                             @await Html.PartialAsync("/Views/Admin/categoryedit.cshtml", @Model.Categories[i])
 
                             <!-- Delete Button -->
-                            <button type="button" class="btn btn-outline-danger" data-toggle="modal" 
+                            <button type="button" class="btn btn-outline-danger delete-button" data-toggle="modal" 
                                     data-target="#category-delete-@Model.Categories[i].CategoryId" 
                                     data-url="@Url.Action($"Delete/{@Model.Categories[i].CategoryId}")">
                                 <i class="material-icons" style="font-size: 14px">delete</i>
@@ -59,4 +59,18 @@
           </table>
       </div>
   </div>
+  <script> 
+       
+        let updateButtons = document.querySelectorAll('.update-button')
+        let deleteButtons = document.querySelectorAll('.delete-button')
+
+        if (role!=2) {
+            updateButtons.forEach(button => {
+                button.style.display = "none";
+            });
+            deleteButtons.forEach(button => {
+                button.style.display = "none";
+            });
+        }
+    </script> 
 </div>

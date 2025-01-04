@@ -52,7 +52,7 @@
                                 <td>@detail.DaTam</td>
                                 <td>
                                     <!-- Sửa chi tiết sản phẩm -->
-                                    <button type="button" class="btn btn-outline-primary" 
+                                    <button type="button" class="btn btn-outline-primary update-button" 
                                             data-toggle="modal" 
                                             data-target="#productdetail-edit-@detail.ProductDetailId">
                                         <i class="material-icons" style="font-size: 14px">border_color</i>
@@ -60,7 +60,7 @@
                                     @await Html.PartialAsync("/Views/Admin/productdetailedit.cshtml", detail)
                                     
                                     <!-- Xóa chi tiết sản phẩm -->
-                                    <button type="button" class="btn btn-outline-danger" 
+                                    <button type="button" class="btn btn-outline-danger delete-button" 
                                             data-toggle="modal" 
                                             data-target="#productdetail-delete-@detail.ProductDetailId">
                                         <i class="material-icons" style="font-size: 14px">delete</i>
@@ -81,4 +81,18 @@
             </table>
         </div>
     </div>
+    <script> 
+       
+        let updateButtons = document.querySelectorAll('.update-button')
+        let deleteButtons = document.querySelectorAll('.delete-button')
+
+        if (role!=2) {
+            updateButtons.forEach(button => {
+                button.style.display = "none";
+            });
+            deleteButtons.forEach(button => {
+                button.style.display = "none";
+            });
+        }
+    </script>
 </div>

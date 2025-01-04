@@ -82,7 +82,7 @@
             if (response.ok) {
                 const data = await response.json();
                 alert(`Đăng nhập thành công`);
-                if(data?.data?.role_id == 2) {
+                if(data?.data?.role_id == 2 || data?.data?.role_id == 3) {
                     window.location.href = '/admin'
                 }else {
                     window.location.href = '/'

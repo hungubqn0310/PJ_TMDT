@@ -38,13 +38,13 @@
                             <td>@productDiscount.Discount?.DiscountName</td> <!-- Hiển thị tên nhà cung cấp -->
                             <td>
                                 <!-- Nút sửa -->
-                                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#product-discount-edit-@productDiscount.PdId">
+                                <button type="button" class="btn btn-outline-primary update-button" data-toggle="modal" data-target="#product-discount-edit-@productDiscount.PdId">
                                     <i class="material-icons" style="font-size: 14px">border_color</i>
                                 </button>
                                 @await Html.PartialAsync("/Views/Admin/productdiscountedit.cshtml", productDiscount) <!-- Partial view cho form sửa -->
 
                                 <!-- Nút xóa -->
-                                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#product-discount-delete-@productDiscount.PdId">
+                                <button type="button" class="btn btn-outline-danger delete-button" data-toggle="modal" data-target="#product-discount-delete-@productDiscount.PdId">
                                     <i class="material-icons" style="font-size: 14px">delete</i>
                                 </button>
                                 @await Html.PartialAsync("/Views/Admin/productdiscountdelete.cshtml", productDiscount) <!-- Partial view cho form xóa -->
@@ -55,4 +55,18 @@
             </table>
         </div>
     </div>
+    <script> 
+       
+        let updateButtons = document.querySelectorAll('.update-button')
+        let deleteButtons = document.querySelectorAll('.delete-button')
+
+        if (role!=2) {
+            updateButtons.forEach(button => {
+                button.style.display = "none";
+            });
+            deleteButtons.forEach(button => {
+                button.style.display = "none";
+            });
+        }
+    </script>  
 </div>
