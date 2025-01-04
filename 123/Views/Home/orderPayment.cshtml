@@ -195,7 +195,7 @@
             localStorage.setItem('order_id', orderId); 
             // Chuyển hướng đến trang phù hợp dựa trên tùy chọn thanh toán
             if (selectedPaymentOption === 'cod') {
-                window.location.href = '/Home/paymentSusccessful';
+                window.location.href = 'https://localhost:5003/Home/paymentSuccessful';
             } else if (selectedPaymentOption === 'bank') {
                 window.location.href = '/Home/qrcodepayment';
             } else if (selectedPaymentOption === 'momo') {

@@ -16,7 +16,7 @@
                     <!-- User Selection Dropdown -->
                     <div class="form-group">
                         <label>User</label>
-                        <select class="form-control" name="UserId" asp-for="UserId">
+                        <select class="form-control" name="UserId" asp-for="UserId" disabled>
                             <option value="">Select User</option>
                             @if (ViewBag.Users != null)
                             {
@@ -37,19 +37,25 @@
                     <!-- Order Date -->
                     <div class="form-group">
                         <label>Order Date</label>
-                        <input type="datetime-local" class="form-control" name="OrderDate" asp-for="OrderDate" value="@Model.OrderDate.ToString("yyyy-MM-ddTHH:mm")">
+                        <input disabled type="datetime-local" class="form-control" name="OrderDate" asp-for="OrderDate" value="@Model.OrderDate.ToString("yyyy-MM-ddTHH:mm")">
                     </div>
 
                     <!-- Status -->
                     <div class="form-group">
                         <label>Status</label>
-                        <input type="text" class="form-control" name="Status" asp-for="Status" value="@Model.Status">
+                        <select class="form-control" name="Status" asp-for="Status" required value="@Model.Status">
+                                    <option value="" selected disabled>Chọn trạng thái</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Canceled">Canceled</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                        @* <input type="text" class="form-control" name="Status" asp-for="Status" value="@Model.Status"> *@
                     </div>
 
                     <!-- Total Amount -->
                     <div class="form-group">
                         <label>Total Amount</label>
-                        <input type="number" class="form-control" name="TotalAmount" asp-for="TotalAmount" step="0.01" value="@Model.TotalAmount">
+                        <input disabled type="number" class="form-control" name="TotalAmount" asp-for="TotalAmount" step="0.01" value="@Model.TotalAmount">
                     </div>
 
                 </form>
