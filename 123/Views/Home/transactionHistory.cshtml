@@ -57,11 +57,13 @@
         const cancelButton = isCancelable ? `<button class="cancel-button" data-id="${order.orderId}">Hủy đơn hàng</button>` : '';
 
         const orderCard = `
-            <div class="order-card">
-                <h3><strong>Đơn hàng #</strong>${order.orderId}</h3>
-                <p><strong>Tổng tiền</strong>: ${(order.totalAmount * 1000).toLocaleString('vi-VN')} VNĐ</p>
-                <p><strong>Ngày đặt:</strong> ${new Date(order.orderDate).toLocaleString()}</p>
-                <p><strong>Trạng thái:</strong> ${order.status}</p>
+            <div class="order-card" style="display: flex;align-items: center;justify-content: space-between;">
+                <div>
+                    <h3><strong>Đơn hàng #</strong>${order.orderId}</h3>
+                    <p><strong>Tổng tiền</strong>: ${(order.totalAmount * 1000).toLocaleString('vi-VN')} VNĐ</p>
+                    <p><strong>Ngày đặt:</strong> ${new Date(order.orderDate).toLocaleString()}</p>
+                    <p><strong>Trạng thái:</strong> ${order.status}</p>
+                </div>
                 <div style="text-align: center;">${cancelButton}</div>
             </div>
         `;
