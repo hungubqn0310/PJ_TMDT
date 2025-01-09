@@ -18,6 +18,7 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 	<script src="~/js/loginPup.js"></script>
     <script src="~/js/audioPlayer.js"></script>
+	<script src="~/js//user-dropdown.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
@@ -40,11 +41,22 @@
 				<!-- Các icon bên phải -->
 				<div class="right-icons">
 					<a href="/home/cart" class="material-icons shopping-cart-icon" style="text-decoration: none;">shopping_cart</a> <!-- Giỏ hàng -->
-					<div style="display: flex;align-items: center">
-						<span class="material-icons user-icon">person</span>
-						<p style="padding: 0 10px; margin: 0" class="username"></p> <!-- Người dùng -->
+					<div style="display: flex; align-items: center">
+						<span class="material-icons user-icon" id="user-icon">person</span> <!-- Biểu tượng mặc định là person -->
+						<div class="dropdownn" id="user-dropdown" style="display: none;">
+							<button class="dropdownn-toggle" id="dropdown-btn" aria-expanded="false">
+								<p style="padding: 0 10px; margin: 0" class="username"></p> <!-- Hiển thị tên người dùng -->
+							</button>
+							<div class="dropdownn-menu" aria-labelledby="dropdown-btn">
+								<a class="dropdownn-item" href="/home/profile">Thông tin cá nhân</a>
+								<a class="dropdownn-item" href="/home/transactionhistory">Lịch sử mua hàng</a>
+								<a class="dropdownn-item" href="/home" onclick="logout()">Đăng xuất</a> <!-- Đăng xuất -->
+							</div>
+						</div>
 					</div>
 				</div>
+
+
 			</div>
 			<nav>
 				<div class="wrapper">
@@ -411,14 +423,10 @@
 		}
     </script>
 
-	
 
-<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-<df-messenger
-  intent="WELCOME"
-  chat-title="HanDK"
-  agent-id="0b1a7fb6-fd81-4c01-b536-8083972bfa60"
-  language-code="vi"
-></df-messenger>
+
+
+
+	
 </body>
 </html>
