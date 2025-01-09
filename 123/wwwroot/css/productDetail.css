@@ -1,5 +1,5 @@
 .review-section {
-    padding: 40px 20px;
+    padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
     position: relative;
@@ -44,6 +44,124 @@
     margin: 0;
     color: #333;
     font-size: 1.1em;
+}
+.write-review {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    position: relative;
+}
+
+textarea {
+    margin-top: 10px;
+
+    width: 100%;
+    padding: 20px 55px 20px 70px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    border-radius: 20px;
+    font-size: 16px;
+}
+
+.action-buttons {
+    position: absolute;
+    bottom: 75px;
+    right: 20px;
+    display: flex;
+    flex-direction: column; /* Xếp các nút theo chiều dọc */
+    gap: 10px; /* Khoảng cách giữa các nút */
+}
+
+
+.material-icons {
+    font-size: 24px;
+    color: #007bff;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.material-icons:hover {
+    color: #0056b3;
+    transform: scale(1.1);
+}
+
+
+
+
+.upload-section {
+    margin-bottom: 10px;
+}
+
+.upload-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.upload-btn:hover {
+    background-color: #0056b3;
+}
+
+.submit-btn {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.selected-media-preview {
+    position: absolute;
+    bottom: 43px;
+    left: 20px;
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    max-width: 70px; /* Đảm bảo không tràn vùng viết đánh giá */
+    max-height: 105px; /* Đảm bảo không vượt quá vùng bên dưới */
+    overflow: hidden; /* Ẩn thanh cuộn mặc định */
+    z-index: 10;
+}
+
+/* Ẩn thanh cuộn khi người dùng không hover */
+.selected-media-preview::-webkit-scrollbar {
+    display: none; /* Ẩn thanh cuộn trên trình duyệt Webkit */
+}
+
+/* Khi di chuột vào vùng ảnh, cho phép cuộn nhưng không hiển thị thanh cuộn */
+.selected-media-preview:hover {
+    overflow-y: scroll; /* Cho phép cuộn khi hover */
+}
+
+
+.selected-media-preview img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+}
+.submit-btn:hover {
+    background-color: #218838;
+}
+
+.upload-icon {
+    background-color: #e9f5ff;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.send-icon {
+    background-color: #d4f8d4;
+    border-radius: 50%;
+    padding: 5px;
 }
 
 .review-date {
