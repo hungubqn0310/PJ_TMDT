@@ -7,53 +7,10 @@
 <div class="container-fluid">
 
     <!-- Content Row -->
-    <div class="row">
+    <div class="row row-fetch">
 
         <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-uppercase mb-1 text-success">
-                                Số lượng người dùng</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">20</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-4 col-md-6 mb-4">
-                    <div class="card border-left-success shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                        Số lượng nhân viên</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Doanh thu</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
 
         
     </div>
@@ -108,4 +65,70 @@
         </div>
     </div>
 
+    
+
 </div>
+<script>
+        const fetchProducts = async () => {
+            let row = document.querySelector('.row-fetch')
+            try {
+                const response = await fetch(`https://localhost:5003/api/dashboard`);
+                
+                // Kiểm tra nếu response trả về thành công
+                if (response.status ==200) {
+                    let data = await response.json(); // Chuyển đổi dữ liệu JSON
+                    row.innerHTML +=`
+                        <div class="col-xl-4 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-uppercase mb-1 text-success">
+                                    Số lượng người dùng</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">${data?.role1Count}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            Số lượng nhân viên</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">${data?.role3Count}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-4 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                    Doanh thu</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">${(data?.totalPrice*1000).toLocaleString('vi-VN')}₫</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    `
+                } else {
+                console.error('Lỗi khi tải dữ liệu:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Có lỗi xảy ra:', error);
+            }
+        }
+        fetchProducts()
+</script>

@@ -31,6 +31,14 @@ namespace _123.Controllers
             public int userId  { get; set; }
         }
 
+        public class Dashboard
+        {
+            public int Role1Count { get; set; }
+            public int Role3Count { get; set; }
+            public decimal TotalPrice { get; set; }
+
+        }
+
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest loginRequest) {
             var res = AuthService.Login(loginRequest.Username, loginRequest.Password);
@@ -43,6 +51,21 @@ namespace _123.Controllers
             return Ok(response);
             
         }
+
+        [HttpGet("dashboard")]
+        public IActionResult GetDashboard()
+        {
+            var result = UserService.GetUserRoleCounts();
+             var dashboard = new Dashboard
+            {
+                Role1Count = result.role1Count,
+                Role3Count = result.role3Count,
+                TotalPrice = result.totalPrice
+            };
+
+            return Ok(dashboard);
+        }
+
 
         [HttpGet("products/byId")]
         public IActionResult GetProductById([FromQuery] string id)

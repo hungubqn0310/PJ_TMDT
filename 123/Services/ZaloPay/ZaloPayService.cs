@@ -27,7 +27,7 @@ namespace _123.Services
         public static async Task<Dictionary<string, string>> CreatePaymentRequestAsync(decimal amount, string description)
         {
             Random rnd = new Random();
-            var embed_data = new { redirecturl = "https://localhost:5003" };
+            var embed_data = new { redirecturl = "https://localhost:5003/home/paymentSuccessful" };
             var items = new[] { new { } };
             var param = new Dictionary<string, string>();
             var app_trans_id = rnd.Next(1000000); // Generate a random order's ID.
