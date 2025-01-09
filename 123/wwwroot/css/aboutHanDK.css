@@ -1,6 +1,6 @@
-about-container {
+.about-container {
     margin-top: 120px;
-    overflow-x: hidden;
+    overflow-x: hidden; 
 }
 /* Hero Section */
 .about-hero {
@@ -33,7 +33,7 @@ section {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 50px;
-    color: #333;
+    color: #e05edc;
     font-weight: 300;
 }
 /* Story Section */
