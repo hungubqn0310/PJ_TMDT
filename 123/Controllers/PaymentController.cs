@@ -46,7 +46,7 @@ namespace _123.Controllers
         public IActionResult VNPayPaymentCallback()
         {
             var response = _vnPayService.PaymentExecute(Request.Query);
-            return Json(response);
+            return View(response);
         }
 
         public class ZaloPaymentRequest

@@ -270,7 +270,63 @@ namespace _123.Controllers
                 return BadRequest(new { message = "Lỗi: " + ex.Message });
             }
         }
-        
+         [HttpGet("users/{id}")]
+        public IActionResult GetUserById(int id)
+        {
+            // Gọi dịch vụ để lấy thông tin người dùng theo ID
+            var user = UserService.GetUserById(id);
+
+            // Kiểm tra nếu người dùng tồn tại
+            if (user != null)
+            {
+                var response = new ApiResponse<dynamic>(200, "Success", user);
+                return Ok(response);
+            }
+            else
+            {
+                return NotFound(new ApiResponse<dynamic>(404, "Không tìm thấy người dùng."));
+            }
+        }
+        [HttpPut("users/{id}")]
+        public IActionResult UpdateUser(int id, [FromBody] User user)
+        {
+            if (id != user.user_id)
+            {
+                return BadRequest();
+            }
+            
+            var result = UserService.UpdateUser(user);
+            if (result > 0)
+            {
+                return NoContent(); // Cập nhật thành công
+            }
+
+            return NotFound(); // Không tìm thấy người dùng
+        }
+
+        [HttpPost("change-password/{id}")]
+        public IActionResult ChangePassword(int id, [FromBody] string newPassword)
+        {
+            var result = UserService.ChangePassword(id, newPassword);
+            if (result > 0)
+            {
+                return NoContent(); // Đổi mật khẩu thành công
+            }
+
+            return NotFound(); // Không tìm thấy người dùng
+        }
+        [HttpDelete("{id}")]
+        public IActionResult DeleteUser(int id)
+        {
+            var result = UserService.DeleteUser(id);
+            if (result > 0)
+            {
+                return NoContent();
+                 // Xóa thành công
+            }
+
+            return NotFound(); // Không tìm thấy người dùng
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -106,7 +106,7 @@ namespace _123.Controllers
     {
         return View("qrcodepayment");
     }
-    public IActionResult PaymentCallBack()
+    public IActionResult VNPaypaymentCallBack()
     {
         return View("PaymentCallBack");
     }
@@ -124,6 +124,10 @@ namespace _123.Controllers
         return View();
     }
     public IActionResult transactionHistory()
+    {
+        return View();
+    }
+    public IActionResult UserInfo()
     {
         return View();
     }

@@ -140,5 +140,22 @@ namespace _123.Services
 
             return DatabaseHelper.ExecuteNonQuery(query, parameters);
         } 
+        public static int ChangePassword(int userId, string newPassword)
+        {
+            // Câu lệnh SQL để đổi mật khẩu
+            string query = @"UPDATE Users
+                            SET password = @newPassword
+                            WHERE user_id = @userId AND is_deleted = 0";
+
+            // Các tham số truyền vào câu lệnh SQL
+            var parameters = new MySqlParameter[]
+            {
+                new MySqlParameter("@userId", MySqlDbType.Int32) { Value = userId },
+                new MySqlParameter("@newPassword", MySqlDbType.VarChar) { Value = newPassword }
+            };
+
+            // Thực thi câu lệnh UPDATE và trả về số dòng bị ảnh hưởng
+            return DatabaseHelper.ExecuteNonQuery(query, parameters);
+        }
     }
 }

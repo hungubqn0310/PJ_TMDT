@@ -1,0 +1,210 @@
+@{
+    ViewBag.Title = "User Info";
+}
+<link rel="stylesheet" href="/css/userInfo.css" />
+
+<!-- Thêm CSS Flatpickr -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<!-- Thêm JS Flatpickr -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<div class="container2">
+    <div class="profile-header">
+        <h1>Tài Khoản Của Tôi</h1>
+        <p>Quản lý thông tin tài khoản của bạn</p>
+    </div>
+
+    <div class="profile-info">
+        <div class="form-group">
+            <label>Tên tài khoản</label>
+            <input type="text" id="username" readonly>
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="userEmail" readonly>
+        </div>
+        <div class="form-group">
+            <label>Số điện thoại</label>
+            <input type="tel" id="phone" readonly>
+        </div>
+        <div class="form-group">
+            <label>Địa chỉ</label>
+            <input type="text" id="address" readonly>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-warning" onclick="showUpdateForm()">Cập nhật thông tin</button>
+            <button class="btn btn-primary" onclick="showChangePasswordForm()">Đổi mật khẩu</button>
+            <button class="btn btn-danger" onclick="deleteAccount()">Xoá tài khoản</button>
+        </div>
+    </div>
+
+    <!-- Form cập nhật thông tin -->
+    <div id="updateForm" style="display: none;">
+        <h2>Cập Nhật Thông Tin</h2>
+        <div class="form-group">
+            <label>Tên tài khoản</label>
+            <input type="text" id="updateUsername" readonly>
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="updateEmail">
+        </div>
+        <div class="form-group">
+            <label>Số điện thoại</label>
+            <input type="tel" id="updatePhone">
+        </div>
+        <div class="form-group">
+            <label>Địa chỉ</label>
+            <input type="text" id="updateAddress">
+        </div>
+        <button class="btn btn-success" onclick="saveUserInfo()">Lưu thông tin</button>
+        <button class="btn btn-secondary" onclick="hideUpdateForm()">Hủy</button>
+    </div>
+
+    <!-- Form đổi mật khẩu -->
+    <div id="changePasswordForm" style="display: none;">
+        <h2>Đổi Mật Khẩu</h2>
+        <div class="form-group">
+            <label>Mật khẩu mới</label>
+            <input type="password" id="newPassword" placeholder="Nhập mật khẩu mới">
+        </div>
+        <button class="btn btn-success" onclick="saveNewPassword()">Lưu mật khẩu</button>
+        <button class="btn btn-secondary" onclick="hideChangePasswordForm()">Hủy</button>
+    </div>
+</div>
+
+<script>
+    // Hàm để lấy thông tin người dùng từ API
+    function fetchUserInfo() {
+        const userId = localStorage.getItem('id'); // Lấy ID người dùng từ localStorage
+        if (!userId) {
+            alert('Không tìm thấy ID người dùng trong localStorage.');
+            return;
+        }
+
+        fetch(`https://localhost:5003/api/users/${userId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Không tìm thấy người dùng');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Cập nhật thông tin vào các trường
+                document.getElementById('username').value = data.data.username;
+                document.getElementById('userEmail').value = data.data.email;
+                document.getElementById('phone').value = data.data.phone_number;
+                document.getElementById('address').value = data.data.address;
+            })
+            .catch(error => {
+                console.error('Lỗi:', error);
+                alert(error.message);
+            });
+    }
+
+    // Gọi hàm fetchUserInfo khi trang được tải
+    document.addEventListener('DOMContentLoaded', fetchUserInfo);
+
+    function showUpdateForm() {
+        // Hiển thị form cập nhật thông tin
+        document.getElementById('updateForm').style.display = 'block';
+        document.getElementById('updateUsername').value = document.getElementById('username').value; // Cập nhật tên tài khoản
+        document.getElementById('updateEmail').value = document.getElementById('userEmail').value;
+        document.getElementById('updatePhone').value = document.getElementById('phone').value;
+        document.getElementById('updateAddress').value = document.getElementById('address').value;
+    }
+
+    function hideUpdateForm() {
+        // Ẩn form cập nhật thông tin
+        document.getElementById('updateForm').style.display = 'none';
+    }
+
+    function saveUserInfo() {
+        const userId = localStorage.getItem('id');
+        const updatedUsername = document.getElementById('updateUsername').value; // Lưu tên tài khoản
+        const updatedEmail = document.getElementById('updateEmail').value;
+        const updatedPhone = document.getElementById('updatePhone').value;
+        const updatedAddress = document.getElementById('updateAddress').value;
+        const roleId = localStorage.getItem('role');
+
+        fetch(`https://localhost:5003/api/users/${userId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                user_id: userId,
+                username: updatedUsername, // Gửi tên tài khoản
+                email: updatedEmail,
+                phone_number: updatedPhone,
+                address: updatedAddress,
+                role_id: roleId
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Cập nhật thông tin không thành công');
+            }
+            alert('Cập nhật thông tin thành công!');
+            hideUpdateForm();
+            fetchUserInfo(); // Cập nhật lại thông tin hiển thị
+        })
+        .catch(error => {
+            alert(error.message);
+        });
+    }
+
+    function showChangePasswordForm() {
+        // Hiển thị form đổi mật khẩu
+        document.getElementById('changePasswordForm').style.display = 'block';
+    }
+
+    function hideChangePasswordForm() {
+        // Ẩn form đổi mật khẩu
+        document.getElementById('changePasswordForm').style.display = 'none';
+    }
+
+    function saveNewPassword() {
+        const userId = localStorage.getItem('id');
+        const newPassword = document.getElementById('newPassword').value;
+
+        fetch(`https://localhost:5003/api/change-password/${userId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newPassword)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Đổi mật khẩu không thành công');
+            }
+            alert('Đổi mật khẩu thành công!');
+            hideChangePasswordForm();
+        })
+        .catch(error => {
+            alert(error.message);
+        });
+    }
+
+    function deleteAccount() {
+        if (confirm('Bạn có chắc chắn muốn xóa tài khoản không?')) {
+            const userId = localStorage.getItem('id');
+            fetch(`https://localhost:5003/api/users/${userId}`, {
+                method: 'DELETE'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Xóa tài khoản không thành công');
+                }
+                alert('Tài khoản của bạn đã được xóa.');
+                window.location.href = '/'; // Chuyển hướng đến trang chủ
+            })
+            .catch(error => {
+                alert(error.message);
+            });
+        }
+    }
+</script>
