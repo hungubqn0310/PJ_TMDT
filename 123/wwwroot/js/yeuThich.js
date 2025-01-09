@@ -9,22 +9,18 @@ document.addEventListener('DOMContentLoaded', function() {
         category: ['Nhẫn', 'Dây chuyền', 'Lắc tay', 'Bông tai'][Math.floor(Math.random() * 4)],
         isFavorite: true // Set isFavorite mặc định là true
     }));
-
     let currentPage = 1;
     const itemsPerPage = 12;
     let currentView = 'grid';
     let currentSort = 'newest';
-
     // Functions
     function renderProducts(page) {
         const start = (page - 1) * itemsPerPage;
         const end = start + itemsPerPage;
         const productGrid = document.getElementById('productGrid');
         productGrid.innerHTML = '';
-
         const sortedProducts = sortProducts(products, currentSort);
         const pageProducts = sortedProducts.slice(start, end);
-
         pageProducts.forEach(product => {
             const card = document.createElement('div');
             card.className = 'product-card';
@@ -50,11 +46,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
             `;
-
             // Add event listeners
             const favoriteBtn = card.querySelector('.favorite-btn');
             const cartBtn = card.querySelector('.cart-btn');
-
             // Favorite button click
             favoriteBtn.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -62,7 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 handleFavorite(product.id);
                 showNotification(favoriteBtn.classList.contains('active') ? 'Đã thêm vào yêu thích' : 'Đã xóa khỏi danh sách yêu thích');
             });
-
             // Cart button click
             cartBtn.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -70,28 +63,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 handleAddToCart(product);
                 showNotification('Đã thêm vào giỏ hàng');
             });
-
             productGrid.appendChild(card);
         });
-
         renderPagination(Math.ceil(products.length / itemsPerPage));
         updateTotalItems();
     }
-
     function formatPrice(price) {
         return new Intl.NumberFormat('vi-VN').format(price);
     }
-
     function renderPagination(totalPages) {
         const pagination = document.getElementById('pagination');
         pagination.innerHTML = '';
-
         // Previous button
         if (currentPage > 1) {
             const prevBtn = createPageButton('‹', currentPage - 1);
             pagination.appendChild(prevBtn);
         }
-
         // Page numbers
         for (let i = 1; i <= totalPages; i++) {
             if (
@@ -112,14 +99,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 pagination.appendChild(dots);
             }
         }
-
         // Next button
         if (currentPage < totalPages) {
             const nextBtn = createPageButton('›', currentPage + 1);
             pagination.appendChild(nextBtn);
         }
     }
-
     function createPageButton(text, pageNum) {
         const button = document.createElement('button');
         button.className = 'page-btn';
@@ -131,7 +116,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         return button;
     }
-
     function sortProducts(products, sortType) {
         const sortedProducts = [...products];
         switch (sortType) {
@@ -145,7 +129,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 return sortedProducts;
         }
     }
-
     function showNotification(message) {
         const notification = document.getElementById('notification');
         const notificationText = document.getElementById('notificationText');
@@ -155,17 +138,14 @@ document.addEventListener('DOMContentLoaded', function() {
             notification.classList.remove('show');
         }, 3000);
     }
-
     function updateTotalItems() {
         const totalItems = document.getElementById('totalItems');
         const productCount = document.querySelectorAll('.product-card').length;
         totalItems.textContent = productCount;
-
         if (productCount === 0) {
             showEmptyState();
         }
     }
-
     function showEmptyState() {
         const productGrid = document.getElementById('productGrid');
         productGrid.innerHTML = `
@@ -179,13 +159,11 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
     }
-
     // Event Listeners
     document.getElementById('sortSelect').addEventListener('change', (e) => {
         currentSort = e.target.value;
         renderProducts(currentPage);
     });
-
     document.querySelectorAll('.view-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
@@ -194,7 +172,6 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('productGrid').className = `product-grid ${currentView}-view`;
         });
     });
-
     // Initialize
     renderProducts(currentPage);
 });

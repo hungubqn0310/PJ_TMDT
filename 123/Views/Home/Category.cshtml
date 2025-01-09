@@ -47,21 +47,74 @@
 <script>
     const productsPerPage = 20; // Số sản phẩm trên mỗi trang
     let currentPage = 1;
+    let fakeProducts;
+    let categoryId =  localStorage.getItem('categoryId'); 
 
-    // Tạo mảng dữ liệu giả động với thông tin sản phẩm
-const fakeProducts = Array.from({ length: 200 }, (_, index) => {
-    const id = index + 1;
-    return {
-        ProductId: id,
-        Name: `Sản phẩm ${id}`,
-        Image: `https://via.placeholder.com/280x200?text=Product+1`,
-        Price: id * 100000,
-        OriginalPrice: id * 150000,
-        Slug: `product-${id}`
-    };
-});
+    const addCart = async (productId) => {
+        let userId = localStorage.getItem('id');
+        
+        let a =await fetch(`https://localhost:5003/api/cart`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                UserId: userId,
+                ProductId: productId,
+                Quantity: 1
+            })
+        });
 
-console.log(fakeProducts);
+        let res =await a.json();
+        if(res.status == 200) {
+            alert('Thêm vào giỏ hàng thành công');
+        } else {
+            alert('Thêm vào giỏ hàng thất bại');
+        }
+    }
+
+    const fetchProducts = async () => {
+        try {
+            // Gửi yêu cầu HTTP POST đến API login
+            const response = await fetch(`https://localhost:5003/api/products/byCate?id=${categoryId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            console.log("response", response);
+
+            // Xử lý phản hồi từ API
+            if (response.ok) {
+                 let res = await response.json();
+                fakeProducts = res?.data;
+                renderProducts(fakeProducts);
+            } else {
+                console.log("Không tìm thấy sản phầm")
+            }
+        } catch (error) {
+            console.error('Lỗi khi gọi API:', error);
+            alert('Đã xảy ra lỗi khi gọi API. Vui lòng thử lại sau.');
+        }
+
+  
+    }
+
+    fetchProducts()
+    //   Tạo mảng dữ liệu giả động với thông tin sản phẩm
+    //  fakeProducts = Array.from({ length: 200 }, (_, index) => {
+    //     const id = index + 1;
+    //     return {
+    //         ProductId: id,
+    //         ProductName: `Sản phẩm ${id}`,
+    //         ImageUrl: `https://via.placeholder.com/280x200?text=Product+1`,
+    //         Price: id * 100000,
+    //         OriginalPrice: id * 150000,
+    //         Slug: `product-${id}`
+    //     };
+    // });
+
 
 
     // Hàm định dạng giá với dấu chấm giữa các số
@@ -81,15 +134,16 @@ function renderProducts(products) {
         productBox.style = 'border: 1px solid #ddd; padding: 20px; border-radius: 10px; background-color: #fff; position: relative;';
 
         const productLink = document.createElement('a');
-        productLink.href = `/product/details/${product.Slug}`;
+        productLink.href = `/Home/ProductDetail`;
         productLink.style = 'display: block; text-align: center;';
 
         const imageWrapper = document.createElement('div');
         imageWrapper.classList.add('wrapper_image_feature');
         const productImage = document.createElement('img');
-        productImage.src = product.Image;
-        productImage.alt = product.Name;
-        productImage.style = 'width: 100%; height: 100%; border-radius: 10px;';
+        productImage.src = product.ImageUrl;
+        productImage.alt = product.ProductName;
+        productImage.style = 'width: 100%;height: 300px;border-radius: 10px;object-fit: cover;';
+
         imageWrapper.appendChild(productImage);
 
         productLink.appendChild(imageWrapper);
@@ -101,20 +155,30 @@ function renderProducts(products) {
         const productName = document.createElement('h3');
         productName.classList.add('product_name');
         productName.style = 'font-size: 16px; font-weight: 400;';
-        productName.textContent = product.Name;
+        productName.textContent = product.ProductName;
         productText.appendChild(productName);
 
-        const productPrice = document.createElement('p');
-        productPrice.classList.add('product_price');
-        productPrice.style = 'font-size: 16px; margin: 5px 0;';
-        productPrice.innerHTML = `<span class="woocommerce-Price-amount amount"><bdi>${formatPrice(product.Price)}&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></bdi></span>`;
+        let price = product?.Price;
+        let priceDiscount = product?.Price - (product.Price * product?.DiscountPercent / 100);
 
-        if (product.OriginalPrice > product.Price) {
-            const originalPrice = document.createElement('span');
+
+        const productPrice = document.createElement('p');
+        const originalPrice = document.createElement('span');
+
+        if(priceDiscount) {
+            productPrice.classList.add('product_price');
+            productPrice.style = 'font-size: 16px; margin: 5px 0;';
+            productPrice.innerHTML = `<span class="woocommerce-Price-amount amount"><bdi>${formatPrice(priceDiscount*1000)}&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></bdi></span>`;
+
             originalPrice.classList.add('product_regular_price');
             originalPrice.style = 'text-decoration-thickness: 0px; color: #999; margin-left: 10px; font-weight: 300';
-            originalPrice.innerHTML = `<span class="woocommerce-Price-amount amount"><bdi>${formatPrice(product.OriginalPrice)}&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></bdi></span>`;
+            originalPrice.innerHTML = `<span class="woocommerce-Price-amount amount"><bdi>${formatPrice(price*1000)}&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></bdi></span>`;
             productPrice.appendChild(originalPrice);
+        }else {
+            productPrice.classList.add('product_price');
+            productPrice.style = 'font-size: 16px; margin: 5px 0;';
+            productPrice.innerHTML = `<span class="woocommerce-Price-amount amount"><bdi>${formatPrice(price*1000)}&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></bdi></span>`;
+
         }
 
         productText.appendChild(productPrice);
@@ -130,7 +194,7 @@ heartIcon.classList.add('far', 'fa-heart'); // Trái tim rỗng
 heartIcon.style = `
     font-size: 24px;
     color: pink;
-    transition: transform 0.3s ease, color 0.5s ease; /* Thêm hiệu ứng chuyển đổi màu */
+    transition: transform 0.2s ease, color 0.5s ease; /* Thêm hiệu ứng chuyển đổi màu */
 `;
 
 // Thêm sự kiện click cho icon yêu thích
@@ -161,11 +225,12 @@ cartIcon.classList.add('fas', 'fa-cart-arrow-down'); // Giỏ hàng đầy ban �
 cartIcon.style = `
     font-size: 24px;
     color: pink;
-    transition: transform 0.3s ease, color 0.5s ease; /* Thêm hiệu ứng chuyển đổi màu */
+    transition: transform 0.2s ease, color 0.5s ease; /* Thêm hiệu ứng chuyển đổi màu */
 `;
 
 // Thêm sự kiện click cho icon giỏ hàng
 cartIcon.onclick = () => {
+    addCart(product?.ProductId)
     cartIcon.style.transform = 'scale(1.2)'; // Phóng to nhẹ khi click
     setTimeout(() => (cartIcon.style.transform = 'scale(1)'), 200); // Trả về kích thước ban đầu
 
@@ -202,6 +267,10 @@ document.body.appendChild(iconCart);
         productBox.addEventListener('mouseleave', () => {
             iconFavorite.style.opacity = 0; // Ẩn icon yêu thích
             iconCart.style.opacity = 0;     // Ẩn icon giỏ hàng
+        });
+
+        productBox.addEventListener('click', (e) => {
+            localStorage.setItem('productId', product.ProductId);
         });
     });
 }
@@ -242,7 +311,7 @@ document.body.appendChild(iconCart);
     }
 
     // Gọi hàm updatePage khi trang được tải
-    window.onload = updatePage;
+    @* window.onload = updatePage; *@
 </script>
 
 

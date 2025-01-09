@@ -82,7 +82,26 @@
     margin: 5px 0;
     color: #555;
 }
+.cancel-button {
+    background-color: red; /* Set the background color to red */
+    color: red; /* Set text color to white */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Optional: rounded corners */
+    padding: 10px 20px; /* Add some padding */
+    cursor: pointer; /* Change cursor on hover */
+    display: block; /* Make the button a block element */
+    margin: 0 auto; /* Center the button */
+    text-align: center; /* Center text within the button */
+    border: 1px solid red;
+    border-radius: 20px;
+    background-color: transparent;
+}
 
+.cancel-button:hover {
+    background-color: rgb(226, 0, 0); /* Darker shade on hover */
+    color: white;
+    border: white;
+}
 /* Animations */
 @keyframes fadeIn {
     from {

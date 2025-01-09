@@ -1,10 +1,8 @@
 @{
     ViewData["Title"] = "Sản phẩm yêu thích - HanDK";
 }
-
 <link rel="stylesheet" href="~/css/yeuThich.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
 <div class="favorite-container">
     <div class="favorite-header">
         <h1>Sản phẩm yêu thích</h1>
@@ -12,7 +10,6 @@
             <span class="total-items">Tổng số: <strong id="totalItems">0</strong> sản phẩm</span>
         </div>
     </div>
-
     <div class="filter-section">
         <select class="sort-select" id="sortSelect">
             <option value="newest">Mới nhất</option>
@@ -30,16 +27,13 @@
             </button>
         </div>
     </div>
-
     <div class="product-grid" id="productGrid">
         <!-- Products will be inserted here by JavaScript -->
     </div>
-
     <div class="pagination" id="pagination">
         <!-- Pagination will be inserted here by JavaScript -->
     </div>
 </div>
-
 <div class="notification" id="notification">
     <i class="fas fa-check-circle"></i>
     <span id="notificationText"></span>

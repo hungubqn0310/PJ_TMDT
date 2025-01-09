@@ -4,7 +4,6 @@
 <link rel="stylesheet" href="/css/cart.css" />
 
 <div class="cart-wrapper">
-
     <!-- Tiêu đề Giỏ Hàng -->
     <h1 class="cart-title">Giỏ Hàng Của Bạn</h1>
 
@@ -18,112 +17,136 @@
                         </th>
                         <th class="product-name">Sản phẩm</th>
                         <th class="product-price">Giá</th>
-                        <th class="product-quantity">Số lượng</th>
+                        <th class="product-quantity1">Số lượng</th>
                         <th class="product-subtotal">Tạm tính</th>
                         <th class="product-remove">Xóa</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr class="cart-item">
-                        <td class="product-select">
-                            <input type="checkbox" name="selected_items[]" value="1">
-                        </td>
-                        <td class="product-name">
-                            <img src="/images/product1.jpg" alt="" width="100" height="100">
-                            <a>Nhẫn Bạc Callie Silver</a>
-                        </td>
-                        <td class="product-price">980,000₫</td>
-                        <td class="product-quantity">
-                            <input type="number" name="quantity[1]" value="5" min="1" max="10">
-                        </td>
-                        <td class="product-subtotal">4,900,000₫</td>
-                        <td class="product-remove">
-    <a href="/cart?remove_item=1"><i class="fas fa-trash"></i></a>
-</td>
-
-                    </tr>
-                    <!-- Các sản phẩm khác sẽ được hiển thị ở đây -->
+                <tbody class="cart-body">
+                    
                 </tbody>
             </table>
         </div>
-    </form>
+    </form> 
 
     <!-- Tổng cộng và thanh toán -->
     <div class="cart-summary">
         <h2>Cộng giỏ hàng</h2>
         <table class="cart-totals">
-            <tr>
+            
+        </table>
+
+        <div class="proceed-to-checkout">
+            <a href="/Home/orderPayment" class="checkout-button">Tiến hành thanh toán</a>
+        </div>
+    </div>  
+</div>
+
+<!-- #region >-->
+<script>
+    const callApiGetCart = async () =>{
+        let totalPrice = 0
+        let id = localStorage.getItem('id');
+        let data = [];
+        try {
+            const response = await fetch(`https://localhost:5003/api/carts?id=${id}`);
+            
+            // Kiểm tra nếu response trả về thành công
+            if (response.status ==200) {
+             data = await response.json(); // Chuyển đổi dữ liệu JSON
+            
+            } else {
+            console.error('Lỗi khi tải dữ liệu:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Có lỗi xảy ra:', error);
+        }
+
+
+        let cart =document.querySelector('.cart-body'); 
+        let cartSummary =document.querySelector('.cart-totals'); 
+
+        
+        data?.data?.map((item) => {
+            let price
+            if(item.discountPercent) {
+                price = item.price - item.price * item.discountPercent / 100;
+            }
+            else { 
+                price = item.price;
+            }
+            totalPrice += (price * item.quantity)
+            cart.innerHTML += `
+                    <tr class="cart-item">
+                        <td class="product-select">
+                            <input type="checkbox" name="selected_items[]" value="1">
+                        </td>
+                        <td class="product-name">
+                            @* <img src="/images/product1.jpg" alt="" width="100" height="100"> *@
+                            <a>${item.productName}</a>
+                        </td>
+                        <td class="product-price">${(price*1000).toLocaleString('vi-VN')}₫</td>
+                        <td class="product-quantity">
+                            <input class="product-quantity-i" type="number" name="quantity[1]" value="${item.quantity}" min="1" data-product-id="${item.productId}" >
+                        </td>
+                        <td class="product-subtotal">${(price * item.quantity *1000).toLocaleString('vi-VN')}₫</td>
+                        <td class="product-remove">
+                            <a href="#"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>`
+            
+        })
+
+        cartSummary.innerHTML +=`<tr>
                 <th>Tạm tính</th>
-                <td>4,900,000₫</td>
-            </tr>
-            <tr>
-                <th>Giao hàng</th>
-                <td>
-                    <!-- Phương thức giao hàng -->
-                    
-
-                    <!-- Địa chỉ giao hàng -->
-                    <p class="shipping-destination">
-                        Vận chuyển đến <strong>Huyện Cần Giờ, Hồ Chí Minh</strong>.
-                        <a href="#" class="change-address">Đổi địa chỉ</a>
-                    </p>
-
-                    <!-- Đổi địa chỉ -->
-                    
-
-                    <!-- Form thay đổi địa chỉ -->
-                    <section class="address-form" style="display:none;">
-                        <form action="/cart" method="post" class="shipping-calculator">
-                            <p class="form-row">
-                                <label for="country" class="screen-reader-text">Quốc gia / Khu vực:</label>
-                                <select name="country" id="country" class="country-select">
-                                    <option value="VN" selected>Việt Nam</option>
-                                </select>
-                            </p>
-
-                            <p class="form-row">
-                                <label for="state" class="screen-reader-text">Tỉnh/Thành phố <abbr class="required">*</abbr></label>
-                                <select name="state" id="state" class="state-select">
-                                    <option value="HOCHIMINH">Hồ Chí Minh</option>
-                                    <option value="HANOI">Hà Nội</option>
-                                    <!-- Các thành phố khác -->
-                                </select>
-                            </p>
-
-                            <p class="form-row">
-    <label for="city" class="screen-reader-text">Quận/Huyện <abbr class="required">*</abbr></label>
-    <select name="city" id="city">
-        <option value="can-gio" selected>Cần Giờ</option>
-        <option value="quan-1">Quận 1</option>
-        <option value="quan-2">Quận 2</option>
-        <option value="quan-3">Quận 3</option>
-        <option value="quan-4">Quận 4</option>
-        <option value="quan-5">Quận 5</option>
-        <!-- Thêm các tùy chọn quận khác ở đây -->
-    </select>
-</p>
-
-
-                            <p>
-                                <button type="submit" class="btn-update">Cập nhật</button>
-                            </p>
-                        </form>
-                    </section>
-                </td>
+                <td>${(totalPrice *1000).toLocaleString('vi-VN')} ₫</td>
             </tr>
 
             <tr class="order-total">
                 <th>Tổng cộng</th>
-                <td>4,900,000₫</td>
-            </tr>
-        </table>
+                <td>${(totalPrice *1000).toLocaleString('vi-VN')} ₫</td>
+            </tr>`
+    
+        
+    }
+    callApiGetCart();
 
-        <div class="proceed-to-checkout">
-            <a href="/checkout" class="checkout-button">Tiến hành thanh toán</a>
-        </div>
-    </div>
-</div>
 
+
+    const updateCart = async (productId) => {
+        let userId = localStorage.getItem('id');
+        console.log(productId)
+        
+        let a =await fetch(`https://localhost:5003/api/cart`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                UserId: userId,
+                ProductId: productId,
+                Quantity: quantity
+            })
+        });
+
+        let res =await a.json();
+        if(res.status == 200) {
+            callApiGetCart()
+        } else {
+        }
+    }
+
+     document.addEventListener('DOMContentLoaded', () => {
+        let productQuantitys = document.querySelectorAll('.product-quantity-i')
+        console.log(productQuantitys)
+        productQuantitys.forEach(productQuantity => {
+            productQuantity.addEventListener('change', () => {
+                const productId = productQuantity.dataset.productId; // Giả sử bạn lưu productId trong data-attribute
+                updateCart(productId, productQuantity.value);
+            });
+        });
+    });
+</script>
 <script>
     function toggleSelectAll(source) {
         let checkboxes = document.querySelectorAll('input[name="selected_items[]"]');
@@ -132,7 +155,7 @@
         });
     }
     // Chuyển đổi hiển thị của form thay đổi địa chỉ
-document.querySelector('.change-address').addEventListener('click', function(event) {
+@* document.querySelector('.change-address').addEventListener('click', function(event) {
     event.preventDefault();
     let addressForm = document.querySelector('.address-form');
     if (addressForm.style.display === 'none' || addressForm.style.display === '') {
@@ -142,6 +165,6 @@ document.querySelector('.change-address').addEventListener('click', function(eve
         addressForm.style.display = 'none';
         addressForm.classList.remove('show');
     }
-});
+}); *@
 
 </script>

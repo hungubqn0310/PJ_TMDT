@@ -2,7 +2,6 @@
     ViewData["Title"] = "Về HanDK - Thương hiệu trang sức cao cấp";
 }
 <link rel="stylesheet" href="/css/aboutHanDK.css">
-
 <div class="about-container">
     <!-- Hero Section -->
     <div class="about-hero">
@@ -11,7 +10,6 @@
             <p class="subtitle slide-up">Kiệt tác trang sức từ năm 1999</p>
         </div>
     </div>
-
     <!-- Our Story Section -->
     <section class="our-story">
         <div class="story-content">
@@ -26,7 +24,6 @@
             </div>
         </div>
     </section>
-
     <!-- Values Section -->
     <section class="our-values">
         <h2 class="section-title">Giá trị cốt lõi</h2>
@@ -48,7 +45,6 @@
             </div>
         </div>
     </section>
-
     <!-- Achievement Section -->
     <section class="achievements">
         <h2 class="section-title">Thành tựu của chúng tôi</h2>
@@ -71,7 +67,6 @@
             </div>
         </div>
     </section>
-
     <!-- Team Section -->
     <section class="our-team">
         <h2 class="section-title">Đội ngũ chuyên gia</h2>
@@ -93,7 +88,6 @@
             </div>
         </div>
     </section>
-
     <!-- Certificate Section -->
     <section class="certificates">
         <h2 class="section-title">Chứng nhận & Giải thưởng</h2>
@@ -112,7 +106,6 @@
             </div>
         </div>
     </section>
-
     <!-- Contact CTA -->
     <section class="contact-cta">
         <div class="cta-content">
@@ -122,7 +115,6 @@
         </div>
     </section>
 </div>
-
 @section Scripts {
     <script>
         // Counter Animation
@@ -133,7 +125,6 @@
             let count = 0;
             const speed = 50;
             const increment = target / (2000 / speed);
-
             const updateCount = () => {
                 if (count < target) {
                     count += increment;
@@ -143,10 +134,8 @@
                     counter.innerText = target;
                 }
             };
-
             updateCount();
         };
-
         // Intersection Observer for counter animation
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -156,13 +145,10 @@
                 }
             });
         });
-
         counters.forEach(counter => observer.observe(counter));
-
         // Scroll Animation
         const fadeElements = document.querySelectorAll('.fade-in');
         const slideElements = document.querySelectorAll('.slide-in, .slide-up');
-
         const scrollObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -170,7 +156,6 @@
                 }
             });
         });
-
         fadeElements.forEach(element => scrollObserver.observe(element));
         slideElements.forEach(element => scrollObserver.observe(element));
     </script>

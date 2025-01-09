@@ -96,15 +96,34 @@ namespace _123.Controllers
 
         public IActionResult paymentSuccessful()
     {
-        return View();
+        return View("paymentSuccessful");
+    }
+    public IActionResult Momopayment()
+    {
+        return View("Momopayment");
+    }
+    public IActionResult qrcodepayment()
+    {
+        return View("qrcodepayment");
+    }
+    public IActionResult PaymentCallBack()
+    {
+        return View("PaymentCallBack");
+    }
+    public IActionResult Vnpaypayment()
+    {
+        return View("Vnpaypayment");
     }
 
+    public IActionResult Zalopayment()
+    {
+        return View("Zalopayment");
+    }
     public IActionResult cart()
     {
         return View();
     }
-
-public IActionResult transactionHistory()
+    public IActionResult transactionHistory()
     {
         return View();
     }

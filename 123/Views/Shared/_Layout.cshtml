@@ -18,6 +18,7 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 	<script src="~/js/loginPup.js"></script>
     <script src="~/js/audioPlayer.js"></script>
+	<script src="~/js//user-dropdown.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
@@ -39,9 +40,24 @@
 
 				<!-- Các icon bên phải -->
 				<div class="right-icons">
-					<span class="material-icons shopping-cart-icon">shopping_cart</span> <!-- Giỏ hàng -->
-					<span class="material-icons user-icon">person</span> <!-- Người dùng -->
+					<a href="/home/cart" class="material-icons shopping-cart-icon" style="text-decoration: none;">shopping_cart</a> <!-- Giỏ hàng -->
+					<div style="display: flex; align-items: center">
+						<span class="material-icons user-icon" id="user-icon">person</span> <!-- Biểu tượng mặc định là person -->
+						<div class="dropdownn" id="user-dropdown" style="display: none;">
+							<button class="dropdownn-toggle" id="dropdown-btn" aria-expanded="false" 
+							style="background-color: transparent;border: none;">
+								<p style="padding: 0 10px; margin: 0" class="username"></p> <!-- Hiển thị tên người dùng -->
+							</button>
+							<div class="dropdownn-menu" aria-labelledby="dropdown-btn">
+								<a class="dropdownn-item" href="/home/UserInfo">Thông tin cá nhân</a>
+								<a class="dropdownn-item" href="/home/transactionhistory">Lịch sử mua hàng</a>
+								<a class="dropdownn-item" href="/home" onclick="logout()">Đăng xuất</a> <!-- Đăng xuất -->
+							</div>
+						</div>
+					</div>
 				</div>
+
+
 			</div>
 			<nav>
 				<div class="wrapper">
@@ -51,7 +67,7 @@
     						<a href="javascript:void(0);">Danh mục <span class="arrowHover">&#8593;</span></a>
 							<ul class="dropdown">
 								<li>
-									<a href="/category/nhanCauHon">Nhẫn cầu hôn</a>
+									<a href="/category/nhanCauHon" onclick="handleClick(event)">Nhẫn cầu hôn</a>
 									<ul class="dropdown1">
 										<li>
 											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Kiểu dáng</a>
@@ -94,7 +110,7 @@
 									</ul>
 								</li>
 								<li>
-									<a href="/category/nhanCuoi">Nhẫn cưới</a>
+									<a href="/category/nhanCuoi" onclick="handleClick(event)">Nhẫn cưới</a>
 									<ul class="dropdown1">
 										<li>
 											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Loại nhẫn</i></a>
@@ -140,7 +156,7 @@
 									</ul>
 									</li>
 								<li>
-									<a href="/category/trangSuc">Trang sức</a>
+									<a href="/category/trangSuc" onclick="handleClick(event)">Trang sức</a>
 									<ul class="dropdown1">
 										<li>
 											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Loại trang sức</i></a>
@@ -173,7 +189,7 @@
 									</ul>
 									</li>
 								<li>
-									<a href="/category/kimCuong">Kim cương</a>
+									<a href="/category/kimCuong" onclick="handleClick(event)">Kim cương</a>
 									<ul class="dropdown1">
 										<li>
 											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Giá tiền</i></a>
@@ -210,7 +226,7 @@
 									</ul>
 									</li>
 								<li>
-									<a href="/category/mens">Men's</a>
+									<a href="/category/mens" onclick="handleClick(event)">Men's</a>
 									<ul class="dropdown1">
 										<li>
 											<a href="#" style="text-decoration: none; color: inherit; cursor: default; font-weight: lighter;">Kiểu dáng</a>
@@ -364,6 +380,11 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="~/admin/js/snow.js"></script>
 
+	<script>
+		const username = document.querySelector('.username');
+		username.innerHTML  += localStorage.getItem('username').toString();
+	</script>
+
     <script>
         jQuery(function() {
             jQuery("body").snow({
@@ -374,6 +395,39 @@
             speedRange: [55, 80]    // Falling speed range in pixels per second
             });
         });
+
+		function handleClick(event) {
+			let text = event.target.textContent;
+			text = text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+			text = text.replace(/\s+/g, "");
+			switch (text.toLowerCase())
+            {
+                case "nhancauhon":
+					localStorage.setItem('categoryId', 1); 
+                    break;
+                case "nhancuoi":
+					localStorage.setItem('categoryId', 2); 
+                    break;
+                case "trangsuc":
+					localStorage.setItem('categoryId', 3); 
+                    break;
+                case "kimcuong":
+					localStorage.setItem('categoryId', 4); 
+                    break;
+                case "men's":
+					localStorage.setItem('categoryId', 5); 
+                    break;
+                default:
+					localStorage.setItem('categoryId', 1); 
+
+            }
+		}
     </script>
+
+
+
+
+
+	
 </body>
 </html>

@@ -1,0 +1,93 @@
+@{
+    ViewData["Title"] = "Thanh toán thành công";
+}
+
+<link rel="stylesheet" href="/css/paymentSuccessful.css" />
+
+<div class="success-container">
+    <div class="success-check">
+        <div class="check-circle animate">
+            <div class="check-mark"></div>
+        </div>
+    </div>
+    
+    <div class="success-message fade-in">
+        <h2>Cảm ơn bạn. Đơn hàng của bạn đã được nhận.</h2>
+    </div>
+    <div class="text-center">
+    <h1 class="display-4">
+    <img src="/images/momo-logo.png" alt="Momo Logo" style="height: 40px; margin-right: 10px; vertical-align: middle;">
+    Thanh toán Momo
+    </h1>
+
+    <div class="container">
+        <form action="/Payment/CreateMomoPaymentUrl" id="frmCreateOrder" method="POST">
+    <div class="form-group">
+        <label for="FullName">Tên khách hàng</label>
+        <input class="form-control"
+               id="FullName"
+               name="FullName"
+               type="text"
+               value="">
+    </div>
+    <br/>
+    <div class="form-group">
+        <label for="Amount">Số tiền</label>
+        <input class="form-control"
+               id="Amount"
+               name="Amount"
+               type="text"
+               value=""
+               readonly>
+    </div>
+    <br/>
+    <div class="form-group">
+        <label for="OrderInfo">Nội dung thanh toán</label>
+        <textarea class="form-control" 
+                  cols="20" 
+                  id="OrderInfo" 
+                  name="OrderInfo" 
+                  rows="2"></textarea>
+    </div>
+    <br/>
+    <button type="submit" class="btn btn-primary">
+    <img src="/images/momo-logo.png" alt="Momo Logo" style="height: 20px; margin-right: 8px;">
+    Thanh toán Momo
+</button>
+
+</form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Lấy các giá trị từ localStorage
+        const totalPrice = localStorage.getItem('totalPrice'); // Lấy giá trị của totalPrice
+        const username = localStorage.getItem('username'); // Lấy giá trị của username
+
+        // Gán giá trị vào input FullName
+        const fullNameInput = document.getElementById('FullName');
+        if (fullNameInput && username) {
+            fullNameInput.value = username; // Gán tên người dùng vào input FullName
+        }
+
+        // Gán giá trị vào input Amount
+        const amountInput = document.getElementById('Amount');
+        if (amountInput && totalPrice) {
+            amountInput.value = totalPrice*1000; // Gán số tiền vào input Amount
+        }
+
+        // Gán giá trị vào textarea OrderInfo nếu cần
+        const orderInfoTextarea = document.getElementById('OrderInfo');
+        if (orderInfoTextarea) {
+            orderInfoTextarea.value = 'Thanh toán tại HanDK'; // Gán giá trị mặc định
+        }
+    });
+
+</script>

@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
         icon.addEventListener("click", () => {
             icon.style.transform = "scale(1.2)"; // Phóng to nhẹ khi click
             setTimeout(() => (icon.style.transform = "scale(1)"), 200); // Trả về kích thước ban đầu
-
             if (icon.classList.contains("far")) {
                 icon.classList.remove("far");
                 icon.classList.add("fas"); // Đổi thành trái tim đầy
@@ -17,14 +16,12 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
-
     // Xử lý sự kiện cho tất cả các icon giỏ hàng
     const cartIcons = document.querySelectorAll(".cart-icon");
     cartIcons.forEach((icon) => {
         icon.addEventListener("click", () => {
             icon.style.transform = "scale(1.2)"; // Phóng to nhẹ khi click
             setTimeout(() => (icon.style.transform = "scale(1)"), 200); // Trả về kích thước ban đầu
-
             if (icon.classList.contains("fa-cart-arrow-down")) {
                 icon.classList.remove("fa-cart-arrow-down");
                 icon.classList.add("fa-shopping-cart"); // Chuyển sang giỏ hàng đầy

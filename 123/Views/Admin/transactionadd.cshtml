@@ -4,8 +4,8 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="transactionModalLabel">Create Transaction</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title" id="transactionModalLabel">Tạo Giao Dịch</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -15,8 +15,9 @@
                         <!-- User ID -->
                         <div class="col">
                             <div class="form-group">
-                                <label for="UserId">User</label>
-                                <select class="form-control" id="UserId" name="UserId" asp-for="UserId" asp-items="@(new SelectList(ViewBag.Users, "user_id", "username"))">
+                                <label for="UserId">Người Dùng</label>
+                                <select class="form-control" id="UserId" name="UserId" asp-for="UserId" asp-items="@(new SelectList(ViewBag.Users, "user_id", "username"))" required>
+                                    <option value="" selected disabled>Chọn Người Dùng</option>
                                 </select>
                                 <span asp-validation-for="UserId" class="text-danger"></span>
                             </div>
@@ -25,8 +26,9 @@
                         <!-- Order ID -->
                         <div class="col">
                             <div class="form-group">
-                                <label for="OrderId">Order</label>
-                                <select class="form-control" id="OrderId" name="OrderId" asp-for="OrderId" asp-items="@(new SelectList(ViewBag.Orders, "OrderId", "OrderId"))">
+                                <label for="OrderId">Đơn Hàng</label>
+                                <select class="form-control" id="OrderId" name="OrderId" asp-for="OrderId" asp-items="@(new SelectList(ViewBag.Orders, "OrderId", "OrderId"))" required>
+                                    <option value="" selected disabled>Chọn Đơn Hàng</option>
                                 </select>
                                 <span asp-validation-for="OrderId" class="text-danger"></span>
                             </div>
@@ -37,8 +39,8 @@
                         <!-- Transaction Date -->
                         <div class="col">
                             <div class="form-group">
-                                <label for="TransactionDate">Transaction Date</label>
-                                <input type="datetime-local" class="form-control" id="TransactionDate" name="TransactionDate" asp-for="TransactionDate">
+                                <label for="TransactionDate">Ngày Giao Dịch</label>
+                                <input type="datetime-local" class="form-control" id="TransactionDate" name="TransactionDate" asp-for="TransactionDate" required>
                                 <span asp-validation-for="TransactionDate" class="text-danger"></span>
                             </div>
                         </div>
@@ -46,8 +48,8 @@
                         <!-- Amount -->
                         <div class="col">
                             <div class="form-group">
-                                <label for="Amount">Amount</label>
-                                <input type="number" class="form-control" id="Amount" name="Amount" asp-for="Amount" step="0.01">
+                                <label for="Amount">Số Tiền</label>
+                                <input type="number" class="form-control" id="Amount" name="Amount" asp-for="Amount" step="0.01" min="0" required title="Số tiền phải lớn hơn hoặc bằng 0">
                                 <span asp-validation-for="Amount" class="text-danger"></span>
                             </div>
                         </div>
@@ -57,8 +59,9 @@
                         <!-- Payment Method -->
                         <div class="col">
                             <div class="form-group">
-                                <label for="PaymentMethodId">Payment Method</label>
-                                <select class="form-control" id="PaymentMethodId" name="PaymentMethodId" asp-for="PaymentMethodId" asp-items="@(new SelectList(ViewBag.PaymentMethods, "PaymentMethodId", "PaymentMethodName"))">
+                                <label for="PaymentMethodId">Phương Thức Thanh Toán</label>
+                                <select class="form-control" id="PaymentMethodId" name="PaymentMethodId" asp-for="PaymentMethodId" asp-items="@(new SelectList(ViewBag.PaymentMethods, "PaymentMethodId", "PaymentMethodName"))" required>
+                                    <option value="" selected disabled>Chọn Phương Thức Thanh Toán</option>
                                 </select>
                                 <span asp-validation-for="PaymentMethodId" class="text-danger"></span>
                             </div>
@@ -67,8 +70,13 @@
                         <!-- Status -->
                         <div class="col">
                             <div class="form-group">
-                                <label for="Status">Status</label>
-                                <input type="text" class="form-control" id="Status" name="Status" asp-for="Status" placeholder="Enter status">
+                                <label for="Status">Trạng Thái</label>
+                                <select class="form-control" id="Status" name="Status" asp-for="Status" required>
+                                    <option value="" selected disabled>Chọn Trạng Thái</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Canceled">Canceled</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
                                 <span asp-validation-for="Status" class="text-danger"></span>
                             </div>
                         </div>

@@ -3,7 +3,7 @@ $(document).ready(function () {
     var $popup = $("#popupLogin");
 
     // Mở popup khi nhấn vào user icon
-    $(".user-icon, .shopping-cart-icon").click(function () {
+    $(".user-icon").click(function () {
         $overlay.fadeIn();
         $popup.css("animation", "slideInRight 0.4s ease").fadeIn();
     });
