@@ -17,7 +17,7 @@
                         </th>
                         <th class="product-name">Sản phẩm</th>
                         <th class="product-price">Giá</th>
-                        <th class="product-quantity">Số lượng</th>
+                        <th class="product-quantity1">Số lượng</th>
                         <th class="product-subtotal">Tạm tính</th>
                         <th class="product-remove">Xóa</th>
                     </tr>
@@ -87,7 +87,7 @@
                         </td>
                         <td class="product-price">${(price*1000).toLocaleString('vi-VN')}₫</td>
                         <td class="product-quantity">
-                            <input type="number" name="quantity[1]" value="${item.quantity}" min="1" >
+                            <input class="product-quantity-i" type="number" name="quantity[1]" value="${item.quantity}" min="1" data-product-id="${item.productId}" >
                         </td>
                         <td class="product-subtotal">${(price * item.quantity *1000).toLocaleString('vi-VN')}₫</td>
                         <td class="product-remove">
@@ -110,6 +110,42 @@
         
     }
     callApiGetCart();
+
+
+
+    const updateCart = async (productId) => {
+        let userId = localStorage.getItem('id');
+        console.log(productId)
+        
+        let a =await fetch(`https://localhost:5003/api/cart`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                UserId: userId,
+                ProductId: productId,
+                Quantity: quantity
+            })
+        });
+
+        let res =await a.json();
+        if(res.status == 200) {
+            callApiGetCart()
+        } else {
+        }
+    }
+
+     document.addEventListener('DOMContentLoaded', () => {
+        let productQuantitys = document.querySelectorAll('.product-quantity-i')
+        console.log(productQuantitys)
+        productQuantitys.forEach(productQuantity => {
+            productQuantity.addEventListener('change', () => {
+                const productId = productQuantity.dataset.productId; // Giả sử bạn lưu productId trong data-attribute
+                updateCart(productId, productQuantity.value);
+            });
+        });
+    });
 </script>
 <script>
     function toggleSelectAll(source) {
