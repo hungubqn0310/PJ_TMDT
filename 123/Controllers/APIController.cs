@@ -225,6 +225,21 @@ namespace _123.Controllers
                 return NotFound(new ApiResponse<dynamic>(404, "Không tìm thấy đơn hàng."));
             }
         }
+        [HttpPost("orders/cancel")]
+        public IActionResult CancelOrder([FromQuery] int orderId)
+        {
+            // Gọi service để hủy đơn hàng
+            var result = OrderService.CancelOrder(orderId);
+
+            if (result > 0)
+            {
+                return Ok(new ApiResponse<dynamic>(200, "Đơn hàng đã được hủy thành công."));
+            }
+            else
+            {
+                return NotFound(new ApiResponse<dynamic>(404, "Không tìm thấy đơn hàng hoặc hủy thất bại."));
+            }
+        }
 
         public class PaymentRequest
         {

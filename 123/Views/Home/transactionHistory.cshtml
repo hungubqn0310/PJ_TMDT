@@ -44,26 +44,59 @@
     }
 
     function renderOrders(orders, containerId) {
-        const container = document.getElementById(containerId);
-        container.innerHTML = ''; // Xóa nội dung cũ
+    const container = document.getElementById(containerId);
+    container.innerHTML = ''; // Xóa nội dung cũ
 
-        if (orders.length === 0) {
-            container.innerHTML = '<p>Không có đơn hàng nào.</p>';
-            return;
-        }
-
-        orders.forEach(order => {
-            const orderCard = `
-                <div class="order-card">
-                    <h3><strong>Đơn hàng #</strong>${order.orderId}</h3>
-                    <p><strong>Tổng tiền</strong>: ${(order.totalAmount * 1000).toLocaleString('vi-VN')} VNĐ</p>
-                    <p><strong>Ngày đặt:</strong> ${new Date(order.orderDate).toLocaleString()}</p>
-                    <p><strong>Trạng thái:</strong> ${order.status}</p>
-                </div>
-            `;
-            container.innerHTML += orderCard;
-        });
+    if (orders.length === 0) {
+        container.innerHTML = '<p>Không có đơn hàng nào.</p>';
+        return;
     }
+
+    orders.forEach(order => {
+        const isCancelable = order.status.toLowerCase() !== 'canceled' && order.status.toLowerCase() !== 'completed';
+        const cancelButton = isCancelable ? `<button class="cancel-button" data-id="${order.orderId}">Hủy đơn hàng</button>` : '';
+
+        const orderCard = `
+            <div class="order-card">
+                <h3><strong>Đơn hàng #</strong>${order.orderId}</h3>
+                <p><strong>Tổng tiền</strong>: ${(order.totalAmount * 1000).toLocaleString('vi-VN')} VNĐ</p>
+                <p><strong>Ngày đặt:</strong> ${new Date(order.orderDate).toLocaleString()}</p>
+                <p><strong>Trạng thái:</strong> ${order.status}</p>
+                <div style="text-align: center;">${cancelButton}</div>
+            </div>
+        `;
+        container.innerHTML += orderCard;
+    });
+
+    // Thêm sự kiện click cho nút hủy đơn hàng
+    document.querySelectorAll('.cancel-button').forEach(button => {
+        button.addEventListener('click', () => {
+            const orderId = button.getAttribute('data-id');
+            if (confirm(`Bạn có chắc chắn muốn hủy đơn hàng #${orderId}?`)) {
+                cancelOrder(orderId);
+            }
+        });
+    });
+}
+    async function cancelOrder(orderId) {
+    try {
+        const response = await fetch(`/api/orders/cancel?orderId=${orderId}`, {
+            method: 'POST'
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            alert(result.message); // Hiển thị thông báo thành công
+            loadOrders(); // Tải lại đơn hàng để cập nhật trạng thái
+        } else {
+            const error = await response.json();
+            alert(error.message); // Hiển thị thông báo lỗi
+        }
+    } catch (error) {
+        console.error('Lỗi khi hủy đơn hàng:', error);
+        alert('Đã có lỗi xảy ra khi hủy đơn hàng.');
+    }
+}   
 
     async function loadOrders(status = null) {
         const orders = await fetchOrders();

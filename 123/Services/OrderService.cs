@@ -176,5 +176,29 @@ namespace _123.Services
 
             return DatabaseHelper.ExecuteNonQuery(query, parameters);
         }
+        // Hủy đơn hàng
+        public static int CancelOrder(int orderId)
+        {
+            string query = @"UPDATE Orders
+                            SET status = @status
+                            WHERE order_id = @order_id AND is_deleted = 0";
+            
+            var parameters = new MySqlParameter[]
+            {
+                new MySqlParameter("@order_id", MySqlDbType.Int32) { Value = orderId },
+                new MySqlParameter("@status", MySqlDbType.VarChar) { Value = "Canceled" }
+            };
+
+            try
+            {
+                return DatabaseHelper.ExecuteNonQuery(query, parameters);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi khi hủy đơn hàng: {ex.Message}");
+                throw;
+            }
+        }
+
     }
 }

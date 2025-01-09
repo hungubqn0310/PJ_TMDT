@@ -7,7 +7,81 @@
 <div class="product-detail-wrapper">
     
 </div>
+<div class="review-section">
+    <h2 class="review-title">Review từ khách hàng</h2>
+    
+    <div class="review-container">
+        <div class="review-row">
+            <!-- Review Card 1 -->
+            <div class="review-card">
+                <div class="reviewer-info">
+                    <h3>Nguyễn Văn A</h3>
+                    <span class="review-date">20/11/2023</span>
+                </div>
+                <div class="review-media">
+                    <div class="image-slider">
+                        <img src="https://picsum.photos/300/200?random=1" alt="Review 1">
+                        <img src="https://picsum.photos/300/200?random=2" alt="Review 2">
+                        <img src="https://picsum.photos/300/200?random=3" alt="Review 3">
+                    </div>
+                </div>
+                <p class="review-content">Sản phẩm rất đẹp và chất lượng. Đóng gói cẩn thận, giao hàng nhanh. Sẽ ủng hộ shop dài dài!</p>
+            </div>
 
+            <!-- Review Card 2 -->
+            <div class="review-card">
+                <div class="reviewer-info">
+                    <h3>Trần Thị B</h3>
+                    <span class="review-date">19/11/2023</span>
+                </div>
+                <div class="review-media">
+                    <div class="image-slider">
+                        <img src="https://picsum.photos/300/200?random=4" alt="Review 1">
+                        <img src="https://picsum.photos/300/200?random=5" alt="Review 2">
+                    </div>
+                </div>
+                <p class="review-content">Trang sức đẹp như hình, giá cả hợp lý. Nhân viên tư vấn nhiệt tình.</p>
+            </div>
+
+            <!-- Review Card 3 -->
+            <div class="review-card">
+                <div class="reviewer-info">
+                    <h3>Lê Văn C</h3>
+                    <span class="review-date">18/11/2023</span>
+                </div>
+                <div class="review-media">
+                    <div class="image-slider">
+                        <img src="https://picsum.photos/300/200?random=6" alt="Review 1">
+                        <img src="https://picsum.photos/300/200?random=7" alt="Review 2">
+                        <img src="https://picsum.photos/300/200?random=8" alt="Review 3">
+                    </div>
+                </div>
+                <p class="review-content">Chất lượng sản phẩm tuyệt vời, đúng như mô tả. Rất hài lòng!</p>
+            </div>
+
+            <!-- Review Card 4 -->
+            <div class="review-card">
+                <div class="reviewer-info">
+                    <h3>Phạm Thị D</h3>
+                    <span class="review-date">17/11/2023</span>
+                </div>
+                <div class="review-media">
+                    <div class="image-slider">
+                        <img src="https://picsum.photos/300/200?random=9" alt="Review 1">
+                        <img src="https://picsum.photos/300/200?random=10" alt="Review 2">
+                    </div>
+                </div>
+                <p class="review-content">Shop phục vụ rất tốt, sản phẩm đẹp. Sẽ giới thiệu cho bạn bè!</p>
+            </div>
+        </div>
+    </div>
+
+<!-- Phần gradient mờ dần -->
+    <div class="feedback-fade"></div>
+    
+    <!-- Nút xem thêm -->
+    <button id="load-more" class="load-more-btn">Xem thêm review</button>
+    </div>
 <script>
     let productId =  localStorage.getItem('productId'); 
     let fakeProducts;
