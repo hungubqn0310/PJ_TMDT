@@ -1,3 +1,4 @@
+//view inventorys
 using _123.Models;
 namespace _123 {
   public class InventoryViewModel
