@@ -11,6 +11,17 @@
     <h2 class="review-title">Review từ khách hàng</h2>
     
     <div class="review-container">
+        <div class="write-review">
+    <textarea id="review-text" placeholder="Viết đánh giá của bạn..." rows="4"></textarea>
+    <div class="action-buttons">
+        <span class="material-icons upload-icon" id="upload-media">attach_file</span>
+        <span class="material-icons send-icon" id="submit-review">file_upload</span>
+    </div>
+    <input type="file" id="review-media" accept="image/*" multiple style="display: none;">
+    <div class="selected-media-preview" id="media-preview"></div>
+</div>
+
+
         <div class="review-row">
             <!-- Review Card 1 -->
             <div class="review-card">
@@ -82,6 +93,54 @@
     <!-- Nút xem thêm -->
     <button id="load-more" class="load-more-btn">Xem thêm review</button>
     </div>
+    <script>
+// Hiển thị ảnh được chọn
+document.getElementById('review-media').addEventListener('change', function (e) {
+    const previewContainer = document.getElementById('media-preview');
+    previewContainer.innerHTML = ''; // Xóa nội dung cũ
+
+    Array.from(e.target.files).forEach(file => {
+        if (file.type.startsWith('image')) {
+            const img = document.createElement('img');
+            img.src = URL.createObjectURL(file);
+            img.alt = 'Ảnh được chọn';
+            previewContainer.appendChild(img);
+        }
+    });
+});
+
+// Kích hoạt chọn tệp khi nhấn vào nút upload
+document.getElementById('upload-media').addEventListener('click', function () {
+    document.getElementById('review-media').click();
+});
+
+// Xử lý đăng bài
+document.getElementById('submit-review').addEventListener('click', submitReview);
+document.getElementById('review-text').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        submitReview();
+    }
+});
+
+function submitReview() {
+    const reviewText = document.getElementById('review-text').value.trim();
+    const reviewMedia = document.getElementById('review-media').files;
+
+    if (!reviewText && reviewMedia.length === 0) {
+        alert("Vui lòng nhập nội dung hoặc đính kèm ít nhất một tệp!");
+        return;
+    }
+
+    // Xử lý đăng bài, bạn có thể thêm logic tại đây
+
+    // Xóa nội dung sau khi đăng
+    document.getElementById('review-text').value = '';
+    document.getElementById('review-media').value = '';
+    document.getElementById('media-preview').innerHTML = '';
+}
+
+    </script>
 <script>
     let productId =  localStorage.getItem('productId'); 
     let fakeProducts;
@@ -108,7 +167,6 @@
         } else {
             alert('Thêm vào giỏ hàng thất bại');
         }
-
     }
 
     const handleGoToViewCart = () => {

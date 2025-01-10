@@ -1,0 +1,273 @@
+/* Container styles */
+.promotion-container {
+    max-width: 1000px;
+    margin-top: 140px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* Banner styles */
+.promotion-banner {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+    text-align: center;
+    padding: 60px 20px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    animation: bannerFade 1s ease-in-out;
+}
+@keyframes bannerFade {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.promotion-banner h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+.promotion-banner p {
+    font-size: 1.2em;
+    opacity: 0.9;
+}
+/* Section styles */
+.product-section {
+    margin-bottom: 40px;
+}
+.product-section h3 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #333;
+    border-bottom: 2px solid #ff9a9e;
+    padding-bottom: 10px;
+}
+/* Product grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+/* Product card styles */
+.product-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    position: relative;
+}
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+.product-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.product-card:hover .product-image img {
+    transform: scale(1.1);
+}
+/* Product card styles */
+.product-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+.product-card:hover {
+    transform: translateY(-5px) scale(1.03); /* Nâng lên và tăng kích thước */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* Tăng bóng đổ */
+}
+/* Sử dụng bóng gradient để thêm chiều sâu */
+.product-card:hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.1) 100%);
+    border-radius: 10px;
+    pointer-events: none;
+}
+/* Product overlay */
+.product-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.product-card:hover .product-overlay {
+    opacity: 1;
+}
+.favorite-icon, .cart-icon {
+    color: pink;
+    font-size: 1.5em;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.5s ease; /* Hiệu ứng chuyển đổi màu và kích thước */
+}
+.favorite-icon:hover, .cart-icon:hover {
+    transform: scale(1.2);
+}
+/* Product info */
+.product-info {
+    padding: 15px;
+}
+.product-info h4 {
+    font-size: 1.05em;
+    margin-bottom: 10px;
+    color: #333;
+}
+.price-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.current-price {
+    font-size: 1.05em;
+    color: #ff4757;
+}
+.original-price {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 0.9em;
+}
+/* Discount badge */
+.discount-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgb(255, 135, 155);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+/* Special offers section */
+.special-offers {
+    margin-top: 50px;
+}
+.special-offers h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2em;
+    color: #333;
+}
+h2 {
+    text-align: center;
+}
+.special-offers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.special-offer-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 30px;
+    border-radius: 15px;
+    color: white;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+.special-offer-card:hover {
+    transform: translateY(-5px);
+}
+.offer-content h3 {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+.offer-content p {
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+.offer-button {
+    background: white;
+    color: #764ba2;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.offer-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .special-offers-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 480px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .special-offers-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .promotion-banner h1 {
+        font-size: 2em;
+    }
+}
+/* Animation effects */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+.product-section {
+    animation: fadeIn 1s ease-out;
+}
+.product-card {
+    animation: slideUp 0.5s ease-out forwards;
+}

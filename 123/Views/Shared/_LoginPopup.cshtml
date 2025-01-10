@@ -11,13 +11,15 @@
         </p>
     </div>
     <div class="input-group">
-        <label for="email" class="label">Email hoặc số điện thoại</label>
-        <input type="text" id="email" class="input-field" placeholder="Nhập email hoặc số điện thoại" />
+        <label for="email" class="label">Tên đăng nhập</label>
+        <input type="text" id="email" class="input-field" placeholder="Nhập tên đăng nhập" />
     </div>
     <div class="input-group">
         <label for="password" class="label">Mật khẩu</label>
         <input type="password" id="password" class="input-field" placeholder="Nhập mật khẩu" />
     </div>
+    <!-- #region >-->
+    <p class="text-error" style="color:red; font-size: medium;padding:10px 0 0"></p>
     <div class="actions">
         <button id="loginButton" class="btn btn-primary" type="button" disabled>Đăng nhập</button>
         <form asp-controller="Account" asp-action="SignUp" method="get">
@@ -41,6 +43,7 @@
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
     const loginButton = document.getElementById('loginButton');
+    let textError = document.querySelector('.text-error')
 
     // Hàm kiểm tra các trường và cập nhật trạng thái nút đăng nhập
     function checkForm() {
@@ -61,7 +64,8 @@
         const password = passwordInput.value;
 
         if (!username || !password) {
-            alert('Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu.');
+            @* alert('Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu.'); *@
+            textError.innerHTML ='Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu !'
             return;
         }
 
@@ -81,7 +85,7 @@
             // Xử lý phản hồi từ API
             if (response.ok) {
                 const data = await response.json();
-                alert(`Đăng nhập thành công`);
+                @* alert(`Đăng nhập thành công`); *@
                 if(data?.data?.role_id == 2 || data?.data?.role_id == 3) {
                     window.location.href = '/admin'
                 }else {
@@ -92,7 +96,8 @@
                 localStorage.setItem('role', data.data?.role_id); 
             } else {
                 const errorData = await response.json();
-                alert(`Đăng nhập thất bại: ${errorData.Message || 'Lỗi không xác định'}`);
+                @* alert(`Đăng nhập thất bại: ${errorData.Message || 'Lỗi không xác định'}`); *@
+                textError.innerHTML ='Tài khoản hoặc mật khẩu không đúng !'
             }
         } catch (error) {
             console.error('Lỗi khi gọi API:', error);

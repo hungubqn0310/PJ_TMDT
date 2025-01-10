@@ -29,6 +29,40 @@ namespace _123.Services
 
             return DatabaseHelper.ExecuteNonQuery(query, parameters);
         }
+public static int CreateProductDetails(List<ProductDetail> productDetails)
+{
+    // Xây dựng câu lệnh SQL với nhiều giá trị để chèn nhiều chi tiết sản phẩm
+    var query = @"INSERT INTO ProductDetail (product_id, ni_tay, kieu_dang, kieu_vien_chu, kich_thuoc_vien_chu, gioi_tinh, others, mau_kim_loai, da_tam, is_deleted)
+                  VALUES ";
+
+    var parameters = new List<MySqlParameter>();
+    var valueStrings = new List<string>();
+
+    // Duyệt qua danh sách chi tiết sản phẩm và tạo các phần values cho câu lệnh SQL
+    for (int i = 0; i < productDetails.Count; i++)
+    {
+        var productDetail = productDetails[i];
+
+        valueStrings.Add(
+            $"(@product_id{i}, @ni_tay{i}, @kieu_dang{i}, @kieu_vien_chu{i}, @kich_thuoc_vien_chu{i}, @gioi_tinh{i}, @others{i}, @mau_kim_loai{i}, @da_tam{i}, 0)");
+
+        parameters.Add(new MySqlParameter($"@product_id{i}", MySqlDbType.VarChar) { Value = productDetail.ProductId });
+        parameters.Add(new MySqlParameter($"@ni_tay{i}", MySqlDbType.VarChar) { Value = productDetail.NiTay });
+        parameters.Add(new MySqlParameter($"@kieu_dang{i}", MySqlDbType.VarChar) { Value = productDetail.KieuDang });
+        parameters.Add(new MySqlParameter($"@kieu_vien_chu{i}", MySqlDbType.VarChar) { Value = productDetail.KieuVienChu });
+        parameters.Add(new MySqlParameter($"@kich_thuoc_vien_chu{i}", MySqlDbType.VarChar) { Value = productDetail.KichThuocVienChu });
+        parameters.Add(new MySqlParameter($"@gioi_tinh{i}", MySqlDbType.VarChar) { Value = productDetail.GioiTinh });
+        parameters.Add(new MySqlParameter($"@others{i}", MySqlDbType.VarChar) { Value = productDetail.Others });
+        parameters.Add(new MySqlParameter($"@mau_kim_loai{i}", MySqlDbType.VarChar) { Value = productDetail.MauKimLoai });
+        parameters.Add(new MySqlParameter($"@da_tam{i}", MySqlDbType.VarChar) { Value = productDetail.DaTam });
+    }
+
+    // Kết hợp các phần values vào câu lệnh SQL
+    query += string.Join(", ", valueStrings);
+
+    // Thực thi câu lệnh SQL với các tham số
+    return DatabaseHelper.ExecuteNonQuery(query, parameters.ToArray());
+}
 
         // Lấy danh sách các chi tiết sản phẩm
         public static List<ProductDetail> GetProductDetails()
