@@ -93,6 +93,158 @@
     <!-- Nút xem thêm -->
     <button id="load-more" class="load-more-btn">Xem thêm review</button>
     </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const reviewSection = document.querySelector('.review-section');
+    const loadMoreBtn = document.querySelector('.load-more-btn');
+    const gradientFade = document.querySelector('.feedback-fade');
+    
+    loadMoreBtn.addEventListener('click', function() {
+        // Kiểm tra xem đã hiển thị hết review chưa
+        if (reviewSection.style.maxHeight) {
+            // Nếu đã mở rộng, reset lại
+            reviewSection.style.maxHeight = '800px'; // Giá trị ban đầu
+            loadMoreBtn.style.display = 'block';
+            gradientFade.style.display = 'block';
+        } else {
+            // Nếu chưa mở rộng, hiển thị tất cả
+            reviewSection.style.maxHeight = 'none';
+            loadMoreBtn.style.display = 'none';
+            gradientFade.style.display = 'none';
+        }
+    });
+});
+    document.addEventListener('DOMContentLoaded', function() {
+    // Xử lý hiệu ứng hover ảnh
+    const imageSliders = document.querySelectorAll('.image-slider');
+    
+    imageSliders.forEach(slider => {
+        const images = slider.querySelectorAll('img');
+        let currentIndex = 0;
+        let interval;
+
+        slider.addEventListener('mouseenter', () => {
+            interval = setInterval(() => {
+                images[currentIndex].style.opacity = '0';
+                currentIndex = (currentIndex + 1) % images.length;
+                images[currentIndex].style.opacity = '1';
+            }, 1000);
+        });
+
+        slider.addEventListener('mouseleave', () => {
+            clearInterval(interval);
+            images.forEach((img, index) => {
+                img.style.opacity = index === 0 ? '1' : '0';
+            });
+            currentIndex = 0;
+        });
+    });
+
+    // Xử lý nút xem thêm
+    const loadMoreBtn = document.getElementById('load-more');
+    const reviewContainer = document.querySelector('.review-container');
+    let currentPage = 1;
+    
+    // Fake data cho các review tiếp theo
+    const moreReviews = [
+        // Hàng thứ 2
+        [
+            {
+                name: "Hoàng Thị E",
+                date: "16/11/2023",
+                images: ["https://picsum.photos/300/200?random=11", "https://picsum.photos/300/200?random=12"],
+                content: "Sản phẩm rất phù hợp với giá tiền. Đóng gói cẩn thận!"
+            },
+            {
+                name: "Đỗ Văn F",
+                date: "15/11/2023",
+                images: ["https://picsum.photos/300/200?random=13", "https://picsum.photos/300/200?random=14", "https://picsum.photos/300/200?random=15"],
+                content: "Chất lượng tốt, đẹp hơn cả mong đợi. Sẽ ủng hộ shop lần sau!"
+            },
+            {
+                name: "Nguyễn Thị G",
+                date: "14/11/2023",
+                images: ["https://picsum.photos/300/200?random=16", "https://picsum.photos/300/200?random=17"],
+                content: "Giao hàng nhanh, đóng gói kỹ càng. Rất hài lòng với sản phẩm."
+            },
+            {
+                name: "Trần Văn H",
+                date: "13/11/2023",
+                images: ["https://picsum.photos/300/200?random=18", "https://picsum.photos/300/200?random=19"],
+                content: "Shop tư vấn nhiệt tình, sản phẩm chất lượng tốt!"
+            }
+        ],
+        // Có thể thêm nhiều hàng nữa ở đây
+    ];
+
+    loadMoreBtn.addEventListener('click', () => {
+        if (currentPage <= moreReviews.length) {
+            const newRow = document.createElement('div');
+            newRow.className = 'review-row';
+            
+            moreReviews[currentPage - 1].forEach(review => {
+                const card = createReviewCard(review);
+                newRow.appendChild(card);
+            });
+
+            reviewContainer.appendChild(newRow);
+            currentPage++;
+
+            // Ẩn nút nếu không còn review
+            if (currentPage > moreReviews.length) {
+                loadMoreBtn.style.display = 'none';
+            }
+
+            // Khởi tạo lại hiệu ứng hover cho các ảnh mới
+            initializeImageSliders(newRow);
+        }
+    });
+
+    function createReviewCard(review) {
+        const card = document.createElement('div');
+        card.className = 'review-card';
+        card.innerHTML = `
+            <div class="reviewer-info">
+                <h3>${review.name}</h3>
+                <span class="review-date">${review.date}</span>
+            </div>
+            <div class="review-media">
+                <div class="image-slider">
+                    ${review.images.map(img => `<img src="${img}" alt="Review">`).join('')}
+                </div>
+            </div>
+            <p class="review-content">${review.content}</p>
+        `;
+        return card;
+    }
+
+    function initializeImageSliders(container) {
+        const newSliders = container.querySelectorAll('.image-slider');
+        newSliders.forEach(slider => {
+            const images = slider.querySelectorAll('img');
+            let currentIndex = 0;
+            let interval;
+
+            slider.addEventListener('mouseenter', () => {
+                interval = setInterval(() => {
+                    images[currentIndex].style.opacity = '0';
+                    currentIndex = (currentIndex + 1) % images.length;
+                    images[currentIndex].style.opacity = '1';
+                }, 1000);
+            });
+
+            slider.addEventListener('mouseleave', () => {
+                clearInterval(interval);
+                images.forEach((img, index) => {
+                    img.style.opacity = index === 0 ? '1' : '0';
+                });
+                currentIndex = 0;
+            });
+        });
+    }
+});
+</script>
     <script>
 // Hiển thị ảnh được chọn
 document.getElementById('review-media').addEventListener('change', function (e) {

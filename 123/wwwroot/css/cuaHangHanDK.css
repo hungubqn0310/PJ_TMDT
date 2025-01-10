@@ -7,7 +7,7 @@
 /* Hero Section */
 .hero-section {
     height: 600px;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/hero-bg.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/hethongcuahang.png');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -104,7 +104,6 @@
 .features-section {
     max-width: 1000px;
     margin-left: 260px;
-    background: #f9f9f9;
     padding: 50px 0;
 }
 .features-grid {

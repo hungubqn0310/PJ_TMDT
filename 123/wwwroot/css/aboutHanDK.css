@@ -1,11 +1,11 @@
-about-container {
+.about-container {
     margin-top: 120px;
-    overflow-x: hidden;
+    overflow-x: hidden; 
 }
 /* Hero Section */
 .about-hero {
     height: 70vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/jewelry-bg.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/abouthandk.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -33,7 +33,7 @@ section {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 50px;
-    color: #333;
+    color: #e05edc;
     font-weight: 300;
 }
 /* Story Section */
@@ -51,6 +51,7 @@ section {
 .story-image .image-placeholder {
     width: 100%;
     height: 400px;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/thanhlaphandk.png');
     background-color: #f5f5f5;
     border-radius: 10px;
 }
@@ -130,22 +131,48 @@ section {
     background-color: #f5f5f5;
     margin: 0 auto 20px;
 }
+.member-image img {
+    border-radius: 50%;
+    width: 200px; /* Ảnh chiếm toàn bộ chiều ngang của div */
+    height: 200px; /* Ảnh chiếm toàn bộ chiều cao của div */
+    object-fit: cover; /* Cắt ảnh nếu cần để vừa khít div mà không méo mó */
+    display: block; /* Loại bỏ khoảng trống mặc định của thẻ img */
+}
 /* Certificate Section */
 .certificates {
     background-color: #f9f9f9;
 }
 .certificate-slider {
     display: flex;
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    overflow-x: auto;
+    align-items: center;
+    justify-content: center;
+    gap: 30px; /* Khoảng cách giữa các ảnh */
+    max-width: 1200px; /* Cố định chiều rộng slider */
+    margin: 0 auto; /* Căn giữa slider trên trang */
+    padding: 0 20px; /* Thêm khoảng cách bên trong slider */
+    overflow-x: auto; /* Hiển thị thanh cuộn ngang nếu nội dung vượt quá chiều rộng */
+    scroll-snap-type: x mandatory; /* Kích hoạt hiệu ứng "snap" cho thanh cuộn */
 }
+
 .certificate-item {
-    flex: 0 0 300px;
-    text-align: center;
+    flex: 0 0 300px; /* Cố định chiều rộng mỗi item là 300px */
+    text-align: center; /* Căn giữa nội dung */
+    scroll-snap-align: center; /* Đảm bảo các item "bắt dính" vào giữa khi cuộn */
 }
+
+.certificate-item img {
+    width: 100%; /* Ảnh co dãn theo container */
+    height: auto; /* Giữ nguyên tỉ lệ ảnh */
+    border-radius: 8px; /* Tùy chọn: Bo tròn các góc của ảnh */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Tùy chọn: Thêm hiệu ứng đổ bóng */
+}
+
+.certificate-item p {
+    margin-top: 10px; /* Khoảng cách giữa ảnh và văn bản */
+    font-size: 16px; /* Kích thước chữ mô tả */
+    color: #333; /* Màu chữ */
+}
+
 /* Contact CTA */
 .contact-cta {
     background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/images/cta-bg.jpg');
