@@ -219,19 +219,34 @@ namespace _123.Controllers
         [HttpPost("orders")]
         public IActionResult CreateOrder([FromBody] OrderDto orders)
         {
+            // Tạo đơn hàng và lấy ID đơn hàng vừa tạo
             var result = OrderService.CreateOrder(orders.order);
-            if (result >0)
+            
+            if (result > 0)
             {
+                // Tạo các mục đơn hàng
                 var orderItems = OrderItemService.CreateOrderItems(
-                    orders.orderItems.Select(item => new OrderItem { OrderId = result, ProductName= item.ProductName, Quantity = item.Quantity, Price = item.Price}).ToList());
+                    orders.orderItems.Select(item => new OrderItem 
+                    { 
+                        OrderId = result, 
+                        ProductName = item.ProductName, 
+                        Quantity = item.Quantity, 
+                        Price = item.Price
+                    }).ToList());
+                
+                // Cập nhật giỏ hàng
                 var shop = ShoppingCartService.UpdateCartToDeleteByUserId(orders.userId);
-                return Ok(new ApiResponse<dynamic>(200, "Tao don hang thanh cong"));
+                
+                // Trả lại response với order_id
+                return Ok(new ApiResponse<dynamic>(200, "Tạo đơn hàng thành công", new { order_id = result }));
             }
             else
             {
-                return NotFound(new ApiResponse<dynamic>(404, "Tao don hang that bai"));
+                // Trả lại lỗi nếu tạo đơn hàng thất bại
+                return NotFound(new ApiResponse<dynamic>(404, "Tạo đơn hàng thất bại"));
             }
         }
+
         [HttpGet("orders")]
         public IActionResult GetOrdersByUserId([FromQuery] int userId)
         {
@@ -265,7 +280,32 @@ namespace _123.Controllers
                 return NotFound(new ApiResponse<dynamic>(404, "Không tìm thấy đơn hàng hoặc hủy thất bại."));
             }
         }
+        [HttpPost("orders/update-status")]
+        public IActionResult UpdateOrderStatus([FromBody] UpdateOrderStatusRequest request)
+        {
+            if (request == null || request.OrderId <= 0)
+            {
+                return BadRequest(new ApiResponse<dynamic>(400, "Dữ liệu không hợp lệ."));
+            }
 
+            // Cập nhật trạng thái đơn hàng
+            int result = OrderService.UpdateOrderStatus(request.OrderId, request.IsSuccess);
+
+            if (result > 0)
+            {
+                return Ok(new ApiResponse<dynamic>(200, "Cập nhật trạng thái đơn hàng thành công."));
+            }
+            else
+            {
+                return NotFound(new ApiResponse<dynamic>(404, "Không tìm thấy đơn hàng hoặc cập nhật thất bại."));
+            }
+        }
+
+        public class UpdateOrderStatusRequest
+        {
+            public int OrderId { get; set; }
+            public bool IsSuccess { get; set; }
+        }
         public class PaymentRequest
         {
             public decimal Amount { get; set; }

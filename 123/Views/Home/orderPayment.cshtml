@@ -170,7 +170,7 @@
 
         if (response2.status === 200) {
             const orderData = await response2.json(); // Lấy dữ liệu phản hồi
-            const orderId = orderData.id; // Thay 'id' bằng thuộc tính thực tế chứa order_id
+            const orderId = orderData.data.order_id; // Thay 'id' bằng thuộc tính thực tế chứa order_id
             localStorage.setItem('order_id', orderId); 
             // Chuyển hướng đến trang phù hợp dựa trên tùy chọn thanh toán
             if (selectedPaymentOption === 'cod') {
