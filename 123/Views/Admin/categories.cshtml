@@ -8,25 +8,29 @@
       <h6 class="m-0 font-weight-bold text-primary">Thông tin danh mục</h6>
   </div>
   <div class="d-flex justify-content-end">  
-
+    <div style="margin: 10px 0 0;">
+        <input type="file" id="excel" accept=".xls,.xlsx" style="display: none;">
+        <button type="button" class="btn btn-outline-success" onclick="document.getElementById('excel').click()">Chọn file excel</button>
+    </div>
     @* @using (Html.BeginForm("ImportExcel", "Category", FormMethod. Post, new {enctype="multipart/form-data"}))
     {
         <input type="file" name="postFile" style="border:1px solid #ccc;display:inline-block;padding:6px 12px; cursor:pointer" />
         <input type="submit" value="Import" class="btn btn-primary" />
     } *@
-    <button type="button" class="btn btn-outline-success" style="margin: 10px 40px 0;" data-toggle="modal" data-target="#category-add" 
+    <button type="button" class="btn btn-outline-info" style="margin: 10px 40px 0 20px;" data-toggle="modal" data-target="#category-add" 
     data-url="@Url.Action($"Add")">Thêm Mới</button>
     @await Html.PartialAsync("/Views/Admin/categoryadd.cshtml", @Model.Category)
   </div>
 
   <div class="card-body">
       <div class="table-responsive">
-          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <table class="table table-bordered styled-table" id="dataTable" width="100%" cellspacing="0">
               <thead>
                   <tr>
                       <th>Stt</th>
                       <th>Tên danh mục</th>
                       <th>Mô tả</th>
+                        <th>Hành động</th>
                   </tr>
               </thead>
               <tbody>
@@ -38,7 +42,7 @@
                         <td>@Model.Categories[i].Description</td>
                         <td>
                             <!-- Edit Button -->
-                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" 
+                            <button type="button" class="btn btn-outline-primary update-button" data-toggle="modal" 
                                     data-target="#category-@Model.Categories[i].CategoryId" 
                                     data-url="@Url.Action($"Edit/{@Model.Categories[i].CategoryId}")">
                                 <i class="material-icons" style="font-size: 14px">border_color</i>
@@ -46,7 +50,7 @@
                             @await Html.PartialAsync("/Views/Admin/categoryedit.cshtml", @Model.Categories[i])
 
                             <!-- Delete Button -->
-                            <button type="button" class="btn btn-outline-danger" data-toggle="modal" 
+                            <button type="button" class="btn btn-outline-danger delete-button" data-toggle="modal" 
                                     data-target="#category-delete-@Model.Categories[i].CategoryId" 
                                     data-url="@Url.Action($"Delete/{@Model.Categories[i].CategoryId}")">
                                 <i class="material-icons" style="font-size: 14px">delete</i>
@@ -59,4 +63,46 @@
           </table>
       </div>
   </div>
+  <script> 
+       
+        let updateButtons = document.querySelectorAll('.update-button')
+        let deleteButtons = document.querySelectorAll('.delete-button')
+
+        if (role!=2) {
+            updateButtons.forEach(button => {
+                button.style.display = "none";
+            });
+            deleteButtons.forEach(button => {
+                button.style.display = "none";
+            });
+        }
+    </script> 
+    <script>
+        document.getElementById('excel').addEventListener('change', async function (event) {
+            const file = event.target.files[0];
+
+            try {
+                // Tạo FormData và thêm file vào
+                const formData = new FormData();
+                formData.append('file', file);
+
+                // Gọi API
+                const response = await fetch('https://localhost:5003/api/upload-excel-category', {
+                    method: 'POST',
+                    body: formData,
+                });
+                if (response.ok) {
+                    const result = await response.json();
+                    console.log("Kết quả từ API:", result);
+                    alert('Them thanh cong')
+                    location.reload();
+                } else {
+                    console.error("API trả về lỗi:", response.status);
+                }
+            } catch (error) {
+                console.error("Lỗi khi upload file:", error);
+                alert("Đã xảy ra lỗi khi upload file!");
+            }
+        });
+    </script>
 </div>

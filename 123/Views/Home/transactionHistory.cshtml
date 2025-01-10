@@ -1,0 +1,131 @@
+@{
+    ViewData["Title"] = "Lịch sử mua hàng";
+}
+<link rel="stylesheet" href="/css/transactionHistory.css" />
+
+<div class="order-history-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <button class="tab-button active" data-tab="payment-status">🛒 Lịch sử mua hàng</button>
+        <button class="tab-button" data-tab="completed">✅ Hoàn thành</button>
+        <button class="tab-button" data-tab="canceled">❌ Đã huỷ</button>
+    </div>
+    <!-- Content -->
+    <div class="content">
+        <div id="payment-status" class="tab-content active">
+            <h4>🛒 Lịch sử mua hàng</h4>
+            <div id="payment-orders" class="order-list"></div>
+        </div>
+        <div id="completed" class="tab-content">
+            <h4>✅ Hoàn thành</h4>
+            <div id="completed-orders" class="order-list"></div>
+        </div>
+        <div id="canceled" class="tab-content">
+            <h4>❌ Đã huỷ</h4>
+            <div id="canceled-orders" class="order-list"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Lấy userId từ localStorage
+    const userId = localStorage.getItem('id');
+    // Kiểm tra nếu userId tồn tại
+    if (!userId) {
+        console.error('userId không được tìm thấy trong localStorage.');
+        alert('Bạn cần đăng nhập để xem lịch sử mua hàng.');
+        window.location.href = '/login'; // Chuyển hướng đến trang đăng nhập
+    }
+
+    async function fetchOrders() {
+        const response = await fetch(`https://localhost:5003/api/orders?userId=${userId}`);
+        const data = await response.json();
+        return data.data; // Trả về mảng đơn hàng
+    }
+
+    function renderOrders(orders, containerId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = ''; // Xóa nội dung cũ
+
+    if (orders.length === 0) {
+        container.innerHTML = '<p>Không có đơn hàng nào.</p>';
+        return;
+    }
+
+    orders.forEach(order => {
+        const isCancelable = order.status.toLowerCase() !== 'canceled' && order.status.toLowerCase() !== 'completed';
+        const cancelButton = isCancelable ? `<button class="cancel-button" data-id="${order.orderId}">Hủy đơn hàng</button>` : '';
+
+        const orderCard = `
+            <div class="order-card" style="display: flex;align-items: center;justify-content: space-between;">
+                <div>
+                    <h3><strong>Đơn hàng #</strong>${order.orderId}</h3>
+                    <p><strong>Tổng tiền</strong>: ${(order.totalAmount * 1000).toLocaleString('vi-VN')} VNĐ</p>
+                    <p><strong>Ngày đặt:</strong> ${new Date(order.orderDate).toLocaleString()}</p>
+                    <p><strong>Trạng thái:</strong> ${order.status}</p>
+                </div>
+                <div style="text-align: center;">${cancelButton}</div>
+            </div>
+        `;
+        container.innerHTML += orderCard;
+    });
+
+    // Thêm sự kiện click cho nút hủy đơn hàng
+    document.querySelectorAll('.cancel-button').forEach(button => {
+        button.addEventListener('click', () => {
+            const orderId = button.getAttribute('data-id');
+            if (confirm(`Bạn có chắc chắn muốn hủy đơn hàng #${orderId}?`)) {
+                cancelOrder(orderId);
+            }
+        });
+    });
+}
+    async function cancelOrder(orderId) {
+    try {
+        const response = await fetch(`/api/orders/cancel?orderId=${orderId}`, {
+            method: 'POST'
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            alert(result.message); // Hiển thị thông báo thành công
+            loadOrders(); // Tải lại đơn hàng để cập nhật trạng thái
+        } else {
+            const error = await response.json();
+            alert(error.message); // Hiển thị thông báo lỗi
+        }
+    } catch (error) {
+        console.error('Lỗi khi hủy đơn hàng:', error);
+        alert('Đã có lỗi xảy ra khi hủy đơn hàng.');
+    }
+}   
+
+    async function loadOrders(status = null) {
+        const orders = await fetchOrders();
+        const filteredOrders = status ? orders.filter(order => order.status.toLowerCase() === status.toLowerCase()) : orders;
+        renderOrders(filteredOrders, status ? (status === 'completed' ? 'completed-orders' : 'canceled-orders') : 'payment-orders');
+    }
+
+    document.querySelectorAll('.tab-button').forEach(button => {
+        button.addEventListener('click', async () => {
+            const tabId = button.getAttribute('data-tab');
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+            button.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+
+            // Tải đơn hàng cho trạng thái tương ứng
+            if (tabId === 'payment-status') {
+                await loadOrders(); // Tải tất cả đơn hàng
+            } else if (tabId === 'completed') {
+                await loadOrders('completed'); // Tải đơn hàng hoàn thành
+            } else if (tabId === 'canceled') {
+                await loadOrders('canceled'); // Tải đơn hàng đã huỷ
+            }
+        });
+    });
+
+    // Tải dữ liệu cho tab "Lịch sử mua hàng" khi trang được nạp
+    loadOrders();
+</script>

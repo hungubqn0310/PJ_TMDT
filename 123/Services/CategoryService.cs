@@ -30,29 +30,37 @@ namespace _123.Services
             if (categories == null || !categories.Any())
                 throw new ArgumentException("Category list is null or empty.", nameof(categories));
 
-            string query = @"INSERT INTO Categories (category_name, description, is_deleted)
-                            VALUES (@category_name, @description, 0)";
+            string query = @"INSERT INTO Categories (category_name, description, is_deleted) 
+                            VALUES {0}";
 
-            int rowsAffected = 0;
+            var valuePlaceholders = new List<string>();
+            var parameters = new List<MySqlParameter>();
+            int parameterIndex = 0;
 
-            using (var connection = DatabaseHelper.GetConnection())
+            // Tạo danh sách các placeholder và tham số
+            foreach (var category in categories)
             {
-                connection.Open();
+                var placeholder = $"(@category_name{parameterIndex}, @description{parameterIndex}, 0)";
+                valuePlaceholders.Add(placeholder);
 
-                foreach (var category in categories)
-                {
-                    var parameters = new MySqlParameter[]
-                    {
-                        new MySqlParameter("@category_name", MySqlDbType.VarChar) { Value = category.CategoryName },
-                        new MySqlParameter("@description", MySqlDbType.Text) { Value = category.Description }
-                    };
+                parameters.Add(new MySqlParameter($"@category_name{parameterIndex}", MySqlDbType.VarChar) 
+                { 
+                    Value = category.CategoryName 
+                });
 
-                    rowsAffected += DatabaseHelper.ExecuteNonQuery(query, parameters);
-                }
+                parameters.Add(new MySqlParameter($"@description{parameterIndex}", MySqlDbType.Text) 
+                { 
+                    Value = category.Description 
+                });
+
+                parameterIndex++;
             }
 
-    return rowsAffected;
-}
+            // Ghép các placeholders thành một câu lệnh duy nhất
+            string finalQuery = string.Format(query, string.Join(", ", valuePlaceholders));
+
+            return DatabaseHelper.ExecuteNonQuery(finalQuery, parameters.ToArray());
+        }
 
         // Lấy danh sách các Category
         public static List<Category> GetCategories()

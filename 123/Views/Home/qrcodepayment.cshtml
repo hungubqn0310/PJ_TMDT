@@ -1,0 +1,64 @@
+@{
+    ViewData["Title"] = "Thanh toán thành công";
+}
+
+<link rel="stylesheet" href="/css/paymentSuccessful.css" />
+
+<div class="success-container">
+    <div class="success-check">
+        <div class="check-circle animate">
+            <div class="check-mark"></div>
+        </div>
+    </div>
+    
+    <div class="success-message fade-in">
+        <h2>Cảm ơn bạn. Đơn hàng của bạn đã được nhận.</h2>
+    </div>
+    <ul>
+        <li><strong>Tên:</strong> <span id="username"></span></li>
+        <li><strong>Ngày:</strong> <span id="currentDate"></span></li>
+        <li><strong>Tổng cộng:</strong> <span id="totalAmount"></span></li>
+        <li><strong>Phương thức thanh toán:</strong> QR CODE</li>
+    </ul>
+    <div class="text-center">
+        <h1 class="display-4">
+            Thanh toán QR
+        </h1>
+        
+        <!-- Thêm mã QR dưới dạng hình ảnh và sửa lại kích thước ảnh -->
+        <img src="/images/qrcod.png" alt="QR Code" style="height: 410px; width: 402px;">
+        <div class="note fade-in">
+        <p><strong>Lưu ý:</strong> Sau khi chuyển khoản hãy nhắn tin qua <a href="#">Facebook</a> hoặc <a href="#">Zalo</a> cho mình nhé!</p>
+    </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Lấy tên và số tiền từ localStorage
+        const username = localStorage.getItem('username'); // Tên người dùng
+        const totalPrice = localStorage.getItem('totalPrice'); // Số tiền
+
+        // Gán tên người dùng vào phần tử có id 'username'
+        const usernameSpan = document.getElementById('username');
+        if (usernameSpan && username) {
+            usernameSpan.textContent = username;
+        }
+
+        // Gán số tiền vào phần tử có id 'totalAmount' và định dạng lại số tiền
+        const totalAmountSpan = document.getElementById('totalAmount');
+        if (totalAmountSpan && totalPrice) {
+            // Định dạng số tiền với dấu phân cách hàng nghìn và thêm ký hiệu VND
+            const formattedAmount = Number(totalPrice * 1000).toLocaleString('vi-VN') + ' ₫';
+            totalAmountSpan.textContent = formattedAmount;
+        }
+
+        // Gán ngày hiện tại vào phần tử có id 'currentDate'
+        const currentDateSpan = document.getElementById('currentDate');
+        if (currentDateSpan) {
+            const today = new Date();
+            const formattedDate = today.toLocaleDateString('vi-VN'); // Định dạng ngày tháng theo chuẩn Việt Nam
+            currentDateSpan.textContent = formattedDate;
+        }
+    });
+</script>

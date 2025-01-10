@@ -676,7 +676,6 @@ html, body {
 * {
   box-sizing: border-box;
 }
-
 /* CSS cho dropdown */
 .dropdownn {
   position: relative;
@@ -690,30 +689,33 @@ html, body {
   display: none; /* Ẩn dropdown mặc định */
   min-width: 160px;
   background-color: #fff;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   z-index: 1000; /* Đảm bảo dropdown hiện lên trên các phần tử khác */
-  border-radius: 5px;
+  border-radius: 8px;
+  transition: opacity 0.2s ease, visibility 0.2s ease; /* Thêm hiệu ứng chuyển tiếp */
+  opacity: 0; /* Bắt đầu với độ mờ */
+  visibility: hidden; /* Ẩn dropdown */
 }
 
 .dropdownn-item {
-  color: #000;
+  color: #333;
+  border-radius: 8px;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
   cursor: pointer;
+  transition: background-color 0.3s ease; /* Thêm hiệu ứng chuyển tiếp cho màu nền */
 }
 
 .dropdownn-item:hover {
-  background-color: #ddd; /* Hiệu ứng hover */
+  background-color: #f0f0f0; /* Hiệu ứng hover */
 }
 
 /* Hiển thị dropdown khi hover vào tên người dùng */
 .dropdownn:hover .dropdownn-menu {
   display: block;
-}
-
-.dropdownn-menu a {
-  display: block; /* Đảm bảo các phần tử trong dropdown là khối */
+  opacity: 1; /* Hiện dropdown */
+  visibility: visible; /* Hiện dropdown */
 }
 
 /* Đảm bảo rằng menu không bị che khuất */
@@ -722,8 +724,22 @@ html, body {
   top: 100%;
   left: 0;
   right: 0;
-  border-radius: 20px;
+  border-radius: 8px;
   z-index: 9999; /* Đảm bảo dropdown sẽ luôn hiển thị trên các phần tử khác */
 }
 
-/* Thêm phần CSS sửa lỗi viền đen xung quanh icon */
+/* Thêm hiệu ứng cho dropdown */
+.dropdownn:hover .dropdownn-menu {
+  animation: fadeIn 0.3s; /* Thêm hiệu ứng xuất hiện */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px); /* Đẩy lên một chút khi xuất hiện */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

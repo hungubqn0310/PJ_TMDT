@@ -11,6 +11,6 @@ namespace _123.Models
 
         // Định nghĩa DbSet cho các bảng trong cơ sở dữ liệu
         // Ví dụ:
-        // public DbSet<Product> Products { get; set; }
+        // public DbSet<Users> Users { get; set; }
     }
 }

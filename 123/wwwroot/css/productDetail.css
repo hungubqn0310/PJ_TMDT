@@ -1,3 +1,316 @@
+.review-section {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    max-height: 800px; /* Chiều cao ban đầu */
+    overflow: hidden;
+    transition: max-height 0.3s ease; /* Thêm transition cho mượt */
+}
+
+.review-title {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333; 
+    font-size: 2em;
+}
+
+
+
+.review-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.review-card {
+    flex: 1;
+    min-width: 250px;
+    max-width: calc(25% - 15px);
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.reviewer-info h3 {
+    margin: 0;
+    color: #333;
+    font-size: 1.1em;
+}
+.write-review {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    position: relative;
+}
+
+textarea {
+    margin-top: 10px;
+
+    width: 100%;
+    padding: 20px 55px 20px 70px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    border-radius: 20px;
+    font-size: 16px;
+}
+
+.action-buttons {
+    position: absolute;
+    bottom: 75px;
+    right: 20px;
+    display: flex;
+    flex-direction: column; /* Xếp các nút theo chiều dọc */
+    gap: 10px; /* Khoảng cách giữa các nút */
+}
+
+
+.material-icons {
+    font-size: 24px;
+    color: #007bff;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.material-icons:hover {
+    color: #0056b3;
+    transform: scale(1.1);
+}
+
+
+
+
+.upload-section {
+    margin-bottom: 10px;
+}
+
+.upload-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.upload-btn:hover {
+    background-color: #0056b3;
+}
+
+.submit-btn {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.selected-media-preview {
+    position: absolute;
+    bottom: 43px;
+    left: 20px;
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    max-width: 70px; /* Đảm bảo không tràn vùng viết đánh giá */
+    max-height: 105px; /* Đảm bảo không vượt quá vùng bên dưới */
+    overflow: hidden; /* Ẩn thanh cuộn mặc định */
+    z-index: 10;
+}
+
+/* Ẩn thanh cuộn khi người dùng không hover */
+.selected-media-preview::-webkit-scrollbar {
+    display: none; /* Ẩn thanh cuộn trên trình duyệt Webkit */
+}
+
+/* Khi di chuột vào vùng ảnh, cho phép cuộn nhưng không hiển thị thanh cuộn */
+.selected-media-preview:hover {
+    overflow-y: scroll; /* Cho phép cuộn khi hover */
+}
+
+
+.selected-media-preview img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+}
+.submit-btn:hover {
+    background-color: #218838;
+}
+
+.upload-icon {
+    background-color: #e9f5ff;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.send-icon {
+    background-color: #d4f8d4;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.review-date {
+    color: #999;
+    font-size: 0.9em;
+}
+
+.review-media {
+    margin: 15px 0;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.image-slider {
+    position: relative;
+    width: 100%;
+    height: 200px;
+}
+
+.image-slider img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.image-slider img:first-child {
+    opacity: 1;
+}
+
+.review-content {
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Container chứa phần đánh giá và nút */
+.feedback-container {
+    position: relative;
+    padding-bottom: 100px; /* Điều chỉnh khoảng cách để nút không bị che khuất */
+}
+
+.feedback-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.9) 50%,
+        rgba(255, 255, 255, 1) 100%
+    );
+    pointer-events: none;
+    transition: opacity 0.3s ease; /* Thêm transition cho mượt */
+}
+
+/* Sửa lại nút xem thêm */
+/* Hiệu ứng đẹp cho nút load-more */
+.load-more-btn {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    padding: 12px 40px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 10px rgba(0, 123, 255, 0.2);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Hiệu ứng shine khi hover */
+.load-more-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+    transform: skewX(-25deg);
+    transition: 0.75s;
+}
+
+.load-more-btn:hover {
+    background: #0056b3;
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+    transform: translateX(-50%) translateY(-2px);
+}
+
+.load-more-btn:hover::before {
+    left: 125%;
+}
+
+/* Hiệu ứng khi click */
+.load-more-btn:active {
+    transform: translateX(-50%) scale(0.95);
+}
+
+/* Animation cho review cards mới */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.review-card {
+    /* Giữ nguyên CSS cũ */
+    animation: fadeInUp 0.6s ease-out backwards;
+}
+
+/* Thêm delay cho từng card */
+.review-card:nth-child(1) { animation-delay: 0.1s; }
+.review-card:nth-child(2) { animation-delay: 0.2s; }
+.review-card:nth-child(3) { animation-delay: 0.3s; }
+.review-card:nth-child(4) { animation-delay: 0.4s; }
+
+@media (max-width: 1024px) {
+    .review-card {
+        max-width: calc(33.33% - 13.33px);
+    }
+}
+
+@media (max-width: 768px) {
+    .review-card {
+        max-width: calc(50% - 10px);
+    }
+}
+
+@media (max-width: 480px) {
+    .review-card {
+        max-width: 100%;
+    }
+}
+
 .coTheBanSeThich {
     height: auto; 
     overflow: hidden; 

@@ -1,0 +1,114 @@
+.container2 {
+    max-width: 1000px;
+    margin-top: 140px;
+    margin-bottom: 20px;
+    margin-left: 320px;
+    margin-right: 0px;
+    padding: 20px;
+    background: #eeeeee;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 30px;
+}
+.form-group select {
+    width: 100%;
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    font-size: 16px;
+    color: #333;
+    background-color: white;
+    box-sizing: border-box; /* Đảm bảo padding không làm ảnh hưởng đến chiều rộng */
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-header h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.profile-header p {
+    color: #666;
+    font-size: 14px;
+}
+
+.profile-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+}
+
+.profile-image {
+    text-align: center;
+}
+
+.profile-image img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.action-buttons {
+    display: flex; /* Kích hoạt flexbox */
+  justify-content: space-between; /* Căn đều khoảng cách giữa các nút */
+  align-items: center; /* Căn giữa các nút theo trục dọc (nếu cần) */
+    margin-top: 20px;
+}
+
+.action-buttons button {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .profile-content {
+        grid-template-columns: 1fr;
+    }
+}

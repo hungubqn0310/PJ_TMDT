@@ -8,14 +8,14 @@
       <h6 class="m-0 font-weight-bold text-primary">Thông tin Orders</h6>
   </div>
   <div class="d-flex justify-content-end">
-    <button type="button" class="btn btn-outline-success" style="margin: 10px 40px 0;" data-toggle="modal" data-target="#order-add" 
+    <button type="button" class="btn btn-outline-info" style="margin: 10px 40px 0;" data-toggle="modal" data-target="#order-add" 
     data-url="@Url.Action($"Add")">Thêm mới</button>
     @await Html.PartialAsync("/Views/Admin/orderadd.cshtml", @Model.Order)
   </div>
 
   <div class="card-body">
       <div class="table-responsive">
-          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <table class="table table-bordered styled-table" id="dataTable" width="100%" cellspacing="0">
               <thead>
                   <tr>
                       <th>Stt</th>
@@ -23,6 +23,8 @@
                       <th>Order Date</th>
                       <th>Status</th>
                       <th>Total Amount</th>
+                      <th>Hành động</th>
+
                   </tr>
               </thead>
               <tbody>
@@ -35,11 +37,21 @@
                         <td>@Model.Orders[i].Status</td>
                             <td>@Model.Orders[i].TotalAmount.ToString("C2")</td>
                         <td>
-                                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#order-@Model.Orders[i].OrderId" data-url="@Url.Action($"Edit/{@Model.Orders[i].OrderId}")">
-                                <i class="material-icons" style="font-size: 14px">border_color</i>
-                            </button>
-                            @await Html.PartialAsync("/Views/Admin/orderedit.cshtml", @Model.Orders[i])
-                                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#order-delete-@Model.Orders[i].OrderId" data-url="@Url.Action($"Delete/{@Model.Orders[i].OrderId}")">
+                            @if (Model.Orders[i].Status.ToLower() != "completed")
+                            {
+                                <button type="button" class="btn btn-outline-primary update-button" data-toggle="modal" data-target="#order-@Model.Orders[i].OrderId" data-url="@Url.Action($"Edit/{@Model.Orders[i].OrderId}")">
+                                    <i class="material-icons" style="font-size: 14px">border_color</i>
+                                </button>
+                                @await Html.PartialAsync("/Views/Admin/orderedit.cshtml", @Model.Orders[i])
+                            }
+                            else
+                            {
+                                <button type="button" class="btn btn-outline-primary update-button" disabled>
+                                    <i class="material-icons" style="font-size: 14px">border_color</i>
+                                </button>
+                            }
+
+                            <button type="button" class="btn btn-outline-danger delete-button" data-toggle="modal" data-target="#order-delete-@Model.Orders[i].OrderId" data-url="@Url.Action($"Delete/{@Model.Orders[i].OrderId}")">
                                 <i class="material-icons" style="font-size: 14px">delete</i>
                             </button>
                             @await Html.PartialAsync("/Views/Admin/orderdelete.cshtml", @Model.Orders[i])
@@ -50,4 +62,20 @@
           </table>
       </div>
   </div>
+    <script> 
+       
+        let updateButtons = document.querySelectorAll('.update-button')
+        let deleteButtons = document.querySelectorAll('.delete-button')
+
+        if (role!=2) {
+            @* updateButtons.forEach(button => {
+                button.style.display = "none";
+            }); *@
+            deleteButtons.forEach(button => {
+                button.style.display = "none";
+            });
+        }
+    </script>   
 </div>
+
+

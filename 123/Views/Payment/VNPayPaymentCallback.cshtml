@@ -1,0 +1,47 @@
+@{
+    ViewData["Title"] = "Kết quả Thanh Toán";
+}
+
+<div class="text-center">
+    <div class="container" style="margin: 150px auto; max-width: 600px; border: 1px solid #ddd; padding: 20px; border-radius: 8px; box-shadow: 0px 2px 5px rgba(0,0,0,0.1);">
+        <h2 class="mb-4" style="color: #007bff;">Kết quả Thanh Toán VNPay</h2>
+        <div style="text-align: left;">
+            <p><strong>Mô tả đơn hàng:</strong> @Model.OrderDescription</p>
+            <p><strong>Phương thức thanh toán:</strong> @Model.PaymentMethod</p>
+            <p id="payment-status"><strong>Thành công:</strong> @(Model.Success ? "Completed" : "Canceled")</p>
+        </div>
+        <a href="/home" class="btn btn-primary mt-3">Quay lại trang chủ</a>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", async function() {
+        // Lấy order_id từ localStorage (hoặc từ một nguồn khác)
+        const orderId = localStorage.getItem('order_id');
+        
+        // Kiểm tra trạng thái thanh toán
+        const paymentSuccess = @Html.Raw(Json.Serialize(Model.Success));
+
+        if (orderId) {
+            // Gửi yêu cầu cập nhật trạng thái đơn hàng
+            try {
+                const response = await fetch('https://localhost:5003/api/orders/update-status', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ orderId: parseInt(orderId), isSuccess: paymentSuccess })
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    console.log("Cập nhật trạng thái thành công:", result);
+                } else {
+                    console.error("Cập nhật trạng thái thất bại:", result);
+                }
+            } catch (error) {
+                console.error("Đã xảy ra lỗi khi gửi yêu cầu:", error);
+            }
+        }
+    });
+</script>

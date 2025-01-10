@@ -1,0 +1,360 @@
+/* General Styles */
+.store-container {
+    max-width: 100%;
+    margin-top: 120px;
+    margin-bottom: 0px;
+}
+/* Hero Section */
+.hero-section {
+    height: 600px;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/hethongcuahang.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+.intro-section {
+    padding: 50px 0;
+    max-width: 1000px;
+    margin-left: 260px;
+}
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    animation: fadeInDown 1s ease-out;
+}
+.hero-content p {
+    font-size: 24px;
+    animation: fadeInUp 1s ease-out;
+}
+/* Store Locations */
+.store-locations {
+    max-width: 1000px;
+    margin-left: 260px;
+    padding: 50px 0;
+}
+.store-locations h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 36px;
+    color: #1a1a1a;
+}
+.stores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+.store-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.store-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+.store-image {
+    height: 200px;
+    overflow: hidden;
+}
+.store-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+.store-card:hover .store-image img {
+    transform: scale(1.1);
+}
+.store-info {
+    padding: 20px;
+}
+.store-info h3 {
+    color: #1a1a1a;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+.store-info p {
+    margin-bottom: 10px;
+    color: #666;
+}
+.store-info i {
+    margin-right: 10px;
+    color: #FFD700; /* Thay #gold bằng mã màu hợp lệ */
+}
+.view-map-btn {
+    background: #FFD700; /* Thay #gold bằng mã màu hợp lệ */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.view-map-btn:hover {
+    background: pink;
+}
+/* Features Section */
+.features-section {
+    max-width: 1000px;
+    margin-left: 260px;
+    padding: 50px 0;
+}
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+.feature-item {
+    text-align: center;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.feature-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+.feature-item i {
+    font-size: 40px;
+    color: pink;
+    margin-bottom: 20px;
+}
+.feature-item h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #1a1a1a;
+}
+.feature-item p {
+    color: #666;
+}
+/* Contact Section */
+.contact-section {
+    max-width: 1000px;
+    margin-left: 260px;
+    padding: 50px 0;
+    background-size: cover;
+    background-position: center;
+    color: black;
+}
+.contact-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 50px;
+    padding: 20px;
+}
+.contact-info h3,
+.contact-form h3 {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+.contact-info p {
+    margin-bottom: 15px;
+}
+.contact-info i {
+    margin-right: 10px;
+    color: pink;
+}
+.contact-form .form-group {
+    margin-bottom: 20px;
+}
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background: gray;
+    color: white;
+}
+.contact-form textarea {
+    height: 120px;
+    resize: none;
+}
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: rgba(255,255,255,0.7);
+}
+.submit-btn {
+    background: pink;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.submit-btn:hover {
+    background: #c4a030;
+}
+/* Virtual Tour Section */
+.virtual-tour-section {
+    max-width: 1000px;
+    margin-left: 260px;
+    padding: 50px 0;
+}
+.virtual-tour-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 50px;
+    align-items: center;
+    padding: 20px;
+}
+.tour-content h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #1a1a1a;
+}
+.tour-content p {
+    margin-bottom: 30px;
+    color: #666;
+}
+.tour-btn {
+    background: pink;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.tour-btn:hover {
+    background: #c4a030;
+}
+.tour-image img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+/* Newsletter Section */
+.newsletter-section {
+    max-width: 1000px;
+    margin-left: 260px;
+    padding: 50px 0;
+    background: white, url('/images/newsletter-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: black;
+    text-align: center;
+}
+.newsletter-content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.newsletter-content h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+.newsletter-content p {
+    margin-bottom: 30px;
+}
+.newsletter-form {
+    display: flex;
+    gap: 10px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+.newsletter-form input {
+    color: black;
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+}
+.newsletter-form button {
+    background: pink;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.newsletter-form button:hover {
+    background: #c4a030;
+}
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 36px;
+    }
+    .hero-content p {
+        font-size: 18px;
+    }
+    .newsletter-form {
+        flex-direction: column;
+    }
+    .newsletter-form button {
+        width: 100%;
+    }
+}
+/* Loading Animation */
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+.loading::after {
+    content: '';
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid pink;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/* Hover Effects */
+.store-card,
+.feature-item,
+.submit-btn,
+.tour-btn,
+.newsletter-form button {
+    transition: all 0.3s ease;
+}
+.store-card:hover,
+.feature-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}

@@ -102,14 +102,42 @@ namespace _123.Controllers
     {
         return View("Momopayment");
     }
-    public IActionResult PaymentCallBack()
+    public IActionResult qrcodepayment()
+    {
+        return View("qrcodepayment");
+    }
+    public IActionResult VNPaypaymentCallBack()
     {
         return View("PaymentCallBack");
+    }
+    public IActionResult Vnpaypayment()
+    {
+        return View("Vnpaypayment");
+    }
+
+    public IActionResult Zalopayment()
+    {
+        return View("Zalopayment");
     }
     public IActionResult cart()
     {
         return View();
     }
+    public IActionResult transactionHistory()
+    {
+        return View();
+    }
+    public IActionResult UserInfo()
+    {
+        return View();
+    }
+
+    public IActionResult YeuThich()
+    {
+        return View();
+    }
+
+    
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
