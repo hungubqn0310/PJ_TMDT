@@ -14,11 +14,10 @@
     <div class="success-message fade-in">
         <h2>Cảm ơn bạn. Đơn hàng của bạn đã được nhận.</h2>
         <ul>
-            <li><strong>Mã đơn hàng:</strong> 1646</li>
-            <li><strong>Ngày:</strong> 29/06/2022</li>
-            <li><strong>Email:</strong> xuanltt23@gmail.com</li>
-            <li><strong>Tổng cộng:</strong> 825,000 ₫</li>
-            <li><strong>Phương thức thanh toán:</strong> Chuyển khoản ngân hàng</li>
+            <li><strong>Tên:</strong> <span id="username"></span></li>
+            <li><strong>Ngày:</strong> <span id="currentDate"></span></li>
+            <li><strong>Tổng cộng:</strong> <span id="totalAmount"></span></li>
+            <li><strong>Phương thức thanh toán:</strong> COD</li>
         </ul>
     </div>
 
@@ -62,7 +61,7 @@
         </li>
         <li>
             <span class="product-name">Địa chỉ</span>
-            <span class="product-total">Xã Đại Yên, huyện Chương Mỹ, tp. Hà Nội</span>
+            <span class="product-total">Xã Đại Yên, huyện Chương Mỹ, TP. Hà Nội</span>
         </li>
         <li>
             <span class="product-name">Ghi chú đơn hàng</span>
@@ -81,4 +80,33 @@ document.addEventListener('DOMContentLoaded', () => {
         el.classList.add('visible');
     });
 });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Lấy tên và số tiền từ localStorage
+        const username = localStorage.getItem('username'); // Tên người dùng
+        const totalPrice = localStorage.getItem('totalPrice'); // Số tiền
+
+        // Gán tên người dùng vào phần tử có id 'username'
+        const usernameSpan = document.getElementById('username');
+        if (usernameSpan && username) {
+            usernameSpan.textContent = username;
+        }
+
+        // Gán số tiền vào phần tử có id 'totalAmount' và định dạng lại số tiền
+        const totalAmountSpan = document.getElementById('totalAmount');
+        if (totalAmountSpan && totalPrice) {
+            // Định dạng số tiền với dấu phân cách hàng nghìn và thêm ký hiệu VND
+            const formattedAmount = Number(totalPrice * 1000).toLocaleString('vi-VN') + ' ₫';
+            totalAmountSpan.textContent = formattedAmount;
+        }
+
+        // Gán ngày hiện tại vào phần tử có id 'currentDate'
+        const currentDateSpan = document.getElementById('currentDate');
+        if (currentDateSpan) {
+            const today = new Date();
+            const formattedDate = today.toLocaleDateString('vi-VN'); // Định dạng ngày tháng theo chuẩn Việt Nam
+            currentDateSpan.textContent = formattedDate;
+        }
+    });
 </script>

@@ -145,21 +145,21 @@ namespace _123.Services
 
         // Cập nhật đơn hàng
         public static int UpdateOrder(Order order)
-{
-    string query = @"UPDATE Orders
-                     SET status = @status,
-                         total_amount = @total_amount
-                     WHERE order_id = @order_id AND is_deleted = 0";
-    
-    var parameters = new MySqlParameter[]
-    {
-        new MySqlParameter("@order_id", MySqlDbType.Int32) { Value = order.OrderId },
-        new MySqlParameter("@status", MySqlDbType.VarChar) { Value = order.Status },
-        new MySqlParameter("@total_amount", MySqlDbType.Decimal) { Value = order.TotalAmount }
-    };
+        {
+            string query = @"UPDATE Orders
+                            SET status = @status,
+                                total_amount = @total_amount
+                            WHERE order_id = @order_id AND is_deleted = 0";
+            
+            var parameters = new MySqlParameter[]
+            {
+                new MySqlParameter("@order_id", MySqlDbType.Int32) { Value = order.OrderId },
+                new MySqlParameter("@status", MySqlDbType.VarChar) { Value = order.Status },
+                new MySqlParameter("@total_amount", MySqlDbType.Decimal) { Value = order.TotalAmount }
+            };
 
-    return DatabaseHelper.ExecuteNonQuery(query, parameters);
-}
+            return DatabaseHelper.ExecuteNonQuery(query, parameters);
+        }
 
 
         // Xóa tạm thời đơn hàng
@@ -198,6 +198,23 @@ namespace _123.Services
                 Console.WriteLine($"Lỗi khi hủy đơn hàng: {ex.Message}");
                 throw;
             }
+        }
+        // Cập nhật trạng thái của đơn hàng
+        public static int UpdateOrderStatus(int orderId, bool isSuccess)
+        {
+            string status = isSuccess ? "Completed" : "Pending";
+            
+            string query = @"UPDATE Orders
+                            SET status = @status
+                            WHERE order_id = @order_id AND is_deleted = 0";
+
+            var parameters = new MySqlParameter[]
+            {
+                new MySqlParameter("@order_id", MySqlDbType.Int32) { Value = orderId },
+                new MySqlParameter("@status", MySqlDbType.VarChar) { Value = status }
+            };
+
+            return DatabaseHelper.ExecuteNonQuery(query, parameters);
         }
 
     }

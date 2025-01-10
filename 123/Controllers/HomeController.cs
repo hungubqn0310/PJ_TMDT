@@ -106,7 +106,7 @@ namespace _123.Controllers
     {
         return View("qrcodepayment");
     }
-    public IActionResult PaymentCallBack()
+    public IActionResult VNPaypaymentCallBack()
     {
         return View("PaymentCallBack");
     }
@@ -127,11 +127,17 @@ namespace _123.Controllers
     {
         return View();
     }
-
     public IActionResult UserInfo()
     {
         return View();
     }
+
+    public IActionResult YeuThich()
+    {
+        return View();
+    }
+
+    
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

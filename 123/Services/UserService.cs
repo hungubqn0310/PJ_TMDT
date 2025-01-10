@@ -64,6 +64,49 @@ namespace _123.Services
 
             return users;
         }
+
+        public static (int role1Count, int role3Count, decimal totalPrice) GetUserRoleCounts()
+        {
+            string query = "SELECT role_id, COUNT(*) AS role_count FROM Users WHERE is_deleted = 0 GROUP BY role_id";
+            string queryTotalPrice = "SELECT SUM(total_amount) AS total_amount FROM Orders WHERE status = 'Completed'";
+
+            int role1Count = 0;
+            int role3Count = 0;
+            decimal totalPrice = 0;
+            try
+            {
+                // Gọi hàm ExecuteQuery từ DatabaseHelper
+                DataTable dataTable = DatabaseHelper.ExecuteQuery(query);
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    int roleId = Convert.ToInt32(row["role_id"]);
+                    int count = Convert.ToInt32(row["role_count"]);
+
+                    if (roleId == 1)
+                    {
+                        role1Count = count;
+                    }
+                    else if (roleId == 3)
+                    {
+                        role3Count = count;
+                    }
+                }
+                DataTable orderDataTable = DatabaseHelper.ExecuteQuery(queryTotalPrice);
+                if (orderDataTable.Rows.Count > 0)
+                {
+                    totalPrice = Convert.ToDecimal(orderDataTable.Rows[0]["total_amount"]);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi khi lấy tổng số users theo role: {ex.Message}");
+                throw;
+            }
+
+            return (role1Count, role3Count, totalPrice);
+        }
    
         public static User GetUserById(int userId)
         {
@@ -140,5 +183,22 @@ namespace _123.Services
 
             return DatabaseHelper.ExecuteNonQuery(query, parameters);
         } 
+        public static int ChangePassword(int userId, string newPassword)
+        {
+            // Câu lệnh SQL để đổi mật khẩu
+            string query = @"UPDATE Users
+                            SET password = @newPassword
+                            WHERE user_id = @userId AND is_deleted = 0";
+
+            // Các tham số truyền vào câu lệnh SQL
+            var parameters = new MySqlParameter[]
+            {
+                new MySqlParameter("@userId", MySqlDbType.Int32) { Value = userId },
+                new MySqlParameter("@newPassword", MySqlDbType.VarChar) { Value = newPassword }
+            };
+
+            // Thực thi câu lệnh UPDATE và trả về số dòng bị ảnh hưởng
+            return DatabaseHelper.ExecuteNonQuery(query, parameters);
+        }
     }
 }

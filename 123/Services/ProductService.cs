@@ -29,6 +29,40 @@ namespace _123.Services
             return DatabaseHelper.ExecuteNonQuery(query, parameters);
         }
 
+        public static int CreateProducts(List<Product> products)
+{
+    // Xây dựng câu lệnh SQL với nhiều giá trị để chèn nhiều sản phẩm
+    var query = @"INSERT INTO Products (product_id, product_name, description, price, material_id, category_id, image_url, is_deleted)
+                  VALUES ";
+
+    var parameters = new List<MySqlParameter>();
+    var valueStrings = new List<string>();
+
+    // Duyệt qua danh sách sản phẩm và tạo các phần values cho câu lệnh SQL
+    for (int i = 0; i < products.Count; i++)
+    {
+        var product = products[i];
+
+        valueStrings.Add(
+            $"(@product_id{i}, @product_name{i}, @description{i}, @price{i}, @material_id{i}, @category_id{i}, @image_url{i}, 0)");
+
+        parameters.Add(new MySqlParameter($"@product_id{i}", MySqlDbType.VarChar) { Value = product.ProductId });
+        parameters.Add(new MySqlParameter($"@product_name{i}", MySqlDbType.VarChar) { Value = product.ProductName });
+        parameters.Add(new MySqlParameter($"@description{i}", MySqlDbType.Text) { Value = product.Description ?? (object)DBNull.Value });
+        parameters.Add(new MySqlParameter($"@price{i}", MySqlDbType.Decimal) { Value = product.Price });
+        parameters.Add(new MySqlParameter($"@material_id{i}", MySqlDbType.Int32) { Value = product.MaterialId ?? (object)DBNull.Value });
+        parameters.Add(new MySqlParameter($"@category_id{i}", MySqlDbType.Int32) { Value = product.CategoryId ?? (object)DBNull.Value });
+        parameters.Add(new MySqlParameter($"@image_url{i}", MySqlDbType.VarChar) { Value = product.ImageUrl ?? (object)DBNull.Value });
+    }
+
+    // Kết hợp các phần values vào câu lệnh SQL
+    query += string.Join(", ", valueStrings);
+
+    // Thực thi câu lệnh SQL với các tham số
+    return DatabaseHelper.ExecuteNonQuery(query, parameters.ToArray());
+}
+
+
         public static List<Product> GetProducts()
         {
                     string query = @"

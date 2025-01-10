@@ -50,6 +50,29 @@
     let fakeProducts;
     let categoryId =  localStorage.getItem('categoryId'); 
 
+    const addCart = async (productId) => {
+        let userId = localStorage.getItem('id');
+        
+        let a =await fetch(`https://localhost:5003/api/cart`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                UserId: userId,
+                ProductId: productId,
+                Quantity: 1
+            })
+        });
+
+        let res =await a.json();
+        if(res.status == 200) {
+            alert('Thêm vào giỏ hàng thành công');
+        } else {
+            alert('Thêm vào giỏ hàng thất bại');
+        }
+    }
+
     const fetchProducts = async () => {
         try {
             // Gửi yêu cầu HTTP POST đến API login
@@ -207,6 +230,7 @@ cartIcon.style = `
 
 // Thêm sự kiện click cho icon giỏ hàng
 cartIcon.onclick = () => {
+    addCart(product?.ProductId)
     cartIcon.style.transform = 'scale(1.2)'; // Phóng to nhẹ khi click
     setTimeout(() => (cartIcon.style.transform = 'scale(1)'), 200); // Trả về kích thước ban đầu
 
