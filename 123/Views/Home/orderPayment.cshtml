@@ -24,8 +24,6 @@
                 </div>
             </div>
 
-            
-
             <div class="form-group">
                 <label for="address">Địa chỉ <span class="required">*</span></label>
                 <input type="text" id="address" class="form-control" placeholder="Nhập địa chỉ cụ thể, số nhà, tên đường" required>
@@ -74,7 +72,7 @@
                     </div>
                 </div>
 
-                <button type="button" class="order-button" onclick="handleOrder()">Đặt hàng</button>
+                <button type="submit" class="order-button">Đặt hàng</button>
                 <div class="note">* Thời gian thực tế có thể dao động sớm hoặc muộn hơn tùy tình hình tồn kho sản phẩm, địa chỉ nhận hàng, các dịp nhu cầu mua sắm tăng cao...</div>
             </div>
         </div>
@@ -126,6 +124,12 @@
     callApiGetCart();
 
     const handleOrder = async () => {
+        const form = document.getElementById('checkoutForm');
+        if (!form.checkValidity()) {
+            alert('Vui lòng điền đầy đủ thông tin!');
+            return;
+        }
+
         const selectedPaymentOption = document.querySelector('input[name="payment"]:checked').id;
         let dataOrderItems;
         let id = localStorage.getItem('id');
@@ -169,8 +173,8 @@
         });
 
         if (response2.status === 200) {
-            const orderData = await response2.json(); // Lấy dữ liệu phản hồi
-            const orderId = orderData.data.order_id; // Thay 'id' bằng thuộc tính thực tế chứa order_id
+            const orderData = await response2.json();
+            const orderId = orderData.data.order_id;
             localStorage.setItem('order_id', orderId); 
             // Chuyển hướng đến trang phù hợp dựa trên tùy chọn thanh toán
             if (selectedPaymentOption === 'cod') {
@@ -180,10 +184,10 @@
             } else if (selectedPaymentOption === 'momo') {
                 window.location.href = '/Home/momopayment';
             }
-             else if (selectedPaymentOption === 'vnpay') {
+            else if (selectedPaymentOption === 'vnpay') {
                 window.location.href = '/Home/vnpaypayment';
             }
-             else if (selectedPaymentOption === 'zalopay') {
+            else if (selectedPaymentOption === 'zalopay') {
                 window.location.href = '/Home/zalopayment';
             }
         } else {
@@ -195,7 +199,7 @@
         const form = document.getElementById('checkoutForm');
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Đơn hàng đã được gửi!');
+            handleOrder();
         });
 
         const inputs = document.querySelectorAll('.form-control');
