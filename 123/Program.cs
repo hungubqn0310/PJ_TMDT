@@ -8,7 +8,6 @@ using _123.Models.VNPay;
 using _123.Services.VNPay;
 using _123.Services;
 
-
 var builder = WebApplication.CreateBuilder(args);
 //ConnectMoMo
 builder.Services.Configure<MomoOptionModel>(builder.Configuration.GetSection("MomoAPI"));
