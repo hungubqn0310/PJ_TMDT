@@ -35,8 +35,11 @@ namespace _123.Models
 
         [Column("is_deleted")]
         public bool IsDeleted { get; set; } = false;
+
+        // Đối tượng category và material
         public virtual Category Category { get; set; }
         public virtual Material Material { get; set; }
+
         // Constructor mặc định
         public Products() { }
 

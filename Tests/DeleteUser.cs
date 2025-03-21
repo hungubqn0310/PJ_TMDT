@@ -68,8 +68,8 @@
 //         wait.Until(ExpectedConditions.ElementIsVisible(By.Id("popupLogin")));
 
 //         // Nhập thông tin đăng nhập
-//         EnterText(By.Id("email"), "user1");
-//         EnterText(By.Id("password"), "123456");
+//         EnterText(By.Id("email"), "testuser");
+//         EnterText(By.Id("password"), "Test@1234");
 //         Console.WriteLine("Đã nhập thông tin đăng nhập.");
 
 //         // Nhấn nút đăng nhập

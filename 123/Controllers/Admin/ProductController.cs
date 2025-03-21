@@ -45,7 +45,12 @@ namespace _123.Controllers
     [Route("admin/product/add")]
     public IActionResult Add(Product product, IFormFile ImageUrl)
     {
-
+        if (!ModelState.IsValid)
+    {
+        
+        TempData["ErrorMessage"] = "Vui lòng điền đầy đủ thông tin sản phẩm!";
+        return new RedirectResult("/admin/product"); // Hoặc trả về view tương ứng
+    }
         if (ImageUrl != null && ImageUrl.Length > 0)
     {
         // Đường dẫn thư mục lưu ảnh
@@ -71,6 +76,7 @@ namespace _123.Controllers
         product.ImageUrl = "/upload/" + fileName;
     }
         ProductService.CreateProduct(product);
+        TempData["SuccessMessage"] = "Sản phẩm đã được thêm thành công!";
         return new RedirectResult("/admin/product");
     }
 
